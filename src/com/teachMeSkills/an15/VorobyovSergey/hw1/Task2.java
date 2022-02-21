@@ -72,11 +72,8 @@ class Task2 {
     }
 
     //This One a littlebit better
-    static boolean niceNumberChecker (int number, ArrayList<Integer> list){
-        if(list.contains(number)) {
-            return true;
-        } else
-            return false;
+    static boolean niceNumberChecker (int number, ArrayList<Integer> list) {
+        return list.contains(number);
     }
 }
 

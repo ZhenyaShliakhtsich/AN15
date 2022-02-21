@@ -21,7 +21,7 @@ class Task3 {
         //While loop
         while (!coincidence){
             //limiting the result to be greater that or equal origin and less than bound.
-            int randomNumberInMyLimits = random.nextInt(1,31);
+            int randomNumberInMyLimits = random.nextInt(31  );
 
             System.out.println("Какой сегодня день? (от 1 до 30).");
             userNumber = scanner.nextInt();
