@@ -43,10 +43,9 @@ public class Main {
         int num = console.nextInt();
         if (num == 5 || num == 10 || num == 17 || num == 47 || num == 77 || num == 93 || num == 99) {
             System.out.println("Вы выиграли!");
-        } else if (num != 5 || num != 10 || num != 17 || num != 47 || num != 77 || num != 93 || num != 99){
+        } else if (num != 5 || num != 10 || num != 17 || num != 47 || num != 77 || num != 93 || num != 99) {
             System.out.println("Вы проиграли!");
-        }
-        else if (num < 1 || num > 100) {
+        } else if (num < 1 || num > 100) {
             System.out.println("Ошибка!");
         }
 
