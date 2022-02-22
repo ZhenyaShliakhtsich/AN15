@@ -28,13 +28,10 @@ public class Main {
         if (per3 < per1 && per3 < per2) {
             System.out.println("Минимальное значение = " + per3);
         }
-
         //Через Math
-        int max1;
-        max1 = Math.max(per1, Math.max(per2, per3));
+        int max1 = Math.max(per1, Math.max(per2, per3));
         System.out.println("Максимальное значение = " + max1);
-        int min1;
-        min1 = Math.min(per1, Math.min(per2, per3));
+        int min1 = Math.min(per1, Math.min(per2, per3));
         System.out.println("Минимальное значение = " + min1);
 
         //2. Пользователь вводит число от 1 до 100. Если введенное число равно 5, 10, 17, 47, 77, 93, 99,
@@ -46,13 +43,12 @@ public class Main {
         int num = console.nextInt();
         if (num == 5 || num == 10 || num == 17 || num == 47 || num == 77 || num == 93 || num == 99) {
             System.out.println("Вы выиграли!");
-        } else {
+        } else if (num != 5 || num != 10 || num != 17 || num != 47 || num != 77 || num != 93 || num != 99){
             System.out.println("Вы проиграли!");
         }
-        if (num < 1 || num > 100) {
+        else if (num < 1 || num > 100) {
             System.out.println("Ошибка!");
         }
-        ;
 
         //3. При запуске приложения в консоль выводится "какой сегодня день?" (от 1 до 30).
         //После того как пользователь вводит значение, значение должно сравниться с рандомно сгенерированным значением.
@@ -82,9 +78,9 @@ public class Main {
         //• 10 программистов
         int n = 525601;
         int ostatok = n % 10;
-        int ostatok_12 = n % 100;
-        System.out.println("ost12 = " + ostatok_12);
-        if (ostatok_12 > 4 && ostatok_12 < 21) {
+        int ostatok12 = n % 100;
+        System.out.println("ost12 = " + ostatok12);
+        if (ostatok12 > 4 && ostatok12 < 21) {
             System.out.println(n + " программистов");
         } else if (ostatok == 1) {
             System.out.println(n + " программист");
