@@ -11,7 +11,7 @@ public class Main {
         int y = 0;
         int q = 0;
         for (int z : x) {
-            if (z == x[0]) {
+            //if (z == x[0]) { Лишнее
                 y = z;
                 q = z;
             }
