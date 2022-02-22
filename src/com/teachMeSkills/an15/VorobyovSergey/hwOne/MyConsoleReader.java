@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hw1;
+package com.teachMeSkills.an15.VorobyovSergey.hwOne;
 
 import java.io.BufferedReader;
 import java.io.IOException;

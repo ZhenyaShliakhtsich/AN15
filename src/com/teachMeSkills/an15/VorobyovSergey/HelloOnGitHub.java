@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hw1;
+package com.teachMeSkills.an15.VorobyovSergey;
 
 public class HelloOnGitHub {
     public static void main(String[] args) {

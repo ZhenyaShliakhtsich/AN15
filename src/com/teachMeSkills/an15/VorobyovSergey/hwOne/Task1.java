@@ -1,9 +1,5 @@
-package com.teachMeSkills.an15.VorobyovSergey.hw1;
+package com.teachMeSkills.an15.VorobyovSergey.hwOne;
 
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 //1. Создать 3 целочисленные переменные и найти максимальное и минимальное значения.
 // Вывести их в консоль. Два варианта решения (1 - через if, 2 - через Math)

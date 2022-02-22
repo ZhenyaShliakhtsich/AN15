@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hw1;
+package com.teachMeSkills.an15.VorobyovSergey.hwOne;
 
 //В переменную записываете количество программистов. В
 //зависимости от количества программистов необходимо вывести правильно окончание.
