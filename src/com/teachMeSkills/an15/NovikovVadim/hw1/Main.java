@@ -56,9 +56,7 @@ public class Main {
             System.out.println("Ошибка");
         }
 
-
-        Boolean flag = true;
-        while (flag) {
+        while (true) {
             short y_random = (short)(Math.random()*30+1);
             System.out.println("Введите день месяц от 1 до 30");
             int y = console.nextShort();
@@ -66,7 +64,7 @@ public class Main {
                 System.out.println("Неверное число");
             }else if(y==y_random){
                 System.out.println("Угадал! Хорошего дня!");
-                flag = false;
+                break;
             }else{
                 System.out.println("не угадал, " + y_random);
             }
