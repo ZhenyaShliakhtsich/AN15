@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.SavitskyRoman.hw1.hw2;
+package com.teachMeSkills.an15.SavitskyRoman.hw2;
 
 import java.util.Locale;
 /* Задачи по String. Выполнить в 1 классе с названием StringTasks
