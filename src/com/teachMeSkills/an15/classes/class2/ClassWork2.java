@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.classes;
+package com.teachMeSkills.an15.classes.class2;
 
 public class ClassWork2 {
     public static void main(String[] args) {
