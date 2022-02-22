@@ -9,7 +9,7 @@ public class StringTasks {
         System.out.println(string.contains("Java"));//Проверить, содержит ли ваша строка подстроку “Java”. Используем метод String.contains()
         int a = string.indexOf("Java");//Найти позицию подстроки “Java” в строке “I like Java!!!
         int b = string.lastIndexOf("Java");
-        System.out.println(a);//
+        System.out.println(a);//Найти позицию подстроки “Java” в строке “I like Java!!!
         System.out.println(string.replace("а","о"));//Заменить все символы “а” на “о”
         System.out.println(string.toUpperCase());//Преобразуйте строку к верхнему регистру.
         System.out.println(string.toLowerCase());//Преобразуйте строку к нижнему регистру.
