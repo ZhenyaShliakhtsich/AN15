@@ -7,18 +7,18 @@ public class Main {
     public static void main(String[] args) {
         //first task
 
-        int x[] = {1, 10, 99}; // int[] x
+        int[] x = {1, 10, 99}; // int[] x
         int y = 0;
-        int q = 0;
+        int q1 = 0;
         for (int z : x) {
-            //if (z == x[0]) { Лишнее
+            if (z == x[0]) {
                 y = z;
-                q = z;
+                q1 = z;
             }
             y = Math.max(y, z);
-            q = Math.min(q, z);
+            q1 = Math.min(q1, z);
         }
-        System.out.println("Максимальное значение через Math: " + y + "\n" + "Минимальное значение через Math: " + q + "\n");
+        System.out.println("Максимальное значение через Math: " + y + "\n" + "Минимальное значение через Math: " + q1 + "\n");
         if (x[0] > x [1] && x[0] > x [2]){
             System.out.println("Максимальное значение через if: " + x[0]);
         }else if (x[1] > x [0] && x[1] > x [2]){
