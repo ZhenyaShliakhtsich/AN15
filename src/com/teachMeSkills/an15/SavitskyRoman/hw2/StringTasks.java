@@ -1,6 +1,7 @@
 package com.teachMeSkills.an15.SavitskyRoman.hw2;
 
 import java.util.Locale;
+
 /* Задачи по String. Выполнить в 1 классе с названием StringTasks
  1 Напишите параметр, который принимает строку, “I like Java!!!”.
  2 Распечатать последний символ строки. Используем метод String.charAt().
@@ -15,15 +16,15 @@ import java.util.Locale;
 String string = “I like Java!!!”;
 Все задачи выполняются так string.(методы для всех заданий)*/
 public class StringTasks {
-public static void main(String[] args){
-    String string = "I like Java!!!";
-    System.out.println("Последний символ строки: " + string.charAt(12));
-    System.out.println("Строка заканчивается на \"!!!\"? " + string.endsWith("!!!"));
-    System.out.println("Строка начинается на \"I like\"? " + string.startsWith("I like"));
-    System.out.println("Строка содержит подстроку \"Java\"? " + string.contains("Java"));
-    System.out.println("Заменили все символы в строке с \"а\" на \"о\": " + string.replace('a','o'));
-    System.out.println("Преобразовали строку к верхнему регистру: " + string.toUpperCase(Locale.ROOT));
-    System.out.println("Преобразовали строку к нижнему регистру: " + string.toLowerCase(Locale.ROOT));
-    System.out.println("Вырезали из строки: " + string.substring(7, 11)); //
+    public static void main(String[] args) {
+        String string = "I like Java!!!";
+        System.out.println("Последний символ строки: " + string.charAt(12));
+        System.out.println("Строка заканчивается на \"!!!\"? " + string.endsWith("!!!"));
+        System.out.println("Строка начинается на \"I like\"? " + string.startsWith("I like"));
+        System.out.println("Строка содержит подстроку \"Java\"? " + string.contains("Java"));
+        System.out.println("Заменили все символы в строке с \"а\" на \"о\": " + string.replace('a', 'o'));
+        System.out.println("Преобразовали строку к верхнему регистру: " + string.toUpperCase(Locale.ROOT));
+        System.out.println("Преобразовали строку к нижнему регистру: " + string.toLowerCase(Locale.ROOT));
+        System.out.println("Вырезали из строки: " + string.substring(7, 11)); //
     }
 }
