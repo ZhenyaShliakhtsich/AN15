@@ -8,20 +8,16 @@ public class Main {
         System.out.println("Задание 1");
         //1. Создать 3 целочисленные переменные и найти максимальное и минимальное значения.
         // Вывести их в консоль. Два варианта решения (1 - через if, 2 - через Math)
-        System.out.print("Введите 1-е число: ");
-        Scanner scana = new Scanner(System.in);
-        int a = scana.nextInt();
-        System.out.print("Введите 2-е число: ");
-        Scanner scanb = new Scanner(System.in);
-        int b = scanb.nextInt();
-        System.out.print("Введите 3-е число: ");
-        Scanner scanc = new Scanner(System.in);
-        int c = scanc.nextInt();
+        System.out.print("Введите 3 числа: "); //Исправлено
+        Scanner scan0 = new Scanner(System.in);
+        int a = scan0.nextInt();
+        int b = scan0.nextInt();
+        int c = scan0.nextInt();
 
         System.out.println("Даны 3 числа: " + a + ", " + b + ", " + c);
         if (a > b) {
             if (a >= c) {
-                System.out.println("Максимальное значение = " + a); // а если а == с, то почему выведем только а?
+                System.out.println("Максимальное значение = " + a); // а если а == с, то почему выведем только а? Ответ: если а>c, то а - max; если a=c, то а и с - max. а - max в обоих случаях, с - только во втором, поэтому вывожу в консоль а.
             }}
         else if (b >= c) {
             System.out.println("Максимальное значение = " + b); // то же самое
@@ -92,17 +88,16 @@ public class Main {
         int max = 30;
         int random_number = min + (int) (Math.random() * max);
 
-        do {
+        while (a2 != random_number) {                                       //Исправлено
             System.out.println("Не угадал" + " (" + random_number + ")");
             System.out.print("Какой сегодня день?: ");
             Scanner scan2 = new Scanner(System.in);
             a2 = scan2.nextInt();
+            if (a2 == random_number) {
+                break;
+            }
         }
-        while (a2 != random_number);
-
-        if (a2 == random_number) {
-            System.out.println("Угадал! Хорошего дня!");
-        }
+        System.out.println("Угадал! Хорошего дня!");
 
 
         System.out.println("______________________");
