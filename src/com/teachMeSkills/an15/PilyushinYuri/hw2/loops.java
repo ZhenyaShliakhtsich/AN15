@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.ProkopchukAndrey.hw1;
+package com.teachMeSkills.an15.PilyushinYuri.hw2;
 
 public class loops {
     public static void main(String[] args) {
