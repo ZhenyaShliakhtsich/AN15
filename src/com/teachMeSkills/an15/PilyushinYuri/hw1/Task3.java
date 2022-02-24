@@ -9,7 +9,7 @@ public class Task3 {
             Scanner input = new Scanner(System.in);
             System.out.println("Какой сегодня день?");
             int num = input.nextInt();
-            int random = (int) (Math.random() * 31);
+            int random =1+ (int) (Math.random() * 31);
             if (num == random) {
                 System.out.println("Вы выйграли, хорошего дня");
                 break;
