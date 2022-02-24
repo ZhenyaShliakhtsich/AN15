@@ -1,8 +1,6 @@
 package com.teachMeSkills.an15.AltievAli.hm2;
 
-import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Loops {
     public static void main(String[] args) {
