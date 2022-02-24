@@ -10,7 +10,7 @@ public class Cycle {
 
 
         StringBuilder stringBuilder = new StringBuilder();
-        for (int five = 5; five < 101; five += 5) {
+        for (int five = 5; five <= 100; five += 5) {
             stringBuilder.append(five + " ");
         }
         System.out.println(stringBuilder);
@@ -48,5 +48,4 @@ public class Cycle {
             System.out.println("7 * " + i3 + " = " + 7 * i3);
         }
     }
-
 }
