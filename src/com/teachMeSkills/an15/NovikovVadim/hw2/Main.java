@@ -7,15 +7,15 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Вывести отметки студентов");
-        Student student1 = new Student("Иван", "Иванов", "математика", 1);
-        Student student2 = new Student("Сергей", "Иванов", "физика", 2);
-        Student student3 = new Student("Владимир", "Иванов", "химия", 3);
-        Student student4 = new Student("Евгений", "Иванов", "география", 4);
-        Student student5 = new Student("Елена", "Иванов", "математика", 5);
+        Student student1 = new Student("Иван", "Иванов", "математике", 1);
+        Student student2 = new Student("Сергей", "Иванов", "физике", 2);
+        Student student3 = new Student("Владимир", "Иванов", "химии", 3);
+        Student student4 = new Student("Евгений", "Иванов", "географии", 4);
+        Student student5 = new Student("Елена", "Иванов", "математике", 5);
         Student student6 = new Student("Юлия", "Иванова", "ИЗО", 6);
-        Student student7 = new Student("Максим", "Иванов", "физкультура", 7);
-        Student student8 = new Student("Матвей", "Иванов", "литература", 8);
-        Student student9 = new Student("Иван", "Иванов", "программирование", 9);
+        Student student7 = new Student("Максим", "Иванов", "физкультуре", 7);
+        Student student8 = new Student("Матвей", "Иванов", "литературе", 8);
+        Student student9 = new Student("Иван", "Иванов", "программированию", 9);
         Student student10 = new Student("Ирина", "Иванова", "иное", 10);
 
         System.out.println(student1);
