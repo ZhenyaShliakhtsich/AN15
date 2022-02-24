@@ -37,8 +37,7 @@ public class Main {
         int i;
         StringBuilder stringBuilder = new StringBuilder();
         for (i = 5; i < 101; i = i + 5) {
-            stringBuilder.append(i);
-            stringBuilder.append(" ");
+            stringBuilder.append(i).append(" ");
         }
         System.out.println(stringBuilder);
 
