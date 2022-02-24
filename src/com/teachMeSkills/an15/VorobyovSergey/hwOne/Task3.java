@@ -13,13 +13,13 @@ class Task3 {
     //Try with scanner hear. But you can get exception
     public static void main(String... args) {
         //That all we need:
-        boolean coincidence = false; //flag
+        boolean isCoincidence = false; //flag
         int userNumber;
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
 
         //While loop
-        while (!coincidence){
+        while (!isCoincidence){
             //limiting the result to be greater that or equal origin and less than bound.
             int randomNumberInMyLimits = random.nextInt(31  );
 
@@ -28,7 +28,7 @@ class Task3 {
 
             if (userNumber == randomNumberInMyLimits){
                 System.out.println("Угадал! Хорошего дня! " + randomNumberInMyLimits);
-                coincidence = true;
+                isCoincidence = true;
             } else {
                 System.out.println("Не угадал, (реальный день - " + randomNumberInMyLimits + ")");
             }
@@ -38,4 +38,19 @@ class Task3 {
 }
 
 // boolean coincidence = false; почему такое название переменной?
+//Ответ: исправлено на isCoincidence как на занятии
 // не компилируется
+//Ответ исправлено на random.nextInt(31  ); Но в java 17 у меня все классно работало
+//int nextInt(int origin, int bound) {
+//   int n = bound - origin;
+//   if (n > 0) {
+//     return nextInt(n) + origin;
+//   }
+//   else {  // range not representable as int
+//     int r;
+//     do {
+//       r = nextInt();
+//     } while (r < origin || r >= bound);
+//     return r;
+//   }
+// }
