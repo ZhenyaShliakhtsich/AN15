@@ -18,7 +18,7 @@ public class StringTasks {
     public static void main(String[] args) {
         String param = "I like Java!!!";
         System.out.println("Исходная строка: " + param);
-        System.out.println(param.charAt(param.length() - 1));
+        System.out.println("Последний символ: " + param.charAt(param.length() - 1));
         System.out.println("Последний символ строки: " + param.charAt(param.length() - 1));
         System.out.println("Проверка на окончание строки !!! - " + param.endsWith("!!!"));
         System.out.println("Проверкить, начинается ли строка подстрокой 'I like' - " + param.startsWith("I like"));
