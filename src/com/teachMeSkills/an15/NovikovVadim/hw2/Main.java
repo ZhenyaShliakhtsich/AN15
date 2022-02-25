@@ -50,7 +50,7 @@ public class Main {
         Random random = new Random();
         int r = random.nextInt(30) + 1; //счастливая монета
         System.out.println(r);
-        for (i = 1; i < 32; i++) {
+        for (i = 1; i < 31; i++) {
             if (i == r) {
                 System.out.println("Счастливая монета номер " + i + " найдена");
                 break;
