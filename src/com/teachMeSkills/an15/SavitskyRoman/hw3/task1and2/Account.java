@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.SavitskyRoman.hw3;
+package com.teachMeSkills.an15.SavitskyRoman.hw3.task1and2;
 
 import java.util.Scanner;
 
@@ -12,6 +12,7 @@ public class Account {
         sc.close();
         Deposit myDeposit = new Deposit(account, month);
         System.out.println(myDeposit.getAmount());
+        System.out.println(myDeposit.getAmountByWhile());
 
     }
 }
