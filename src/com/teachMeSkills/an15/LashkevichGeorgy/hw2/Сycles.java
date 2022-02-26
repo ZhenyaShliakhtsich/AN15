@@ -27,7 +27,7 @@ public class Сycles {
         int rand = (int) (Math.random() * 30) + 1;
         Scanner scan = new Scanner(System.in);
         System.out.println("Первая попытка: ");
-        //first:{  //first для того, чтобы можно было запустить следующие задачи после после брэйка
+
         while (true) {
             int moneta = scan.nextInt();
             if (moneta == rand) {
@@ -37,7 +37,7 @@ public class Сycles {
                 System.out.println("Надеюсь, следующая будет счастливая " + rand);
             }
         }
-        // }
+
 
 
         //Вывести в цикле числа от 1 до 10.
