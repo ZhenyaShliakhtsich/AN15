@@ -92,7 +92,7 @@ public class TaskFrom1To7 {
         }
         int count = 0;
         for (int i = 0; i < arr2.length; i++) {
-            if (arr2[i] % 2 == 0) count++;
+            if (arr2[i] % 2 == 0 && arr2[i] != 0) count++;
         }
         System.out.println();
         System.out.println("Кол-во чётных элементов равно: " + count);
@@ -145,14 +145,18 @@ public class TaskFrom1To7 {
             }
         }
 
-        if (maxCount != maxCount2)
+        if (maxCount != maxCount2) {
             System.out.println("Чаще всего встречается = " + element);
-        else System.out.println("НИЧЕГО!");
+        }
+        else {
+            System.out.println("НИЧЕГО!");
+        }
 
         //7. Создать программу, которая будет проверять, является ли слово из пяти букв,
         // введённое пользователем, палиндромом (примеры: «комок», «ротор»).
         System.out.println("Введите слово из 5 букв: ");
-        String string = scanner.nextLine();
+        Scanner scanner1 = new Scanner(System.in);
+        String string = scanner1.nextLine();
         boolean bl = true;
         int i = 0;
         int j = string.length() - 1;
