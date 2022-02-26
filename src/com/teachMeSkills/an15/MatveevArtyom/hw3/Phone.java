@@ -1,24 +1,26 @@
 package com.teachMeSkills.an15.MatveevArtyom.hw3;
 
+import java.util.Arrays;
+
 public class Phone {
     int number;
-    String model;
+    String name;
     double weight;
 
-    public Phone(int number, String model, double weight) {
-        this.number = number;
-        this.model = model;
+
+    public Phone(int number, String name, double weight) {
+        this(number, name);
         this.weight = weight;
     }
 
-    public Phone(int number, String model) {
+    public Phone(int number, String name) {
         this.number = number;
-        this.model = model;
+        this.name = name;
     }
 
     public Phone() {
         number = 0;
-        model = "Unknown";
+        name = "Unknown";
         weight = 0;
     }
 
@@ -26,15 +28,24 @@ public class Phone {
     public String toString() {
         return "Phone{" +
                 "number=" + number +
-                ", model='" + model + '\'' +
+                ", model='" + name + '\'' +
                 ", weight=" + weight +
                 '}';
     }
 
-    public String receiveCall(int name){
-        return "Звонит {" + name + "}";
+    public void receiveCall(String name) {
+        System.out.println("Звонит {" + name + "}");
     }
-    public int getNumber(int number){
-        return number;
+
+    public void receiveCall(String name, int number) {
+        System.out.println("Звонит {" + name + "} " + " с номером {" + number + "}");
+    }
+
+    public void getNumber(int number) {
+        System.out.println("номер - " + number);
+    }
+
+    public void sendMessage(int... numbers) {
+        System.out.println("номер телефона, отправившего сообщение: " + Arrays.toString(numbers));
     }
 }
