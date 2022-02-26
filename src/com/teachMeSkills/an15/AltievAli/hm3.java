@@ -4,57 +4,54 @@ import java.util.Scanner;
 
 public class hm3 {
     public static void main(String[] args) {
+
+        //  Task Number 1 (Salary and 7 percent)
         System.out.println("Enter your salary.");
         Scanner scanner = new Scanner(System.in);
         int userSalary = scanner.nextInt();
         System.out.println("Enter month!");
         int month = scanner.nextInt();
 
+        int percent = addSevenPercent(userSalary);
+
+        System.out.println("Your final amount: " + (userSalary + percent * month) + " $");
 
 
+//        // Task Number 1 (Salary and 7 percent solution with  WHILE loop)
 
 
+        while (true) {
+
+            Scanner scanner1 = new Scanner(System.in);
+            System.out.println("Enter your salary");
+            int userSalary1 = scanner1.nextInt();
+            System.out.println("Enter month");
+            int month1 = scanner1.nextInt();
+
+            int percent1 = addSevenPercent(userSalary1);
+
+            System.out.println("Your final amount: " + (userSalary1 + percent1 * month1) + " $");
 
 
+        }
 
 
-
-//        String [] months  = new String [12];
-//        months[0] = "January";
-//        months[1] = "February";
-//        months[2] = "March";
-//        months[3] = "April";
-//        months[4] = "May";
-//        months[5] = "June";
-//        months[6] = "July";
-//        months[7] = "August";
-//        months[8] = "September";
-//        months[9] = "October";
-//        months[10] = "November";
-//        months[11] = "December";
-
-//        while (true) {
-//            double userSal = userSalary * 0.7;
 //
-//            System.out.println(userSal );
 //
 //        }
 
 
-
-
-
-
-
-
-
     }
 
-    public static  double addSevenPercent ( int a){
+    //Method to get percent
 
-        return  a * 0.7;
+    public static int addSevenPercent(int a) {
+
+        return a * 7 / 100;
 
     }
-
 
 }
+
+
+
