@@ -4,7 +4,7 @@ public class ViewMain {
     public static void main(String[] args) {
         //1 -  задание со String
         System.out.println("1-е Задание");
-        StringTasks mst = new StringTasks();
+        new StringTasks();
 
         //2 - задание с классами и объектами
         System.out.println("\n\n2-е Задание");
@@ -43,8 +43,9 @@ public class ViewMain {
         System.out.println("\n\n3-е Задание");
         CyclesTasks task = new CyclesTasks();
         task.numberSequence();
-        task.randomeCoin();
+        task.randomCoin();
         task.zeroTenCycles();
         task.fromOneToTenNumberSevenMultiplication();
+        task.fromOneToTenNumberSevenMultiplicationStringBuilderSolution();
     }
 }
