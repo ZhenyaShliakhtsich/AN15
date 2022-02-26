@@ -10,6 +10,7 @@ public class Raschet {
         this.summa = summa;
         this.mes = mes;
     }
+
     public BigDecimal procent() {
         BigDecimal raschet = new BigDecimal(summa);
         for (int i = 1; i <= mes; i++) {
@@ -17,12 +18,13 @@ public class Raschet {
         }
         return raschet;
     }
-    public double toWhile(){
+
+    public double toWhile() {
         BigDecimal rachet = new BigDecimal(summa);
         int x = 0;
-        while (x!=mes){
-        summa+=summa*0.07;
-        x++;
+        while (x != mes) {
+            summa += summa * 0.07;
+            x++;
         }
         return summa;
     }
