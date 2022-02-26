@@ -1,8 +1,8 @@
-package com.teachMeSkills.an15.AltievAli;
+package com.teachMeSkills.an15.AltievAli.hm3;
 
 import java.util.Scanner;
 
-public class hm3 {
+public class Percent {
     public static void main(String[] args) {
 
         //  Task Number 1 (Salary and 7 percent)
