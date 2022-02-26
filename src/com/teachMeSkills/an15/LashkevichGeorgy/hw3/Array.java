@@ -1,6 +1,9 @@
 package com.teachMeSkills.an15.LashkevichGeorgy.hw3;
 
 import java.util.Arrays;
+//4. Создайте массив из всех нечётных чисел от 1 до 99, выведите его на экран в строку,
+// а затем этот же массив выведите на экран тоже в строку,
+// но в обратном порядке (99 97 95 93 … 7 5 3 1).
 
 public class Array {
 
@@ -10,15 +13,14 @@ public class Array {
         for (int i = 0; i < array.length; i++) {
             array[i] = 1 + i * 2;
         }
-        String abs = Arrays.toString(array);
-        System.out.println(abs);
+
+        System.out.println(Arrays.toString(array));
         for (int i = 0; i < (array.length / 2) - 1; i++) {
-            int a = array[array.length - i -1];
+            int a = array[array.length - i - 1];
             array[array.length - i - 1] = array[i];
             array[i] = a;
         }
-        String abss = Arrays.toString(array);
-        System.out.println(abss);
+        System.out.println(Arrays.toString(array));
     }
 
 }
