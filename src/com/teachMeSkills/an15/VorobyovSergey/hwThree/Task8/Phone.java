@@ -20,16 +20,16 @@ class Phone {
         this.weight = weight;
     }
 
-    void receiveCall (String name){
-        System.out.printf("Звонит {%s}, номер абонента - %s\n",name, getNumber());
+    void receiveCall(String name) {
+        System.out.printf("Звонит {%s}, номер абонента - %s\n", name, getNumber());
     }
 
-    void receiveCall (String name, int number){
-        System.out.printf("Reloaded: Звонит {%s}, номер абонента - %s\n",name, number);
+    void receiveCall(String name, int number) {
+        System.out.printf("Reloaded: Звонит {%s}, номер абонента - %s\n", name, number);
     }
 
-    void sendMessage (int ... args){
-        for (int number: args) {
+    void sendMessage(int... args) {
+        for (int number : args) {
             System.out.println(number);
         }
     }

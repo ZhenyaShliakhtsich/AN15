@@ -1,4 +1,5 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwThree.Task8;
+
 //8. Создайте класс Phone, который содержит переменные number, model и weight.
 //        Создайте три экземпляра этого класса.
 //        Выведите на консоль значения их переменных.
