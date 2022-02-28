@@ -1,23 +1,18 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwThree.TaskFrom4to7;
-//или можно все впихнуть в for из randomNumberArrayCreator
-class Task6 {
-    //Create random numbers array -1 0 1 of user size
-    int[] randomNumberArrayCreator(int size) {
-        int numbersSpread = 1 + 1;
-        int[] arr = new int[size];
-        for (int i = 0; i < size; i++) {
-            arr[i] = (int) Math.round(Math.random() * numbersSpread - 1);
-        }
-        return arr;
-    }
 
-    void mostFrequentElementInArray(int[] array) {
+class Task6AllinOne {
+    void OnlyOneMethod() {
         int count0 = 0;
         int count1 = 0;
         int count2 = 0;
 
-        for (int element : array) {
-            switch (element) {
+        int size = 11;
+        int numbersSpread = 1 + 1;
+        int[] arr = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = (int) Math.round(Math.random() * numbersSpread - 1);
+            switch (arr[i]) {
                 case 0:
                     count0++;
                     break;
@@ -39,3 +34,4 @@ class Task6 {
         }
     }
 }
+

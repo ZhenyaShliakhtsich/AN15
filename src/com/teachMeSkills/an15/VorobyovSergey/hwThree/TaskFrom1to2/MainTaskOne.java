@@ -1,6 +1,5 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwThree.TaskFrom1to2;
 
-
 import com.teachMeSkills.an15.VorobyovSergey.hwThree.ReaderHw3;
 
 //1. За каждый месяц банк начисляет к сумме вклада 7% от суммы.
@@ -14,7 +13,7 @@ class MainTaskOne {
         int depositValue = inputUserBankData(reader, "Введите сумму вклада");
         int depositTerm = inputUserBankData(reader, "Введите срок вклада");
         double finalDepositValueFor = depositCounterFor(depositValue, depositTerm);
-        double finalDepositValueWhile = depositCounterFor(depositValue, depositTerm);
+        double finalDepositValueWhile = depositCounterWhile(depositValue, depositTerm);
 
         System.out.println("DepositValue - " + depositValue);
         System.out.println("DepositTerms - " + depositTerm);

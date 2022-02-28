@@ -31,6 +31,11 @@ public class MainTask4to7 {
         System.out.println(Arrays.toString(randomArr));
         task6.mostFrequentElementInArray(randomArr);
 
+        //6-task in one method
+        System.out.println("\nTask 6 in one method");
+        Task6AllinOne task6AllinOne = new Task6AllinOne();
+        task6AllinOne.OnlyOneMethod();
+
         //7 - task
         System.out.println("\nTask 7");
         Task7 palindrome = new Task7("roror");
