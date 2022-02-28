@@ -84,18 +84,15 @@ public class TaskFrom1To7 {
         System.out.println();
         int[] arr2 = new int[15];
         Random random = new Random();
-        for (int i = 0; i < arr2.length; i++) {
-            arr2[i] = random.nextInt(10);
-        }
-        for (int i = 0; i < arr2.length; i++) {
-            System.out.print(arr2[i] + " ");
-        }
         int count = 0;
         for (int i = 0; i < arr2.length; i++) {
+            arr2[i] = random.nextInt(10);
+            System.out.print(arr2[i] + " ");
             if (arr2[i] % 2 == 0 && arr2[i] != 0) count++;
+
         }
-        System.out.println();
-        System.out.println("Кол-во чётных элементов равно: " + count);
+
+        System.out.println("\nКол-во чётных элементов равно: " + count);
 
         //6. Создайте массив из 11 случайных целых чисел из отрезка [-1;1],
         //выведите массив на экран в строку. Определите какой элемент встречается в массиве чаще всего
@@ -105,53 +102,32 @@ public class TaskFrom1To7 {
         int[] arr11 = new int[11];
         for (int i = 0; i < arr11.length; i++) {
             arr11[i] = -1 + random.nextInt(3);
-        }
-
-        for (int i = 0; i < arr11.length; i++) {
             System.out.print(arr11[i] + " ");
         }
-        System.out.println();
-        int maxCount = 0;
-        int maxCount2 = 0;
-        int element = 0;
-        int element2 = 0;
+        int count1 = 0;
+        int count2 = 0;
+        int count3 = 0;
         for (int i = 0; i < arr11.length; i++) {
-            int count1 = 0;
-            for (int j = 0; j < arr11.length; j++) {
-                if (arr11[i] == arr11[j]) count1++;
-                if (count1 > maxCount) {
-                    maxCount = count1;
-                    element = arr11[i];
-                }
+            if (arr11[i] == -1) {
+                count1++;
+            } else if (arr11[i] == 0) {
+                count2++;
+            } else if (arr11[i] == 1) {
+                count3++;
             }
         }
-        first:
-        {
-            for (int i = 0; i < arr11.length; i++) {
-                int count2 = 0;
-                if (arr11[i] == element) i++;
-                else if (arr11[i] != element) {
-                    for (int j = 0; j < arr11.length; j++) {
-                        if (arr11[i] == arr11[j]) count2++;
-                        if (count2 > maxCount2) {
-                            maxCount2 = count2;
-                            element2 = arr11[i];
-                        }
-                        if (maxCount2 == maxCount) {
-                            break first;
-                        }
-                    }
-                }
+            if(count1 == count2 || count1 == count3 || count2 == count3){
+                System.out.println("Ничего");
             }
-        }
-
-        if (maxCount != maxCount2) {
-            System.out.println("Чаще всего встречается = " + element);
-        }
-        else {
-            System.out.println("НИЧЕГО!");
-        }
-
+            if(Math.max(count1,Math.max(count2,count3)) != Math.max(count2,count3)){
+                System.out.println("-1 встречаается " + count1 + " раз");
+            }
+            if(Math.max(count2,Math.max(count1,count3)) != Math.max(count1,count3)){
+                System.out.println("0 встречаается " + count2 + " раз");
+            }
+            if(Math.max(count3,Math.max(count2,count1)) != Math.max(count2,count1)){
+                System.out.println("1 встречаается " + count3 + " раз");
+            }
         //7. Создать программу, которая будет проверять, является ли слово из пяти букв,
         // введённое пользователем, палиндромом (примеры: «комок», «ротор»).
         System.out.println("Введите слово из 5 букв: ");
