@@ -8,7 +8,7 @@ public class Task2 {
         Scanner input = new Scanner(System.in);
         System.out.println("Введите число: ");
         int num = input.nextInt();
-        if (num == 5 | num == 10 | num == 17 | num == 47 | num == 77 | num == 93 | num == 99) {
+        if (num == 5 || num == 10 || num == 17 || num == 47 || num == 77 || num == 93 || num == 99) {
             System.out.println("Вы выйграли!");
         } else if (num < 100) {
             System.out.println("Вы проиграли.");
@@ -18,4 +18,4 @@ public class Task2 {
     }
 }
 
-// почему | одна вертикальная
+// почему | одна вертикальная (Исправил)

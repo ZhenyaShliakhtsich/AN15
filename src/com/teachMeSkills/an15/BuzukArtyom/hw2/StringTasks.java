@@ -5,7 +5,7 @@ import java.util.Locale;
 public class StringTasks {
     public static void main(String[] args) {
 
-    //    Задачи по String. Выполнить в 1 классе с названием StringTasks
+        //    Задачи по String. Выполнить в 1 классе с названием StringTasks
 //
 // 1 Напишите параметр, который принимает строку, “I like Java!!!”.
 //            2 Распечатать последний символ строки. Используем метод String.charAt().
@@ -17,40 +17,28 @@ public class StringTasks {
 //            8 Преобразуйте строку к верхнему регистру.
 // 9 Преобразуйте строку к нижнему регистру.
 // 10 Вырезать строку Java c помощью метода String.substring().
-    String string = "I like Java!!!";
-    System.out.println("1. " + string);
+        String string = "I like Java!!!";
+        System.out.println("1. " + string);
 
-    System.out.println("2. " + "Последний символ " + string.substring(string.length()-1));
+        System.out.println("2. " + "Последний символ " + string.substring(string.length() - 1));
 
-    System.out.println("3. " + "Строка заканчивается на !!! ? "+ string.endsWith("!!!"));
+        System.out.println("3. " + "Строка заканчивается на !!! ? " + string.endsWith("!!!"));
 
-    System.out.println("4. " + "Строка начинается на I like ? " + string.startsWith("I like"));
+        System.out.println("4. " + "Строка начинается на I like ? " + string.startsWith("I like"));
 
-    System.out.println("5. " + "В строке есть слово Java ? " + string.contains("Java"));
+        System.out.println("5. " + "В строке есть слово Java ? " + string.contains("Java"));
 
-    int index = string.indexOf("Java");
+        int index = string.indexOf("Java");
         System.out.println("6. " + index);
 
-    String zamena = string.replace('a','o');
-        System.out.println("7. " + zamena);
+        System.out.println("7. " + string.replace('a', 'o'));
 
         System.out.println("8. " + string.toUpperCase());
 
         System.out.println("9. " + string.toLowerCase());
 
-        System.out.println("10. " + string.substring(0,index));
+        System.out.println("10. " + string.substring(0, index));
 
 
-
-
-
-
-
-
-
-
-
-
-
-}
+    }
 }

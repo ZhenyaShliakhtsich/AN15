@@ -8,49 +8,56 @@ class Task1 {
     public static void main(String[] args) {
         MyConsoleReader myreader = new MyConsoleReader();
 
-        int num_1 = myreader.readPleas("Введи любое целое число 1");
-        int num_2 = myreader.readPleas("Введи любое целое число 2");
-        int num_3 = myreader.readPleas("Введи любое целое число 3");
+        int num1 = myreader.readPleas("Введи любое целое число 1");
+        int num2 = myreader.readPleas("Введи любое целое число 2");
+        int num3 = myreader.readPleas("Введи любое целое число 3");
 
-        solutionOne(num_1, num_2, num_3);
-        solutionTwo(num_1, num_2, num_3);
+        solutionOne(num1, num2, num3);
+        solutionTwo(num1, num2, num3);
     }
 
-    static void solutionOne(int num_1, int num_2, int num_3){
+    static void solutionOne(int num1, int num2, int num3) {
         System.out.println("Solution 1. if_else :");
         int maxNumber;
         int minNumber;
 
         //Find max number
-        maxNumber = num_1 > num_2 ? num_1 : num_2;
-        if (maxNumber > num_3){
+        maxNumber = num1 > num2 ? num1 : num2;
+        if (maxNumber > num3) {
             System.out.println("Max number is - " + maxNumber);
         } else
-            System.out.println("Max number is - " + num_3);
+            System.out.println("Max number is - " + num3);
 
         //Find min number
-        minNumber = num_1 < num_2 ? num_1 : num_2;
-        if (minNumber < num_3){
+        minNumber = num1 < num2 ? num1 : num2;
+        if (minNumber < num3) {
             System.out.println("Min number is - " + minNumber);
         } else
-            System.out.println("Min number is - " + num_3);
+            System.out.println("Min number is - " + num3);
     }
 
-    static void solutionTwo(int num_1, int num_2, int num_3){
+    static void solutionTwo(int num1, int num2, int num3){
         System.out.println("\nSolution 2. Math. :");
-        int maxNumber = Math.max(Math.max(num_1,num_2),num_3);
-        int minNumber = Math.min(Math.min(num_1,num_2),num_3);
+        int maxNumber = Math.max(Math.max(num1, num2), num3);
+        int minNumber = Math.min(Math.min(num1, num2), num3);
 
         System.out.println("Max number is - " + maxNumber);
         System.out.println("Min number is - " + minNumber);
     }
-
 }
 
 // что это такое? solutionOne(num_1, num_2, num_3);
 //        solutionTwo(num_1, num_2, num_3);
+//Ответ: Два метода. Принимают в качестве параметров 3 переменные примитивного типа.
+//Тип возвращаемого значения void т.е. ничего не возвращает
+//Метод - набор операторов выполняющих определенные действия, описывает поведение обьекта
+//тут еще долго можно продолжать ))
 
 // и это num_1 > num_2 ? num_1 : num_2;
+// Ответ: тернарный оператор логика следующая ->
+// логическоеУсловие ? выполнитьЕлиTrue: выполнитьЕлиFalse
+//применил чтобы код было легче читать, по идее вообще без if можно было обойтись
 
 // код стайл
+//Ответ: num_1 заменено на num1 и так далее
 
