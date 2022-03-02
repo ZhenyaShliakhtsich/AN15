@@ -22,14 +22,14 @@ public class Main {
             sum = sum + Math.round(sum * 7) / 100d;
             //System.out.println(sum);
         }
-        System.out.println(String.format("Сумма вклада с учетом процентов (цикл for): %.2f",sum));
+        System.out.println(String.format("Сумма вклада с учетом процентов (цикл for): %.2f", sum));
 
         i = 0;
         while (i < countMonth) {
             sum2 = sum2 + Math.round(sum2 * 7) / 100d;
             i++;
         }
-        System.out.println(String.format("Сумма вклада с учетом процентов (цикл while): %.2f",sum2));
+        System.out.println(String.format("Сумма вклада с учетом процентов (цикл while): %.2f", sum2));
 
 //        3. Пользователь вводит два числа. После этого в консоль выводятся действия,
 //        которые мы можем произвести с этими числами (умножение, деление, сложение, вычитание).
@@ -53,7 +53,7 @@ public class Main {
         int[] array = new int[sizeArray];
 
         int counter = 0;
-        for (i = min; i <= max; i++) {
+        for (i = min; i <= sizeArray; i++) {
             if (isOst(i)) {
                 array[counter] = i;
                 counter++;
@@ -144,13 +144,13 @@ public class Main {
     private static double fAction(int num1, int num2, String str) {
         switch (str) {
             case ("*"):
-                return (double)num1 * num2;
+                return (double) num1 * num2;
             case ("/"):
-                return (double)num1 / num2;
+                return (double) num1 / num2;
             case ("-"):
-                return (double)num1 - num2;
+                return (double) num1 - num2;
             case ("+"):
-                return (double)num1 + num2;
+                return (double) num1 + num2;
             default:
                 return 0d;
         }
