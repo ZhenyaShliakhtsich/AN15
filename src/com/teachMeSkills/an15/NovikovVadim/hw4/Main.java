@@ -128,6 +128,7 @@ public class Main {
     }
 
     private static boolean checkLogin(String login, String password, String confirmPassword) {
+        //Проверка на то, что в строке есть и латинские буквы, и нижнее подчеркивание, и числа
         try {
             if (!(checkPattern(login, "\\d") && checkPattern(login, "[_]") && checkPattern(login, "[a-zA-Z]"))) {
                 throw new WrongLoginException("\nНекорректный логин");
@@ -169,7 +170,7 @@ public class Main {
         for (i = 0; i < brands.length; i++) {
             cars[i] = new Car(brands[i]);
             cars[i].cost = random.nextInt(40000, 150000);
-            cars[i].speed = random.nextInt(19, 35) * 10;
+            cars[i].speed = random.nextInt(19, 35) * 10; //кратность макс скорости обычно равно 10ти
         }
 
         System.out.println(Arrays.toString(cars));
