@@ -10,18 +10,19 @@ public class Main {
 
     public static void main(String[] args) throws ExceptionCar {
 
-        //showCars();
+        showCars();
 
-        //signIn();
+        signIn();
 
-        fibonachi(0,1);
+        int counter = 1;
+        fibonachi(counter, 0,1);
     }
 
-    private static void fibonachi(long s1, long s2) {
+    private static void fibonachi(int counter, long s1, long s2) {
         long result = (s1+s2);
         if (result>0) {
-            System.out.println(result);
-            fibonachi(s2, result);
+            System.out.println(counter++ + " " + result);
+            fibonachi(counter, s2, result);
         }else{
             System.out.println("\nВышли за длину long");
             return;
