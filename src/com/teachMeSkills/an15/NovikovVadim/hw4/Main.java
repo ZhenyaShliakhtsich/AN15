@@ -1,6 +1,8 @@
 package com.teachMeSkills.an15.NovikovVadim.hw4;
 
+import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -10,21 +12,84 @@ public class Main {
 
     public static void main(String[] args) throws ExceptionCar {
 
+        System.out.println("Задача об автомобилях");
         showCars();
 
+        System.out.println("Проверка пароля");
         signIn();
 
+        System.out.println("Числа Фибоначи:");
         int counter = 1;
-        fibonachi(counter, 0,1);
+        fibonachi(counter, new BigInteger("0"), new BigInteger("1"));
+
+        vacation();
+
     }
 
-    private static void fibonachi(int counter, long s1, long s2) {
-        long result = (s1+s2);
-        if (result>0) {
+    /*
+    4. Определить класс Coder, хранящий такую информацию о программисте:
+
+    ФИО,
+    дата рождения,
+    должность,
+    зарплата,
+    телефон.
+    Методы takeBook takeVacation(), returnBack().
+    Разработать программу, в которой создается массив объектов данного класса.
+    Перегрузить методы takeVacation(), returnBack():
+    - takeVacation, который будет принимать количество взятых дней.
+    Выводит на консоль сообщение "Петров В. В. взял отпуск на 21 день".
+    - takeVacation, который будет принимать переменное количество названий планируемых к посещению мест.
+    Выводит на консоль сообщение "Петров В. В. взял отпуск, чтобы посетить: Грузию, Армению, Китай".
+    - takeVacation, который будет принимать переменное количество объектов класса Country (создать новый класс, содержащий название и и столицу).
+    Выводит на консоль сообщение "Петров В. В. взял отпуск, чтобы посетить: в Грузии - Тбилиси, Армении - Ереван, Китае - Пекин".
+    Аналогичным образом перегрузить метод returnBack(). Выводит на консоль сообщение "Петров В. В. вернул из отпуска." и тд.
+*/
+    private static void vacation() {
+        Country[] countries = new Country[5];
+
+        countries[0] = new Country();
+        countries[0].country = "США";
+        countries[0].capital = "Нью-Йорк";
+
+        countries[1] = new Country();
+        countries[1].country = "Япония";
+        countries[1].capital = "Токио";
+
+        countries[2] = new Country();
+        countries[2].country = "Китай";
+        countries[2].capital = "Пхеньян";
+
+        countries[3] = new Country();
+        countries[3].country = "Испания";
+        countries[3].capital = "Мадрид";
+
+        countries[4] = new Country();
+        countries[4].country = "Италия";
+        countries[4].capital = "Милан";
+
+        Coder coder = new Coder("Алёша", new Date(121212), "HR", 1000, "8(029)331-23-45-67");
+        System.out.println(coder.takeVacation(1));
+        System.out.println(coder.returnBack(1));
+        System.out.println(coder.takeVacation(2));
+        System.out.println(coder.returnBack(2));
+        System.out.println(coder.takeVacation(10));
+        System.out.println(coder.returnBack(10));
+
+        System.out.println(coder.takeVacation(countries));
+        System.out.println(coder.returnBack(countries));
+
+        String[] strCountries = new String[]{"Ереван", "Нур-Султан"};
+        System.out.println(coder.takeVacation(strCountries));
+        System.out.println(coder.returnBack(strCountries));
+    }
+
+    private static void fibonachi(int counter, BigInteger s1, BigInteger s2) {
+        BigInteger result = s1.add(s2);
+        if (counter <= 100) {
             System.out.println(counter++ + " " + result);
             fibonachi(counter, s2, result);
-        }else{
-            System.out.println("\nВышли за длину long");
+        } else {
             return;
         }
     }
@@ -53,9 +118,9 @@ public class Main {
         System.out.println("Подтвердите пароль (символы латинского языка, числа и _):");
         String confirmPassword = scanner.nextLine();
 
-        if (checkLogin(login,password,confirmPassword)){
+        if (checkLogin(login, password, confirmPassword)) {
             System.out.println("Значения верные");
-        }else {
+        } else {
             System.out.println("Неверные значения");
         }
     }
@@ -68,23 +133,19 @@ public class Main {
 
     private static boolean checkLogin(String login, String password, String confirmPassword) {
         try {
-            if (!   (checkPattern(login, "\\d") &&
-                    checkPattern(login, "[_]") &&
-                    checkPattern(login, "[a-zA-Z]"))) {
+            if (!(checkPattern(login, "\\d") && checkPattern(login, "[_]") && checkPattern(login, "[a-zA-Z]"))) {
                 throw new WrongLoginException("\nНекорректный логин");
             }
-            if (!   (checkPattern(password, "\\d") &&
-                    checkPattern(password, "[_]") &&
-                    checkPattern(password, "[a-zA-Z]"))) {
+            if (!(checkPattern(password, "\\d") && checkPattern(password, "[_]") && checkPattern(password, "[a-zA-Z]"))) {
                 throw new WrongPasswordException("\nНекорректный пароль");
             }
-            if (!password.equals(confirmPassword)){
+            if (!password.equals(confirmPassword)) {
                 throw new WrongPasswordException("\nНе верно введено подтверждение пароля");
             }
 
         } catch (WrongLoginException e) {
             return false;
-        } catch (WrongPasswordException e){
+        } catch (WrongPasswordException e) {
             return false;
         }
 
