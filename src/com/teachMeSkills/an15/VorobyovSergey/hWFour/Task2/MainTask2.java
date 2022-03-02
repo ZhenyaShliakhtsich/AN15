@@ -14,7 +14,7 @@ package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task2;
 //        Метод возвращает true, если значения верны или false в другом случае.
 class MainTask2 {
     public static void main(String[] args) {
-        boolean userConf = isUserConfirmed("Login", "Qwerty", "Qwerty");
+        boolean userConf = isUserConfirmed("Login", "QwertyЫ", "Qwerty");
         System.out.println("Shod we autorize this user? Answer - " + userConf);
     }
 
@@ -29,7 +29,7 @@ class MainTask2 {
         try {
             if (!login.matches(myRegEx)) {
                 throw new WrongLoginException();
-            } else if (!password.matches(myRegEx) && !confirmPassword.matches(myRegEx)) {
+            } else if (!password.matches(myRegEx) || !confirmPassword.matches(myRegEx)) {
                 throw new WrongPasswordException();
             }
         } catch (WrongLoginException el) {
