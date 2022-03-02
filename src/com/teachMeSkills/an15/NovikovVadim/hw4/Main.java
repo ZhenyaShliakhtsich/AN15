@@ -48,25 +48,21 @@ public class Main {
     private static void vacation() {
         Country[] countries = new Country[5];
 
-        countries[0] = new Country();
-        countries[0].country = "США";
-        countries[0].capital = "Нью-Йорк";
+        countries[0] = new Country("США", "Нью-Йорк");
 
-        countries[1] = new Country();
-        countries[1].country = "Япония";
-        countries[1].capital = "Токио";
+        countries[1] = new Country("Япония", "Токио");
 
         countries[2] = new Country();
-        countries[2].country = "Китай";
-        countries[2].capital = "Пхеньян";
+        countries[2].setCountry("Китай");
+        countries[2].setCapital("Пхеньян");
 
         countries[3] = new Country();
-        countries[3].country = "Испания";
-        countries[3].capital = "Мадрид";
+        countries[3].setCountry("Испания");
+        countries[3].setCapital("Мадрид");
 
         countries[4] = new Country();
-        countries[4].country = "Италия";
-        countries[4].capital = "Милан";
+        countries[4].setCountry("Италия");
+        countries[4].setCapital("Милан");
 
         Coder coder = new Coder("Алёша", new Date(121212), "HR", 1000, "8(029)331-23-45-67");
         System.out.println(coder.takeVacation(1));
