@@ -1,6 +1,5 @@
 package com.teachMeSkills.an15.LashkevichGeorgy.hw3;
 
-
 public class Phone {
 
     int number;
@@ -20,9 +19,11 @@ public class Phone {
     // Вызвать из конструктора с тремя параметрами конструктор с двумя.
     public Phone(int number, String model, int weight) {
         this(number, model);
+        this.model = model;
         this.weight = weight;
     }
 
+    //Добавить конструктор без параметров.
     public Phone() {
     }
 

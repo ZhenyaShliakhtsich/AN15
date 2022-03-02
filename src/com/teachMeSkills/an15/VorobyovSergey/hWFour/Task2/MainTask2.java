@@ -14,8 +14,8 @@ package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task2;
 //        Метод возвращает true, если значения верны или false в другом случае.
 class MainTask2 {
     public static void main(String[] args) {
-        boolean userConf = isUserConfirmed("Login", "Qwerty", "Qwerty");
-        System.out.println(userConf);
+        boolean userConf = isUserConfirmed("Login", "QwertyЫ", "Qwerty");
+        System.out.println("Shod we autorize this user? Answer - " + userConf);
     }
 
     static boolean isUserConfirmed(String login, String password, String confirmPassword) {
@@ -26,23 +26,20 @@ class MainTask2 {
 
         String myRegEx = "[A-Za-z\\d\\_]{0,20}";
 
-        if (login.matches(myRegEx) &&
-                password.matches(myRegEx) &&
-                confirmPassword.matches(myRegEx)) {
-            return true;
-        } else {
-            try {
-                throw new Exception();
-            } catch (WrongLoginException el){
-
-            } catch (WrongPasswordException ep) {
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            if (!login.matches(myRegEx)) {
+                throw new WrongLoginException();
+            } else if (!password.matches(myRegEx) || !confirmPassword.matches(myRegEx)) {
+                throw new WrongPasswordException();
             }
+        } catch (WrongLoginException el) {
+            el.printStackTrace();
+            return false;
+        } catch (WrongPasswordException ep) {
+            ep.printStackTrace();
+            return false;
         }
 
-
-        return false;
+        return true;
     }
 }
