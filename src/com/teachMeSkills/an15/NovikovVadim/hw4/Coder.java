@@ -23,9 +23,9 @@ public class Coder {
 
     public String takeVacation(String... country) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < country.length; i++) {
+        for (String s : country) {
             stringBuilder.
-                    append(country[i]).
+                    append(s).
                     append(", ");
         }
         return FIO + " взял отпуск чтобы посетить " + stringBuilder;
@@ -33,11 +33,11 @@ public class Coder {
 
     public String takeVacation(Country... country) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < country.length; i++) {
+        for (Country value : country) {
             stringBuilder.
-                    append(country[i].country).
+                    append(value.getCountry()).
                     append(" - ").
-                    append(country[i].capital).
+                    append(value.getCapital()).
                     append(", ");
         }
         return FIO + " взял отпуск чтобы посетить " + stringBuilder;
@@ -45,11 +45,11 @@ public class Coder {
 
     public String returnBack(Country... country) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < country.length; i++) {
+        for (Country value : country) {
             stringBuilder.
-                    append(country[i].country).
+                    append(value.getCountry()).
                     append(" - ").
-                    append(country[i].capital).
+                    append(value.getCapital()).
                     append(", ");
         }
         return FIO + " вернулся из отпуска из " + stringBuilder;
@@ -61,8 +61,8 @@ public class Coder {
 
     public String returnBack(String... country) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < country.length; i++) {
-            stringBuilder.append(country[i]).append(" ");
+        for (String s : country) {
+            stringBuilder.append(s).append(" ");
         }
         return FIO + " вернулся из отпуска из " + stringBuilder;
     }

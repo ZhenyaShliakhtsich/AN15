@@ -15,15 +15,15 @@ public class Main {
         System.out.println("Задача об автомобилях");
         showCars();
 
-        System.out.println("Проверка пароля");
+        System.out.println("\nПроверка пароля");
         signIn();
 
-        System.out.println("Числа Фибоначи:");
+        System.out.println("\nЧисла Фибоначи:");
         int counter = 1;
         fibonachi(counter, new BigInteger("0"), new BigInteger("1"));
 
+        System.out.println("\nПутешествия:");
         vacation();
-
     }
 
     /*

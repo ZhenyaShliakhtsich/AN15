@@ -3,7 +3,7 @@ package com.teachMeSkills.an15.NovikovVadim.hw4;
 import java.util.Random;
 
 public class Car {
-//    1. Создать собственное исключение
+    //    1. Создать собственное исключение
 //- Создать класс Car c полями (марка, скорость, цена), конструкторы (с
 //    параметрами и default).
 //    Создать метод старт в котором пытаетесь завести автомобиль. В методе старт
@@ -49,9 +49,9 @@ public class Car {
     public boolean start(String brand) throws ExceptionCar {
         Random random = new Random();
         int key = random.nextInt(0, 20);
-        if (key%2==0){
+        if (key % 2 == 0) {
             throw new ExceptionCar("\nНе завелся автомобиль марки " + brand);
-        }else{
+        } else {
             return true;
         }
     }
