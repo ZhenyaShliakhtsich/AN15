@@ -34,6 +34,7 @@ public class Coder {
         }
         System.out.println();
     }
+
     void backVacation(int days) {
         System.out.println(this.fio + " вернулся из отпуска в " + days + " день(дней)");
     }

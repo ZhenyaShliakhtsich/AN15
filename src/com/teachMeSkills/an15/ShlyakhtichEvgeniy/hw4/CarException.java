@@ -6,4 +6,5 @@ public class CarException extends  Exception {
     public CarException(int start) {
         this.start = start;
     }
+    // Можно было создать метод, в которой мы бы передавали марку машины и тогда конструктор не нужен
 }
