@@ -22,7 +22,7 @@ public class Coder {
     }
 
     public String takeVacation(String... country) {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder(); // !!!! я бы тогда сразу начал с заполненного стрингбилдера и его и вернул
         for (String s : country) {
             stringBuilder.
                     append(s).
@@ -67,6 +67,7 @@ public class Coder {
         return FIO + " вернулся из отпуска из " + stringBuilder;
     }
 
+    //!!!Клево, я поленился
     private String getDays(int day) {
         int r_100 = day % 100;
         int r_10 = r_100 % 10;

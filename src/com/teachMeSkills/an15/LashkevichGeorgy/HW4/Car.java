@@ -1,7 +1,6 @@
 package com.teachMeSkills.an15.LashkevichGeorgy.HW4;
 
 
-
 public class Car {
     static String mark;
     int speed;
@@ -30,7 +29,7 @@ public class Car {
                 throw new MyExcep();
             } else System.out.println("Автомобиль марки " + mark + " завелся");
         } catch (MyExcep e) {
-            System.out.println(e.toString());
+            System.out.println(e.toString()); // зачем toString?
         }
     }
 

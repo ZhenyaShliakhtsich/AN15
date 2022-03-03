@@ -18,9 +18,12 @@ class MainTask1 {
         Car ziguli = new Car();
 
         try {
+            // Если все хорошо и исключение не
+            //вылетело, то выводить в консоль сообщение что автомобиль с такой-то маркой
+            //не узнаем что за машина завелась
             audi.start();
         } catch (CarStartException e) {
-            e.printStackTrace();
+            e.printStackTrace();//делаем свои исключения, зачем трассировку выводить?
         }
 
         try {

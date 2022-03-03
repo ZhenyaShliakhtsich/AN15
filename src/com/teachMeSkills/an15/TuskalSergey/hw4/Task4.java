@@ -33,7 +33,7 @@ Coder[] coders = {coder1, coder2, coder3};
 
 Country Georgia = new Country("в Грузии", "Тбилиси");
 Country Armenia = new Country("в Армении", "Ереван");
-Country China = new Country("в Китае", "Пекин");
+Country China = new Country("в Китае", "Пекин"); //че-то не правельно, либо не доделано.
 
 
 coder1.takeVacation(21);
