@@ -65,6 +65,9 @@ public class Coder {
         coder1.backVacation(6);
         coder1.backVacation(country1, country2);
         coder1.backVacation("Ужупис", "Одесса", "Корчи");
+        Coder coder2 = new Coder("Иванов В.И.", 1966, "фумелье", 1345351, 202345327);
+        Coder coder3 = new Coder("Сидоров А.Ю.", 1977, "знаъарь", 34551, 203457);
+        Coder[] coders = {coder1, coder2, coder3};
 
 
     }
