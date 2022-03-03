@@ -23,7 +23,7 @@ public class Coder {
     }
 
     public void takeVacation(String... a) {
-        System.out.println(this.fio + " взял отпуск, чтобы посетить: ");//можно было вывести без for
+        System.out.println(this.fio + " взял отпуск, чтобы посетить: ");
         for (String abs : a) {//будет выводится в столбец,нету метода для столиц
             System.out.println(abs);
         }
