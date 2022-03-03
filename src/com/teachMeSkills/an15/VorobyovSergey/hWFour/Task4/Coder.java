@@ -11,10 +11,10 @@ import com.teachMeSkills.an15.AltievAli.hm3.Arrays;
 //        Методы takeBook takeVacation(), returnBack().
 class Coder {
     private String fio;
-    private String dateOfBirth;
+    private String dateOfBirth; //Наверное стоит использовать тип данных Date
     private String post;
     private int salary;
-    private int phoneNumber;
+    private int phoneNumber; //тип данных для номера телефона стоит использовать строковой
 
     public Coder(String fio, String dateOfBirth, String post, int salary, int phoneNumber) {
         this.fio = fio;
