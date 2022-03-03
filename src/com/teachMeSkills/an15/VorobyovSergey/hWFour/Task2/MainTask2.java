@@ -26,17 +26,17 @@ class MainTask2 {
 
         String myRegEx = "[A-Za-z\\d\\_]{0,20}";
 
+        //Если весь пароль из латински букв, то не возникнет ошибки
         try {
             if (!login.matches(myRegEx)) {
                 throw new WrongLoginException();
             } else if (!password.matches(myRegEx) || !confirmPassword.matches(myRegEx)) {
+                //избыточный вызов confirmPasswortd.matches
+                //общая ошибка для некорректного пароля и для того что они не совпадают
                 throw new WrongPasswordException();
             }
-        } catch (WrongLoginException el) {
+        } catch (WrongLoginException | WrongPasswordException el) {
             el.printStackTrace();
-            return false;
-        } catch (WrongPasswordException ep) {
-            ep.printStackTrace();
             return false;
         }
 

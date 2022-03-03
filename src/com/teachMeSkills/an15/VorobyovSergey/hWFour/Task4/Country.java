@@ -1,7 +1,7 @@
 package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task4;
 //я бы создавал энам
 class Country {
-    private String counry;
+    private String counry;  //опечатка
     private String capital;
 
     public Country(String counry, String capital) {
