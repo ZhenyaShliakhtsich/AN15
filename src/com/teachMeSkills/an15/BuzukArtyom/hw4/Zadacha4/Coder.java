@@ -24,10 +24,11 @@ public class Coder {
 
     public void takeVacation(String... a) {
         System.out.println(this.fio + " взял отпуск, чтобы посетить: ");
-        for (String abs : a) {
+        for (String abs : a) {//будет выводится в столбец,нету метода для столиц
             System.out.println(abs);
         }
     }
+
 
     public void returnBack(int day) {
         System.out.println(this.fio + "вернулся из отпуска через " + day);
@@ -35,7 +36,7 @@ public class Coder {
 
     public void returnBack(String... b) {
         System.out.println(this.fio + "вернулся из стран: ");
-        for (String abs : b) {
+        for (String abs : b) {//будет выводится в столбец,нету метода для столиц
             System.out.println(abs);
         }
     }
