@@ -1,7 +1,6 @@
 package com.teachMeSkills.an15.LashkevichGeorgy.HW4;
 
 
-
 public class Car {
     static String mark;
     int speed;

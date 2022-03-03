@@ -8,7 +8,7 @@ public class Fibo {
         int num3 = 0; // зачем присваивать значение?
         System.out.print(num1 + " ");
         System.out.print(num2 + " ");
-        while (num1 < 200){
+        while (num1 < 200) {
             num3 = num1 + num2;
             System.out.print(num3 + " ");
             num1 = num2;
@@ -17,3 +17,4 @@ public class Fibo {
         }
     }
 }
+// не нажал Ctrl+Alt+L

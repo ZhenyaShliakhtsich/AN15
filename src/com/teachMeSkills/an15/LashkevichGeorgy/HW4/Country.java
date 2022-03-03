@@ -5,14 +5,15 @@ public class Country {
     String capital;
 
 
-
-    public  Country(String country, String capital) {
+    public Country(String country, String capital) {
         this.country = country;
         this.capital = capital;
 
     }
+
     @Override
     public String toString() {
-        return  country + " - " + capital ;
+        return country + " - " + capital;
     }
 }
+//// не нажал Ctrl+Alt+L
