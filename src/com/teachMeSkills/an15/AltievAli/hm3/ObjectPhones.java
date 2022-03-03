@@ -18,7 +18,7 @@ public class ObjectPhones {
         Apple.ReceiveCall("Brother");
         Apple.ReceiveCall("Antony ", 3752596728L);
         System.out.println(Apple.getNumber());
-        Apple.sendMessage(252555555L);
+      //  Apple.sendMessage(252555555L);
 
 
         Phone Samsung = new Phone(375333669666L, "Samsung", 390.25);

@@ -14,7 +14,7 @@ public class Percent {
 
         int percent = addSevenPercent(userSalary);
 
-        System.out.println("Your final amount: " + (userSalary + percent * month) + " $");
+        System.out.println("Your final amount: " + (userSalary + percent * month) + " $");//error
 
 
 //        // Task Number 1 (Salary and 7 percent solution with  WHILE loop)

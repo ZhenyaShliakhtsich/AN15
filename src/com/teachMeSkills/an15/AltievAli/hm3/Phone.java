@@ -37,10 +37,12 @@ public class Phone {
 
     }
 
-    void sendMessage (Long Number){
-        System.out.println("Message was sent from this number: " + Number + " to this " + this.number);
+//    void sendMessage (Long Number){
+//        System.out.println("Message was sent from this number: " + Number + " to this " + this.number);
+//
+//    }
 
-    }
+
 
 
 
