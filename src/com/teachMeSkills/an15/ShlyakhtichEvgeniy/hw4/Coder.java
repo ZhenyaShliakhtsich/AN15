@@ -17,7 +17,7 @@ public class Coder {
 
     public String takeBook() {
         return " ";
-    }
+    } //Он не нужен, опечатка в задании
 
     public String takeVacation(int days) {
         return name + " взял отпуск на " + days + " дней";
@@ -35,6 +35,7 @@ public class Coder {
         StringBuilder st = new StringBuilder();
         for (int i = 0; i < country.length; i++) {
             st.append(country[i].country).append(" - ").append(country[i].capital).append(",");
+            //Можно было сразу выводить в цикле все страны и их столицы
         }
         return name + " взял отпуск чтобы посетить в " + st;
     }
@@ -46,9 +47,11 @@ public class Coder {
         }
         return name + " вернулся из отпуска из " + st;
     }
+
     public String returnBack(int days) {
         return name + " вернулся из отпуска длиной в " + days + " дней ";
     }
+
     public String returnBack(String... country) {
         StringBuilder st = new StringBuilder();
         for (int i = 0; i < country.length; i++) {

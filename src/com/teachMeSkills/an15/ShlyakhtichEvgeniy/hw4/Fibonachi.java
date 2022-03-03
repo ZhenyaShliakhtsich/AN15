@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Fibonachi {
     public static void main(String[] args) {
-        int a = 0;
+        int a = 0; // выведет только первые 43 числа
         int b = 1;
         int c;
         Scanner sc = new Scanner(System.in);

@@ -10,7 +10,7 @@ public class Main {
         int n = scanner.nextInt();
         int[] arr = new int[n];
         arr[0] = 0;
-        arr[1] = 1;
+        arr[1] = 1;//можно было сделать через один for
         for (int i = 2; i < arr.length; ++i) {
             arr[i] = arr[i - 1] + arr[i - 2];
         }

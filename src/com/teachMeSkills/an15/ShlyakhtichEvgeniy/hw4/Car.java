@@ -16,14 +16,18 @@ public class Car {
     public Car() {
     }
 
+    //Можно было создать ещё один конструктор с 1-м параметром - model
+
     public String start() throws CarException {
         Random random = new Random();
-        int startint = random.nextInt(20);
-        if (startint % 2 != 0 ){
+        int startint = random.nextInt(20); // до 21 должно быть
+        if (startint % 2 != 0) { // Если выпадает ноль, то будет считать как чётным
             CarException e = new CarException(startint);
-            throw e;
+            throw e; //можно было сразу сделать через new
         } else {
             return "Машина марки " + model + " завелась";
         }
         }
 }
+
+// Не нажал ctr+alt+L
