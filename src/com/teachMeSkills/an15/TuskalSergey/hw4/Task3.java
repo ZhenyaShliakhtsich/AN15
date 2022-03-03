@@ -13,7 +13,7 @@ public class Task3 {
         for (int i = 2; i <= 11; i++) {
             array[i] = array[i - 1] + array[i - 2];
             System.out.print(array[i] + " ");
-        }
+        }//можно сделать проще.
 
     }
 }

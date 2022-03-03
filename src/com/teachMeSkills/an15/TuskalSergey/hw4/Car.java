@@ -15,7 +15,10 @@ int price;
 
     }
 
-    int start() {
-        return (int) (Math.random() * 21);
+    boolean start() {
+        int a = (int) (Math.random() * 21);
+        int b =(a % 2);
+        return b == 1;
+
     }
 }
