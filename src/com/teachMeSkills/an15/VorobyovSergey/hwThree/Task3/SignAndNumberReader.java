@@ -9,7 +9,7 @@ public class SignAndNumberReader {
         Scanner scanner = new Scanner(System.in);
         while (!scanner.hasNextDouble()) {
             scanner.nextLine();
-            System.out.println("Все-таки попробуй ввести целое число");
+            System.out.println("Все-таки попробуй ввести число");
         }
         number = scanner.nextDouble();
         return number;

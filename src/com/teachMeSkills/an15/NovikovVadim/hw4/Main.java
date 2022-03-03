@@ -86,7 +86,7 @@ public class Main {
             System.out.println(counter++ + " " + result);
             fibonachi(counter, s2, result);
         } else {
-            return;
+            return; // return и else не нужны
         }
     }
 
@@ -105,7 +105,7 @@ public class Main {
   Метод возвращает true, если значения верны или false в другом случае.
   */
     private static void signIn() {
-
+        //!!!! 20 символов не проверили
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите логин (символы латинского языка, числа и _):");
         String login = scanner.nextLine();
@@ -114,6 +114,7 @@ public class Main {
         System.out.println("Подтвердите пароль (символы латинского языка, числа и _):");
         String confirmPassword = scanner.nextLine();
 
+        // я бы делал отдельными классами и методами и каталогами потому что читать сложно
         if (checkLogin(login, password, confirmPassword)) {
             System.out.println("Значения верные");
         } else {
@@ -123,7 +124,7 @@ public class Main {
 
     private static boolean checkPattern(String text, String pattern) {
         Matcher matcher = Pattern.compile(pattern).matcher(text);
-        boolean flag = (matcher.find());
+        boolean flag = (matcher.find());//!!!! можно скобку убрать и сразу его в ретурн засунуть
         return flag;
     }
 
@@ -136,6 +137,8 @@ public class Main {
             if (!(checkPattern(password, "\\d") && checkPattern(password, "[_]") && checkPattern(password, "[a-zA-Z]"))) {
                 throw new WrongPasswordException("\nНекорректный пароль");
             }
+
+            //ну или сразу проверить на совпадение и вынести из try catch как кому нравится
             if (!password.equals(confirmPassword)) {
                 throw new WrongPasswordException("\nНе верно введено подтверждение пароля");
             }
@@ -163,7 +166,7 @@ public class Main {
     */
     private static void showCars() {
 
-        int i;
+        int i;// ожно убрать оно нужно только в for
         String[] brands = new String[]{"audi", "bmw", "vw", "volvo"};
         Car[] cars = new Car[brands.length];
         Random random = new Random();
