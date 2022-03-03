@@ -10,7 +10,7 @@ public class Main {
         int c;
 
 
-        for (int i = 1; i <= 20; i++) {
+        for (int i = 1; i <= 60; i++) {
 
             c = a + b;
             a = b;
