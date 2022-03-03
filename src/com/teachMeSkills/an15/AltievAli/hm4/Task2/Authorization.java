@@ -19,7 +19,7 @@ public class Authorization {
 
     static boolean authorization(String login, String password, String confirmPass) {
 
-
+//нету условия для получения в логин только латинские буквы, цифры и знак подчеркивания
         try {
             if (login.length() > 20) {
                 throw new WrongLoginException("Login is not correct!");
@@ -27,7 +27,6 @@ public class Authorization {
             if (password.length() > 20 || !password.equals(confirmPass)) {
 
                 throw new WrongPasswordException("Password in not correct!");
-
             }
         } catch (WrongLoginException | WrongPasswordException e) {
             System.out.println(e.getMessage());

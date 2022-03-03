@@ -15,10 +15,8 @@ public class ObjectsOfCar {
         }
 
 
-         Car Samara15 = new Car("Samara",5.000,180);
-        Samara15.startCar();
-
-
+        Car Samara15 = new Car("Samara", 5.000, 180);//ctrl + alt + l
+        Samara15.startCar(); //почему не в try-catch
 
 
     }
