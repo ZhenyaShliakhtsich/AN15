@@ -24,17 +24,10 @@ public class MainTask4to7 {
         Task5 task5 = new Task5();
         task5.zeroNineGeneratorAndOddCounter(15);
 
-        //6-task
-        System.out.println("\nTask 6");
-        Task6 task6 = new Task6();
-        int[] randomArr = task6.randomNumberArrayCreator(11);
-        System.out.println(Arrays.toString(randomArr));
-        task6.mostFrequentElementInArray(randomArr);
-
         //6-task in one method
         System.out.println("\nTask 6 in one method");
-        Task6AllinOne task6AllinOne = new Task6AllinOne();
-        task6AllinOne.OnlyOneMethod();
+        Task6 task6 = new Task6();
+        task6.OnlyOneMethod();
 
         //7 - task
         System.out.println("\nTask 7");
