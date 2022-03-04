@@ -1,11 +1,15 @@
-package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task2;
+package com.teachMeSkills.an15.VorobyovSergey.hwFour.Task2;
 
 public class WrongPasswordException extends Exception {
     WrongPasswordException() {
-        System.err.println("Wrong Password");
     }
 
+    //а это было по условию задачи
     WrongPasswordException(String message) {
         super(message);
+    }
+
+    void getErrorMessage() {
+        System.err.println("Wrong Password");
     }
 }

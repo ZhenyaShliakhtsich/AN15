@@ -1,4 +1,6 @@
-package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task1;
+package com.teachMeSkills.an15.VorobyovSergey.hwFour.Task1;
+
+import java.util.ArrayList;
 
 //1. Создать собственное исключение
 //        - Создать класс Car c полями (марка, скорость, цена), конструкторы (с
@@ -13,30 +15,22 @@ package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task1;
 //        исключение которое может вылететь при старте автомобиля
 class MainTask1 {
     public static void main(String[] args) {
-        Car audi = new Car();
-        Car vw = new Car("VW", 15000, 200);
-        Car ziguli = new Car();
+        //это лучше массивом!!!
+        ArrayList<Car> carsList = new ArrayList<>();
+        carsList.add(new Car());
+        carsList.add(new Car("VW", 15000, 200));
+        carsList.add(new Car("Audi", 25000, 250));
 
-        try {
-            // Если все хорошо и исключение не
-            //вылетело, то выводить в консоль сообщение что автомобиль с такой-то маркой
-            //не узнаем что за машина завелась
-            audi.start();
-        } catch (CarStartException e) {
-            e.printStackTrace();//делаем свои исключения, зачем трассировку выводить?
+        //Теперь списком!!!
+        for (Car car : carsList) {
+            try {
+                // Если все хорошо и исключение невылетело, то выводить в консоль сообщение
+                // что автомобиль с такой-то маркой не узнаем что за машина завелась
+                //Иправлено!!!
+                car.start();
+            } catch (CarStartException e) {
+                e.getErrorMessage("Не завелась твоя машина - " + car.getModel());
+            }
         }
-
-        try {
-            vw.start();
-        } catch (CarStartException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            ziguli.start();
-        } catch (CarStartException e) {
-            e.printStackTrace();
-        }
-
     }
 }

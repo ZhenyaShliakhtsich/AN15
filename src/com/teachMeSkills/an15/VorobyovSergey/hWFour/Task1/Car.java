@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task1;
+package com.teachMeSkills.an15.VorobyovSergey.hwFour.Task1;
 
 import java.util.Random;
 
@@ -8,6 +8,9 @@ public class Car {
     private int maxSpeed;
 
     public Car() {
+        this.model = "YouWantDefault";
+        this.price = -1;
+        this.maxSpeed = -1;
     }
 
     public Car(String model, int price, int maxSpeed) {
@@ -20,9 +23,22 @@ public class Car {
         Random random = new Random();
         int number = random.nextInt(21);
         if (number % 2 == 0) {
-            throw new CarStartException(number);  // проброс исключения, обработаем позже
+            throw new CarStartException();
         } else {
-            System.out.printf("Тебе попалось нечетное число %d. Машина завелась.\n", number);
+            System.out.println("Тебе попалось нечетное число. Машина завелась." + this.getModel());
         }
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "model='" + model + '\'' +
+                ", price=" + price +
+                ", maxSpeed=" + maxSpeed +
+                '}';
     }
 }

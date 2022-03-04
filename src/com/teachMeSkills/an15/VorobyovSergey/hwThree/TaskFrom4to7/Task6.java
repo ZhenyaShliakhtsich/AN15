@@ -14,7 +14,6 @@ class Task6 {
         for (int i = 0; i < size; i++) {
             arr[i] = (int) Math.round(Math.random() * numbersSpread - 1);
             builder.append(arr[i]).append(" ");
-
             switch (arr[i]) {
                 case 0:
                     count0++;
@@ -30,16 +29,12 @@ class Task6 {
 
         System.out.println(builder);
 
-        if (count0 == count1 || count0 == count2 || count1 == count2) {
-            //Ничего не делаем, так надо
-        } else {
-            if (count0 > count1 && count0 > count2) {
-                System.out.println("0-й больше ");
-            } else if (count1 > count0 && count1 > count2) {
-                System.out.println("1-ц больше ");
-            } else if (count2 > count0 && count2 > count1) {
-                System.out.println("-1-ц больше ");
-            }
+        if (count0 > count1 && count0 > count2) {
+            System.out.println("0-й больше ");
+        } else if (count1 > count0 && count1 > count2) {
+            System.out.println("1-ц больше ");
+        } else if (count2 > count0 && count2 > count1) {
+            System.out.println("-1-ц больше ");
         }
     }
 }

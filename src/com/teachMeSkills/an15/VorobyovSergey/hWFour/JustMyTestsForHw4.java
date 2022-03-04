@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hWFour;
+package com.teachMeSkills.an15.VorobyovSergey.hwFour;
 
 import java.util.Random;
 
