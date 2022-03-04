@@ -1,15 +1,15 @@
-package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task1;
+package com.teachMeSkills.an15.VorobyovSergey.hwFour.Task1;
 
 class CarStartException extends Exception {
     CarStartException() {
+    }
+
+    //void getErrorMessageи сюда сообщение !!!
+    void getErrorMessage() {
         System.err.println("Тебе попалось четное число. Машина не заведется");
     }
 
-    CarStartException(int number) {
-        System.err.printf("Тебе попалось четное число %d. Машина не заведется\n", number);
-    }
-
-    CarStartException(String message) {
+    void getErrorMessage(String message) {
         System.err.println(message);
     }
 }

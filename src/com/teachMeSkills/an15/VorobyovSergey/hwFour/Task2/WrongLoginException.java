@@ -1,11 +1,15 @@
-package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task2;
+package com.teachMeSkills.an15.VorobyovSergey.hwFour.Task2;
 
 public class WrongLoginException extends Exception {
     WrongLoginException() {
-        System.err.println("Wrong Login");
     }
 
+    //а это было по условию задачи
     WrongLoginException(String message) {
         super(message);
+    }
+
+    void getErrorMessage() {
+        System.err.println("Wrong Login");
     }
 }

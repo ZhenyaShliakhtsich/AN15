@@ -1,4 +1,7 @@
-package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task4;
+package com.teachMeSkills.an15.VorobyovSergey.hwFour.Task4;
+
+import java.util.ArrayList;
+
 //        Разработать программу, в которой создается массив объектов данного класса.
 //        Перегрузить методы takeVacation(), returnBack():
 //        - takeVacation, который будет принимать количество взятых дней.
@@ -13,16 +16,21 @@ package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task4;
 //        Выводит на консоль сообщение "Петров В. В. вернул из отпуска." и тд.
 public class MainTask4 {
     public static void main(String[] args) {
-        Country ukrain = new Country("Ukrain", "Kiev");
-        Country gb = new Country("GreatBritain", "London");
+        //Говорят лучше сосписками сразу
+        ArrayList<Country> countryList = new ArrayList<>();
+        countryList.add(new Country("Ukraine", "Kiev"));
+        countryList.add(new Country("GreatBritain", "London"));
 
-        Coder vasiaPupkin = new Coder("Vasia P.P.", "29.02.2000", "developer", 1000, 7788);
+        Coder vasiaPupkin = new Coder("Vasia P.P.", "29.02.2000",
+                "developer", 1000, "76761206");
         vasiaPupkin.takeVacation("Angola", "Ukraine");
-        vasiaPupkin.takeVacation(ukrain, gb);
+        //!!!Вот по этому я и считаю что лучше энам.
+        // Мы не можем знать сколько в списке элементов или нужно проверять заранее, не понятно где какой и что содержит
+        vasiaPupkin.takeVacation(countryList.get(0), countryList.get(1));
         vasiaPupkin.takeVacation(21);
 
         vasiaPupkin.returnBack("Angola", "Ukraine");
-        vasiaPupkin.returnBack(ukrain, gb);
+        vasiaPupkin.returnBack(countryList.get(0), countryList.get(1));
         vasiaPupkin.returnBack(21);
     }
 }

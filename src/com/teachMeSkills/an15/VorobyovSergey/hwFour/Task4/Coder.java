@@ -1,6 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task4;
-
-import com.teachMeSkills.an15.AltievAli.hm3.Arrays;
+package com.teachMeSkills.an15.VorobyovSergey.hwFour.Task4;
 
 //Определить класс Coder, хранящий такую информацию о программисте:
 //        ФИО,
@@ -11,21 +9,17 @@ import com.teachMeSkills.an15.AltievAli.hm3.Arrays;
 //        Методы takeBook takeVacation(), returnBack().
 class Coder {
     private String fio;
-    private String dateOfBirth; //Наверное стоит использовать тип данных Date
+    private String dateOfBirth;
     private String post;
     private int salary;
-    private int phoneNumber; //тип данных для номера телефона стоит использовать строковой
+    private String phoneNumber; //тип данных для номера телефона стоит использовать строковой !!!Исправил
 
-    public Coder(String fio, String dateOfBirth, String post, int salary, int phoneNumber) {
+    public Coder(String fio, String dateOfBirth, String post, int salary, String phoneNumber) {
         this.fio = fio;
         this.dateOfBirth = dateOfBirth;
         this.post = post;
         this.salary = salary;
         this.phoneNumber = phoneNumber;
-    }
-
-    void takeBook() {
-
     }
 
     void takeVacation(int days) {
@@ -41,11 +35,15 @@ class Coder {
                 builder);
     }
 
+    //!!!!! так лучше с .append в столбик
     void takeVacation(Country... countries) {
         StringBuilder builder = new StringBuilder();
         for (Country c : countries) {
-            builder.append("в ").append(c.getCounry()).append(" - ").
-                    append(c.getCapital()).append(" ");
+            builder.append("в ")
+                    .append(c.getCountry())
+                    .append(" - ")
+                    .append(c.getCapital())
+                    .append(" ");
         }
         System.out.println(this.fio + " взял отпуск, чтобы посетить: " +
                 builder);
@@ -67,8 +65,11 @@ class Coder {
     void returnBack(Country... countries) {
         StringBuilder builder = new StringBuilder();
         for (Country c : countries) {
-            builder.append("в ").append(c.getCounry()).append(" - ").
-                    append(c.getCapital()).append(" ");
+            builder.append("в ")
+                    .append(c.getCountry())
+                    .append(" - ")
+                    .append(c.getCapital())
+                    .append(" ");
         }
         System.out.println(this.fio + " вернулся из отпуска где посетил: " +
                 builder);

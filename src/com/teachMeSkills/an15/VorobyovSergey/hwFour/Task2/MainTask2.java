@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task2;
+package com.teachMeSkills.an15.VorobyovSergey.hwFour.Task2;
 
 //2. Создать статический метод который принимает на вход три параметра: login, password и confirmPassword.
 //        Login должен содержать только латинские буквы, цифры и знак подчеркивания.
@@ -13,30 +13,32 @@ package com.teachMeSkills.an15.VorobyovSergey.hWFour.Task2;
 //        Используем multi-catch block.
 //        Метод возвращает true, если значения верны или false в другом случае.
 class MainTask2 {
+    // лучше статик и вверх вынести!!!
+    static String myRegEx = "[A-Za-z\\d\\_]{0,20}";
+
     public static void main(String[] args) {
-        boolean userConf = isUserConfirmed("Login", "QwertyЫ", "Qwerty");
+        boolean userConf = isUserConfirmed("Login!", "Qwerty", "Qwerty");
         System.out.println("Shod we autorize this user? Answer - " + userConf);
     }
 
     static boolean isUserConfirmed(String login, String password, String confirmPassword) {
-        //Password check first
-        if (!password.equals(confirmPassword)) {
-            return false;
-        }
-
-        String myRegEx = "[A-Za-z\\d\\_]{0,20}";
-
-        //Если весь пароль из латински букв, то не возникнет ошибки
+        //Если весь пароль из латински букв, то не возникнет ошибки. Это один из вариантов был!!!
         try {
             if (!login.matches(myRegEx)) {
                 throw new WrongLoginException();
-            } else if (!password.matches(myRegEx) || !confirmPassword.matches(myRegEx)) {
-                //избыточный вызов confirmPasswortd.matches
-                //общая ошибка для некорректного пароля и для того что они не совпадают
+            } else if (!password.matches(myRegEx) ||
+                    !confirmPassword.matches(myRegEx) ||
+                    !password.equals(confirmPassword)) {
                 throw new WrongPasswordException();
             }
-        } catch (WrongLoginException | WrongPasswordException el) {
-            el.printStackTrace();
+            //Два catch, так и только так как в первом варианте!!!
+            //Потому что иначе мы не сможем вызвать разные методы getErrorMessage() для пусных конструкторов
+            //Или менять задание или менять замечание или менять подход к решению!!!
+        } catch (WrongLoginException el) {
+            el.getErrorMessage();
+            return false;
+        } catch (WrongPasswordException ep) {
+            ep.getErrorMessage();
             return false;
         }
 
