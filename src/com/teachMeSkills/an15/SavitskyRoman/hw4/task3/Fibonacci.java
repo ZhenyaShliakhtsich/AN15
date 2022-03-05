@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.SavitskyRoman.hw4.task4;
+package com.teachMeSkills.an15.SavitskyRoman.hw4.task3;
 
 import java.util.Arrays;
 
