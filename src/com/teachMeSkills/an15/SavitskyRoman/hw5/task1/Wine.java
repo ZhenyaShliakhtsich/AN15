@@ -75,5 +75,16 @@ public class Wine {
     public void setColour(String colour) {
         this.colour = colour;
     }
+
+    @Override
+    public String toString() {
+        return "Wine{" +
+                "brand='" + brand + '\'' +
+                ", country='" + country + '\'' +
+                ", sugar='" + sugar + '\'' +
+                ", colour='" + colour + '\'' +
+                '}';
+    }
+
 }
 
