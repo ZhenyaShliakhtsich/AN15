@@ -14,22 +14,22 @@ public class WarTransport extends AirTransport {
                 ", weight=" + weight +
                 ", model='" + model + '\'' +
                 ", countOfRockets=" + countOfRockets +
-                ", power in kilowatts= " + power*0.74 +
+                ", power in kilowatts= " + power * 0.74 +
                 '}';
     }
 
-    public void shot(){
-        if(countOfRockets != 0){
+    public void shot() {
+        if (countOfRockets != 0) {
             System.out.println("Ракета пошла!..");
-        } else{
+        } else {
             System.out.println("Боеприпасы отсутствуют!");
         }
     }
 
-    public void ejection(){
-        if(isEjectionSystem){
+    public void ejection() {
+        if (isEjectionSystem) {
             System.out.println("Катапультирование прошло успешно!");
-        } else{
+        } else {
             System.out.println("У вас нет такой системы!");
         }
     }

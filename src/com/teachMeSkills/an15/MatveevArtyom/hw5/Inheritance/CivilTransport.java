@@ -1,6 +1,6 @@
 package com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance;
 
-public class CivilTransport extends AirTransport{
+public class CivilTransport extends AirTransport {
     protected int countOfPassengers;
     protected boolean isBusinessClass;
 
@@ -14,14 +14,14 @@ public class CivilTransport extends AirTransport{
                 ", maxSpeed=" + maxSpeed +
                 ", weight=" + weight +
                 ", model='" + model + '\'' +
-                ", power in kilowatts= " + power*0.74 +
+                ", power in kilowatts= " + power * 0.74 +
                 '}';
     }
 
-    public void howMuch(int somePeople){
-        if(somePeople <= countOfPassengers){
+    public void howMuch(int somePeople) {
+        if (somePeople <= countOfPassengers) {
             System.out.println("Пассажиры загружены");
-        } else{
+        } else {
             System.out.println("Вам нужен самолёт побольше");
         }
     }
