@@ -22,7 +22,7 @@ public abstract class Task2 {
     //Используем multi-catch block.
     //Метод возвращает true, если значения верны или false в другом случае.
     public static void inputLoginAndPassword() {
-        String regEx = "\\w"; //только латинские буквы, цифры и знак подчеркивания
+        String regEx = "[a-zA-Z_0-9]*"; //только латинские буквы, цифры и знак подчеркивания
         StringBuilder StringBuilder = new StringBuilder();
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i <= 0; ) {
