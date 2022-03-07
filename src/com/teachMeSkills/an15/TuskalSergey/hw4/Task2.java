@@ -1,4 +1,4 @@
-package com.company;
+package com.teachMeSkills.an15.TuskalSergey.hw4;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;
