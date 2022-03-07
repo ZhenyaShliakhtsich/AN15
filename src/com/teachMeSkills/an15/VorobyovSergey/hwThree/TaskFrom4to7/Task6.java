@@ -1,23 +1,20 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwThree.TaskFrom4to7;
-//или можно все впихнуть в for из randomNumberArrayCreator
-class Task6 {
-    //Create random numbers array -1 0 1 of user size
-    int[] randomNumberArrayCreator(int size) {
-        int numbersSpread = 1 + 1;
-        int[] arr = new int[size];
-        for (int i = 0; i < size; i++) {
-            arr[i] = (int) Math.round(Math.random() * numbersSpread - 1);
-        }
-        return arr;
-    }
 
-    void mostFrequentElementInArray(int[] array) {
+class Task6 {
+    void OnlyOneMethod() {
         int count0 = 0;
         int count1 = 0;
         int count2 = 0;
 
-        for (int element : array) {
-            switch (element) {
+        int size = 11;
+        int numbersSpread = 1 + 1;
+        int[] arr = new int[size];
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            arr[i] = (int) Math.round(Math.random() * numbersSpread - 1);
+            builder.append(arr[i]).append(" ");
+            switch (arr[i]) {
                 case 0:
                     count0++;
                     break;
@@ -30,12 +27,18 @@ class Task6 {
             }
         }
 
-        if (count0 > count1 && count0 > count2) {
-            System.out.println("0-й больше ");
-        } else if (count1 > count0 && count1 > count2) {
-            System.out.println("1-ц больше ");
-        } else if (count2 > count0 && count2 > count1) {
-            System.out.println("-1-ц больше ");
+        System.out.println(builder);
+
+        if (count0 == count1 || count0 == count2 || count1 == count2) {
+        } else {
+            if (count0 > count1 && count0 > count2) {
+                System.out.println("0-й больше ");
+            } else if (count1 > count0 && count1 > count2) {
+                System.out.println("1-ц больше ");
+            } else if (count2 > count0 && count2 > count1) {
+                System.out.println("-1-ц больше ");
+            }
         }
     }
 }
+
