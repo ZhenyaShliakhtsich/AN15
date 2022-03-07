@@ -1,6 +1,6 @@
 package com.teachMeSkills.an15.BuzukArtyom.hw5.Zadacha1;
 
-public class Vozdushniy extends Transport{
+public class Vozdushniy extends Transport {
     double razmahKriliev;
     int minDlinaVPP;
 

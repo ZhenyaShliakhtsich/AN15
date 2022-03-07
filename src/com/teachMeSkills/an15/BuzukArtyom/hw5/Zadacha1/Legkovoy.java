@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Legkovoy extends Nazemny {
     String tipKuzova;
     int kolPass;
-   int vremya;
+    int vremya;
 
     public Legkovoy(int power, int maxSpeed, int weight, String brand, int kolKoles, double rashod, String tipKuzova, int kolPass) {
         super(power, maxSpeed, weight, brand, kolKoles, rashod);
@@ -23,7 +23,7 @@ public class Legkovoy extends Nazemny {
     }
 
     public static void main(String[] args) {
-        Legkovoy legkovoy  = new Legkovoy();
+        Legkovoy legkovoy = new Legkovoy();
         double range;
         double rashod;
         legkovoy.power = 200;
@@ -37,10 +37,10 @@ public class Legkovoy extends Nazemny {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите время, которое легковой автомобиль будет двигаться с максимальной скоростью: ");
         double vremya = scanner.nextDouble();
-        range =vremya*legkovoy.maxSpeed;
-        rashod = range* legkovoy.rashod/100;
-        System.out.println("За время " + vremya + "ч, автомобиль "+ legkovoy.brand + " двигаясь с максимальной скоростью "
-                + legkovoy.maxSpeed+ "км/ч проедет " + range+" км и израсходует " + rashod + " литров топлива." );
+        range = vremya * legkovoy.maxSpeed;
+        rashod = range * legkovoy.rashod / 100;
+        System.out.println("За время " + vremya + "ч, автомобиль " + legkovoy.brand + " двигаясь с максимальной скоростью "
+                + legkovoy.maxSpeed + "км/ч проедет " + range + " км и израсходует " + rashod + " литров топлива.");
 
     }
 
@@ -53,7 +53,7 @@ public class Legkovoy extends Nazemny {
                 ", power=" + power +
                 ", maxSpeed=" + maxSpeed +
                 ", weight=" + weight +
-                ", brand='" + brand + '\'' + ", powerKW = " + power*0.74+"kW"+
+                ", brand='" + brand + '\'' + ", powerKW = " + power * 0.74 + "kW" +
                 '}';
     }
 }

@@ -25,7 +25,7 @@ public class Gruzovoy extends Nazemny {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Сколько груза нужно загрузить? ");
         int gruz = scanner.nextInt();
-        if (gruz<=gruzovoy.gruzopodyomnost)
+        if (gruz <= gruzovoy.gruzopodyomnost)
             System.out.println("Грузовик загружен");
         else System.out.println("Вам нужен грузовик побольше");
     }

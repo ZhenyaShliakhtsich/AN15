@@ -5,6 +5,7 @@ public class Transport {
     int maxSpeed;
     int weight;
     String brand;
+
     public Transport(int power, int maxSpeed, int weight, String brand) {
         this.power = power;
         this.maxSpeed = maxSpeed;

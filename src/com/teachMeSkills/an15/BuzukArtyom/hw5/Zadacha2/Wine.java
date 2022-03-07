@@ -18,18 +18,19 @@ public class Wine {
         this.dateSpill = dateSpill;
         this.note = note;
     }
-    public long Viderzhka(String curDate){
+
+    public long Viderzhka(String curDate) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         Date date1 = null;
         Date date2 = null;
         try {
             date1 = format.parse(curDate);
             date2 = format.parse(dateSpill);
-        } catch (ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         long difference = date1.getTime() - date2.getTime();
-        long days = difference/(24*60*60*1000);
+        long days = difference / (24 * 60 * 60 * 1000);
         return days;
     }
 }

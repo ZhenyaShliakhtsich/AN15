@@ -18,20 +18,20 @@ public class Main {
                 "\n там же на этикетки нанесли его инициалы.";
         String name = wine1.name;
         String country = wine1.country;
-        String trademark  = wine1.tradeMark;
+        String trademark = wine1.tradeMark;
         String note = wine1.note;
 
-        Date d  = new Date();
+        Date d = new Date();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         df.setTimeZone(TimeZone.getTimeZone("EAT"));
         String d1 = df.format(d);
 
         long days = wine1.Viderzhka(d1);
 
-        System.out.println("Выдержка вина под названием "+name+" составляет "+ days+" дней" );
-        System.out.println("Его торговая марка: "+trademark);
-        System.out.println("Страна производства: "+country);
-        System.out.println("Примечание: "+note);
+        System.out.println("Выдержка вина под названием " + name + " составляет " + days + " дней");
+        System.out.println("Его торговая марка: " + trademark);
+        System.out.println("Страна производства: " + country);
+        System.out.println("Примечание: " + note);
 
 
     }
