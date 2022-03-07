@@ -1,7 +1,5 @@
 package com.teachMeSkills.an15.SavitskyRoman.hw3.task4n5n6;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Random;
 
 public class GoLittleArray {
@@ -34,7 +32,7 @@ public class GoLittleArray {
 
         //task6
         int[] midArray1 = new int[11];
-        int[] counter = new int[3]; // т.к. 3 цифры только в массиве
+        int[] counter = new int[3];
         StringBuilder randomArray1 = new StringBuilder("Рандомный массив [-1; 1]: ");
         for (int x : midArray1) {
             midArray1[x] = random.nextInt(3) - 1;
