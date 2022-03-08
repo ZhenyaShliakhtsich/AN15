@@ -49,8 +49,6 @@ public class MainWorker {
         }
 
         try (FileWriter writer = new FileWriter("HW5.txt")) {
-            // запись всей строки
-            //String text = "Hello Gold!";
             for (Worker worker : list) {
                 writer.write(String.valueOf(worker));
             }
