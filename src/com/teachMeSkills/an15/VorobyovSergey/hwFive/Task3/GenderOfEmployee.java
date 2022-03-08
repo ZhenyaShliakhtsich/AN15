@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task2;
+package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task3;
 
 public enum GenderOfEmployee {
     MALE,

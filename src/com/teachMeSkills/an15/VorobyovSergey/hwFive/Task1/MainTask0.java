@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task0;
+package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task1;
 
 class MainTask0 {
     public static void main(String[] args) {

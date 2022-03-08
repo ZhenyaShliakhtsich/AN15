@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task2;
+package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task3;
 
 class FixedSalaryEmployee extends Employee {
     private int salary;

@@ -1,6 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task1;
-
-import java.time.LocalDate;
+package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task2;
 
 class MyWineChecker {
 

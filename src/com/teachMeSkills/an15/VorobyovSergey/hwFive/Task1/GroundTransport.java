@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task0;
+package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task1;
 
 abstract class GroundTransport extends Transport {
     protected int wheelNumber;

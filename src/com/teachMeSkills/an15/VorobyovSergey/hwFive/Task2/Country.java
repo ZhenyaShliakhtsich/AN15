@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task1;
+package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task2;
 
 enum Country {
     ITALY,
