@@ -1,8 +1,8 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task0;
 
 class PassengerTransport extends GroundTransport {
-    String bodyType;
-    int passengersNumber;
+    private String bodyType;
+    private int passengersNumber;
 
     @Override
     String showTransportCharacteristics() {
@@ -27,5 +27,21 @@ class PassengerTransport extends GroundTransport {
 
     private double fuelConsumptionCounter(double trip) {
         return this.fuelConsumption * trip / 100;
+    }
+
+    public String getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(String bodyType) {
+        this.bodyType = bodyType;
+    }
+
+    public int getPassengersNumber() {
+        return passengersNumber;
+    }
+
+    public void setPassengersNumber(int passengersNumber) {
+        this.passengersNumber = passengersNumber;
     }
 }

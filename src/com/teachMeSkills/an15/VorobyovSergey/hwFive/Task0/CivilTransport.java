@@ -1,8 +1,8 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task0;
 
 class CivilTransport extends AirTransport {
-    int passengersNumber;
-    boolean businessClass;
+    private int passengersNumber;
+    private boolean businessClass;
 
     @Override
     String showTransportCharacteristics() {
@@ -16,5 +16,21 @@ class CivilTransport extends AirTransport {
     void passengersCounter(int passengers) {
         System.out.println(passengers <= this.passengersNumber ?
                 "Самолет загружен" : "Вам нужен самолет побольше");
+    }
+
+    public int getPassengersNumber() {
+        return passengersNumber;
+    }
+
+    public void setPassengersNumber(int passengersNumber) {
+        this.passengersNumber = passengersNumber;
+    }
+
+    public boolean isBusinessClass() {
+        return businessClass;
+    }
+
+    public void setBusinessClass(boolean businessClass) {
+        this.businessClass = businessClass;
     }
 }

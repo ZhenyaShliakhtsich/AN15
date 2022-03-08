@@ -75,10 +75,10 @@ class Wine {
     }
 
     //Тут много вариантов что возвращать есть. Смотря что нам надо
-    String getAgeOfWineCounter () {
+    String getAgeOfWineCounter() {
         LocalDate dateNow = LocalDate.now();
-        Period result = Period.between(dateOfBottling,dateNow);
-        return result.getYears() + "-year, "+ result.getMonths() + "-month and " +
+        Period result = Period.between(dateOfBottling, dateNow);
+        return result.getYears() + "-year, " + result.getMonths() + "-month and " +
                 result.getDays() + "-day";
     }
 

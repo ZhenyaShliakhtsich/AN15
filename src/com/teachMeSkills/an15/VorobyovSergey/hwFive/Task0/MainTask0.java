@@ -12,8 +12,8 @@ class MainTask0 {
     private static void militaryPlainTest() {
         System.out.println("\nТестим военный самолет транспорт");
         MilitaryTransport jet = new MilitaryTransport();
-        jet.rocketNumber = 3;
-        jet.ejectionSystem = true;
+        jet.setRocketNumber(3);
+        jet.setEjectionSystem(true);
         jet.ejectionSystemChecker();
         jet.rocketShot();
         jet.rocketShot();
@@ -25,20 +25,20 @@ class MainTask0 {
     private static void civilPlainTest() {
         System.out.println("\nТестим гражданский самолет транспорт");
         CivilTransport plain = new CivilTransport();
-        plain.passengersNumber = 100;
+        plain.setPassengersNumber(100);
         plain.passengersCounter(100);
     }
 
     private static void freightTransportTest() {
         System.out.println("\nТестим грузовой транспорт");
         FreightTransport car = new FreightTransport();
-        car.wheelNumber = 6;
-        car.weight = 5000;
-        car.horsPower = 630;
-        car.maxSpeed = 110;
-        car.brandName = "Man";
-        car.fuelConsumption = 40;
-        car.loadCapacity = 10000;
+        car.setWheelNumber(6);
+        car.setWeight(5000);
+        car.setHorsPower(630);
+        car.setMaxSpeed(110);
+        car.setBrandName("Man");
+        car.setFuelConsumption(40);
+        car.setLoadCapacity(10000);
         System.out.println(car.showTransportCharacteristics());
 
         car.cargoCounter(10000);
@@ -47,13 +47,13 @@ class MainTask0 {
     static void passengerTransportTest() {
         System.out.println("\nТестим легковой транспорт");
         PassengerTransport car = new PassengerTransport();
-        car.wheelNumber = 4;
-        car.weight = 1500;
-        car.horsPower = 200;
-        car.maxSpeed = 230;
-        car.brandName = "Bmw";
-        car.fuelConsumption = 20;
-        car.bodyType = "Convertable";
+        car.setWheelNumber(4);
+        car.setWeight(1500);
+        car.setHorsPower(200);
+        car.setMaxSpeed(230);
+        car.setBrandName("Bmw");
+        car.setFuelConsumption(20);
+        car.setBodyType("Convertable");
         System.out.println(car.showTransportCharacteristics());
 
         car.trekCounter(10);

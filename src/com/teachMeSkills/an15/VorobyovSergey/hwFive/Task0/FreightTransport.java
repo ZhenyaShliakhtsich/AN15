@@ -1,7 +1,7 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task0;
 
-public class FreightTransport extends GroundTransport {
-    int loadCapacity;
+class FreightTransport extends GroundTransport {
+    private int loadCapacity;
 
     @Override
     String showTransportCharacteristics() {
@@ -13,5 +13,13 @@ public class FreightTransport extends GroundTransport {
     void cargoCounter(int weight) {
         System.out.println(weight <= this.loadCapacity ?
                 "Грузовик загружен" : "Вам нужен грузовик побольше");
+    }
+
+    public int getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(int loadCapacity) {
+        this.loadCapacity = loadCapacity;
     }
 }

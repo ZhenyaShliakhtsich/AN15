@@ -32,12 +32,14 @@ class MainTask2 {
         System.out.println(list);
         System.out.println("Сортируем");
 
+        //В этих методах мы все и проверяем
         sortMyList(list);
         getFirstFive(list);
         getLastThree(list);
     }
 
-    static void sortMyList (ArrayList<Employee> list){
+    //Сортировочка
+    static void sortMyList(ArrayList<Employee> list) {
         //Мы ничего не проходили по сортировке обьектов,
         //так что делаю что хочу и как нравится
         list.stream().sorted(new EmployeeComparatorBy())

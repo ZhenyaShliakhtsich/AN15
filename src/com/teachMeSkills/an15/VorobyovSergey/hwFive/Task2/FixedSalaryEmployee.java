@@ -1,12 +1,20 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task2;
 
 class FixedSalaryEmployee extends Employee {
-    int salary;
+    private int salary;
 
     public FixedSalaryEmployee(String fio, int age, GenderOfEmployee gender, int salary) {
         super(fio, age, gender);
         this.salary = salary;
         this.averageSalaryInMonth = salaryCounter();
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
     @Override
