@@ -1,6 +1,6 @@
 package com.teachMeSkills.an15.MatveevArtyom.hw5.Task3;
 
-public class HourlyWorker extends Worker{
+public class HourlyWorker extends Worker {
     private int hourlyPayment;
 
     public HourlyWorker(String name, int id, int hourlyPayment) {
