@@ -1,5 +1,6 @@
 package com.teachMeSkills.an15.MatveevArtyom.hw4;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Task2 {
@@ -18,9 +19,10 @@ public class Task2 {
         //Метод возвращает true, если значения верны или false в другом случае.
     }
 
-    static void data(String login, int password, int confirmPassword) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите логин!");
+    static void data(String login, String password, String confirmPassword) throws WrongLoginException {
+            if (!(Objects.equals(login, "\\w")) || login.length()<20)
+                throw new WrongLoginException("Сработало исключение!");
+            }
+            
 
-        }
     }

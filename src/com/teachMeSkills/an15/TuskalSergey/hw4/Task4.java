@@ -23,24 +23,35 @@ public class Task4 {
 // взял отпуск, чтобы посетить: в Грузии - Тбилиси, Армении - Ереван, Китае - Пекин".
 // Аналогичным образом перегрузить метод returnBack(). Выводит на консоль сообщение "Петров В. В.
 // вернул из отпуска." и тд.
-Coder coder1 = new Coder("Петров В.В.", "01/01/2000", "программист", 1000, 5555555);
+        Coder coder1 = new Coder("Петров В.В.", "01/01/2000", "программист",
+                1000, 5555555);
         System.out.println(coder1);
-Coder coder2 = new Coder("Иванов И.И.", "01/01/2001", "менеджер", 500, 4444444);
+        Coder coder2 = new Coder("Иванов И.И.", "01/01/2001", "менеджер",
+                500, 4444444);
         System.out.println(coder2);
-Coder coder3 = new Coder("Сидоров С.С.", "01/01/1999", "специалист", 800, 3333333);
+        Coder coder3 = new Coder("Сидоров С.С.", "01/01/1999", "специалист",
+                800, 3333333);
         System.out.println(coder3);
-Coder[] coders = {coder1, coder2, coder3};
+        Coder[] coders = {coder1, coder2, coder3};
 
-Country Georgia = new Country("в Грузии", "Тбилиси");
-Country Armenia = new Country("в Армении", "Ереван");
-Country China = new Country("в Китае", "Пекин"); //че-то не правельно, либо не доделано.
+        Country country1 = new Country("в Грузии", "Тбилиси");
+        Country country2 = new Country("в Армении", "Ереван");
+        Country country3 = new Country("в Китае", "Пекин"); //че-то не правельно,
+        // либо не доделано.
+        Country[] countries = {country1, country2, country3};
 
+        PlaceToVisit place1 = new PlaceToVisit("Грузию");
+        PlaceToVisit place2 = new PlaceToVisit("Армению");
+        PlaceToVisit place3 = new PlaceToVisit("Китай");
+        PlaceToVisit[] places = {place1, place2, place3};
 
-coder1.takeVacation(21);
-coder1.takeVacation("Грузию, Армению, Китай");
-
-coder1.returnBack();
-
-
+        for (int i = 0; i < 3; i++) {
+            coders[i].takeVacation(21);
+            coders[i].takeVacation(places[i]);
+            coders[i].takeVacation(countries[i]);
+            coders[i].returnBack();
+        }
     }
+
 }
+

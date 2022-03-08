@@ -19,18 +19,18 @@ public class Main {
             q1 = Math.min(q1, z);
         }
         System.out.println("Максимальное значение через Math: " + y + "\n" + "Минимальное значение через Math: " + q1 + "\n");
-        if (x[0] > x [1] && x[0] > x [2]){
+        if (x[0] > x[1] && x[0] > x[2]) {
             System.out.println("Максимальное значение через if: " + x[0]);
-        }else if (x[1] > x [0] && x[1] > x [2]){
+        } else if (x[1] > x[0] && x[1] > x[2]) {
             System.out.println("Максимальное значение через if: " + x[1]);
-        }else {
+        } else {
             System.out.println("Максимальное значение через if: " + x[2]);
         }
-        if (x[0] < x [1] && x[0] < x [2]){
+        if (x[0] < x[1] && x[0] < x[2]) {
             System.out.println("Минимальное значение через if: " + x[0] + "\n");
-        }else if (x[1] < x [0] && x[1] < x [2]){
+        } else if (x[1] < x[0] && x[1] < x[2]) {
             System.out.println("Минимальное значение через if: " + x[1] + "\n");
-        }else {
+        } else {
             System.out.println("Минимальное значение через if: " + x[2] + "\n");
         }
 
@@ -42,7 +42,8 @@ public class Main {
         if (a < 1 || a > 100) {
             System.out.println("Ошибка\n");
         } else {
-            first: // зачем first? где second?
+            first:
+            // зачем first? где second?
             {
                 for (int z : winScore) {
                     if (z == a) {
@@ -58,12 +59,12 @@ public class Main {
         int machineChoice;
         int yourChoice;
         do {
-            machineChoice = (int) (Math.random()*30+1);
+            machineChoice = (int) (Math.random() * 30 + 1);
             System.out.println("Какой сегодня день");
             yourChoice = sc.nextInt();
             if (yourChoice == machineChoice) continue;
-            System.out.println("Не угадал, " + machineChoice+"\n");
-        } while(yourChoice != machineChoice);
+            System.out.println("Не угадал, " + machineChoice + "\n");
+        } while (yourChoice != machineChoice);
         sc.close();
         System.out.println("Угадал! Хорошего дня!");
     }

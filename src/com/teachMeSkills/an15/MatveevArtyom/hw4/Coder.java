@@ -1,49 +1,53 @@
 package com.teachMeSkills.an15.MatveevArtyom.hw4;
 
 public class Coder {
-    String FIO;
+    String fio;
     int dateOfBirthday;
     String position;
     int salary;
     int phone;
 
-    public Coder(String FIO) {
-        this.FIO = FIO;
+    public Coder(String fio) {
+        this.fio = fio;
     }
 
-    public void takeVacation(int countOfDays){
-        System.out.println(FIO + " взял отпуск на " + countOfDays + " день");
+    public void takeVacation(int countOfDays) {
+        System.out.println(fio + " взял отпуск на " + countOfDays + " день");
     }
 
-    public void takeVacation(int countOfDays, String ... strings){
-        System.out.print(FIO + " взял отпуск, чтобы посетить: " );
+    public String takeVacation(String... strings) {
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < strings.length; i++) {
-            System.out.print(strings[i] + " ");
+            stringBuilder.append(strings[i]).append(" ");
         }
+        return fio + " взял отпуск чтобы посетить " + stringBuilder;
     }
 
-    public void takeVacation(Country ... countries){
-        System.out.print("\n" + FIO + " взял отпуск, чтобы посетить: в " );
+    public String takeVacation(Country... countries) {
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < countries.length; i++) {
-            System.out.print(countries[i].toString() + ", ");
+            stringBuilder.append(countries[i].name).append(" - ").append(countries[i].capital).append(",");
         }
+        return fio + " взял отпуск чтобы посетить в " + stringBuilder;
     }
 
-    public void returnBack(int countOfDays){
-        System.out.println("\n" + FIO + " вернулся из отпуска, который длился " + countOfDays + " день");
+    public void returnBack(int countOfDays) {
+        System.out.println("\n" + fio + " вернулся из отпуска, который длился " + countOfDays + " день");
     }
-    public void returnBack(int countOfDays, String ... strings){
-        System.out.print(FIO + " вернулся из отпуска, в котором он посетил такие страны, как: " );
+
+    public String returnBack(String... strings) {
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < strings.length; i++) {
-            System.out.print(strings[i] + " ");
+            stringBuilder.append(strings[i]).append(" ");
         }
+        return fio + " вернулся из отпуска из " + stringBuilder;
     }
 
-    public void returnBack(Country ... countries){
-        System.out.print("\n" + FIO + " вернулся из отпуска, в котором он посетил такие страны и столицы, как: "  );
+    public String returnBack(Country... countries) {
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < countries.length; i++) {
-            System.out.print(countries[i].toString() + ", ");
+            stringBuilder.append(countries[i].name).append(" - ").append(countries[i].capital).append(" ");
         }
+        return fio + " вернулся из отпуска из " + stringBuilder;
     }
-
 }
