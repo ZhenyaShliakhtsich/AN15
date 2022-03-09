@@ -1,6 +1,6 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task1;
 
-class MainTask0 {
+class MainTask1 {
     public static void main(String[] args) {
         passengerTransportTest();
         freightTransportTest();
