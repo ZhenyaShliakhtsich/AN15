@@ -41,6 +41,8 @@ public class Car {
         car2.start();
         Car car3 = new Car("Super", 140, 300000);
         car3.start();
+        Car car4 = new Car("Super", 110, 304500);
+        car4.start();
 
 
     }
