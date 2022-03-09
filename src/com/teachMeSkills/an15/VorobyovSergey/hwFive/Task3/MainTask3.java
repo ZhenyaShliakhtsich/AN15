@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-class MainTask2 {
+class MainTask3 {
     //НЕ забывайте добавить src/ это очень важно
     static final String MYFILEPATH = "src/com/teachMeSkills/an15/VorobyovSergey/hwFive/Task3/EmployeeTxtFile.txt";
 

@@ -2,7 +2,7 @@ package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task2;
 
 import java.time.LocalDate;
 
-class MainTask1 {
+class MainTask2 {
     public static void main(String[] args) {
         Wine krizachek1 = new Wine("Крыжычек", Trademark.PRODUCER1,
                 LocalDate.of(2020, 11, 27),
