@@ -1,9 +1,13 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task3;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 class MainTask2 {
+    //НЕ забывайте добавить src/ это очень важно
+    static final String MYFILEPATH = "src/com/teachMeSkills/an15/VorobyovSergey/hwFive/Task3/EmployeeTxtFile.txt";
+
     public static void main(String[] args) {
         //Создали наших чувачков
         FixedSalaryEmployee fse1 =
@@ -36,6 +40,15 @@ class MainTask2 {
         sortMyList(list);
         getFirstFive(list);
         getLastThree(list);
+
+        //тут пишем
+        writeMyListInMyFile(list);
+
+        //тут читаем
+        System.out.println("\nПипец яки я вумны!!! Прачытау усе з файлы");
+        for (String str: readMyListFromMyFile()){
+            System.out.println(str);
+        }
     }
 
     //Сортировочка
@@ -46,6 +59,7 @@ class MainTask2 {
                 .forEach(s -> System.out.println(s));
     }
 
+    //первых 5
     static void getFirstFive(ArrayList<Employee> list) {
         System.out.println("First 5");
         if (list.size() >= 5) {
@@ -55,6 +69,7 @@ class MainTask2 {
         }
     }
 
+    //последние 3
     static void getLastThree(ArrayList<Employee> list) {
         System.out.println("Last 3");
         if (list.size() >= 3) {
@@ -62,5 +77,32 @@ class MainTask2 {
                 System.out.println(list.get(i));
             }
         }
+    }
+
+    //В принципе можно передавать все что угодно в метод, и возвращать тоже
+    //мы не будем делать ничего кроме записи
+    static void writeMyListInMyFile(ArrayList<Employee> list) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(MYFILEPATH))) {
+            for (Employee emp : list) {
+                writer.write(emp.toString() + "\n"); // /n тоже не забываем
+            }
+            System.out.println("\nОгого я записау фаил!!! Я хацкир");
+        } catch (IOException e) {
+            System.err.println("Что-то пошло не так при записи");
+        }
+    }
+
+    //Тоже ничего не делаем кроме чтения в список String
+    static ArrayList<String> readMyListFromMyFile() {
+        ArrayList<String> list = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(MYFILEPATH))){
+            String line;
+            while ((line = reader.readLine()) != null){
+                list.add(line);
+            }
+        } catch (IOException e) {
+            System.err.println("Что-то пошло не так при чтении");
+        }
+        return list;
     }
 }
