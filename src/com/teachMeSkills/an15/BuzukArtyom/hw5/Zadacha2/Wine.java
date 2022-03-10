@@ -34,3 +34,4 @@ public class Wine {
         return days;
     }
 }
+// некорректно создан конструктор класса Wine

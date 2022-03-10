@@ -27,3 +27,4 @@ public abstract class Worker {
     }
 }
 
+// геттер  для фамилии не используется

@@ -13,3 +13,4 @@ public class Vozdushniy extends Transport {
     public Vozdushniy() {
     }
 }
+// нету переопредений и хэш-кода

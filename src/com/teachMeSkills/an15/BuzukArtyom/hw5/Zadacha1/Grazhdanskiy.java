@@ -17,7 +17,7 @@ public class Grazhdanskiy extends Vozdushniy {
         grazhdanskiy.minDlinaVPP = 12200;
         grazhdanskiy.razmahKriliev = 27.8;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Скалько пассажиров полетит? ");
+        System.out.println("Скалько пассажиров полетит? "); //*Сколько
         int pass = scanner.nextInt();
         if (pass <= grazhdanskiy.kolPass)
             System.out.println("Самолёт загружен, взлетаем)");
@@ -35,3 +35,7 @@ public class Grazhdanskiy extends Vozdushniy {
 
 
 }
+// зачем все присваивать?
+// можно сделать метод ля класса( строки 22-25)
+// отсутствует проверка на бизнес- класс
+// конструктор класса не используется (использован только пустой)
