@@ -46,4 +46,14 @@ abstract class Employee {
     public void setAverageSalaryInMonth(double averageSalaryInMonth) {
         this.averageSalaryInMonth = averageSalaryInMonth;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "fio='" + fio + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", averageSalaryInMonth=" + averageSalaryInMonth +
+                '}';
+    }
 }

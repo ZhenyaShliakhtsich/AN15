@@ -26,3 +26,4 @@ public class OnTimeZP extends Worker {
         return super.toString() + " зп с почасовой оплатой " + format.format(getAveragePayment());
     }
 }
+// onTimeZP не используется

@@ -13,3 +13,4 @@ public class Nazemny extends Transport {
     public Nazemny() {
     }
 }
+// нету переопредений и хэш-кода

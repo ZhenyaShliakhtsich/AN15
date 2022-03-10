@@ -16,3 +16,4 @@ public class Transport {
     public Transport() {
     }
 }
+// нету переопредений и хэш-кода

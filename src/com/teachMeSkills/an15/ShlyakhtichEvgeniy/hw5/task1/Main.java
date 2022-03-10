@@ -15,4 +15,5 @@ public class Main {
         military.fire();
 
     }
+    //Не нажал ctr + alt + L
 }

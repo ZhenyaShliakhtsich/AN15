@@ -1,0 +1,6 @@
+FixedSalaryEmployee{fio='Ивинова И.И.', age=35, gender=FEMALE, averageSalaryInMonth=2000.0, salary=2000}
+FixedSalaryEmployee{fio='Антонов А.А.', age=35, gender=MALE, averageSalaryInMonth=2000.0, salary=2000}
+FixedSalaryEmployee{fio='Аатонов А.А.', age=35, gender=MALE, averageSalaryInMonth=2000.0, salary=2000}
+HourlySalaryEmployee{fio='Сухадрищенко Д.В.', age=25, gender=TRANSGENDER, averageSalaryInMonth=3827.2000000000003, hourlyRate=23}
+HourlySalaryEmployee{fio='Зелепупенко З.И.', age=46, gender=IT, averageSalaryInMonth=2828.8, hourlyRate=17}
+HourlySalaryEmployee{fio='Зелепупенко А.И.', age=46, gender=IT, averageSalaryInMonth=2828.8, hourlyRate=17}

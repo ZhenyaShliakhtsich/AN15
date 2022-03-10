@@ -48,7 +48,7 @@ public class Military extends  Air{
                 " км/ч.Для взлёта требуется " + airstripLength +
                 " метров.Имеется " + rocketsAmount +
                 " ракет.");
-        if (isCatapult) {
+        if (isCatapult) { //Зачем здесь это?
             st.append("Есть система катапультирования");
         } else {
             st.append("Системы катапультирования нету");
@@ -69,4 +69,5 @@ public class Military extends  Air{
             return "У вас нет такой системы";
         }
     }
+    //Не нажал ctr + alt + L
 }

@@ -56,7 +56,8 @@ public class Civil extends Air {
         }
         return st.toString();
     }
-    public String load(int load){
+
+    public String load(int load) {
         if (load > passengerAmount) {
             return "Вам нужен самолёт побольше";
         } else {
