@@ -2,7 +2,7 @@ package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw5.task1;
 
 import java.util.Objects;
 
-public class Air extends  Transport{
+public class Air extends Transport {
     int wingspan;
     int airstripLength;
 

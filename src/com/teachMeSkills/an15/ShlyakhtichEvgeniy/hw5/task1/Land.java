@@ -2,8 +2,9 @@ package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw5.task1;
 
 import java.util.Objects;
 
-public class Land extends  Transport{
+public class Land extends Transport {
     int wheels;
+    // Нет поля "Расход топлива"
 
     public Land(int power, int speed, int mass, String model, int wheels) {
         super(power, speed, mass, model);

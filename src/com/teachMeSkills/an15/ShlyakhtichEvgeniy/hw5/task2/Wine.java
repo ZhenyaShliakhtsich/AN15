@@ -25,10 +25,11 @@ public class Wine {
                 "\nМарка : " + trademark +
                 "\nСтрана : '" + country +
                 "\nДата розлива : " + dateOfBottling +
-                "\nПримечание : " + note ;
+                "\nПримечание : " + note;
     }
-    protected int wineAging(){
-         return GregorianCalendar.getInstance().get(Calendar.YEAR) - dateOfBottling.get(Calendar.YEAR);
+
+    protected int wineAging() {// По условию, текущая дата даётся как аргумент
+        return GregorianCalendar.getInstance().get(Calendar.YEAR) - dateOfBottling.get(Calendar.YEAR);
     }
 
     public String getName() {

@@ -38,7 +38,10 @@ public class Transport {
                 '}';
     }
     public double powerKVt(int power){
-      double kVt = power * 0.74;
+        //Этот метод нужно было сделать в конечных классах, а не в начальном
+        //Также в классе Civil и Military этот метод не используется
+      double kVt = power * 0.74; //Зачем создавать kVt, можно сразу всё в return написать
       return kVt;
     }
+    //Не нажал ctr + alt + L
 }
