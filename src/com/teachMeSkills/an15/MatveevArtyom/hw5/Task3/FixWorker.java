@@ -4,21 +4,14 @@ public class FixWorker extends Worker {
     private int fixPayment;
 
     public FixWorker(String name, int id, int fixPayment) {
-        super(name, id);
+        this.name = name;
+        this.id = id;
         this.fixPayment = fixPayment;
     }
 
     @Override
     public double paymentOfMonth() {
         return fixPayment;
-    }
-
-    public int getFixPayment() {
-        return fixPayment;
-    }
-
-    public void setFixPayment(int fixPayment) {
-        this.fixPayment = fixPayment;
     }
 
     @Override

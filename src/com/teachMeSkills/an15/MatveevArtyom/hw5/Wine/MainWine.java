@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw5;
+package com.teachMeSkills.an15.MatveevArtyom.hw5.Wine;
 
 import java.time.LocalDate;
 
@@ -7,10 +7,11 @@ public class MainWine {
         Wine wine =  new Wine();
         wine.setBrand("Шато Савильён");
         wine.setCountry("Франция");
-        wine.setDate(LocalDate.of(2019, 8, 22));
-        System.out.println(wine.getDate());
+        wine.setDate(LocalDate.of(2010, 8, 22));
+        System.out.println("Дата создания: " + wine.getDate());
         wine.setName("Игристое");
         wine.setNote("Изысканное вино");
-        wine.payment(wine.getDate());
+        LocalDate nowDate = LocalDate.of(2020,5,14);
+        wine.wineAging(nowDate);
     }
 }

@@ -31,7 +31,7 @@ public class MainWorker {
             public int compare(Worker o1, Worker o2) {
                 if (o2.paymentOfMonth() - o1.paymentOfMonth() != 0) {
                     return (int) (o2.paymentOfMonth() - o1.paymentOfMonth());
-                } else return o1.getName().compareTo(o2.getName());
+                } else return o1.name.compareTo(o2.name);
             }
         };
         Collections.sort(list, sortByPayment);
@@ -41,11 +41,11 @@ public class MainWorker {
         }
         System.out.println("Вывод первых 5 имён работников:");
         for (int i = 0; i < 5; i++) {
-            System.out.println(list.get(i).getName());
+            System.out.println(list.get(i).name);
         }
         System.out.println("Вывод последних 3 имён работников:");
         for (int i = list.size() - 1; i > list.size() - 4; i--) {
-            System.out.println(list.get(i).getName());
+            System.out.println(list.get(i).name);
         }
 
         try (FileWriter writer = new FileWriter("HW5.txt")) {

@@ -4,21 +4,14 @@ public class HourlyWorker extends Worker {
     private int hourlyPayment;
 
     public HourlyWorker(String name, int id, int hourlyPayment) {
-        super(name, id);
+        this.name = name;
+        this.id = id;
         this.hourlyPayment = hourlyPayment;
     }
 
     @Override
     public double paymentOfMonth() {
         return 20.8 * 8 * hourlyPayment;
-    }
-
-    public int getHourlyPayment() {
-        return hourlyPayment;
-    }
-
-    public void setHourlyPayment(int hourlyPayment) {
-        this.hourlyPayment = hourlyPayment;
     }
 
     @Override

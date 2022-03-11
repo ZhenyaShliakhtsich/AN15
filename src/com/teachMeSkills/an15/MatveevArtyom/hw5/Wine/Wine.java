@@ -1,9 +1,7 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw5;
+package com.teachMeSkills.an15.MatveevArtyom.hw5.Wine;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
 
 public class Wine {
     private String name;
@@ -52,9 +50,8 @@ public class Wine {
         this.note = note;
     }
 
-    public void payment(LocalDate someDate) {
-        someDate = LocalDate.now();
-        System.out.println(someDate);
+    public void wineAging(LocalDate someDate) {
+        System.out.println("Текущая дата: " + someDate);
         System.out.println("Выдержка вина составляет = " + Period.between(someDate, date));
 
     }
