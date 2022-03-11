@@ -4,7 +4,7 @@ import com.teachMeSkills.an15.SavitskyRoman.hw5.task1.CargoTransport;
 
 import java.util.Objects;
 
-public class Cargo  extends  Land{
+public class Cargo extends Land {
     double loadCapacity;
 
     public Cargo(int power, int speed, int mass, String model, int wheels, double loadCapacity) {
@@ -38,7 +38,7 @@ public class Cargo  extends  Land{
                 '}';
     }
 
-    public String despription(){
+    public String despription() { //Не ошибка, но ошибка в слове:))
         return "Грузовой автомобиль марки" + model +
                 " имеет мощность" + power +
                 "л.с., массу " + mass +
@@ -48,10 +48,12 @@ public class Cargo  extends  Land{
                 " км/ч. Мощность в киловаттах - " + powerKVt(power) +
                 "кВт";
     }
-    public String load(double load){
+
+    public String load(double load) {
         if (load > loadCapacity) {
             return "Вам нужен грузовик побольше";
         } else return "Грузовик загружен";
     }
 
+    //Не нажал ctr + alt + L
 }

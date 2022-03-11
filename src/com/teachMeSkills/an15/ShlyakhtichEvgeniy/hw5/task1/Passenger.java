@@ -51,7 +51,8 @@ public class Passenger extends Land{
     }
     private double fuelConsuption(double time ){
         return 9.5 * (time * speed)/100;
-    }
+    }//Что такое 9.5???
+    //Скорее всего надо было использовать поле "Расход топлива" в классе Land
     public String range(double time){
         return "За время" + time +
                 " ч, автомобиль марки "+ model +
@@ -60,7 +61,6 @@ public class Passenger extends Land{
                 " км и израсходует "+ fuelConsuption(time) +
                 " литров бензина.";
     }
-
-
+    //Не нажал ctr + alt + L
     }
 
