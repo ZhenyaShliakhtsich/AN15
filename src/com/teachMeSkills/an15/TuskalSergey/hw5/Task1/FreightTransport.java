@@ -1,6 +1,7 @@
 package com.teachMeSkills.an15.TuskalSergey.hw5.Task1;
 
-//import static com.company.Main.powerInKilowatts;
+
+import static com.teachMeSkills.an15.TuskalSergey.hw5.Task1.Main.powerInKilowatts;
 
 public class FreightTransport extends GroundTransport {
     int loadCapacity;
@@ -20,7 +21,7 @@ public class FreightTransport extends GroundTransport {
                 ", numberOfWheels=" + numberOfWheels +
                 ", fuelConsumption=" + fuelConsumption +
                 ", weight=" + weight +
-  //              ", powerInKilowatts='" + powerInKilowatts() + '\'' +
+                ", powerInKilowatts='" + powerInKilowatts() + '\'' +
                 '}';
     }
 }
