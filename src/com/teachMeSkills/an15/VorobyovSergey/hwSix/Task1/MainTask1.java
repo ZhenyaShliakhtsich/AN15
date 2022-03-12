@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwSix;
+package com.teachMeSkills.an15.VorobyovSergey.hwSix.Task1;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSix.Task1.models.TransportAir.SvTransportAirCivil;
 import com.teachMeSkills.an15.VorobyovSergey.hwSix.Task1.models.TransportAir.SvTransportAirMilitary;
