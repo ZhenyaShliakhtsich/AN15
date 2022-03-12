@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance;
+package com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1;
 
 public abstract class Transport {
     protected int power;

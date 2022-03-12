@@ -1,11 +1,11 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance;
+package com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1;
 
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.airTransport.CivilTransport;
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.airTransport.WarTransport;
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.groundTransport.PassengerCar;
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.groundTransport.Truck;
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.service.*;
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.service.impl.*;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.airTransport.CivilTransport;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.airTransport.WarTransport;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.groundTransport.PassengerCar;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.groundTransport.Truck;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.service.*;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.service.impl.*;
 
 public class MainTransport {
     public static void main(String[] args) {

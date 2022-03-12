@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.groundTransport;
+package com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.groundTransport;
 
 public class PassengerCar extends GroundTransport {
     private String bodyType;

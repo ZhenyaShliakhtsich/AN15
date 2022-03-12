@@ -1,6 +1,6 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.groundTransport;
+package com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.groundTransport;
 
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.Transport;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.Transport;
 
 public abstract class GroundTransport extends Transport {
     private int countOfWheels;

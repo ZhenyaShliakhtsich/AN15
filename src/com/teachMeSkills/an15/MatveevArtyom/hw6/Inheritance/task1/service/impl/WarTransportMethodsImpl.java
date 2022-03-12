@@ -1,7 +1,7 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.service.impl;
+package com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.service.impl;
 
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.airTransport.WarTransport;
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.service.WarTransportMethods;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.airTransport.WarTransport;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.service.WarTransportMethods;
 
 public class WarTransportMethodsImpl implements WarTransportMethods {
     @Override

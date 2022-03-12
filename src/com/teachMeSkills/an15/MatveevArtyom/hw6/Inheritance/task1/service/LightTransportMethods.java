@@ -1,6 +1,6 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.service;
+package com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.service;
 
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.groundTransport.PassengerCar;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.groundTransport.PassengerCar;
 
 public interface LightTransportMethods {
     double calculateDistance(int hours, PassengerCar passengerCar);

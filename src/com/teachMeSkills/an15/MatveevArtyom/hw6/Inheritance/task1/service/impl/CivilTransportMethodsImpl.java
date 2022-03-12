@@ -1,7 +1,7 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.service.impl;
+package com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.service.impl;
 
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.airTransport.CivilTransport;
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.service.CivilTransportMethods;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.airTransport.CivilTransport;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.service.CivilTransportMethods;
 
 public class CivilTransportMethodsImpl implements CivilTransportMethods {
     @Override

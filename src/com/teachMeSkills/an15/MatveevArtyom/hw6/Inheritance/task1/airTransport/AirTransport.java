@@ -1,6 +1,6 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.airTransport;
+package com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.airTransport;
 
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.Transport;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.Transport;
 
 public abstract class AirTransport extends Transport {
     protected double wingspan;

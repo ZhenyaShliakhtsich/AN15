@@ -1,7 +1,7 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.service.impl;
+package com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.service.impl;
 
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.groundTransport.PassengerCar;
-import com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.service.LightTransportMethods;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.groundTransport.PassengerCar;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.service.LightTransportMethods;
 
 public class LightTransportMethodsImpl implements LightTransportMethods {
     @Override

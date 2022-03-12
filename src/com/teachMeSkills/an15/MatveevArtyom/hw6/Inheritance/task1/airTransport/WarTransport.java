@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw5.Inheritance.airTransport;
+package com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task1.airTransport;
 
 public class WarTransport extends AirTransport {
     private boolean isEjectionSystem;
