@@ -7,7 +7,7 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSix.Task1.models.TransportGround.
 import com.teachMeSkills.an15.VorobyovSergey.hwSix.Task1.services.*;
 import com.teachMeSkills.an15.VorobyovSergey.hwSix.Task1.services.implimentations.*;
 
-public class MainTask1 {
+class MainTask1 {
     public static void main(String[] args) {
         System.out.println("Test ToString Test");
         SvTransportAirCivil civil = new SvTransportAirCivil();

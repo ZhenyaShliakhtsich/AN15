@@ -46,7 +46,7 @@ class MainTask3 {
 
         //тут читаем
         System.out.println("\nПипец яки я вумны!!! Прачытау усе з файлы");
-        for (String str: readMyListFromMyFile()){
+        for (String str : readMyListFromMyFile()) {
             System.out.println(str);
         }
     }
@@ -95,9 +95,9 @@ class MainTask3 {
     //Тоже ничего не делаем кроме чтения в список String
     static ArrayList<String> readMyListFromMyFile() {
         ArrayList<String> list = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(MYFILEPATH))){
+        try (BufferedReader reader = new BufferedReader(new FileReader(MYFILEPATH))) {
             String line;
-            while ((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
                 list.add(line);
             }
         } catch (IOException e) {
