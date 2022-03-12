@@ -1,7 +1,8 @@
 package com.teachMeSkills.an15.PilyushinYuri.hw5;
 
+import java.util.Objects;
+
 public class Wine {
-    public static class Wine {
         String name;
         String type;
         String country;
@@ -30,7 +31,7 @@ public class Wine {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             com.teachMeSkills.an15.PilyushinYuri.hw5.Wine wine = (com.teachMeSkills.an15.PilyushinYuri.hw5.Wine) o;
-            return year == wine.year && Objects.equals(name, wine.name) && Objects.equals(type, wine.type) && Objects.equals(country, wine.country) && Objects.equals(description, wine.description);
+       return year == wine.year && Objects.equals(name, wine.name) && Objects.equals(type, wine.type) && Objects.equals(country, wine.country) && Objects.equals(description, wine.description);
         }
 
         @Override
@@ -94,4 +95,4 @@ public class Wine {
 
 
     }
-}
+
