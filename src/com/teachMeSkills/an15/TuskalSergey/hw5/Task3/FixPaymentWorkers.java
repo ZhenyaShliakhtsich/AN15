@@ -15,10 +15,6 @@ public class FixPaymentWorkers extends Workers{
 
     @Override
     public String toString() {
-        return "FixPaymentWorkers{" +
-                "mounthPayment=" + mounthPayment +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return super.toString() + " fixed " + calculateAveragePayment();
     }
 }
