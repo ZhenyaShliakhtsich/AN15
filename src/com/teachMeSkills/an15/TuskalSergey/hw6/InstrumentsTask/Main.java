@@ -1,3 +1,4 @@
+/*
 package com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask;
 
 import com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask.instruments.Baraban;
@@ -29,3 +30,4 @@ public class Main {
 
 
 
+*/
