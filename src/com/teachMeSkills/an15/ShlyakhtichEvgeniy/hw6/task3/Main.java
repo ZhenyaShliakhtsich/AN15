@@ -87,16 +87,13 @@ public class Main {
         int choose = scanner.nextInt();
         switch (choose){
             case 1 :
-                categoryProducts.categoryProducts(categories[0]);
-                ChooseProduct(0,user,categories,basket);
+                ChooseProduct(choose-1,user,categories,basket);
                 break;
             case 2:
-                categoryProducts.categoryProducts(categories[1]);
-                ChooseProduct(1,user,categories,basket);
+                ChooseProduct(choose-1,user,categories,basket);
                 break;
             case 3:
-                categoryProducts.categoryProducts(categories[2]);
-                ChooseProduct(2,user,categories,basket);
+                ChooseProduct(choose-1,user,categories,basket);
                 break;
             case 4:
                 Menu(user,categories,basket);
@@ -109,23 +106,25 @@ public class Main {
 
     public static void ChooseProduct(int i, User user,Category[] categories,Basket basket){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("4.Назад");
+        CategoryProductsImpl categoryProducts = new CategoryProductsImpl();
+        categoryProducts.categoryProducts(categories[i]);
+        System.out.println("\n4.Назад");
         ChooseProductImpl chooseProduct = new ChooseProductImpl();
         int choose = scanner.nextInt();
         switch (choose){
             case 1:
                 chooseProduct.chooseProduct(basket,categories[i].getProduct()[0]);
-                CategoriesMenu(user, categories, basket);
+                ChooseProduct(i, user, categories, basket);
                 break;
             case 2:
                 chooseProduct.chooseProduct(basket,categories[i].getProduct()[1]);
-                CategoriesMenu(user, categories, basket);
+                ChooseProduct(i, user, categories, basket);
                 break;
             case 4:
                 CategoriesMenu(user, categories, basket);
                 break;
             default:
-                CategoriesMenu(user, categories, basket);
+                ChooseProduct(i, user, categories, basket);
                 break;
         }
     }
