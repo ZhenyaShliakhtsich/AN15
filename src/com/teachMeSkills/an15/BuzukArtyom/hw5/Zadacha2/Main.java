@@ -16,29 +16,20 @@ public class Main {
                 "\n Все дело в инициалах «Th.J.», принадлежащих Томасу Джефферсону. " +
                 "\n Борец за независимость США приобрел Chateau Lafite во время путешествия во Францию, " +
                 "\n там же на этикетки нанесли его инициалы.";
-        String name = wine1.name;
-        String country = wine1.country;
-        String trademark = wine1.tradeMark;
-        String note = wine1.note;
 
         Date d = new Date();
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         df.setTimeZone(TimeZone.getTimeZone("EAT"));
         String d1 = df.format(d);
 
-        long days = wine1.Viderzhka(d1);
 
-        System.out.println("Выдержка вина под названием " + wine1.name + " составляет " + days + " дней");
-        System.out.println("Его торговая марка: " + trademark);
-        System.out.println("Страна производства: " + country);
-        System.out.println("Примечание: " + note);
+        System.out.println("Выдержка вина под названием " + wine1.name + " составляет " + wine1.Viderzhka(d1) + " дней");
+        System.out.println("Его торговая марка: " + wine1.tradeMark);
+        System.out.println("Страна производства: " + wine1.country);
+        System.out.println("Примечание: " + wine1.note);
 
 
     }
 }
-// зачем присвоения?
-// переменнные в конструкторе не инициализируются
-// строка 19, переменная объявлена но не использована
-// idea предлагае поменять опиcание со String на textBlock
-// строки 19- 22, зачем переменные если можно инициализировать свойства обьекта
+
 // выдержку вина обычно указывают в годах (не критично)
