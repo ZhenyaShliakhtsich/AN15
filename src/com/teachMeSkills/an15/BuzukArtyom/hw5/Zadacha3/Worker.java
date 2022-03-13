@@ -15,9 +15,6 @@ public abstract class Worker {
         return firstName;
     }
 
-    String getSecondName() {
-        return secondName;
-    }
 
     abstract double getAveragePayment();
 
