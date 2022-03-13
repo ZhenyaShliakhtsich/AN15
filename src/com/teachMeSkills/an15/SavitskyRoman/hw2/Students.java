@@ -1,4 +1,3 @@
-/*
 package com.teachMeSkills.an15.SavitskyRoman.hw2;
 
 public class Students {
@@ -16,4 +15,3 @@ public class Students {
         System.out.println(student8);
     }
 }
-*/
