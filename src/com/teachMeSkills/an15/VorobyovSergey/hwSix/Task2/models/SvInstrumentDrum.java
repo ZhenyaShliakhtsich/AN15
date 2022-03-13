@@ -3,8 +3,8 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSix.Task2.models;
 import com.teachMeSkills.an15.VorobyovSergey.hwSix.Task2.services.implementations.SvDrumInstrumentServiceImp;
 
 public class SvInstrumentDrum extends SvInstrument {
-    int size;
-    SvDrumInstrumentServiceImp impl;
+    private int size;
+    private SvDrumInstrumentServiceImp impl;
 
     public SvInstrumentDrum() {
         impl = new SvDrumInstrumentServiceImp();
