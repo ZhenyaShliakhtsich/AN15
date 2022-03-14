@@ -3,8 +3,8 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSix.Task2.models;
 import com.teachMeSkills.an15.VorobyovSergey.hwSix.Task2.services.implementations.SvHornInstrumentServiceImp;
 
 public class SvInstrumentHorn extends SvInstrument {
-    int diameter;
-    SvHornInstrumentServiceImp impl;
+    private int diameter;
+    private SvHornInstrumentServiceImp impl;
 
     public SvInstrumentHorn() {
         impl = new SvHornInstrumentServiceImp();

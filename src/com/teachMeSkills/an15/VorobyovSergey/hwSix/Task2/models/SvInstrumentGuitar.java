@@ -3,8 +3,8 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSix.Task2.models;
 import com.teachMeSkills.an15.VorobyovSergey.hwSix.Task2.services.implementations.SvGuitarInstrumentServiceImp;
 
 public class SvInstrumentGuitar extends SvInstrument {
-    int numberOfStrings;
-    SvGuitarInstrumentServiceImp impl;
+    private int numberOfStrings;
+    private SvGuitarInstrumentServiceImp impl;
 
     public SvInstrumentGuitar() {
         impl = new SvGuitarInstrumentServiceImp();

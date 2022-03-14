@@ -2,7 +2,7 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSix.Task2ForNormalPeoples;
 
 import java.util.ArrayList;
 
-public class MainTask2Normal {
+class MainTask2Normal {
     public static void main(String[] args) {
         ArrayList<MyInstrumentService> list = new ArrayList<>();
         list.add(new MyDrum(2));

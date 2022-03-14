@@ -16,10 +16,6 @@ public class HourlyEmployees extends Workers {
 
     @Override
     public String toString() {
-        return "HourlyEmployees{" +
-                "hourRate=" + hourRate +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return super.toString() + " per hour " + calculateAveragePayment();
     }
 }
