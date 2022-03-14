@@ -16,11 +16,6 @@ public class Wine {
             this.year = year;
             this.description = description;
 
-
-
-
-
-
         }
 
         public Wine() {
@@ -95,3 +90,4 @@ public class Wine {
 
 
     }
+

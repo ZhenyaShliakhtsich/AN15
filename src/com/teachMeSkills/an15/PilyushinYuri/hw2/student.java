@@ -22,9 +22,10 @@ public class student {
                 " " + surname +
                 ", сдал экзамен по " + exam +
                 " на " + mark + '.';
+
     }
 
-    public static void student (String[] args) {
+    public static void main (String[] args) {
         student student = new student("Иван", "Иванов", "Экономике", 4);
         System.out.println(student);
         student student1 = new student("Юрий", "Пилюшин", "Информатике", 7);

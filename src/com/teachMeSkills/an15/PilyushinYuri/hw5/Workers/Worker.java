@@ -16,7 +16,7 @@ public class Worker {
                     return 1;
                 else {
                     return o1.getFirstName().compareTo(o2.getFirstName());
-                }
+                }  
             }
         });
             {
