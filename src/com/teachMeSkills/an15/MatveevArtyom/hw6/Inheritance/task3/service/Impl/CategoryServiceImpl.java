@@ -1,7 +1,11 @@
 package com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task3.service.Impl;
 
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task3.Basket;
 import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task3.Category;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task3.Product;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task3.User;
 import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task3.service.CategoryService;
+import com.teachMeSkills.an15.VorobyovSergey.hwSix.Task3.models.SvProduct;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -9,7 +13,9 @@ import java.util.Scanner;
 public class CategoryServiceImpl implements CategoryService {
     @Override
     public void printCatalog(Category category) {
-        System.out.println(Arrays.toString(category.getProducts()));
+        for (Product product : category.getProducts()) {
+            System.out.println(product.toString());
+        }
     }
 
     @Override
@@ -24,4 +30,21 @@ public class CategoryServiceImpl implements CategoryService {
             System.out.println(Arrays.toString(category.getProducts()));
         }else System.out.println("Что-то неправильно! дурак, чё сказать!");
     }
+
+    @Override
+    public void selectInBasket(int count, Basket basket, Category category) {
+        basket.setProduct(category.getProducts()[count]);
+    }
+
+    @Override
+    public void byInBasket(User user, Product product) {
+        System.out.println("Вы хотите купить");
+        System.out.println(product);
+        System.out.println("\nКорзина покупок теперь");
+        for (Product product1: user.getBasket().getProducts()){
+            System.out.println(product1);
+        }
+    }
+
+
 }

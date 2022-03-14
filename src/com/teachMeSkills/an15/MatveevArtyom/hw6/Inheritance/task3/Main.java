@@ -1,5 +1,10 @@
 package com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task3;
 
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task3.service.AuthenticationService;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task3.service.CategoryService;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task3.service.Impl.CategoryServiceImpl;
+import com.teachMeSkills.an15.MatveevArtyom.hw6.Inheritance.task3.service.Impl.UserAuthenticationServiceImpl;
+
 public class Main {
     public static void main(String[] args) {
         Category category1 = new Category();
@@ -39,6 +44,12 @@ public class Main {
         Basket basket = new Basket();
         basket.setProducts(products);
         User user = new User("NEMO", 1234, basket);
-
+        AuthenticationService authenticationService = new UserAuthenticationServiceImpl();
+        CategoryService categoryService = new CategoryServiceImpl();
+        //authenticationService.doLoginAndPassword(user);
+        categoryService.printCatalog(category1);
+        categoryService.printDefiniteCatalog(category1);
+        categoryService.selectInBasket(1,basket,category1);
+        categoryService.byInBasket(user,product5);
     }
 }
