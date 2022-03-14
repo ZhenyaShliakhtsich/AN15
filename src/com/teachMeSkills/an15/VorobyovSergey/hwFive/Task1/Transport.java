@@ -1,7 +1,7 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwFive.Task1;
 
 //в задании не сказано что класс что-то делает, значит будет абстрактным
-public abstract class Transport {
+abstract class Transport {
     protected double horsPower;
     protected int maxSpeed;
     protected int weight;

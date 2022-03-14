@@ -68,7 +68,7 @@ public class Wine {
         long millisec = date.getTime() - date1.getTime();
         int month = (int) (millisec / (24 * 60 * 60 * 1000) / 30);
 
-        System.out.println("Выдержка составляет " + month + " месяцев, или " + month / 12 + " лет");
+        System.out.println("Выдержка составляет " + month / 12 + " лет");
     }
 }
 

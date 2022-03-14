@@ -1,7 +1,8 @@
 package com.teachMeSkills.an15.PilyushinYuri.hw5;
 
+import java.util.Objects;
+
 public class Wine {
-    public static class Wine {
         String name;
         String type;
         String country;
@@ -14,11 +15,6 @@ public class Wine {
             this.country = country;
             this.year = year;
             this.description = description;
-
-
-
-
-
 
         }
 
@@ -94,4 +90,4 @@ public class Wine {
 
 
     }
-}
+

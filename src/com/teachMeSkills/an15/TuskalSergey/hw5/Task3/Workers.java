@@ -18,10 +18,7 @@ public abstract class Workers {
 
     @Override
     public String toString() {
-        return "Workers{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "#" + id + " " + name;
     }
 
     public double getAveragePayment() {

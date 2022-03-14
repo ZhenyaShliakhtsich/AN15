@@ -2,8 +2,8 @@ package com.teachMeSkills.an15.PilyushinYuri.hw5.Transport.transport;
 
 import java.util.Objects;
 
-public class Transport {
-    double hp;
+public abstract class Transport {
+   protected double hp;
     int maxSpeed;
     int weight;
     String name;
