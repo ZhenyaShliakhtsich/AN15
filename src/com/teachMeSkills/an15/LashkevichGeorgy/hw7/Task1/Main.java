@@ -1,6 +1,7 @@
 package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1;
 
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.models.UserReg;
+import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw6.task3.Shop.User;
 
 import java.util.Scanner;
 
@@ -26,27 +27,11 @@ import java.util.Scanner;
 //Класс Main должен состоять из 30 строк максимум
 public class Main {
     public static void main(String[] args) {
-        createUser();
-
-
-
+        registrationUser();
     }
 
-    public static void createUser() {
-        UserReg userReg1 = new UserReg();
-        userReg1.setName("Ivan");
-        userReg1.setSecondName("Titov");
-        userReg1.setEmail("vanya@mail.ru");
-        userReg1.setLogin("Van4o");
-        userReg1.setPassword("2020327");
-    }
-
-    public void registrationUser(UserReg userReg) {
-        dataImput();
-
-    }
-
-    public void dataImput() {
+    public static void registrationUser() {
+        System.out.println("Регистрация нового пользователя");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ведите имя: ");
         String name = scanner.nextLine();
@@ -54,10 +39,27 @@ public class Main {
         String secondName = scanner.nextLine();
         System.out.println("Введите логин: ");
         String login = scanner.nextLine();
+        System.out.println("Введите email: ");
+        String email = scanner.nextLine();
         System.out.println("Введите пароль: ");
         String pass = scanner.nextLine();
         System.out.println("Введите пароль повторно: ");
         String passCheck = scanner.nextLine();
+        if (name != null && login != null && pass.equals(passCheck)) {
+            System.out.println("Регистрация прошла успешно!");
+            UserReg userReg = new UserReg();
+            userReg.setLogin(login);
+            userReg.setPassword(pass);
+            userReg.setName(name);
+            userReg.setSecondName(secondName);
+            userReg.setEmail(email);
+        } else {
+            System.out.println("Введены некорректные данные. Попробуйте зарегестрироваться заново.");
+            registrationUser();
+        }
+
+
     }
+
 
 }
