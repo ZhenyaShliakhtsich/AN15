@@ -8,7 +8,6 @@ public class UserReg {
     private String password;
 
 
-
     public String getName() {
         return name;
     }
