@@ -1,6 +1,6 @@
 package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.models;
 
-public class UserReg {
+public class UserReg  {
     private String name;
     private String secondName;
     private String email;

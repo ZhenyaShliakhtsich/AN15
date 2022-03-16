@@ -1,8 +1,11 @@
 package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1;
 
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.models.UserReg;
-import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw6.task3.Shop.User;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.RegService;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.impl.RegImpl;
 
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 //Создать приложение, в котором при входе нужно зарегистрировать пользователя
@@ -27,40 +30,26 @@ import java.util.Scanner;
 //Класс Main должен состоять из 30 строк максимум
 public class Main {
     public static void main(String[] args) {
-        registrationUser();
-    }
+        creatUsersList();
 
-    public static void registrationUser() {
-        System.out.println("Регистрация нового пользователя");
+    }
+    public static ArrayList creatUsersList(){
+        RegService regService = new RegImpl();
+        ArrayList<UserReg> usersList = new ArrayList<>();
+        System.out.println("Введите количество новых пользователей: ");
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Ведите имя: ");
-        String name = scanner.nextLine();
-        System.out.println("Введите фамилию: ");
-        String secondName = scanner.nextLine();
-        System.out.println("Введите логин: ");
-        String login = scanner.nextLine();
-        System.out.println("Введите email: ");
-        String email = scanner.nextLine();
-        System.out.println("Введите пароль: ");
-        String pass = scanner.nextLine();
-        System.out.println("Введите пароль повторно: ");
-        String passCheck = scanner.nextLine();
-        if (name != null && login != null && pass.equals(passCheck)) {
-            System.out.println("Регистрация прошла успешно!");
-            UserReg userReg = new UserReg();
-            userReg.setLogin(login);
-            userReg.setPassword(pass);
-            userReg.setName(name);
-            userReg.setSecondName(secondName);
-            userReg.setEmail(email);
-        } else {
-            System.out.println("Введены некорректные данные. Попробуйте зарегестрироваться заново.");
-            registrationUser();
+        int a = scanner.nextInt();
+        for (int i = 0; i < a; i++) {
+            usersList.add(regService.newUser());
         }
-
-
+        return usersList;
     }
-
 
 
 }
+
+
+
+
+
+
