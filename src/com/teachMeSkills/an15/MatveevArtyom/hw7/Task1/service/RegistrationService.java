@@ -4,6 +4,8 @@ import com.teachMeSkills.an15.MatveevArtyom.hw7.Task1.RegistrationAndAuthorisati
 
 public interface RegistrationService {
     RegistrationAndAuthorisation registration(RegistrationAndAuthorisation registration);
+
     RegistrationAndAuthorisation authorisation(RegistrationAndAuthorisation registration, RegistrationAndAuthorisation authorisation);
+
     RegistrationAndAuthorisation showAndChangeData(RegistrationAndAuthorisation authorisation);
 }

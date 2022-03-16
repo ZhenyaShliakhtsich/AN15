@@ -20,17 +20,17 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public ArrayList<String> addPosts(Blog blog) {
         ArrayList<String> postsOfBlog = new ArrayList<>();
-        while (postsOfBlog.size()!=25){
+        while (postsOfBlog.size() != 25) {
             System.out.println("Напишите свой пост!");
             String post = new Scanner(System.in).nextLine();
             postsOfBlog.add(post);
             System.out.println("Продолжить писать посты? (Yes/No)");
             String choose = new Scanner(System.in).nextLine();
-            if(choose.equalsIgnoreCase("No")){
+            if (choose.equalsIgnoreCase("No")) {
                 break;
             }
         }
-        if(postsOfBlog.size()==25){
+        if (postsOfBlog.size() == 25) {
             System.out.println("Вы хотите ввести больше, чем 25 постов! \n" +
                     "какой пост вы хотите заменить(1 - 25)");
             int choose = new Scanner(System.in).nextInt();
@@ -48,8 +48,8 @@ public class BlogServiceImpl implements BlogService {
         System.out.println("Имя блога: ");
         System.out.println(blog.getName());
         System.out.println("Все посты блога: ");
-        for(String post : blog.getPosts()){
-            if(post.length()>=1000){
+        for (String post : blog.getPosts()) {
+            if (post.length() >= 1000) {
                 System.out.println("Количество символов вашего поста больше 1000, " +
                         "ваш пост будет обрезан до 1000 символов");
                 post.substring(1000);
@@ -70,13 +70,13 @@ public class BlogServiceImpl implements BlogService {
                 System.out.println("Выберите цифрой от 1 какой пост вы хотите изменить: ");
                 int chooseOfPost = new Scanner(System.in).nextInt();
                 System.out.print("Вы хотите заменить пост: ");
-                System.out.println(postsOfBlog.get(chooseOfPost-1));
+                System.out.println(postsOfBlog.get(chooseOfPost - 1));
                 System.out.print("Введите новй пост: ");
                 String post = new Scanner(System.in).nextLine();
                 postsOfBlog.set(chooseOfPost - 1, post);
                 System.out.println("Теперь ваш блог стал таким: ");
                 System.out.println(blog.getPosts());
-            } else{
+            } else {
                 flag = false;
             }
         }

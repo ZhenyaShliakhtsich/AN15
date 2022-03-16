@@ -12,7 +12,7 @@ public class Blog {
         this.posts = posts;
     }
 
-    public Blog(){
+    public Blog() {
 
     }
 

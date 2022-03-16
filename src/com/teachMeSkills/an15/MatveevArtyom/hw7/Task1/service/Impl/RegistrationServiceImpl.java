@@ -20,7 +20,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         String thisPassword1 = new Scanner(System.in).nextLine();
         System.out.println("Введите пароль ещё раз!");
         String thisPassword2 = new Scanner(System.in).nextLine();
-        if(thisPassword1.equalsIgnoreCase(thisPassword2)){
+        if (thisPassword1.equalsIgnoreCase(thisPassword2)) {
             registration.setPassword(thisPassword2);
         } else {
             System.out.println("Вы ввели неправильно! Повторите попытку ещё раз!");
@@ -35,18 +35,18 @@ public class RegistrationServiceImpl implements RegistrationService {
         System.out.println("Вы зарегистрировались!");
         System.out.println("Введите ваш логин: ");
         String authorisationLogin = new Scanner(System.in).nextLine();
-        if(registration.getLogin().equalsIgnoreCase(authorisationLogin)){
+        if (registration.getLogin().equalsIgnoreCase(authorisationLogin)) {
             authorisation.setLogin(authorisationLogin);
-        }else {
+        } else {
             System.out.println("Вы ввели неправильно логин, повторите попытку!");
-            authorisation(registration,authorisation);
+            authorisation(registration, authorisation);
         }
         System.out.println("Введите пароль: ");
         String authorisationPassword = new Scanner(System.in).nextLine();
-        if(registration.getPassword().equalsIgnoreCase(authorisationPassword)){
+        if (registration.getPassword().equalsIgnoreCase(authorisationPassword)) {
             authorisation.setPassword(authorisationPassword);
-        }else{
-            authorisation(registration,authorisation);
+        } else {
+            authorisation(registration, authorisation);
         }
         System.out.println("Вы успешно авторизировались!");
         authorisation.setEMail(registration.getEMail());
