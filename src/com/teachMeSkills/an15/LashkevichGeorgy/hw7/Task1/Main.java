@@ -3,8 +3,10 @@ package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.models.UserReg;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.models.UsersList;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.AutService;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.ChangeInfoService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.RegService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.impl.AutImpl;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.impl.ChangeInfoImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.impl.RegImpl;
 
 
@@ -38,11 +40,11 @@ public class Main {
         UsersList usersList1 = new UsersList();
         creatUsersList(usersList);
         usersList1.setUsers(usersList);
-        System.out.println(usersList1.getUsers().size());
         AutService autService = new AutImpl();
-        autService.authentication(usersList1);
-
-
+        UserReg authorized = autService.authentication(usersList1);
+        ChangeInfoService changeInfoService = new ChangeInfoImpl();
+        UserReg changedUser = changeInfoService.changeInfo(authorized);
+        changeInfoService.showInfo(authorized);
 
 
     }
@@ -54,14 +56,8 @@ public class Main {
         int a = scanner.nextInt();
         for (int i = 0; i < a; i++) {
             usersList.add(regService.newUser());
-
         }
         return usersList;
-    }
-
-    public static void authentication() {
-
-
     }
 }
 

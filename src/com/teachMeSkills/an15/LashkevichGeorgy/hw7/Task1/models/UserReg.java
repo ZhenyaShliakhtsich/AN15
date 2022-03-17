@@ -50,11 +50,10 @@ public class UserReg  {
 
     @Override
     public String toString() {
-        return "Registration{" +
-                "name='" + name + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return       "Пользователь: " +         "имя: " + name +
+                ", фамилия: " + secondName +
+                ", email: " + email +
+                ", login:" + login +
+                ", пароль: " + password;
     }
 }
