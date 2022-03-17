@@ -32,7 +32,6 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public RegistrationAndAuthorisation authorisation(RegistrationAndAuthorisation registration,
                                                       RegistrationAndAuthorisation authorisation) {
-        System.out.println("Вы зарегистрировались!");
         System.out.println("Введите ваш логин: ");
         String authorisationLogin = new Scanner(System.in).nextLine();
         if (registration.getLogin().equalsIgnoreCase(authorisationLogin)) {
@@ -46,9 +45,9 @@ public class RegistrationServiceImpl implements RegistrationService {
         if (registration.getPassword().equalsIgnoreCase(authorisationPassword)) {
             authorisation.setPassword(authorisationPassword);
         } else {
+            System.out.println("Вы ввели неправильно пароль, повторите попытку!");
             authorisation(registration, authorisation);
         }
-        System.out.println("Вы успешно авторизировались!");
         authorisation.setEMail(registration.getEMail());
         authorisation.setFirstName(registration.getFirstName());
         authorisation.setSecondName(registration.getSecondName());

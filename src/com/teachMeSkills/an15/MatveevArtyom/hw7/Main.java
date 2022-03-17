@@ -17,7 +17,9 @@ public class Main {
         RegistrationAndAuthorisation authorisation = new RegistrationAndAuthorisation();
         User user = new User();
         user.setRegistrationAndAuthorisation(registrationService.registration(registration));
+        System.out.println("Вы зарегистрировались!");
         user.setRegistrationAndAuthorisation(registrationService.authorisation(registration, authorisation));
+        System.out.println("Вы успешно авторизировались!");
         user.setRegistrationAndAuthorisation(registrationService.showAndChangeData(authorisation));
         user.setBlog(blogService.createBlogAndAddPosts(blog));
         user.setBlog(blogService.printBlog(blog));
