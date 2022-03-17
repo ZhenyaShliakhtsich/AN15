@@ -12,4 +12,11 @@ public class UsersList {
     public void setUsers(ArrayList<UserReg> users) {
         this.users = users;
     }
+
+    @Override
+    public String toString() {
+        return "UsersList{" +
+                "users=" + users +
+                '}';
+    }
 }

@@ -1,11 +1,15 @@
 package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1;
 
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.models.UserReg;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.models.UsersList;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.AutService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.RegService;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.impl.AutImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.impl.RegImpl;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 //Создать приложение, в котором при входе нужно зарегистрировать пользователя
@@ -30,22 +34,35 @@ import java.util.Scanner;
 //Класс Main должен состоять из 30 строк максимум
 public class Main {
     public static void main(String[] args) {
-        creatUsersList();
+        ArrayList<UserReg> usersList = new ArrayList<UserReg>();
+        UsersList usersList1 = new UsersList();
+        creatUsersList(usersList);
+        usersList1.setUsers(usersList);
+        System.out.println(usersList1.getUsers().size());
+        AutService autService = new AutImpl();
+        autService.authentication(usersList1);
+
+
+
 
     }
-    public static ArrayList creatUsersList(){
+
+    public static ArrayList<UserReg> creatUsersList(ArrayList<UserReg> usersList) {
         RegService regService = new RegImpl();
-        ArrayList<UserReg> usersList = new ArrayList<>();
         System.out.println("Введите количество новых пользователей: ");
         Scanner scanner = new Scanner(System.in);
         int a = scanner.nextInt();
         for (int i = 0; i < a; i++) {
             usersList.add(regService.newUser());
+
         }
         return usersList;
     }
 
+    public static void authentication() {
 
+
+    }
 }
 
 
