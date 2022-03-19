@@ -37,7 +37,7 @@ import java.util.Scanner;
 //Класс Main должен состоять из 30 строк максимум
 public class Main {
     public static void main(String[] args) {
-        ArrayList<UserReg> usersList = new ArrayList<UserReg>();
+        ArrayList<UserReg> usersList = new ArrayList<>();
         UsersList usersList1 = new UsersList();
         creatUsersList(usersList);
         usersList1.setUsers(usersList);
@@ -54,8 +54,18 @@ public class Main {
         blogService.showAllPosts(changedUser);
         blogService.editPost(changedUser);
 
-
     }
+
+   /* public static void Menu(UserReg userReg, ArrayList<UserReg> usersList) {
+        System.out.println("1. Регистрация пользователей \n 2. Внести изменения в личные данные пользователя\n3. Авторизация пользователя\n " +
+                "4. Задать название блогу \n 5. Добавить пост в блог\n 6.Показать все посты блога \n 7.Внести изменение в пост");
+        Scanner scanner = new Scanner(System.in);
+        int choose = scanner.nextInt();
+        switch (choose) {
+            case 1:
+                creatUsersList();
+        }
+    }*/
 
     public static ArrayList<UserReg> creatUsersList(ArrayList<UserReg> usersList) {
         RegService regService = new RegImpl();

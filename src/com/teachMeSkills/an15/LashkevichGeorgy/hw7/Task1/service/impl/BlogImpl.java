@@ -45,21 +45,23 @@ public class BlogImpl implements BlogService {
     public void editPost(UserReg userReg) {
         System.out.println("Выберете номер поста под изменение");
         int number = scanner.nextInt();
-
-        System.out.println("Если хотите изменить пост полность, введите \"полность\". " +
+        System.out.println(scanner.nextLine());// без него не работает
+        System.out.println("Если хотите изменить пост полность, введите \"полностью\". " +
                 "Если хотите изменить слово или предложение, то введите \"частично\"");
         String editor = scanner.nextLine();
-        if (editor.equalsIgnoreCase("полность")) {
+        if (editor.equalsIgnoreCase("полностью")) {
             System.out.println("Введите текст");
             userReg.getBlog().set(number - 1, scanner.nextLine());
+            System.out.println("Изменение произошло успешно!");
+
         } else if (editor.equalsIgnoreCase("частично")) {
             System.out.println("Ввести изменяемый текст поста:");
             String text = scanner.nextLine();
             if (userReg.getBlog().get(number - 1).contains(text)) {
-                System.out.println("Текст " + text + " изменить на (требуется ввод):");
-                userReg.getBlog().get(number).replaceFirst(text, scanner.nextLine());
+                System.out.println("Текст " + "\"" +  text + "\"" + " изменить на (требуется ввод):");
+                userReg.getBlog().set(number - 1, userReg.getBlog().get(number - 1).replaceFirst(text, scanner.nextLine()));
             } else {
-                System.out.println("Такого текста в посте " + userReg.getBlog().get(number - 1).toString() + " нет");
+                System.out.println("Такого текста в посте " + userReg.getBlog().get(number - 1) + " нет");
                 editPost(userReg);
             }
 
@@ -67,7 +69,7 @@ public class BlogImpl implements BlogService {
             System.out.println("Такого поста нет.");
             addPost(userReg);
         }
-
+        showAllPosts(userReg);
     }
 
     @Override
