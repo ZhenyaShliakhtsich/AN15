@@ -30,7 +30,7 @@ public class BlogImpl implements BlogService {
         } else {
             System.out.println("Добавить пост в блог. Введите текст поста: ");
             String postText = scanner.nextLine();
-            if (postText != null || postText.length() <= 1000) {
+            if (postText != null && postText.length() <= 1000) {
                 userReg.getBlog().add(postText);
             } else if (postText.length() > 1000) {
                 System.out.println("Текст поста не может превышать 1000 символов.\n " +
@@ -45,24 +45,24 @@ public class BlogImpl implements BlogService {
     public void editPost(UserReg userReg) {
         System.out.println("Выберете номер поста под изменение");
         int number = scanner.nextInt();
-        if (userReg.getBlog().get(number - 1).length() != 0) {
-            System.out.println("Если хотите изменить пост полность, введите \"полность\". " +
-                    "Если хотите изменить слово или предложение, то введите \"частично\"");
-            String editor = scanner.nextLine();
-            if (editor.equalsIgnoreCase("полность")) {
-                System.out.println("Введите текст");
-                userReg.getBlog().set(number - 1, scanner.nextLine());
-            } else if (editor.equalsIgnoreCase("частично")) {
-                System.out.println("Ввести изменяемый текст поста:");
-                String text = scanner.nextLine();
-                if (userReg.getBlog().get(number - 1).contains(text)) {
-                    System.out.println("Текст " + text + " изменить на (требуется ввод):");
-                    userReg.getBlog().get(number).replaceFirst(text, scanner.nextLine());
-                } else {
-                    System.out.println("Такого текста в посте " + userReg.getBlog().get(number - 1).toString() + " нет");
-                    editPost(userReg);
-                }
+
+        System.out.println("Если хотите изменить пост полность, введите \"полность\". " +
+                "Если хотите изменить слово или предложение, то введите \"частично\"");
+        String editor = scanner.nextLine();
+        if (editor.equalsIgnoreCase("полность")) {
+            System.out.println("Введите текст");
+            userReg.getBlog().set(number - 1, scanner.nextLine());
+        } else if (editor.equalsIgnoreCase("частично")) {
+            System.out.println("Ввести изменяемый текст поста:");
+            String text = scanner.nextLine();
+            if (userReg.getBlog().get(number - 1).contains(text)) {
+                System.out.println("Текст " + text + " изменить на (требуется ввод):");
+                userReg.getBlog().get(number).replaceFirst(text, scanner.nextLine());
+            } else {
+                System.out.println("Такого текста в посте " + userReg.getBlog().get(number - 1).toString() + " нет");
+                editPost(userReg);
             }
+
         } else {
             System.out.println("Такого поста нет.");
             addPost(userReg);
