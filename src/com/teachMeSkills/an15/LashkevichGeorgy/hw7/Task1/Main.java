@@ -3,15 +3,16 @@ package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.models.UserReg;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.models.UsersList;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.AutService;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.BlogService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.ChangeInfoService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.RegService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.impl.AutImpl;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.impl.BlogImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.impl.ChangeInfoImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.impl.RegImpl;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 //Создать приложение, в котором при входе нужно зарегистрировать пользователя
@@ -45,6 +46,13 @@ public class Main {
         ChangeInfoService changeInfoService = new ChangeInfoImpl();
         UserReg changedUser = changeInfoService.changeInfo(authorized);
         changeInfoService.showInfo(authorized);
+
+        BlogService blogService = new BlogImpl();
+        blogService.createBlog(changedUser);
+        blogService.addPost(changedUser);
+        blogService.addPost(changedUser);
+        blogService.showAllPosts(changedUser);
+        blogService.editPost(changedUser);
 
 
     }

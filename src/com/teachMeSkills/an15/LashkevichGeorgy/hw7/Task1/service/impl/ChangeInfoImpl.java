@@ -13,7 +13,7 @@ public class ChangeInfoImpl implements ChangeInfoService {
 
     @Override
     public UserReg changeInfo(UserReg userReg) {
-        System.out.println("Информация авторизированного пользователя: \n" + userReg);
+        System.out.println("Обновленная информация авторизированного пользователя: \n" + userReg);
         Scanner scanner = new Scanner(System.in);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder
@@ -25,21 +25,27 @@ public class ChangeInfoImpl implements ChangeInfoService {
         System.out.println(stringBuilder);
         System.out.println("Ввести изменяемый параметр");
         String change = scanner.nextLine();
-        if (change.equalsIgnoreCase("фамилия")) {
-            System.out.println("Введите новую фамилию:");
-            userReg.setSecondName(scanner.nextLine());
-        } else if (change.equalsIgnoreCase("имя")) {
-            System.out.println("Введите новое имя:");
-            userReg.setName(scanner.nextLine());
-        } else if (change.equalsIgnoreCase("email")) {
-            System.out.println("Введите новый email:");
-            userReg.setEmail(scanner.nextLine());
-        } else if (change.equalsIgnoreCase("логин")) {
-            System.out.println("Введите новый логин:");
-            userReg.setLogin(scanner.nextLine());
-        } else if (change.equalsIgnoreCase("пароль")) {
-            System.out.println("Введите новый пароль:");
-            userReg.setPassword(scanner.nextLine());
+        try {
+            if (change.equalsIgnoreCase("фамилия")) {
+                System.out.println("Введите новую фамилию:");
+                userReg.setSecondName(scanner.nextLine());
+            } else if (change.equalsIgnoreCase("имя")) {
+                System.out.println("Введите новое имя:");
+                userReg.setName(scanner.nextLine());
+            } else if (change.equalsIgnoreCase("email")) {
+                System.out.println("Введите новый email:");
+                userReg.setEmail(scanner.nextLine());
+            } else if (change.equalsIgnoreCase("логин")) {
+                System.out.println("Введите новый логин:");
+                userReg.setLogin(scanner.nextLine());
+            } else if (change.equalsIgnoreCase("пароль")) {
+                System.out.println("Введите новый пароль:");
+                userReg.setPassword(scanner.nextLine());
+            }
+
+        } catch (Exception e) {
+            System.out.println("Нужно ввести \"Фамилия\" или \"Имя\" или \"email\" или \"Логин\" или \"Пароль\"");
+            changeInfo(userReg);
         }
         return userReg;
     }
