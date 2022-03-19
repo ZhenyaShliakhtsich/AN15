@@ -1,12 +1,12 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven.models;
 
 public class User {
-    String userFirstName;
-    String userLastName;
-    String userEmail;
-    String userLogin;
-    String userPassword;
-    Blog userBlog;
+    private String userFirstName;
+    private String userLastName;
+    private String userEmail;
+    private String userLogin;
+    private String userPassword;
+    private Blog userBlog;
 
     public String getUserFirstName() {
         return userFirstName;

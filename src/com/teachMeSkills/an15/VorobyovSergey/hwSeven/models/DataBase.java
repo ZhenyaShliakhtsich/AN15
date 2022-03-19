@@ -3,7 +3,7 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSeven.models;
 import java.util.ArrayList;
 
 public class DataBase {
-    ArrayList<User> list;
+    private ArrayList<User> list;
 
     public DataBase() {
         list = new ArrayList<>();

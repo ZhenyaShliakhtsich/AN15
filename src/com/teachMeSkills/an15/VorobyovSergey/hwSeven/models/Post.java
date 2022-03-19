@@ -1,8 +1,8 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven.models;
 
 public class Post {
-    String postName;
-    String postText;
+    private String postName;
+    private String postText;
 
     public String getPostName() {
         return postName;

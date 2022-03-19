@@ -18,18 +18,6 @@ public class SelectPostToReplaceImpl implements SelectPostToReplace {
 
         //Создаем новый пост но в главное меню не переходим пока
         Post post1 = post;
-//        LineReaderService lservice = new LineReaderServiceImpl();
-//        String name = lservice.readLine("Введите имя поста:");
-//        post.setPostName(name);
-//        String text = lservice.readLine("Введите текст поста:");
-//        if (text.length() <= 1000) {
-//            post.setPostText(text);
-//        } else {
-//            System.out.println("Пост длиннее чем 1000 символов, мы его чутка подрежем");
-//            text = text.substring(0, 1000);
-//            post.setPostText(text);
-//        }
-//        System.out.println("Твой новый пост:" + post);
 
         System.out.println("Твой список постов сейчас:");
         System.out.println(blog.getPostsList());

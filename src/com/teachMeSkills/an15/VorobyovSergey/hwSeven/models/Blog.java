@@ -3,8 +3,8 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSeven.models;
 import java.util.ArrayList;
 
 public class Blog {
-    String blogName;
-    ArrayList<Post> postsList;
+    private String blogName;
+    private ArrayList<Post> postsList;
 
     public Blog() {
         postsList = new ArrayList<>();
