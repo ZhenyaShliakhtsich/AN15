@@ -17,6 +17,7 @@ public class Main {
         InstrumentService guitarService = new GuitarInstrumentServiceImpl();
         InstrumentService drumService = new DrumInstrumentServiceImpl();
         InstrumentService trumpetService = new TrumpetInstrumentServiceImpl();
+        //InstrumentService[] instrumentServices = {guitarService, drumService, trumpetService}; done
 
         instruments[0].setName("Gibson Les Paul");
         instruments[0].setCharacteristic("6");

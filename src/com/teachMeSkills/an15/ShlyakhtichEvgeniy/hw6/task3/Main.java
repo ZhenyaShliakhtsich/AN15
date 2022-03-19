@@ -54,12 +54,7 @@ public class Main {
         int choose = scanner.nextInt();
         switch (choose){
             case 1:
-                System.out.println("Введите логин");//хз почему тут не работает
-                String login = scanner.nextLine();
-                System.out.println("Введите пароль");
-                String password = scanner.nextLine();
-                AuthenticationImpl authentication = new AuthenticationImpl();
-                authentication.authentication(user, login, password);
+                auto(user);
                 Menu(user, categories, basket);
                 break;
             case 2:
@@ -127,5 +122,14 @@ public class Main {
                 ChooseProduct(i, user, categories, basket);
                 break;
         }
+    }
+    public static void auto(User user){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите логин");//хз почему тут не работает
+        String login = scanner.nextLine();
+        System.out.println("Введите пароль");
+        String password = scanner.nextLine();
+        AuthenticationImpl authentication = new AuthenticationImpl();
+        authentication.authentication(user, login, password);
     }
 }
