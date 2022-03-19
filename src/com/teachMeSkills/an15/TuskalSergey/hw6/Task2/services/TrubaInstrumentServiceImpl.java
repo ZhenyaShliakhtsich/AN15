@@ -1,6 +1,6 @@
-package com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask.services;
+package com.teachMeSkills.an15.TuskalSergey.hw6.Task2.services;
 
-import com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask.instruments.Instrument;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task2.instruments.Instrument;
 
 public class TrubaInstrumentServiceImpl implements InstrumentService {
     @Override

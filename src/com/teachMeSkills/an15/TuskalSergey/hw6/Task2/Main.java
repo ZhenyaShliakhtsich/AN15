@@ -1,13 +1,13 @@
-package com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask;
+package com.teachMeSkills.an15.TuskalSergey.hw6.Task2;
 
-import com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask.instruments.Baraban;
-import com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask.instruments.Guitar;
-import com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask.instruments.Instrument;
-import com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask.instruments.Truba;
-import com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask.services.BarabanInstrumentServiceImpl;
-import com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask.services.InstrumentService;
-import com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask.services.TrubaInstrumentServiceImpl;
-import com.teachMeSkills.an15.TuskalSergey.hw6.InstrumentsTask.services.impl.GuitarInstrumentServiceImpl;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task2.instruments.Baraban;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task2.instruments.Guitar;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task2.instruments.Instrument;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task2.instruments.Truba;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task2.services.BarabanInstrumentServiceImpl;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task2.services.InstrumentService;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task2.services.TrubaInstrumentServiceImpl;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task2.services.impl.GuitarInstrumentServiceImpl;
 
 public class Main {
 
