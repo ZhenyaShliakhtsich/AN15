@@ -45,6 +45,17 @@ public class BlogImpl implements BlogService {
     public void editPost(UserReg userReg) {
         System.out.println("Выберете номер поста под изменение");
         int number = scanner.nextInt();
+
+        if (number > userReg.getBlog().size()) {
+            System.out.println("Введите число, которое должно быть больше нуля и  меньше или равно " + userReg.getBlog().size());
+            while (true) {
+                number = scanner.nextInt();
+                if (number > 0 && number <= userReg.getBlog().size()) {
+                    break;
+                } else
+                    System.out.println("Введите число, которое должно быть больше нуля и  меньше или равно " + userReg.getBlog().size());
+            }
+        }
         System.out.println(scanner.nextLine());// без него не работает
         System.out.println("Если хотите изменить пост полность, введите \"полностью\". " +
                 "Если хотите изменить слово или предложение, то введите \"частично\"");
@@ -58,23 +69,20 @@ public class BlogImpl implements BlogService {
             System.out.println("Ввести изменяемый текст поста:");
             String text = scanner.nextLine();
             if (userReg.getBlog().get(number - 1).contains(text)) {
-                System.out.println("Текст " + "\"" +  text + "\"" + " изменить на (требуется ввод):");
+                System.out.println("Текст " + "\"" + text + "\"" + " изменить на (требуется ввод):");
                 userReg.getBlog().set(number - 1, userReg.getBlog().get(number - 1).replaceFirst(text, scanner.nextLine()));
             } else {
                 System.out.println("Такого текста в посте " + userReg.getBlog().get(number - 1) + " нет");
                 editPost(userReg);
             }
 
-        } else {
-            System.out.println("Такого поста нет.");
-            addPost(userReg);
         }
         showAllPosts(userReg);
     }
 
     @Override
     public void showAllPosts(UserReg userReg) {
-        System.out.println("Блог " + userReg.getBlogName() + " с постами: " +  userReg.getBlog().toString());
+        System.out.println("Блог " + "\"" + userReg.getBlogName() + "\"" + " с постами: " + userReg.getBlog().toString());
 
     }
 

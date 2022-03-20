@@ -150,9 +150,12 @@ public class Main {
 
     public static void createUsersList(ArrayList<UserReg> usersList) {
         RegService regService = new RegImpl();
-        System.out.println("Введите количество новых пользователей: ");
         Scanner scanner = new Scanner(System.in);
-        int a = scanner.nextInt();
+        System.out.println("Введите количество новых пользователей: ");
+        int a = 0;
+        String string = scanner.nextLine();
+        if (new Scanner(string).hasNextInt())
+            a = Integer.parseInt(string);
         for (int i = 0; i < a; i++) {
             usersList.add(regService.newUser());
         }
