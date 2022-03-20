@@ -1,6 +1,7 @@
 package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.impl;
 
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.models.UserReg;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.models.UsersList;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.ChangeInfoService;
 
 import java.util.Scanner;
@@ -12,8 +13,8 @@ public class ChangeInfoImpl implements ChangeInfoService {
     }
 
     @Override
-    public UserReg changeInfo(UserReg userReg) {
-        System.out.println("Обновленная информация авторизированного пользователя: \n" + userReg);
+    public void changeInfo(UsersList usersList, UserReg userReg) {
+
         Scanner scanner = new Scanner(System.in);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder
@@ -42,11 +43,11 @@ public class ChangeInfoImpl implements ChangeInfoService {
                 System.out.println("Введите новый пароль:");
                 userReg.setPassword(scanner.nextLine());
             }
-
+            System.out.println("Обновленная информация авторизированного пользователя: \n" + userReg);
         } catch (Exception e) {
             System.out.println("Нужно ввести \"Фамилия\" или \"Имя\" или \"email\" или \"Логин\" или \"Пароль\"");
-            changeInfo(userReg);
+            changeInfo(usersList, userReg);
         }
-        return userReg;
+
     }
 }

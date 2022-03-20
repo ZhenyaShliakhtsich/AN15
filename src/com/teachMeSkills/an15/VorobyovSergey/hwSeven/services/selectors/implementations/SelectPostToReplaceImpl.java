@@ -22,7 +22,7 @@ public class SelectPostToReplaceImpl implements SelectPostToReplace {
         System.out.println("Твой список постов сейчас:");
         System.out.println(blog.getPostsList());
         System.out.println("Ну выбирай пост который заменим?");
-        int numberToReplace = 0;
+        int numberToReplace;
         //будем проверять чтобы то что мы введем было в пределах массива
         while ((numberToReplace = new OnlyOneNumberReaderServiceImpl().readNumberFromConsole()) >
                 blog.getPostsList().size()) {
