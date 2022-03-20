@@ -1,8 +1,8 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.postactions.implementations;
+package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.editpost.implementations;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.MainMenuCreationServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.postactions.ShowUserPostsService;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.editpost.ShowUserPostsService;
 
 public class ShowUserPostsServiceImpl implements ShowUserPostsService {
     @Override

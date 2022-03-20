@@ -1,13 +1,12 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.postactions.implementations;
+package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.editpost.implementations;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.Post;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.MainMenuCreationServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.postactions.AddUserPostService;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.editpost.AddUserPostService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.LineReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.implementations.LineReaderServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.selectors.implementations.SelectPostToReplaceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.userparameters.implimentations.UserParametersServiceBlogImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.edituser.implimentations.UserParametersServiceBlogImpl;
 
 public class AddUserPostServiceImpl implements AddUserPostService {
     @Override

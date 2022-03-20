@@ -1,10 +1,10 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.userparameters.implimentations;
+package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.edituser.implimentations;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.Blog;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.LineReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.implementations.LineReaderServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.userparameters.UserParametersService;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.edituser.UserParametersService;
 
 public class UserParametersServiceBlogImpl implements UserParametersService {
     @Override

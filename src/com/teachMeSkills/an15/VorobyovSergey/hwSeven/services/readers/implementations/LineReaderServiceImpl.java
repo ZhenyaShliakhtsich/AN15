@@ -10,8 +10,8 @@ public class LineReaderServiceImpl implements LineReaderService {
         Scanner scanner = new Scanner(System.in);
         System.out.println(message);
         String line = scanner.nextLine();
-        while (line.length() == 0){
-            System.out.println("Давай попробуев ввести хоть что-то!!! Не ленись!!!");
+        while (line.isEmpty()){
+            System.out.println("Давай попробуем ввести хоть что-то!!! Не ленись!!!");
             line = scanner.nextLine();
         }
             return line;

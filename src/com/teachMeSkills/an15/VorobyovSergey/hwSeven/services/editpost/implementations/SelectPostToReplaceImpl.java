@@ -1,11 +1,11 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.selectors.implementations;
+package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.editpost.implementations;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.Blog;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.Post;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.MainMenuCreationServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.selectors.SelectPostToReplace;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.editpost.SelectPostToReplace;
 
 public class SelectPostToReplaceImpl implements SelectPostToReplace {
     @Override
