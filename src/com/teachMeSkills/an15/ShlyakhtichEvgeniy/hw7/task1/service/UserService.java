@@ -5,7 +5,7 @@ import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw7.task1.classes.User;
 import java.util.ArrayList;
 
 public interface UserService {
-    public User logIn(ArrayList<User> users);
-    public void registration(ArrayList<User> users);
-    public void showInfo(User user);
+     void logIn(ArrayList<User> users);
+     void registration(ArrayList<User> users);
+     void showInfo(User user);
 }

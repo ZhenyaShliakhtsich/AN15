@@ -85,8 +85,8 @@ public class User {
     @Override
     public String toString() {
         return "Логин: " + login +
-                "Имя: " + firstName +
-                "Фамилия:" + secondName +
-                "E-mail:" + eMail;
+                "\nИмя: " + firstName +
+                "\nФамилия:" + secondName +
+                "\nE-mail:" + eMail;
     }
 }

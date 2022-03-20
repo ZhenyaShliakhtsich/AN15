@@ -8,16 +8,19 @@ import java.util.Scanner;
 
 public class UserServiceImpl implements UserService {
     @Override
-    public User logIn(ArrayList<User> users) {
+    public void logIn(ArrayList<User> users) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите логин или e-mail");
         String login = scanner.nextLine();
         System.out.println("Введите пароль");
         String password = scanner.nextLine();
-        for (User user : users) {
-            if (login.equals(user.getLogin()) || login.equals(user.geteMail()) && password.equals(user.getPassword())) {
+        for (int i = 0; i < users.size();i++) {
+            if (login.equals(users.get(i).getLogin()) || login.equals(users.get(i).geteMail())
+                    && password.equals(users.get(i).getPassword())) {
                 System.out.println("Вы успешно вошли в аккаунт");
-                return user;
+                MenuServiceImpl menu = new MenuServiceImpl();
+                menu.menu(users.get(i));
+                break;
             } else {
                 System.out.println("Неправильные данные.Попробуйте снова");
                 logIn(users);
@@ -26,51 +29,52 @@ public class UserServiceImpl implements UserService {
 
 
         }
-        scanner.close();
-        return null;
     }
 
     @Override
     public void registration(ArrayList<User> users) {
-        User user = new User();
+        User newUser = new User();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите логин");
-        user.setLogin(scanner.nextLine());
+        System.out.println("Регистрация\nВведите логин");
+        newUser.setLogin(scanner.nextLine());
         System.out.println("Введите пароль");
-        user.setPassword(scanner.nextLine());
+        newUser.setPassword(scanner.nextLine());
         System.out.println("Повторите пароль");
         String passwordRepeat = scanner.nextLine();
-        if (!passwordRepeat.equals(user.getPassword())) {
+        if (!passwordRepeat.equals(newUser.getPassword())) {
             System.out.println("Пароли не совпадают.Введите данные заново");
             registration(users);
 
         }
         System.out.println("Введите имя");
-        user.setFirstName(scanner.nextLine());
+        newUser.setFirstName(scanner.nextLine());
         System.out.println("Введите фамилию");
-        user.setSecondName(scanner.nextLine());
+        newUser.setSecondName(scanner.nextLine());
         System.out.println("Введите ваш e-mail");
         String regex = "^(.+)@(.+)$";
         String mail = scanner.nextLine();
-        while (!mail.matches(regex)){
+        while (!mail.matches(regex)) {
+            System.out.println("Введите e-mail правильно");
             mail = scanner.nextLine();
         }
-        user.seteMail(mail);
+        newUser.seteMail(mail);
+        users.add(newUser);//не понимаю,почему не добавляется новый пользователь
         System.out.println("Регистрация прошла успешна.Войдите в аккаунт");
-        users.add(user);
-        scanner.close();
         logIn(users);
     }
 
     @Override
     public void showInfo(User user) {
         System.out.println("Информация о вас:");
-        user.toString();
+        System.out.println(user.toString());
+        MenuServiceImpl menuService = new MenuServiceImpl();
+        menuService.menuUser(user);
     }
 
     public void changeInfo(User user) {
-        System.out.println("Какую информацию вы хотите поменять?");
+        System.out.println("Какую информацию вы хотите поменять?(Имя/Фамилия/Логин/Пароль/e-mail)");
         Scanner scanner = new Scanner(System.in);
+        MenuServiceImpl menuService = new MenuServiceImpl();
         String choice = scanner.nextLine();
         if (choice.equalsIgnoreCase("Имя")) {
             System.out.println("Введите новое имя");
@@ -95,8 +99,7 @@ public class UserServiceImpl implements UserService {
                 changeInfo(user);
             }
         }
-        scanner.close();
-
+        menuService.menuUser(user);
     }
 }
 
