@@ -2,11 +2,12 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.editpost.implemen
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.Post;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.edituser.UserService;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.edituser.implimentations.UserServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.MainMenuCreationServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.editpost.AddUserPostService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.LineReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.implementations.LineReaderServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.edituser.implimentations.UserParametersServiceBlogImpl;
 
 public class AddUserPostServiceImpl implements AddUserPostService {
     @Override
@@ -23,7 +24,7 @@ public class AddUserPostServiceImpl implements AddUserPostService {
         } catch (NullPointerException e) {
             System.out.println("Твой блог пуст!!! Мы не можем туда ничего добавить." +
                     "\nДавай мы его создадим для начала!!!");
-            new UserParametersServiceBlogImpl().setParameter(user);
+            new UserServiceImpl().editBlog(user);
         }
         new MainMenuCreationServiceImpl().createMenuList(user);
     }

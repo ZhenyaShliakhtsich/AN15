@@ -2,6 +2,7 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.selectors.impleme
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.DataBase;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.edituser.UserService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.EditUserMenuCreationServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.MainMenuCreationServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.OnlyOneNumberReaderService;
@@ -17,36 +18,32 @@ public class SelectActionByNumberFromConsoleServiceEditUserMenuImpl implements S
 
     @Override
     public void selectActionByNumber(User user) {
-        User user1;
         OnlyOneNumberReaderService numberReader = new OnlyOneNumberReaderServiceImpl();
+        UserService service = new UserServiceImpl();
+
         System.out.println("----------\nВыберите пункт для редактирования (цифрой):");
         switch (numberReader.readNumberFromConsole()) {
             case 0:
                 new MainMenuCreationServiceImpl().createMenuList(user);
                 break;
             case 1:
-                user1 = new UserParametersServiceFirstNameImpl().setParameter(user);
-                new EditUserMenuCreationServiceImpl().createMenuList(user1);
+                service.editFirstName(user);
+                new EditUserMenuCreationServiceImpl().createMenuList(user);
                 break;
             case 2:
-                user1 = new UserParametersServiceLastNameImpl().setParameter(user);
-                new EditUserMenuCreationServiceImpl().createMenuList(user1);
+                service.editLastName(user);
                 break;
             case 3:
-                user1 = new UserParametersServiceEmailImpl().setParameter(user);
-                new EditUserMenuCreationServiceImpl().createMenuList(user1);
+                service.editEmail(user);
                 break;
             case 4:
-                user1 = new UserParametersServiceLoginImpl().setParameter(user);
-                new EditUserMenuCreationServiceImpl().createMenuList(user1);
+                service.editLogin(user);
                 break;
             case 5:
-                user1 = new UserParametersServicePasswordImpl().setParameter(user);
-                new EditUserMenuCreationServiceImpl().createMenuList(user1);
+                service.editPassword(user);
                 break;
             case 6:
-                user1 = new UserParametersServiceBlogImpl().setParameter(user);
-                new EditUserMenuCreationServiceImpl().createMenuList(user1);
+                service.editBlog(user);
                 break;
             default:
                 new SelectActionByNumberFromConsoleServiceMainMenuImpl().selectActionByNumber(user);

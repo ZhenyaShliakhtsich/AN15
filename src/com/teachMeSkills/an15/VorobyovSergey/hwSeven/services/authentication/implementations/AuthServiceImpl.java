@@ -3,8 +3,8 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.authentication.im
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.DataBase;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.authentication.AuthService;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.edituser.UserParametersService;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.edituser.implimentations.*;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.edituser.UserService;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.edituser.implimentations.UserServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.MenuCreationService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.MainMenuCreationServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.LineReaderService;
@@ -48,25 +48,19 @@ public class AuthServiceImpl implements AuthService {
         //Создаем пользователя, и начинаем просто редачить ему поля через сервисы.
         //Потом эти же сервисы используем для редактирования уже существующего пользователя
         User user = new User();
-
+        UserService service = new UserServiceImpl();
         //1-FName
-        UserParametersService fName = new UserParametersServiceFirstNameImpl();
-        user = fName.setParameter(user);
+        user = service.editFirstName(user);
         //2-LName
-        UserParametersService lName = new UserParametersServiceLastNameImpl();
-        user = lName.setParameter(user);
+        user = service.editLastName(user);
         //3-Email
-        UserParametersService email = new UserParametersServiceEmailImpl();
-        user = email.setParameter(user);
+        user = service.editEmail(user);
         //4-Login
-        UserParametersService login = new UserParametersServiceLoginImpl();
-        user = login.setParameter(user);
+        user = service.editLogin(user);
         //5-Password
-        UserParametersService password = new UserParametersServicePasswordImpl();
-        user = password.setParameter(user);
+        user = service.editPassword(user);
         //6-Blog
-        UserParametersService blog = new UserParametersServiceBlogImpl();
-        user = blog.setParameter(user);
+        user = service.editBlog(user);
 
         //план поменялся идем на аутентификацию, и добавим его в базу предварительно
         dataBase.addToList(user);
