@@ -12,19 +12,7 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.userparameters.imp
 public class AddUserPostServiceImpl implements AddUserPostService {
     @Override
     public void addPost(User user) {
-        Post post = new Post();
-        LineReaderService lservice = new LineReaderServiceImpl();
-        String name = lservice.readLine("Введите имя поста:");
-        post.setPostName(name);
-        String text = lservice.readLine("Введите текст поста:");
-        if (text.length() <= 1000) {
-            post.setPostText(text);
-        } else {
-            System.out.println("Пост длиннее чем 1000 символов, мы его чутка подрежем");
-            text = text.substring(0, 1000);
-            post.setPostText(text);
-        }
-        System.out.println("Твой новый пост - " + post);
+        Post post = fillInPost();
 
         //Теперь добавим все это в список постов блога
         try {
@@ -39,5 +27,25 @@ public class AddUserPostServiceImpl implements AddUserPostService {
             new UserParametersServiceBlogImpl().setParameter(user);
         }
         new MainMenuCreationServiceImpl().createMenuList(user);
+    }
+
+    Post fillInPost() {
+        Post post = new Post();
+        LineReaderService lineReaderService = new LineReaderServiceImpl();
+        //Поменяли имя
+        String name = lineReaderService.readLine("Введите имя поста:");
+        post.setPostName(name);
+        //Поменяли текст
+        String text = lineReaderService.readLine("Введите текст поста:");
+        if (text.length() <= 1000) {
+            post.setPostText(text);
+        } else {
+            System.out.println("Пост длиннее чем 1000 символов, мы его чутка подрежем");
+            text = text.substring(0, 1000);
+            post.setPostText(text);
+        }
+        System.out.println("Твой новый пост - " + post);
+
+        return post;
     }
 }

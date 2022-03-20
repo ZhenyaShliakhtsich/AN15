@@ -17,6 +17,7 @@ public class EditUserPostServiceImpl implements EditUserPostService {
         Blog blog = user.getUserBlog();
         Post post;
         int numberToEdit;
+
         try {
             System.out.println("В твоем блоге постов:");
             postList = user.getUserBlog().getPostsList();

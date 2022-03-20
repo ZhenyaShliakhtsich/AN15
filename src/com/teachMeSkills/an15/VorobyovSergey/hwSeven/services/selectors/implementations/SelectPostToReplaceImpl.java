@@ -13,9 +13,6 @@ public class SelectPostToReplaceImpl implements SelectPostToReplace {
         System.out.println("Твое хранилище переполнено. Создадим пост и заменим им один из существующих.");
         Blog blog = user.getUserBlog();
 
-        //Создаем новый пост но в главное меню не переходим пока
-        Post post1 = post;
-
         System.out.println("Твой список постов сейчас:");
         System.out.println(blog.getPostsList());
         System.out.println("Ну выбирай пост который заменим?");
