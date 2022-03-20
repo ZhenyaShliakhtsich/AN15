@@ -12,7 +12,7 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.implementa
 public class AddUserPostServiceImpl implements AddUserPostService {
     @Override
     public void addPost(User user) {
-        Post post = fillInPost();
+        Post post = new FillPostServiceImpl().fillInPleas();
 
         //Теперь добавим все это в список постов блога
         try {
@@ -27,25 +27,5 @@ public class AddUserPostServiceImpl implements AddUserPostService {
             new UserServiceImpl().editBlog(user);
         }
         new MainMenuCreationServiceImpl().createMenuList(user);
-    }
-
-    Post fillInPost() {
-        Post post = new Post();
-        LineReaderService lineReaderService = new LineReaderServiceImpl();
-        //Поменяли имя
-        String name = lineReaderService.readLine("Введите имя поста:");
-        post.setPostName(name);
-        //Поменяли текст
-        String text = lineReaderService.readLine("Введите текст поста:");
-        if (text.length() <= 1000) {
-            post.setPostText(text);
-        } else {
-            System.out.println("Пост длиннее чем 1000 символов, мы его чутка подрежем");
-            text = text.substring(0, 1000);
-            post.setPostText(text);
-        }
-        System.out.println("Твой новый пост - " + post);
-
-        return post;
     }
 }

@@ -40,8 +40,8 @@ public class EditUserPostServiceImpl implements EditUserPostService {
 
             postList.get(numberToEdit).setPostName(new LineReaderServiceImpl().readLine("Введи новое имя поста"));
             postList.get(numberToEdit).setPostText(new LineReaderServiceImpl().readLine("Введи новый текст поста"));
-
             blog.setPostsList(postList);
+
             user.setUserBlog(blog);
         } else {
             System.out.println("Не мешало бы сначала пост создать");

@@ -32,18 +32,23 @@ public class SelectActionByNumberFromConsoleServiceEditUserMenuImpl implements S
                 break;
             case 2:
                 service.editLastName(user);
+                new EditUserMenuCreationServiceImpl().createMenuList(user);
                 break;
             case 3:
                 service.editEmail(user);
+                new EditUserMenuCreationServiceImpl().createMenuList(user);
                 break;
             case 4:
                 service.editLogin(user);
+                new EditUserMenuCreationServiceImpl().createMenuList(user);
                 break;
             case 5:
                 service.editPassword(user);
+                new EditUserMenuCreationServiceImpl().createMenuList(user);
                 break;
             case 6:
                 service.editBlog(user);
+                new EditUserMenuCreationServiceImpl().createMenuList(user);
                 break;
             default:
                 new SelectActionByNumberFromConsoleServiceMainMenuImpl().selectActionByNumber(user);
