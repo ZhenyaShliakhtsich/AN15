@@ -1,6 +1,5 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven;
 
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.Blog;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.DataBase;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.AuthenticationOfUserService;

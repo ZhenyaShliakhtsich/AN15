@@ -4,9 +4,6 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.Blog;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.Post;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.MainMenuCreationServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.ShowUserPostsServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.LineReaderService;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.implementations.LineReaderServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.selectors.SelectPostToReplace;
 

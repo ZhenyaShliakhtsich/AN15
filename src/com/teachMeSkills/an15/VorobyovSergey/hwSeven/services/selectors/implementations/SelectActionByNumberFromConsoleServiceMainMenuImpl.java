@@ -3,10 +3,9 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.selectors.impleme
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.EditUserMenuCreationServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.MainMenuCreationServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.AddUserPostService;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.AddUserPostServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.EditUserPostServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.ShowUserPostsServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.postactions.implementations.AddUserPostServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.postactions.implementations.EditUserPostServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.postactions.implementations.ShowUserPostsServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.ShowUserAccountServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.selectors.SelectActionByNumberFromConsoleService;

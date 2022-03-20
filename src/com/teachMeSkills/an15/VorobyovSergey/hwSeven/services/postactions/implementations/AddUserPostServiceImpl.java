@@ -1,9 +1,9 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations;
+package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.postactions.implementations;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.Post;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.MainMenuCreationServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.AddUserPostService;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.postactions.AddUserPostService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.LineReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.implementations.LineReaderServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.selectors.implementations.SelectPostToReplaceImpl;
