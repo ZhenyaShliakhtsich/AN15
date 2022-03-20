@@ -74,7 +74,7 @@ public class BlogImpl implements BlogService {
 
     @Override
     public void showAllPosts(UserReg userReg) {
-        System.out.println(userReg.getBlog().toString());
+        System.out.println("Блог " + userReg.getBlogName() + " с постами: " +  userReg.getBlog().toString());
 
     }
 
@@ -94,26 +94,28 @@ public class BlogImpl implements BlogService {
 
     public void overLimit(UserReg userReg) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("В блоге превышен лимит в 25 постов \n Какой пост вы хотите заменить?" +
+        System.out.println("В блоге превышен лимит в 25 постов\nКакой пост вы хотите заменить? " +
                 "Введите номер поста: ");
         int postNumber;
         try {
             postNumber = scanner.nextInt();
             if (postNumber > 0 && postNumber < 26) {
                 System.out.println("Добавить пост в блог. Введите текст поста: ");
+                System.out.println(scanner.nextLine());
                 String postText = scanner.nextLine();
                 if (postText != null) {
-                    userReg.getBlog().add(postText);
+                    userReg.getBlog().set(postNumber - 1, postText);
                 } else {
-                    System.out.println(" Введите текст");
-                    addPost(userReg);
+                    System.out.println("Введите текст");
+                    overLimit(userReg);
+//                    addPost(userReg);
                 }
-                if (postText.length() > 1000) {
+                /*if (postText.length() > 1000) {
                     System.out.println("Текст поста не может превышать 1000 символов.\n " +
                             "Текс поста обрезан до 1000 символов");
                     postText = postText.substring(0, 1000);
                 }
-                userReg.getBlog().add(postNumber - 1, postText);
+                userReg.getBlog().add(postNumber - 1, postText);*/
             }
 
         } catch (Exception e) {

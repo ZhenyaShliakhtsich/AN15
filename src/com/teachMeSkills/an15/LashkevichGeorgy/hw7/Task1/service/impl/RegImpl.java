@@ -23,7 +23,7 @@ public class RegImpl implements RegService {
         System.out.println("Введите пароль повторно: ");
         String passCheck = scanner.nextLine();
         UserReg userReg = null;
-        if (name != null && login != null && login != null && !login.equals("") && pass.equals(passCheck)) {
+        if (name != null && login != null && pass != null && !login.equals("") && pass.equals(passCheck)) {
             System.out.println("Регистрация прошла успешно!");
             userReg = new UserReg();
             userReg.setLogin(login);
