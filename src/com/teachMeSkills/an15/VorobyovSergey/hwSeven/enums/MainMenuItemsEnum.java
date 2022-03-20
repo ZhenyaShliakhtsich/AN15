@@ -5,7 +5,8 @@ public enum MainMenuItemsEnum {
     SHOW_USER_ACCOUNT(1),
     EDIT_USER_ACCOUNT(2),
     ADD_POST(3),
-    SHOW_POSTS(4);
+    SHOW_POSTS(4),
+    EDIT_POSTS(5);
 
     int menuItemNumber;
 

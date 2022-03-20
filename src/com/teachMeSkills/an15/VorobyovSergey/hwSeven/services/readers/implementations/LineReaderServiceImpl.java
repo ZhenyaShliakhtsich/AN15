@@ -9,6 +9,11 @@ public class LineReaderServiceImpl implements LineReaderService {
     public String readLine(String message) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(message);
-        return scanner.nextLine();
+        String line = scanner.nextLine();
+        while (line.length() == 0){
+            System.out.println("Давай попробуев ввести хоть что-то!!! Не ленись!!!");
+            line = scanner.nextLine();
+        }
+            return line;
     }
 }

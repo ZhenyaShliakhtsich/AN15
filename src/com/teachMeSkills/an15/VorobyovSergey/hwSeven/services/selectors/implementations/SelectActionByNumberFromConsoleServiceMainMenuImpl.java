@@ -5,6 +5,7 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementatio
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.MainMenuCreationServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.AddUserPostService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.AddUserPostServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.EditUserPostServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.ShowUserPostsServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.ShowUserAccountServiceImpl;
@@ -31,6 +32,9 @@ public class SelectActionByNumberFromConsoleServiceMainMenuImpl implements Selec
                 break;
             case 4:
                 new ShowUserPostsServiceImpl().showPosts(user);
+                break;
+            case 5:
+                new EditUserPostServiceImpl().editPost(user);
                 break;
             default:
                 new MainMenuCreationServiceImpl().createMenuList(user);
