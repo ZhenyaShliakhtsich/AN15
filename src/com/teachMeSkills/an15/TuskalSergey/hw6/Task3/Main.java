@@ -1,9 +1,9 @@
 package com.teachMeSkills.an15.TuskalSergey.hw6.Task3;
 
-import Task3.service.AuthenticationService;
-import Task3.service.CategoryService;
-import Task3.service.impl.AuthenticationServiceImpl;
-import Task3.service.impl.CategoryServiceImpl;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task3.service.AuthenticationService;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task3.service.CategoryService;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task3.service.impl.AuthenticationServiceImpl;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task3.service.impl.CategoryServiceImpl;
 
 import java.util.Scanner;
 
@@ -48,8 +48,6 @@ public class Main {
             System.out.println(++id + " - " + category.getName());
         }
 
-        Basket[] basket = new Basket[1];
-        basket[0] = new Basket("товар", 1, 1);
         CategoryService categoryService = new CategoryServiceImpl();
 
         Scanner scanner = new Scanner(System.in);

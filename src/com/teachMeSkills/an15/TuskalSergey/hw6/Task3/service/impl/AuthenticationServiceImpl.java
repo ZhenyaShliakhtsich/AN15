@@ -1,7 +1,7 @@
 package com.teachMeSkills.an15.TuskalSergey.hw6.Task3.service.impl;
 
-import Task3.User;
-import Task3.service.AuthenticationService;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task3.User;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task3.service.AuthenticationService;
 
 import java.util.Scanner;
 

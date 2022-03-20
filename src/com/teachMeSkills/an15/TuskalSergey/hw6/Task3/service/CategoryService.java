@@ -1,6 +1,6 @@
 package com.teachMeSkills.an15.TuskalSergey.hw6.Task3.service;
 
-import Task3.Item;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task3.Item;
 
 public interface CategoryService {
     void viewCategory(Item[] items);

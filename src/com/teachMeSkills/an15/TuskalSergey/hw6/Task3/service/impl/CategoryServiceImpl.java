@@ -1,7 +1,7 @@
 package com.teachMeSkills.an15.TuskalSergey.hw6.Task3.service.impl;
 
-import Task3.Item;
-import Task3.service.CategoryService;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task3.Item;
+import com.teachMeSkills.an15.TuskalSergey.hw6.Task3.service.CategoryService;
 
 public class CategoryServiceImpl implements CategoryService {
 
