@@ -75,7 +75,7 @@ public class Main {
         //• 2 программиста
         //• 1 программиста
         //• 10 программистов
-        int n = 525601;
+        int n = -1;
         int ostatok = n % 10;
         int ostatok12 = n % 100;
         System.out.println("ost12 = " + ostatok12);

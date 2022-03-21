@@ -1,8 +1,9 @@
-package com.teachMeSkills.an15.MatveevArtyom.hw7.Task1.service.Impl;
+package com.teachMeSkills.an15.MatveevArtyom.hw7.task1.service.Impl;
 
-import com.teachMeSkills.an15.MatveevArtyom.hw7.Task1.RegistrationAndAuthorisation;
-import com.teachMeSkills.an15.MatveevArtyom.hw7.Task1.service.RegistrationService;
+import com.teachMeSkills.an15.MatveevArtyom.hw7.task1.RegistrationAndAuthorisation;
+import com.teachMeSkills.an15.MatveevArtyom.hw7.task1.service.RegistrationService;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RegistrationServiceImpl implements RegistrationService {
@@ -56,6 +57,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public RegistrationAndAuthorisation showAndChangeData(RegistrationAndAuthorisation authorisation) {
+        try{
         boolean flag = true;
         while (flag) {
             System.out.println("Выберите что вы хотите сделать: \n" +
@@ -65,7 +67,7 @@ public class RegistrationServiceImpl implements RegistrationService {
                     "4 - изменить имейл \n" +
                     "5 - изменить логин \n" +
                     "6 - изменить пароль \n" +
-                    "7 - выйти из меню(либо любой другой символ) ");
+                    "7 - войти в меню редактирования блога(либо любой другой символ) ");
             int choose = new Scanner(System.in).nextInt();
             switch (choose) {
                 case 1:
@@ -100,6 +102,10 @@ public class RegistrationServiceImpl implements RegistrationService {
                     System.out.println("Вы успешно вышли из меню!");
                     flag = false;
             }
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Введите цифру!");
+            showAndChangeData(authorisation);
         }
         return authorisation;
     }
