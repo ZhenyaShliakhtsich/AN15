@@ -8,6 +8,14 @@ public class Blog {
     private String blogName;
     private ArrayList<Post> posts;
 
+    public Blog() {
+    }
+
+    public Blog(String blogName, ArrayList<Post> posts) {
+        this.blogName = blogName;
+        this.posts = posts;
+    }
+
     public String getBlogName() {
         return blogName;
     }

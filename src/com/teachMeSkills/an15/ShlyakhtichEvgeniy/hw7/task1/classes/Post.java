@@ -6,6 +6,14 @@ public class Post {
     private String title;
     private String post;
 
+    public Post() {
+    }
+
+    public Post(String title, String post) {
+        this.title = title;
+        this.post = post;
+    }
+
     public String getTitle() {
         return title;
     }

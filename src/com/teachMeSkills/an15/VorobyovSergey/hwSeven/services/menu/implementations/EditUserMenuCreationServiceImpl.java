@@ -1,12 +1,18 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.enums.EditUserMenuItemsEnum;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.DataBase;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.MenuCreationService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.selectors.SelectActionByNumberFromConsoleService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.selectors.implementations.SelectActionByNumberFromConsoleServiceEditUserMenuImpl;
 
 public class EditUserMenuCreationServiceImpl implements MenuCreationService {
+    @Override
+    public void createMenuList(DataBase dataBase) {
+
+    }
+
     @Override
     public void createMenuList(User user) {
         System.out.println("----------\nПользовательские настройки меню: (" + user.getUserFirstName() + ")");

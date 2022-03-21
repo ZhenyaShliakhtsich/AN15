@@ -14,6 +14,7 @@ import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task1.service.impl.RegImpl;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.SortedMap;
 
 //Создать приложение, в котором при входе нужно зарегистрировать пользователя
 //
@@ -37,7 +38,8 @@ import java.util.Scanner;
 //Класс Main должен состоять из 30 строк максимум
 public class Main {
     public static void main(String[] args) {
-        ArrayList<UserReg> usersList = new ArrayList<>();
+        Menu();
+        /*ArrayList<UserReg> usersList = new ArrayList<>();
         UsersList usersList1 = new UsersList();
         creatUsersList(usersList);
         usersList1.setUsers(usersList);
@@ -53,29 +55,111 @@ public class Main {
         blogService.addPost(changedUser);
         blogService.showAllPosts(changedUser);
         blogService.editPost(changedUser);
+*/
+    }
+
+    public static void Menu() {
+        ArrayList<UserReg> usersList = new ArrayList<>();
+        UsersList usersList1 = new UsersList();
+        UserReg authorised = new UserReg();
+        Scanner scanner = new Scanner(System.in);
+        boolean whileFlag = true;
+        while (whileFlag) {
+            System.out.println("1. Регистрация пользователей\n2. Авторизация пользователя\n3." +
+                    " Внести изменения в личные данные пользователя\n" +
+                    "4. Задать название блогу\n5. Добавить пост в блог\n6. Показать все посты блога\n" +
+                    "7. Внести изменение в пост" +
+                    "\n10. Выход из программы.");
+            System.out.println("Что делаем? Введите число от 1 до 7 для работы или 10 для выхода.");
+            String chooseString = scanner.nextLine();
+            int choose = 0;
+            if (new Scanner(chooseString).hasNextInt()) {
+                choose = Integer.parseInt(chooseString);
+            } else System.out.println("Введите число от 1 до 7 для работы или 10 для выхода");
+
+            switch (choose) {
+                case 1:
+                    createUsersList(usersList);
+                    usersList1.setUsers(usersList);
+                    break;
+                case 2:
+                    if (usersList1.getUsers() == null) {
+                        System.out.println("Для авторизации требуется создать пользователя");
+                        break;
+                    } else {
+                        AutService autService = new AutImpl();
+                        authorised = autService.authentication(usersList1);
+                    }
+                    break;
+                case 3:
+                    if (authorised.getName() == null) {
+                        System.out.println("Для смены данных пользователя требуется создать" +
+                                " и авторизовать пользователя");
+                        break;
+                    } else {
+                        ChangeInfoService changeInfoService = new ChangeInfoImpl();
+                        changeInfoService.changeInfo(usersList1, authorised);
+                    }
+                    break;
+                case 4:
+                    if (authorised.getName() == null) {
+                        System.out.println("Для создания блога требуется регистрация и авторизация пользователя");
+                    } else {
+                        BlogService blogService = new BlogImpl();
+                        blogService.createBlog(authorised);
+                    }
+                    break;
+                case 5:
+                    if (authorised.getBlogName() == null) {
+                        System.out.println("Для добавления поста в блог " +
+                                "требуется добавление названия блога," +
+                                " регистрация и авторизация пользователя ");
+                    } else {
+                        BlogService blogService1 = new BlogImpl();
+                        blogService1.addPost(authorised);
+                    }
+                    break;
+                case 6:
+                    if (authorised.getBlog() == null) {
+                        System.out.println("Для того, чтобы показать все посты блога" +
+                                " требуется добавить посты в блог, регистрация и авторизация пользователя");
+
+                    } else {
+                        BlogService blogService2 = new BlogImpl();
+                        blogService2.showAllPosts(authorised);
+                    }
+                    break;
+                case 7:
+                    if (authorised.getBlog() == null || authorised.getBlogName() == null) {
+                        System.out.println("Для редактирования поста в блоге требуется создать блог, пост, пройти" +
+                                " регистрацию и авторизацию пользователя");
+                    } else {
+                        BlogService blogService3 = new BlogImpl();
+                        blogService3.editPost(authorised);
+                    }
+                    break;
+                case 10:
+                    whileFlag = false;
+                    System.out.println("Спасибо, что выбрали нас!");
+
+            }
+        }
 
     }
 
-   /* public static void Menu(UserReg userReg, ArrayList<UserReg> usersList) {
-        System.out.println("1. Регистрация пользователей \n 2. Внести изменения в личные данные пользователя\n3. Авторизация пользователя\n " +
-                "4. Задать название блогу \n 5. Добавить пост в блог\n 6.Показать все посты блога \n 7.Внести изменение в пост");
-        Scanner scanner = new Scanner(System.in);
-        int choose = scanner.nextInt();
-        switch (choose) {
-            case 1:
-                creatUsersList();
-        }
-    }*/
 
-    public static ArrayList<UserReg> creatUsersList(ArrayList<UserReg> usersList) {
+    public static void createUsersList(ArrayList<UserReg> usersList) {
         RegService regService = new RegImpl();
-        System.out.println("Введите количество новых пользователей: ");
         Scanner scanner = new Scanner(System.in);
-        int a = scanner.nextInt();
+        System.out.println("Введите количество новых пользователей: ");
+        int a = 0;
+        String string = scanner.nextLine();
+        if (new Scanner(string).hasNextInt())
+            a = Integer.parseInt(string);
         for (int i = 0; i < a; i++) {
             usersList.add(regService.newUser());
         }
-        return usersList;
+
     }
 }
 

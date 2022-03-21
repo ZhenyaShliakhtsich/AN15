@@ -1,17 +1,23 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.selectors.implementations;
 
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.DataBase;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.EditUserMenuCreationServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.MainMenuCreationServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.AddUserPostService;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.AddUserPostServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.ShowUserPostsServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.editpost.implementations.AddUserPostServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.editpost.implementations.EditUserPostServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.editpost.implementations.ShowUserPostsServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.ShowUserAccountServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.edituser.implimentations.ShowUserAccountServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.selectors.SelectActionByNumberFromConsoleService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.readers.OnlyOneNumberReaderService;
 
 public class SelectActionByNumberFromConsoleServiceMainMenuImpl implements SelectActionByNumberFromConsoleService {
+    @Override
+    public void selectActionByNumber(DataBase dataBase) {
+
+    }
+
     @Override
     public void selectActionByNumber(User user) {
         OnlyOneNumberReaderService numberReader = new OnlyOneNumberReaderServiceImpl();
@@ -31,6 +37,9 @@ public class SelectActionByNumberFromConsoleServiceMainMenuImpl implements Selec
                 break;
             case 4:
                 new ShowUserPostsServiceImpl().showPosts(user);
+                break;
+            case 5:
+                new EditUserPostServiceImpl().editPost(user);
                 break;
             default:
                 new MainMenuCreationServiceImpl().createMenuList(user);

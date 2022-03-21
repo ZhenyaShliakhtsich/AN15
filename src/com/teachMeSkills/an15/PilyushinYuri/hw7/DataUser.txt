@@ -1,0 +1,1 @@
+User{firstName='ff', secondName='ff', login='log1', password='pass1'}

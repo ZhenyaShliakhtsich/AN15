@@ -1,10 +1,9 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven;
 
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.Blog;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.DataBase;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.models.User;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.AuthenticationOfUserService;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.other.implementations.AuthenticationOfUserServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.MenuCreationService;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.services.menu.implementations.StartMenuCreationServiceImpl;
 
 public class MainTask7 {
     public static void main(String[] args) {
@@ -17,11 +16,11 @@ public class MainTask7 {
 
         DataBase dataBase = new DataBase();
         dataBase.addToList(vasia);
-        System.out.println("У нас один пользователь по умолчанию для начальной проверки");
+        System.out.println("У нас один пользователь по умолчанию для начальной проверки и его зовут Вася");
         dataBase.showDataBase();
 
-        //Начинаем с аутентификации и если пользователя нет то идем авторизироваться
-        AuthenticationOfUserService authentication = new AuthenticationOfUserServiceImpl();
-        authentication.tryToAuthenticateUser(dataBase);
+        //Начинаем со стартового меню. Сразу передаем туда базу данных
+        MenuCreationService service = new StartMenuCreationServiceImpl();
+        service.createMenuList(dataBase);
     }
 }
