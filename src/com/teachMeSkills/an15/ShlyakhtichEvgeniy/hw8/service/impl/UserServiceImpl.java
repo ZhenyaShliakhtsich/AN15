@@ -149,7 +149,7 @@ public class UserServiceImpl implements UserService {
         String choice = scanner.nextLine();
         int size = user.getBasket().getProducts().size();
         for (Product product : user.getBasket().getProducts()) {
-            if (product.equals(choice)) {
+            if (product.getName().equalsIgnoreCase(choice)) {
                 user.getBasket().getProducts().remove(product);
                 System.out.println("Продукт был удалён");
             }
@@ -180,10 +180,9 @@ public class UserServiceImpl implements UserService {
         System.out.println("Введите название машины");
         String search = scanner.nextLine();
         for (Product product : products) {
-            for (String car : product.getCarNames())
-                if (search.equalsIgnoreCase(car)) {
-                    System.out.println(product + "\nРейтинг : " + rateService.calculateAvgRate(product));
-                }
+            if(product.getCarNames().contains(search)){
+                System.out.println(product + "\nРейтинг : " + rateService.calculateAvgRate(product));
+            }
         }
     }
 
