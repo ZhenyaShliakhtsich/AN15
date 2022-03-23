@@ -15,12 +15,13 @@ import java.util.Scanner;
 public class MenuServiceImpl implements MenuService {
     AuthServiceImpl authService = new AuthServiceImpl();
     UserServiceImpl userService = new UserServiceImpl();
-    Scanner scanner = new Scanner(System.in);
+
 
     public void adminMenu(User user, ArrayList<Product> products, HashMap<String, User> users) {
         System.out.println("1.Добавить запчасть\n2.Изменить запчасть\n3.Удалить запчать.\n4.Выйти из пользователя" +
                 "\n5.Выйти из программы");
        try {
+           Scanner scanner = new Scanner(System.in);
            int choice = scanner.nextInt();
            switch (choice) {
                case 1:
@@ -54,6 +55,7 @@ public class MenuServiceImpl implements MenuService {
     public void authMenu(User user, ArrayList<Product> products, HashMap<String, User> users) {
         System.out.println("1.Авторизироваться\n2.Зарегистрироваться\n3.Выйти из программы");
         try {
+            Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -86,6 +88,7 @@ public class MenuServiceImpl implements MenuService {
         System.out.println("1.Поиск продуктов\n2.Выбор продукта\n3.Корзина\n4.Выйти из пользователя" +
                 "\n5.Выйти из программы");
         try {
+            Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -129,6 +132,7 @@ public class MenuServiceImpl implements MenuService {
         System.out.println(priceService.calculateTotalBasketPrice(user) + " руб.");
         System.out.println("1.Оплатить корзину\n2.Удалить продукт из корзины\n3.Назад");
         try {
+            Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -154,6 +158,7 @@ public class MenuServiceImpl implements MenuService {
         System.out.println(product.toString() + "\nРейтинг : " + rateService.calculateAvgRate(product));
         System.out.println("1.Добавить товар в корзину\n2.Оценить товар\n3.Оставить отзыв о товаре\n4.Назад");
         try {
+            Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
