@@ -46,7 +46,7 @@ public class MenuServiceImpl implements MenuService {
 
        } catch (InputMismatchException e){
            System.out.println("Введите номер пункта меню");
-           adminMenu(user, products, users);
+           adminMenu(user, products, users);//бесконечная рекурсия при неправильном вводе
        }
 
     }
@@ -57,7 +57,11 @@ public class MenuServiceImpl implements MenuService {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    if (authService.login(users).isHasAdminRole()) {
+                    User userTest;
+                    userTest = authService.login(users);
+                    if (userTest == null){
+                       authMenu(user, products, users);
+                    }else if (userTest.isHasAdminRole()) {
                         adminMenu(user, products, users);
                     } else {
                         userMenu(user, users, products);
@@ -65,13 +69,12 @@ public class MenuServiceImpl implements MenuService {
                     break;
                 case 2:
                     authService.registration(users);
+                    authMenu(user, products, users);
                     break;
                 case 3:
                     break;
                 default:
                     authMenu(user, products, users);
-
-
             }
         } catch (InputMismatchException e) {
             System.out.println("Введите номер пункта меню");
@@ -90,7 +93,7 @@ public class MenuServiceImpl implements MenuService {
                     userMenu(user, users, products);
                     break;
                 case 2:
-                    Product currentProduct = new Product();
+                    Product currentProduct;
                     currentProduct = userService.chooseProduct(products);
                     if (currentProduct == null) {
                         System.out.println("Такого продукта нет");

@@ -25,11 +25,9 @@ public class AuthServiceImpl implements AuthService {
                 return users.get(enteredUser.getLogin());
             } else {
                 System.out.println("Логин или пароль неверные");
-                login(users);
             }
         } else {
             System.out.println("Логин или пароль неверные");
-            login(users);
         }
         return null;
     }
@@ -39,15 +37,18 @@ public class AuthServiceImpl implements AuthService {
         System.out.println("Введите логин:");
         Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
-        System.out.println("Введите пароль:");
-        String password = scanner.nextLine();
-        User user = new User(login, password);
-        user.setBasket(new Basket());
-        ArrayList<Product> products = new ArrayList<>();
-        user.getBasket().setProducts(products);
-        users.put(user.getLogin(), user);
-        System.out.println("Ты зарегистрирован! Авторизируйся!");
-        login(users);
-
+        if (users.containsKey(login)){
+            System.out.println("Такой логин уже есть.Выберите новый");
+            registration(users);
+        }else {
+            System.out.println("Введите пароль:");
+            String password = scanner.nextLine();
+            User user = new User(login, password);
+            user.setBasket(new Basket());
+            ArrayList<Product> products = new ArrayList<>();
+            user.getBasket().setProducts(products);
+            users.put(user.getLogin(), user);
+            System.out.println("Ты зарегистрирован! Авторизируйся!");
+        }
     }
 }
