@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserService {
     public void addProduct(ArrayList<Product> products) {
         System.out.println("Введите название продукта:");
         String name = scanner.nextLine();
-        //TODO: all other parameters should be scanned from console and set to object
         System.out.println("Введите кол-во продуктов");
         int amount = scanner.nextInt();
         System.out.println("Введите цену продукта");
@@ -42,7 +41,6 @@ public class UserServiceImpl implements UserService {
         Product product = new Product(name, price, amount, review, cars);
         products.add(product);
     }
-    //TODO: should be changed from setters to constructor initialization
 
     @Override
     public void changeProduct(ArrayList<Product> products) {
@@ -132,7 +130,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void payForBasket(User user,ArrayList<Product> products) {
+    public void payForBasket(User user, ArrayList<Product> products) {
         System.out.println("Вот, что у вас в корзине");
         for (Product product : user.getBasket().getProducts()) {
             System.out.println(product);
@@ -146,7 +144,7 @@ public class UserServiceImpl implements UserService {
                 user.getBasket().getTotalPrice().subtract(user.getBasket().getTotalPrice().multiply(bd)));
         System.out.println("Если хотите оплатить, то введите - Оплачиваю");
         String choice = scanner.nextLine();
-        if(choice.equalsIgnoreCase("Оплачиваю")){
+        if (choice.equalsIgnoreCase("Оплачиваю")) {
             System.out.println("Покупка совершена!");
             for (Product productFromBasket : user.getBasket().getProducts()) {
                 for (Product product : products) {
@@ -177,5 +175,19 @@ public class UserServiceImpl implements UserService {
         System.out.println("Введите ваш комментарий");
         String comment = scanner.nextLine();
         product.setComment(comment);
+    }
+
+    @Override
+    public void search(Product product) {
+        System.out.println("введите какую машину вы хотите найти?");
+        String choose = scanner.nextLine();
+        for (String car : product.getCarNames()) {
+            if (car.equalsIgnoreCase(choose)) {
+                System.out.println("Такая машина есть!");
+            } else {
+                System.out.println("Такой машины нет! попробуйте ещё раз");
+                search(product);
+            }
+        }
     }
 }

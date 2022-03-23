@@ -14,4 +14,5 @@ public interface UserService {
     void deleteProductFromBasket(User user, Product product);
     void rateProduct(Product product);
     void commentProduct(Product product);
+    void search(Product product);
 }
