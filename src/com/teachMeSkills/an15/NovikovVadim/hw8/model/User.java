@@ -54,6 +54,10 @@ public class User {
         this.basket = basket;
     }
 
+    public String getLoginAndPassword() {
+        return "login: " + login + ", password: " + password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

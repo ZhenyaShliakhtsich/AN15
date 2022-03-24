@@ -22,4 +22,6 @@ public interface UserService {
     void rateProduct(ArrayList<Product> products);
 
     void commentProduct(ArrayList<Product> products);
+
+    void showProducts(ArrayList<Product> products);
 }
