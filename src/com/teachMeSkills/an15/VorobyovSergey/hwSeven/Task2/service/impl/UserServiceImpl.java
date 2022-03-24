@@ -156,7 +156,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void payForBasket(User user) {
-
+        //Calculate price
+        new PriceAndDiscountServiceImpl().calculateTotalBasketPrice(user);
+        //Try to pay for basket
+        System.out.println("Введи ОПЛАЧИВАЮ если хочешь оплатить корзину");
+        if (scanner.nextLine().equalsIgnoreCase("ОПЛАЧИВАЮ")) {
+            System.out.println("Оплачено!!!");
+            user.getBasket().getProducts().removeAll(user.getBasket().getProducts());
+        }
     }
 
     @Override
@@ -189,12 +196,11 @@ public class UserServiceImpl implements UserService {
         if (user.getBasket().getProducts() != null) {
             for (Product p : user.getBasket().getProducts()) {
                 System.out.println(p);
-                return true;
             }
+            return true;
         } else {
             System.out.println("Basket is empty");
             return false;
         }
-        return false;
     }
 }
