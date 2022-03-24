@@ -2,6 +2,7 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.OnlyOneNumberReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Basket;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.UserService;
@@ -122,8 +123,35 @@ public class UserServiceImpl implements UserService {
 
     //-------------------This is for users-----------------------
     @Override
-    public void addProductToBasket(User user, HashSet<Product> storage) {
+    public User addProductToBasket(User user, HashSet<Product> storage) {
+        //Storage on display
+        System.out.println("Your storage now:");
+        for (Product p : storage) {
+            System.out.println(p);
+        }
 
+        Product tempProduct = null;
+        //Try to add
+        System.out.println("Enter name of product to add in basket");
+        String productToAdd = scanner.nextLine();
+        for (Product p : storage) {
+            if (p.getName().equals(productToAdd)) {
+                tempProduct = p;
+                break;
+            }
+        }
+
+        //Check for null
+        if (user.getBasket() != null && user.getBasket().getProducts() != null) {
+            System.out.println("Go to if - check for null");
+            user.getBasket().getProducts().add(tempProduct);
+        } else {
+            System.out.println("Go to else - check for null");
+            user.setBasket(new Basket());
+            user.getBasket().setProducts(new HashSet<>());
+            user.getBasket().getProducts().add(tempProduct);
+        }
+        return user;
     }
 
     @Override
@@ -133,7 +161,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteProductFromBasket(User user) {
-
+        //Check for empty basket and then dell
+        if (showBasket(user)) {
+            System.out.println("Enter name of product to dell from basket");
+            String productToDell = scanner.nextLine();
+            for (Product p : user.getBasket().getProducts()) {
+                if (p.getName().equals(productToDell)) {
+                    user.getBasket().getProducts().remove(p);
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -144,5 +182,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public void commentProduct(HashSet<Product> storage) {
 
+    }
+
+    @Override
+    public boolean showBasket(User user) {
+        if (user.getBasket().getProducts() != null) {
+            for (Product p : user.getBasket().getProducts()) {
+                System.out.println(p);
+                return true;
+            }
+        } else {
+            System.out.println("Basket is empty");
+            return false;
+        }
+        return false;
     }
 }

@@ -9,7 +9,6 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.UserService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl.UserServiceImpl;
 
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class MenuServiceUserImpl implements MenuService {
@@ -32,11 +31,13 @@ public class MenuServiceUserImpl implements MenuService {
                 break;
             case 1:
                 System.out.println("NOW ADD_PRODUCT_TO_BASKET");
-//                service.addProductToBasket();
+                user = service.addProductToBasket(user, storage);
+                createMenu(user,storage);
                 break;
             case 2:
                 System.out.println("NOW DELETE_PRODUCT_FROM_BASKET");
-//                service.deleteProductFromBasket();
+                service.deleteProductFromBasket(user);
+                createMenu(user,storage);
                 break;
             case 3:
                 System.out.println("NOW PAY_FOR_BASKET");
@@ -49,6 +50,11 @@ public class MenuServiceUserImpl implements MenuService {
             case 5:
                 System.out.println("NOW COMMENT_PRODUCT");
 //                service.commentProduct();
+                break;
+            case 6:
+                System.out.println("YOUR_BASKET");
+                service.showBasket(user);
+                createMenu(user,storage);
                 break;
             default:
                 System.out.println("The End. Logout");

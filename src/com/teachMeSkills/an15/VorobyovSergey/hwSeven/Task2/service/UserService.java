@@ -16,7 +16,7 @@ public interface UserService {
     void deleteProduct(HashSet<Product> storage);
 
     //Methods for other Users
-    void addProductToBasket(User user, HashSet<Product> storage);
+    User addProductToBasket(User user, HashSet<Product> storage);
 
     void payForBasket(User user);
 
@@ -25,4 +25,6 @@ public interface UserService {
     void rateProduct(HashSet<Product> storage);
 
     void commentProduct(HashSet<Product> storage);
+
+    boolean showBasket (User user);
 }
