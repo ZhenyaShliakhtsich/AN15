@@ -188,7 +188,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void commentProduct(HashSet<Product> storage) {
+        //Storage on display
+        System.out.println("Your storage now:");
+        for (Product p : storage) {
+            System.out.println(p);
+        }
 
+        //Try to comment
+        System.out.println("Enter name of product to comment");
+        String productToComment = scanner.nextLine();
+        for (Product p : storage) {
+            if (p.getName().equals(productToComment)) {
+                System.out.println("Enter your comment");
+                p.setComment(scanner.nextLine());
+                break;
+            }
+        }
     }
 
     @Override
