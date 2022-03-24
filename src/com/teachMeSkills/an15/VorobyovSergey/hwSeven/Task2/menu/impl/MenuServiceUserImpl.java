@@ -46,7 +46,8 @@ public class MenuServiceUserImpl implements MenuService {
                 break;
             case 4:
                 System.out.println("NOW RATE_PRODUCT");
-//                service.rateProduct();
+                service.rateProduct(storage);
+                createMenu(user, storage);
                 break;
             case 5:
                 System.out.println("NOW COMMENT_PRODUCT");

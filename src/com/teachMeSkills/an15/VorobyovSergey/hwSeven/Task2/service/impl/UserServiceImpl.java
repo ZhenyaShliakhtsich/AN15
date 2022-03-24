@@ -183,7 +183,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void rateProduct(HashSet<Product> storage) {
+        //Storage on display
+        System.out.println("Your storage now:");
+        for (Product p : storage) {
+            System.out.println(p);
+        }
 
+        //Try to rate
+        System.out.println("Enter name of product to rate");
+        String productToRate = scanner.nextLine();
+        for (Product p : storage) {
+            if (p.getName().equals(productToRate)) {
+                System.out.println("Enter your rate");
+                p.setAvgRate(new RateServiceImpl().calculateAvgRate(p));
+                System.out.println("Now Average rate is: " + p.getAvgRate());
+                break;
+            }
+        }
     }
 
     @Override
