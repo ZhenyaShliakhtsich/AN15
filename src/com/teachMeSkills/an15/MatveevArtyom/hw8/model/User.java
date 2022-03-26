@@ -1,6 +1,5 @@
 package com.teachMeSkills.an15.MatveevArtyom.hw8.model;
 
-
 import java.util.Objects;
 
 public class User {
@@ -9,11 +8,14 @@ public class User {
     private boolean isHasAdminRole;
     private Basket basket;
 
-    public User(String login, String password,Basket basket) {
+    public User(String login, String password, Basket basket) {
         this.login = login;
         this.password = password;
         this.isHasAdminRole = false;
         this.basket = basket;
+    }
+
+    public User() {
     }
 
     public User(String login, String password) {

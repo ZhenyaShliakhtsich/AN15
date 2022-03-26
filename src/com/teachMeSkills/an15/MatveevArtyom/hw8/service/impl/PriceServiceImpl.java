@@ -9,17 +9,16 @@ import java.util.Random;
 
 public class PriceServiceImpl implements PriceService {
     @Override
-    public BigDecimal calculateTotalBasketPrice(User user) {
+    public void calculateTotalBasketPrice(User user) {
         BigDecimal total = new BigDecimal(0);
-        for(Product product : user.getBasket().getProducts()){
-            total=total.add(product.getPrice());
+        for (Product product : user.getBasket().getProducts()) {
+            total = total.add(product.getPrice());
         }
-        return total;
+        user.getBasket().setTotalPrice(total);
     }
 
     @Override
     public int calculateDiscount() {
-        Random random = new Random();
-        return random.nextInt(31);
+        return new Random().nextInt(31);
     }
 }

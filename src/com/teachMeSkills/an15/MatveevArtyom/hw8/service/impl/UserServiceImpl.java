@@ -7,6 +7,7 @@ import com.teachMeSkills.an15.MatveevArtyom.hw8.service.PriceService;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.service.UserService;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -23,18 +24,16 @@ public class UserServiceImpl implements UserService {
         int amount = scanner.nextInt();
         System.out.println("Введите цену продукта");
         BigDecimal price = scanner.nextBigDecimal();
-        System.out.println("ВВедите среднюю оценку");
-        double rate = scanner.nextDouble();
         System.out.println("Введите отзыв: ");
         String review = scanner.nextLine();
-        System.out.println("Введите названия машин, к которым данная деталь подходит");
         HashSet<String> cars = new HashSet<>();
         while (true) {
-            String carName = scanner.nextLine();
+            System.out.println("Введите названия машин, к которым данная деталь подходит");
+            String carName = new Scanner(System.in).nextLine();
             cars.add(carName);
-            System.out.println("Если хотите закончить, то нажмите цифру от 0 до 10");
+            System.out.println("Если хотите закончить, то нажмите цифру 1, иначе любую другую цифру");
             int choose = scanner.nextInt();
-            if (choose >= 0 && choose <= 10) {
+            if (choose == 1) {
                 break;
             }
         }
@@ -48,7 +47,7 @@ public class UserServiceImpl implements UserService {
         for (Product product : products) {
             System.out.println(product.getName());
         }
-        String name = scanner.nextLine();
+        String name = new Scanner(System.in).nextLine();
         int index = -1;
         for (int i = 0; i < products.size(); i++) {
             if (name.equalsIgnoreCase(products.get(i).getName())) {
@@ -61,7 +60,7 @@ public class UserServiceImpl implements UserService {
         }
         while (true) {
             System.out.println("Че хочешь изменить?(Название, количество, цену, оценку, отзыв, машину)");
-            String choice = scanner.nextLine();
+            String choice = new Scanner(System.in).nextLine();
             if (choice.equalsIgnoreCase("Название")) {
                 System.out.println("Введи новое название");
                 String name1 = scanner.nextLine();
@@ -97,7 +96,6 @@ public class UserServiceImpl implements UserService {
                         break;
                     }
                 }
-
             }
         }
     }
@@ -124,70 +122,176 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addProductToBasket(User user, Product product) {
-        user.getBasket().getProducts().add(product);
-        System.out.println("Товар был успешно добавлен в корзину");
+    public void addProductToBasket(User user, ArrayList<Product> products) {
+        System.out.println("Введите какой продукт вы хотите добавить в корзину:");
+        for (Product product : products) {
+            System.out.println(product.getName());
+        }
+        String choose = new Scanner(System.in).nextLine();
+        boolean flag = true;
+        for (Product product : products) {
+            if (product.getName().equalsIgnoreCase(choose)) {
+                if (user.getBasket() == null) {
+                    Basket basket = new Basket();
+                    ArrayList<Product> products1 = new ArrayList<>();
+                    products1.add(product);
+                    basket.setProducts(products1);
+                    user.setBasket(basket);
+                } else {
+                    user.getBasket().getProducts().add(product);
+                }
+                System.out.println("Товар был успешно добавлен в корзину!");
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            System.out.println("Такого продукта нет, попробуйте ещё раз!");
+            addProductToBasket(user, products);
+        }
     }
 
     @Override
     public void payForBasket(User user, ArrayList<Product> products) {
-        System.out.println("Вот, что у вас в корзине");
-        for (Product product : user.getBasket().getProducts()) {
-            System.out.println(product);
+        try {
+            if (user.getBasket().getProducts().size() != 0) {
+                System.out.println("Вот, что у вас в корзине");
+                for (Product product : user.getBasket().getProducts()) {
+                    System.out.println(product.getName() + " с ценой " + product.getPrice());
+                }
+                System.out.println("Вы участвуете в акции! Сейчас узнаем вашу скидку");
+                PriceService priceService = new PriceServiceImpl();
+                priceService.calculateTotalBasketPrice(user);
+                int discount = priceService.calculateDiscount();
+                double discountWithoutPercents = (double) discount / 100;
+                BigDecimal bd = new BigDecimal(discountWithoutPercents).setScale(3, RoundingMode.CEILING);
+                System.out.println("Ваша скидка составляет " + discount + " % и сумма к оплате будет составлять " +
+                        user.getBasket().getTotalPrice().subtract(user.getBasket().getTotalPrice().multiply(bd)));
+                System.out.println("Если хотите оплатить, то введите - Оплачиваю");
+                String choice = scanner.nextLine();
+                if (choice.equalsIgnoreCase("Оплачиваю")) {
+                    System.out.println("Покупка совершена!");
+                    for (Product productFromBasket : user.getBasket().getProducts()) {
+                        for (Product product : products) {
+                            if (productFromBasket.getName().equals(product.getName())) {
+                                product.setAmount(product.getAmount() - 1);
+                            }
+                        }
+                    }
+                    user.getBasket().getProducts().removeAll(products);
+                }
+            } else {
+                System.out.println("Корзина пуста! вы не можете ничего удалить из неё!");
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Корзина пуста! вы не можете ничего удалить из неё!");
         }
-        System.out.println("Вы участвуете в акции! Сейчас узнаем вашу скидку");
-        PriceService priceService = new PriceServiceImpl();
-        int discount = priceService.calculateDiscount();
-        discount /= 100;
-        BigDecimal bd = new BigDecimal(discount);
-        System.out.println("Ваша скидка составляет " + discount + " % и сумма к оплате будет составлять " +
-                user.getBasket().getTotalPrice().subtract(user.getBasket().getTotalPrice().multiply(bd)));
-        System.out.println("Если хотите оплатить, то введите - Оплачиваю");
-        String choice = scanner.nextLine();
-        if (choice.equalsIgnoreCase("Оплачиваю")) {
-            System.out.println("Покупка совершена!");
-            for (Product productFromBasket : user.getBasket().getProducts()) {
-                for (Product product : products) {
-                    if (productFromBasket.getName().equals(product.getName())) {
-                        product.setAmount(product.getAmount() - 1);
+    }
+
+    @Override
+    public void deleteProductFromBasket(User user) {
+        try {
+            if (user.getBasket().getProducts().size() != 0) {
+                System.out.println("Введите какой продукт вы хотите удалить из корзины:");
+                for (Product product : user.getBasket().getProducts()) {
+                    System.out.println(product.getName());
+                }
+                String choose = new Scanner(System.in).nextLine();
+                boolean flag = true;
+                for (Product product : user.getBasket().getProducts()) {
+                    if (product.getName().equalsIgnoreCase(choose)) {
+                        user.getBasket().getProducts().remove(product);
+                        System.out.println("Товар был успешно удалён из корзины!");
+                        flag = false;
+                        break;
                     }
                 }
+                if (flag) {
+                    System.out.println("Такого продукта нет, попробуйте ещё раз!");
+                    deleteProductFromBasket(user);
+                }
+            } else {
+                System.out.println("Корзина пуста! вы не можете ничего удалить из неё!");
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Корзина пуста! вы не можете ничего удалить из неё!");
+        }
+    }
+
+    @Override
+    public void rateProduct(ArrayList<Product> products) {
+        System.out.println("Введите какой продукт вы хотите оценить:");
+        for (Product product : products) {
+            System.out.println(product.getName());
+        }
+        String choose = new Scanner(System.in).nextLine();
+        boolean flag = true;
+        for (Product product : products) {
+            if (product.getName().equalsIgnoreCase(choose)) {
+                System.out.println("Введите вашу оценку(от 1 до 10)");
+                int rate = new Scanner(System.in).nextInt();
+                if (product.getRates() == null) {
+                    ArrayList<Integer> rates = new ArrayList<>();
+                    rates.add(rate);
+                    product.setRates(rates);
+                } else {
+                    product.getRates().add(rate);
+                }
+                double sr = 0;
+                for (int i = 0; i < product.getRates().size(); i++) {
+                    sr += product.getRates().get(i);
+                }
+                product.setAvgRate(sr / product.getRates().size());
+                System.out.println("Теперь средняя оценка равна " + product.getAvgRate());
+                flag = false;
+                break;
             }
         }
-
+        if (flag) {
+            System.out.println("Такого продукта нет, попробуйте ещё раз!");
+            rateProduct(products);
+        }
     }
 
     @Override
-    public void deleteProductFromBasket(User user, Product product) {
-        user.getBasket().getProducts().remove(product);
-        System.out.println("Продукт был успешно удалён");
-    }
-
-    @Override
-    public void rateProduct(Product product) {
-        System.out.println("Введите вашу оценку(от 1 до 10)");
-        int rate = scanner.nextInt();
-        product.getRates().add(rate);
-    }
-
-    @Override
-    public void commentProduct(Product product) {
-        System.out.println("Введите ваш комментарий");
-        String comment = scanner.nextLine();
-        product.setComment(comment);
+    public void commentProduct(ArrayList<Product> products) {
+        System.out.println("Введите продукт, к которому вы хотите написать отзыв:");
+        for (Product product : products) {
+            System.out.println(product.getName());
+        }
+        String choose = new Scanner(System.in).nextLine();
+        boolean flag = true;
+        for (Product product : products) {
+            if (product.getName().equalsIgnoreCase(choose)) {
+                System.out.println("Напишите ваш отзыв к детали - " + product.getName());
+                String comment = new Scanner(System.in).nextLine();
+                product.setComment(comment);
+                System.out.println("Теперь отзыв такой: " + product.getComment());
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            System.out.println("Такого продукта нет, попробуйте ещё раз!");
+            commentProduct(products);
+        }
     }
 
     @Override
     public void search(Product product) {
         System.out.println("введите какую машину вы хотите найти?");
-        String choose = scanner.nextLine();
+        String choose = new Scanner(System.in).nextLine();
+        boolean flag = true;
         for (String car : product.getCarNames()) {
             if (car.equalsIgnoreCase(choose)) {
                 System.out.println("Такая машина есть!");
-            } else {
-                System.out.println("Такой машины нет! попробуйте ещё раз");
-                search(product);
+                flag = false;
+                break;
             }
+        }
+        if (flag) {
+            System.out.println("Такой машины нет, попробуй ещё раз");
+            search(product);
         }
     }
 }
