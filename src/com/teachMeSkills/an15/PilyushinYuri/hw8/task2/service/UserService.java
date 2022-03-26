@@ -1,7 +1,7 @@
-package com.teachMeSkills.an15.NovikovVadim.hw8.service;
+package com.teachMeSkills.an15.PilyushinYuri.hw8.task2.service;
 
-import com.teachMeSkills.an15.NovikovVadim.hw8.model.Product;
-import com.teachMeSkills.an15.NovikovVadim.hw8.model.User;
+import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.model.Product;
+import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.model.User;
 
 import java.util.ArrayList;
 
@@ -15,13 +15,11 @@ public interface UserService {
 
     void addProductToBasket(User user, ArrayList<Product> products);
 
-    void payForBasket(User user);
+    void payForBasket(User user, ArrayList<Product> products);
 
     void deleteProductFromBasket(User user);
 
     void rateProduct(ArrayList<Product> products);
 
     void commentProduct(ArrayList<Product> products);
-
-    void showProducts(ArrayList<Product> products);
 }

@@ -1,4 +1,4 @@
-package com.teachMeSkills.an15.NovikovVadim.hw8.model;
+package com.teachMeSkills.an15.PilyushinYuri.hw8.task2.model;
 
 import java.util.Objects;
 
@@ -19,7 +19,6 @@ public class User {
         this.login = login;
         this.password = password;
         this.isHasAdminRole = false;
-        this.basket = new Basket();
     }
 
     public String getLogin() {
@@ -52,10 +51,6 @@ public class User {
 
     public void setBasket(Basket basket) {
         this.basket = basket;
-    }
-
-    public String getLoginAndPassword() {
-        return "login: " + login + ", password: " + password;
     }
 
     @Override

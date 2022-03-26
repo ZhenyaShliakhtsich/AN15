@@ -1,5 +1,6 @@
 package com.teachMeSkills.an15.classes.class8.task2.service.impl;
 
+import com.teachMeSkills.an15.classes.class8.task2.model.Basket;
 import com.teachMeSkills.an15.classes.class8.task2.model.Product;
 import com.teachMeSkills.an15.classes.class8.task2.model.User;
 import com.teachMeSkills.an15.classes.class8.task2.service.UserService;
