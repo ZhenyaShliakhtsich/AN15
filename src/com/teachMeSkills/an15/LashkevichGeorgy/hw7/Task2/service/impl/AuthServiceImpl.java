@@ -37,7 +37,7 @@ public class AuthServiceImpl implements AuthService {
         User user = new User(login, password);
         users.put(user, user);
         System.out.println("Ты зарегистрирован! Авторизируйся!");
-        login(users);
+
 
     }
 }

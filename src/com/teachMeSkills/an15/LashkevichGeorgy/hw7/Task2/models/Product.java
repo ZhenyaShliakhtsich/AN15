@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Product {
+public class Product extends Basket {
     private String name;
     private BigDecimal price;
     private double avgRate;

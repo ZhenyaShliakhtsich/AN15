@@ -1,8 +1,9 @@
 package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models;
 
+import java.util.HashMap;
 import java.util.Objects;
 
-public class User {
+public class User extends HashMap<User, User> {
     private String login;
     private String password;
     private boolean isHasAdminRole;

@@ -9,6 +9,8 @@ package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2;
 //Запчасть содержит в себе название, цену, отзыв, среднюю оценку, количество и машины, к которым она подходит.
 
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.User;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.AuthService;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.AuthServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.UserServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.Product;
 
@@ -22,14 +24,20 @@ import java.util.HashMap;
 // После оплаты количество деталей должно уменьшиться.
 public class Main {
     public static void main(String[] args) {
-
         HashMap<User, User> users = new HashMap<>();
+        AuthService authService = new AuthServiceImpl();
+        authService.registration(users);
+        HashMap<User, User> authUser = authService.login(users);
+
+
         ArrayList<Product> products = new ArrayList<>();
         UserServiceImpl userService = new UserServiceImpl();
 //        userService.addProduct(products);
         userService.addProduct(products);
-        userService.changeProduct(products);
-        userService.deleteProduct(products);
+        //userService.changeProduct(products);
+        //userService.deleteProduct(products);
+        userService.addProductToBasket((User) authUser, products);
+        userService.payForBasket((User) users);
 
     }
 }
