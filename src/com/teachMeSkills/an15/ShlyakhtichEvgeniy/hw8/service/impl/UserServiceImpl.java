@@ -4,11 +4,13 @@ import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.Product;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.User;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.UserService;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class UserServiceImpl implements UserService {
 
@@ -144,6 +146,21 @@ public class UserServiceImpl implements UserService {
         String payment = scanner.nextLine();
         if (payment.equals("Оплачиваю")) {
             System.out.println("Товары оплачены");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd-HH.mm");
+            try {
+                BufferedWriter bufferedWriter = new BufferedWriter(
+                        new FileWriter("src/com/teachMeSkills/an15/ShlyakhtichEvgeniy/hw8/receipt.txt"));
+                        bufferedWriter.write(simpleDateFormat.format(new Date()));
+                        bufferedWriter.write(String.valueOf(priceService.calculateTotalBasketPrice(user)));
+                        for(Product product : user.getBasket().getProducts()){
+                            bufferedWriter.write(product.getName());
+                            bufferedWriter.write(String.valueOf(product.getPrice()));
+                        }
+                        bufferedWriter.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             for (Product productFromBasket : user.getBasket().getProducts()) {
                 for (Product product : products) {
                     if (productFromBasket.getName().equals(product.getName())) {

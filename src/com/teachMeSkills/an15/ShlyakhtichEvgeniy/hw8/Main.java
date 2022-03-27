@@ -46,7 +46,7 @@ public class Main {
         cars1.add("BMW");
         cars1.add("Audi");
         HashSet<String> cars2 = new HashSet<>();
-        cars2.add("BWM");
+        cars2.add("BMW");
         cars2.add("Renault");
         HashSet<String> cars3 = new HashSet<>();
         cars3.add("Renault");
