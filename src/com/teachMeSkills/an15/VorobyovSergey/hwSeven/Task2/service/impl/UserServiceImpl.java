@@ -4,6 +4,7 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.Only
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Basket;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.PurchaseReceipt;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.UserService;
 
@@ -157,11 +158,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public void payForBasket(User user) {
         //Calculate price
-        new PriceAndDiscountServiceImpl().calculateTotalBasketPrice(user);
+        PriceAndDiscountServiceImpl service = new PriceAndDiscountServiceImpl();
+        PurchaseReceipt receipt = service.calculateTotalBasketPrice(user);
         //Try to pay for basket
         System.out.println("Введи ОПЛАЧИВАЮ если хочешь оплатить корзину");
         if (scanner.nextLine().equalsIgnoreCase("ОПЛАЧИВАЮ")) {
             System.out.println("Оплачено!!!");
+            new PurchaseServiceImpl().savePurchaseReceipt(receipt);
+            System.out.println("Чек сохранен!!!");
             user.getBasket().getProducts().removeAll(user.getBasket().getProducts());
         }
     }

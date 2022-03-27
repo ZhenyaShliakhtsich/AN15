@@ -1,11 +1,12 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Basket {
+public class Basket implements Serializable {
     private HashSet<Product> products;
     private BigDecimal totalPrice;
 

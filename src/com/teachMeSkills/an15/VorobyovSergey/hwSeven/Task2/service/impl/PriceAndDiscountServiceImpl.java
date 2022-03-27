@@ -1,6 +1,7 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.PurchaseReceipt;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.PriceServiceAndDiscount;
 
@@ -9,7 +10,7 @@ import java.util.Random;
 
 public class PriceAndDiscountServiceImpl implements PriceServiceAndDiscount {
     @Override
-    public BigDecimal calculateTotalBasketPrice(User user) {
+    public PurchaseReceipt calculateTotalBasketPrice(User user) {
         BigDecimal totalPrice = new BigDecimal(0);
 
         //Accumulate all basket prices;
@@ -24,7 +25,13 @@ public class PriceAndDiscountServiceImpl implements PriceServiceAndDiscount {
 
         totalPrice = totalPrice.multiply(BigDecimal.valueOf(100 - discount)).multiply(BigDecimal.valueOf(0.01));
         System.out.println("Your final price is:" + totalPrice);
-        return totalPrice;
+
+        //Create purchase receipt
+        PurchaseReceipt receipt = new PurchaseReceipt();
+        receipt.setDiscount(discount);
+        receipt.setCustomerBasket(user.getBasket());
+        receipt.setCustomerName(user.getLogin());
+        return receipt;
     }
 
     @Override
