@@ -1,11 +1,10 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.PurchaseReceipt;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.PurchaseService;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -26,7 +25,38 @@ public class PurchaseServiceImpl implements PurchaseService {
                 new FileOutputStream(fileSource + fileName + index + extension))){
             oos.writeObject(purchaseReceipt);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Something is wrong with IO");
+        }
+    }
+
+    @Override
+    public void showUserReceipts(User user, String dir) {
+        File file = new File(dir);
+        PurchaseReceipt receipt = new PurchaseReceipt();
+        String regex = "^" + user.getLogin() + ".+$";
+
+        if (file.isDirectory()) {
+            //Имя директории
+            System.out.println("You id dir - " + file.getName());
+            //Бежим по директории
+            for (File f : file.listFiles()) {
+                //Имя файла для наглядности
+                System.out.print(f.getName() + " - ");
+                //Читаем чек, десериализуем
+                if (f.isFile() && f.getName().matches(regex)) {
+                    try {
+                        receipt = (PurchaseReceipt) new ObjectInputStream(new FileInputStream(f)).readObject();
+                    } catch (IOException e) {
+                        System.out.println("Something is wrong with IO");
+                    } catch (ClassNotFoundException e) {
+                        System.out.println("Something is wrong with classes");
+                    }
+                    //Чек на экран
+                    System.out.println(receipt);
+                } else {
+                    System.out.println("Это нам не надо");
+                }
+            }
         }
     }
 }
