@@ -9,6 +9,10 @@ public class User extends HashMap<User, User> {
     private boolean isHasAdminRole;
     private Basket basket;
 
+    public User() {
+
+    }
+
     public User(String login, String password, Basket basket) {
         this.login = login;
         this.password = password;

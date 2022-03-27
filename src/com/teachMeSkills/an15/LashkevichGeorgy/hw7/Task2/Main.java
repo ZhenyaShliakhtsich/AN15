@@ -10,7 +10,9 @@ package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2;
 
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.User;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.AuthService;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.PriceService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.AuthServiceImpl;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.PriceServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.UserServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.Product;
 
@@ -32,12 +34,14 @@ public class Main {
 
         ArrayList<Product> products = new ArrayList<>();
         UserServiceImpl userService = new UserServiceImpl();
-//        userService.addProduct(products);
+         userService.addProduct(products);
         userService.addProduct(products);
         //userService.changeProduct(products);
         //userService.deleteProduct(products);
         userService.addProductToBasket((User) authUser, products);
-        userService.payForBasket((User) users);
+        userService.addProductToBasket((User) authUser, products);
+        PriceService priceService = new PriceServiceImpl();
+        priceService.calculateTotalBasketPrice((User) authUser);
 
     }
 }

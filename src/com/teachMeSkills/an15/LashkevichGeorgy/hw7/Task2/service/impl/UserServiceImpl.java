@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 
     void showAllProducts(ArrayList<Product> products) {
         for (int i = 0; i < products.size(); i++) {
-            System.out.print(products.get(i).getName() + ", ");
+            System.out.print(products.get(i) + ", ");
         }
     }
 
@@ -180,37 +180,38 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addProductToBasket(User user, ArrayList<Product> products) {
+        ArrayList<Product> array = new ArrayList<>();
+        if (user.getBasket() == null) {
+        } else {
+            for (int i = 0; i < user.getBasket().getProducts().size(); i++) {
+                array.add(user.getBasket().getProducts().get(i));
+            }
+        }
         Basket basket = new Basket();
-        System.out.println("Какой продукт хотим добавить в корзину?\n");
         showAllProducts(products);
+        System.out.println("\nКакой продукт хотим добавить в корзину?\n");
         String productToBasket = scanner.nextLine();
-        System.out.println("\nКакое количество?");
-        int amountToBasket = scanner.nextInt();
         int index = -1;
         for (int i = 0; i < products.size(); i++) {
             if (productToBasket.equalsIgnoreCase(products.get(i).getName())) {
                 index = i;
                 break;
             }
-            if (index == -1) {
-                addProductToBasket(user, products);
-            } else {
-                user.setBasket(basket.getProducts().get(index));
-                user.getBasket().getProducts().get(index).setAmount(amountToBasket);
-            }
         }
-        System.out.println(user.getBasket().toString());
+        if (index == -1) {
+            addProductToBasket(user, products);
+        } else {
+            array.add(products.get(index));
+            basket.setProducts(array);
+            user.setBasket(basket);
+        }
+
 
     }
 
     @Override
     public void payForBasket(User user) {
-        BigDecimal total = BigDecimal.valueOf(0);
-        for (int i = 0; i < user.getBasket().getProducts().size(); i++) {
-            total.add(user.getBasket().getProducts().get(i).getPrice());
-        }
-        user.getBasket().setTotalPrice(total);
-        System.out.println(user.getBasket());
+
     }
 
     @Override
