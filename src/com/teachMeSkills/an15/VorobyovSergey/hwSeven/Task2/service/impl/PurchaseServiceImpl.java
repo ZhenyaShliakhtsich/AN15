@@ -22,7 +22,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 
         //Записали
         try (ObjectOutputStream oos = new ObjectOutputStream(
-                new FileOutputStream(fileSource + fileName + index + extension))){
+                new FileOutputStream(fileSource + fileName + index + extension))) {
             oos.writeObject(purchaseReceipt);
         } catch (IOException e) {
             System.out.println("Something is wrong with IO");
