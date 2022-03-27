@@ -24,7 +24,6 @@ public class Main {
         carNames.add("Ford");
         carNames.add("Ferrari");
         BigDecimal bigDecimal = new BigDecimal("5.5");
-        ArrayList<Integer> rates = new ArrayList<>();
         Product product = new Product("Подвеска", bigDecimal, 9, "Хз", carNames);
         HashSet<String> carNames2 = new HashSet<>();
         carNames2.add("Lamba");

@@ -6,6 +6,7 @@ import com.teachMeSkills.an15.MatveevArtyom.hw8.model.User;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.service.PriceService;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.service.UserService;
 
+import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -93,6 +94,7 @@ public class UserServiceImpl implements UserService {
                     if (carChoice.equals(car)) {
                         System.out.println("Введите новую машину");
                         car = scanner.nextLine();
+                        products.get(index).getCarNames().remove(car);
                         break;
                     }
                 }
@@ -170,7 +172,21 @@ public class UserServiceImpl implements UserService {
                 System.out.println("Если хотите оплатить, то введите - Оплачиваю");
                 String choice = scanner.nextLine();
                 if (choice.equalsIgnoreCase("Оплачиваю")) {
-                    System.out.println("Покупка совершена!");
+                    System.out.println("Покупка совершена! Чек печатается!");
+                    try {
+                        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream
+                                ("C:\\Users\\tema1\\IdeaProjects\\AN15\\src\\com\\teachMeSkills\\an15\\MatveevArtyom\\hw8\\receipt\\receipt.txt"));
+                        objectOutputStream.writeObject(user);
+                        objectOutputStream.close();
+                        ObjectInputStream objectInputStream = new ObjectInputStream
+                                (new FileInputStream("C:\\Users\\tema1\\IdeaProjects\\AN15\\src\\com\\teachMeSkills\\an15\\MatveevArtyom\\hw8\\receipt\\receipt.txt"));
+                        User newUser = (User) objectInputStream.readObject();
+                        System.out.println("Ваша корзина - " + newUser.getBasket());
+                        System.out.println("Ваша цена со скидкой " +
+                                user.getBasket().getTotalPrice().subtract(user.getBasket().getTotalPrice().multiply(bd)));
+                    } catch (IOException | ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     for (Product productFromBasket : user.getBasket().getProducts()) {
                         for (Product product : products) {
                             if (productFromBasket.getName().equals(product.getName())) {
