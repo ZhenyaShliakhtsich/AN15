@@ -162,15 +162,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public void payForBasket(User user) {
         //Calculate price
-        PriceAndDiscountServiceImpl service = new PriceAndDiscountServiceImpl();
-        PurchaseReceipt receipt = service.calculateTotalBasketPrice(user);
-        //Try to pay for basket
-        System.out.println("Введи ОПЛАЧИВАЮ если хочешь оплатить корзину");
-        if (scanner.nextLine().equalsIgnoreCase("ОПЛАЧИВАЮ")) {
-            System.out.println("Оплачено!!!");
-            new PurchaseServiceImpl().savePurchaseReceipt(receipt);
-            System.out.println("Чек сохранен!!!");
-            user.getBasket().getProducts().removeAll(user.getBasket().getProducts());
+        if (user.getBasket().getProducts() != null) {
+            PriceAndDiscountServiceImpl service = new PriceAndDiscountServiceImpl();
+            PurchaseReceipt receipt = service.calculateTotalBasketPrice(user);
+            //Try to pay for basket
+            System.out.println("Введи ОПЛАЧИВАЮ если хочешь оплатить корзину");
+            if (scanner.nextLine().equalsIgnoreCase("ОПЛАЧИВАЮ")) {
+                System.out.println("Оплачено!!!");
+                new PurchaseServiceImpl().savePurchaseReceipt(receipt);
+                System.out.println("Чек сохранен!!!");
+                user.getBasket().getProducts().removeAll(user.getBasket().getProducts());
+            }
+        } else {
+            System.out.println("Basket is empty");
         }
     }
 
@@ -246,32 +250,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void showReceipts(User user) {
         String myDir = "src/com/teachMeSkills/an15/VorobyovSergey/hwSeven/Task2/purchaseDB";
-        File file = new File(myDir);
-        PurchaseReceipt receipt = new PurchaseReceipt();
-        String regex = "^" + user.getLogin() + ".+$";
-
-        if (file.isDirectory()) {
-            //Имя директории
-            System.out.println("You id dir - " + file.getName());
-            //Бежим по директории
-            for (File f : file.listFiles()) {
-                //Имя файла для наглядности
-                System.out.print(f.getName() + " - ");
-                //Читаем чек, десериализуем
-                if (f.isFile() && f.getName().matches(regex)) {
-                    try {
-                        receipt = (PurchaseReceipt) new ObjectInputStream(new FileInputStream(f)).readObject();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    //Чек на экран
-                    System.out.println(receipt);
-                } else {
-                    System.out.println("Это нам не надо");
-                }
-            }
-        }
+        new PurchaseServiceImpl().showUserReceipts(user, myDir);
     }
 }
