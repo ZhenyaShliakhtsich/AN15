@@ -19,7 +19,7 @@ public interface UserService {
 
     void deleteProductFromBasket(User user);
 
-    void rateProduct(ArrayList<Product> products);
+    void rateProduct(ArrayList<Product> products, User user);
 
-    void commentProduct(ArrayList<Product> products);
+    void commentProduct(ArrayList<Product> products,User user);
 }
