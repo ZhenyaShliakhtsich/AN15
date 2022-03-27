@@ -162,15 +162,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public void payForBasket(User user) {
         //Calculate price
-        PriceAndDiscountServiceImpl service = new PriceAndDiscountServiceImpl();
-        PurchaseReceipt receipt = service.calculateTotalBasketPrice(user);
-        //Try to pay for basket
-        System.out.println("Введи ОПЛАЧИВАЮ если хочешь оплатить корзину");
-        if (scanner.nextLine().equalsIgnoreCase("ОПЛАЧИВАЮ")) {
-            System.out.println("Оплачено!!!");
-            new PurchaseServiceImpl().savePurchaseReceipt(receipt);
-            System.out.println("Чек сохранен!!!");
-            user.getBasket().getProducts().removeAll(user.getBasket().getProducts());
+        if (user.getBasket().getProducts() != null) {
+            PriceAndDiscountServiceImpl service = new PriceAndDiscountServiceImpl();
+            PurchaseReceipt receipt = service.calculateTotalBasketPrice(user);
+            //Try to pay for basket
+            System.out.println("Введи ОПЛАЧИВАЮ если хочешь оплатить корзину");
+            if (scanner.nextLine().equalsIgnoreCase("ОПЛАЧИВАЮ")) {
+                System.out.println("Оплачено!!!");
+                new PurchaseServiceImpl().savePurchaseReceipt(receipt);
+                System.out.println("Чек сохранен!!!");
+                user.getBasket().getProducts().removeAll(user.getBasket().getProducts());
+            }
+        } else {
+            System.out.println("Basket is empty");
         }
     }
 
