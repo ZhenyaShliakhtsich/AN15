@@ -7,6 +7,7 @@ import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.UserService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserServiceImpl implements UserService {
@@ -15,12 +16,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addProduct(ArrayList<Product> products) {
+        int amount = 0;
+        BigDecimal price  = new BigDecimal(0);
         System.out.println("Введите название продукта:");
         String name = scanner.nextLine();
+        try {
         System.out.println("Введите цену продукта");
-        BigDecimal price = scanner.nextBigDecimal();
+        price = scanner.nextBigDecimal();
         System.out.println("Введите количество продукта");
-        int amount = scanner.nextInt();
+        amount = scanner.nextInt();
+        if (amount < 0 || price.intValue() < 0 ){
+            System.out.println("Цена и количество не могут быть отрицательными");
+            addProduct(products);
+        }
+        }catch (InputMismatchException e ){
+            addProduct(products);
+        }
         HashSet<String> carSet = new HashSet<>();
         boolean stop = false;
         while (!stop) {
@@ -117,8 +128,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addProductToBasket(User user, Product product) {
-        user.getBasket().getProducts().add(product);
-        System.out.println("Продукт был добавлен в корзину");
+        if (product.getAmount() > 0) {
+            user.getBasket().getProducts().add(product);
+            System.out.println("Продукт был добавлен в корзину");
+        } else {
+            System.out.println("Этого продукта больше нет в наличии");
+        }
     }
 
     @Override
@@ -195,4 +210,5 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
 }
