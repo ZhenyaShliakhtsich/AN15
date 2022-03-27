@@ -16,6 +16,7 @@ import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.PriceServi
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.UserServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.Product;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,6 +27,7 @@ import java.util.HashMap;
 // После оплаты количество деталей должно уменьшиться.
 public class Main {
     public static void main(String[] args) {
+
         HashMap<User, User> users = new HashMap<>();
         AuthService authService = new AuthServiceImpl();
         authService.registration(users);
