@@ -27,4 +27,6 @@ public interface UserService {
     void commentProduct(HashSet<Product> storage);
 
     boolean showBasket (User user);
+
+    void showReceipts (User user);
 }

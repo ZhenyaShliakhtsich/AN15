@@ -59,6 +59,11 @@ public class MenuServiceUserImpl implements MenuService {
                 service.showBasket(user);
                 createMenu(user, storage);
                 break;
+            case 7:
+                System.out.println("YOUR_RECEIPTS");
+                service.showReceipts(user);
+                createMenu(user, storage);
+                break;
             default:
                 System.out.println("The End. Logout");
                 break;
