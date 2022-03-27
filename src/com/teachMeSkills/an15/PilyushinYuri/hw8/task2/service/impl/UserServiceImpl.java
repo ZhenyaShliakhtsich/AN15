@@ -1,14 +1,12 @@
 package com.teachMeSkills.an15.PilyushinYuri.hw8.task2.service.impl;
 
-import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.model.Product;
-import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.model.User;
+import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.model.*;
 import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.service.UserService;
 
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
+
 
 public class UserServiceImpl implements UserService {
 
@@ -115,16 +113,19 @@ public class UserServiceImpl implements UserService {
         System.out.println("Введите название продукта");
         String productSelect = scanner.nextLine();
         int index = -1;
+        Product productAdd = null;
         for (int i = 0; i < products.size(); i++) {
             if (productSelect.equalsIgnoreCase(products.get(i).getName())) {
                 index = i;
+                productAdd = products.get(i);
                 break;
             }
         }
         if (index == -1) {
             addProductToBasket(user, products);
         } else {
-            user.getBasket().getProducts().get(index);
+            Basket basket = user.getBasket();
+            basket.getProducts().add(productAdd);
         }
 
 
@@ -144,8 +145,11 @@ public class UserServiceImpl implements UserService {
                         product.setAmount(product.getAmount() - 1);
                     }
                 }
+                System.out.println(products);
             }
         }
+
+        System.out.println("Цена на скидкой : " + priceService.calculateTotalBasketPrice(user));
     }
 
 
@@ -171,15 +175,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void rateProduct(ArrayList<Product> products) {
-        System.out.println("");
-        products.get(products.indexOf(scanner.nextLine()));
+    public void rateProduct(ArrayList<Product> products,User user) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите название чтобы оценить");
+        String nameOfProduct = scanner.nextLine();
+        for (int i =0; i<user.getBasket().getProducts().size();i++){
+            if (nameOfProduct.equals(user.getBasket().getProducts().get(i).getName())) {
+                System.out.println("Введите оценку:");
+            user.getBasket().getProducts().get(i).getRates().add(scanner.nextInt());
+                    }
+                }
+                System.out.println(products);
+            }
 
-
-    }
 
     @Override
-    public void commentProduct(ArrayList<Product> products) {
+    public void commentProduct(ArrayList<Product> products,User user) {
         System.out.println(products);
         System.out.println("Введите название продукта");
         String productSelect = scanner.nextLine();
@@ -191,7 +202,7 @@ public class UserServiceImpl implements UserService {
             }
         }
         if (index == -1) {
-            commentProduct(products);
+            commentProduct(products,user);
         } else {
             products.get(index).setComment(scanner.nextLine());
         }
