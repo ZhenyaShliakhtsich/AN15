@@ -144,6 +144,7 @@ public class MenuServiceImpl implements MenuService {
                     break;
                 case 3:
                     userMenu(user, users, products);
+                    break;
                 default:
                     basketMenu(user, users, products);
             }
