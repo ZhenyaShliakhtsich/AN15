@@ -8,7 +8,7 @@ import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.UserService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashSet;
+
 import java.util.Scanner;
 
 public class UserServiceImpl implements UserService {
@@ -54,11 +54,12 @@ public class UserServiceImpl implements UserService {
         int amount = scanner.nextInt();
         System.out.println("Введите цену продукта:");
         BigDecimal price = scanner.nextBigDecimal();
+        System.out.println("Введи коммент:");
+        String comment = scanner.nextLine();
 
-
-/*        System.out.println("Введите название машины:");
+        System.out.println("Введите название машины:");
         System.out.println(scanner.nextLine());
-        String carName = scanner.nextLine();*/
+        String carName = scanner.nextLine();
 
 
         //TODO: all other parameters should be scanned from console and set to object
@@ -67,8 +68,8 @@ public class UserServiceImpl implements UserService {
         product.setName(name);
         product.setAmount(amount);
         product.setPrice(price);
-        //product.setComment(comment);
-        //product.setCarNames(carName);
+        product.setComment(comment);
+        product.setCarNames(carName);
 
 
         //TODO: should be changed from setters to constructor initialization
@@ -104,49 +105,53 @@ public class UserServiceImpl implements UserService {
         System.out.println("Че хочешь изменить?\n" +
                 "Чтобы изменить название нажать \"1\"\n" +
                 "Чтобы изменить цену нажать \"2\"\n" +
-                //"Чтобы изменить оценку нажать \"3\"\n" +*/
-                "Чтобы изменить количество нажать \"4\"\n");
-        //"Чтобы изменить комментарий нажать \"5\"\n");
+                "Чтобы изменить оценку нажать \"3\"\n" +
+                "Чтобы изменить количество нажать \"4\"\n" +
+                "Чтобы изменить комментарий нажать \"5\"\n" +
+                "ЧТобы выйти из программы набрать \"10\"");
 
-
-        int choice = scanner.nextInt();
-        //TODO: CHOICE SWITCH WITH POSSIBLE CHANGES
-        switch (choice) {
-            case 1:
-                System.out.println("Введи новое имя");
-                System.out.println(scanner.nextLine());
-                products.get(index).setName(scanner.nextLine());
-                break;
-            case 2:
-                System.out.println("Введи новую цену");
+        boolean flag = true;
+        while (flag) {
+            int choice = scanner.nextInt();
+            //TODO: CHOICE SWITCH WITH POSSIBLE CHANGES
+            switch (choice) {
+                case 1:
+                    System.out.println("Введи новое имя");
+                    System.out.println(scanner.nextLine());
+                    products.get(index).setName(scanner.nextLine());
+                    break;
+                case 2:
+                    System.out.println("Введи новую цену");
 //                BigDecimal newPrice = ;
-                products.get(index).setPrice(scanner.nextBigDecimal());
-                break;
-           /* case 3:
-                System.out.println("Введи новую оценку");
-                //нужна проверка
+                    products.get(index).setPrice(scanner.nextBigDecimal());
+                    break;
+                case 3:
+                    System.out.println("Введи новую оценку");
+                    //нужна проверка
 //                int newRate = ;
-                products.get(index).getRates().set(0, scanner.nextInt());
-                break;*/
-            case 4:
-                System.out.println("Меняем количество на:");
-                System.out.println(scanner.nextLine());
-                products.get(index).setAmount(scanner.nextInt());
-                break;
-           /* case 5:
-                System.out.println("Изменить комментарий на:");
-                System.out.println(scanner.nextLine());
-                products.get(index).setComment(scanner.nextLine());
-                break;*/
-           /* case 6:
-                System.out.println("Изменить мраку машины на:");
-                products.get(index).setCarNames(scanner.nextLine());
-                break;*/
+                    products.get(index).getRates().set(0, scanner.nextInt());
+                    break;
+                case 4:
+                    System.out.println("Меняем количество на:");
+                    System.out.println(scanner.nextLine());
+                    products.get(index).setAmount(scanner.nextInt());
+                    break;
+                case 5:
+                    System.out.println("Изменить комментарий на:");
+                    System.out.println(scanner.nextLine());
+                    products.get(index).setComment(scanner.nextLine());
+                    break;
+                case 6:
+                    System.out.println("Изменить мраку машины на:");
+                    products.get(index).setCarNames(scanner.nextLine());
+                    break;
+                case 10:
+                    System.out.println("Админ, иди спать.");
+                    flag = false;
 
-
+            }
+            System.out.println("после изменения\n" + products.get(index));
         }
-        System.out.println("после изменения\n" + products.get(index));
-
 
     }
 
@@ -246,8 +251,6 @@ public class UserServiceImpl implements UserService {
             System.out.println("Ввести оценку");
             products.get(index).getRates().add(scanner.nextInt());
         }
-
-
     }
 
     @Override

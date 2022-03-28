@@ -33,9 +33,14 @@ public class AuthServiceImpl implements AuthService {
         String login = scanner.nextLine();
         System.out.println("Введите пароль:");
         String password = scanner.nextLine();
-
-        User user = new User(login, password);
-        users.put(user, user);
+        if (login.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
+            User user = new User(login, password);
+            users.put(user, user);
+            users.get(user).setHasAdminRole(true);
+        } else {
+            User user = new User(login, password);
+            users.put(user, user);
+        }
         System.out.println("Ты зарегистрирован! Авторизируйся!");
 
 

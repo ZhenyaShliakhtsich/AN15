@@ -11,6 +11,7 @@ package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.User;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.AuthService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.PriceService;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.UserService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.AuthServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.PriceServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.UserServiceImpl;
@@ -27,23 +28,32 @@ import java.util.HashMap;
 // После оплаты количество деталей должно уменьшиться.
 public class Main {
     public static void main(String[] args) {
-
+        boolean flag = true;
         HashMap<User, User> users = new HashMap<>();
         AuthService authService = new AuthServiceImpl();
         authService.registration(users);
-        HashMap<User, User> authUser = authService.login(users);
-
-
         ArrayList<Product> products = new ArrayList<>();
-        UserServiceImpl userService = new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
+        //HashMap<User, User> authUser = authService.login(users);
+
+        /*UserServiceImpl userService = new UserServiceImpl();
          userService.addProduct(products);
         userService.addProduct(products);
-        //userService.changeProduct(products);
-        //userService.deleteProduct(products);
+        userService.changeProduct(products);
+        userService.deleteProduct(products);
         userService.addProductToBasket((User) authUser, products);
         userService.addProductToBasket((User) authUser, products);
         PriceService priceService = new PriceServiceImpl();
-        priceService.calculateTotalBasketPrice((User) authUser);
+        priceService.calculateTotalBasketPrice((User) authUser);*/
+
+
+
+        authService.registration(users);
+        HashMap<User, User> authUser = authService.login(users);
+        if (users.get(authUser).isHasAdminRole()) {
+            userService.changeProduct(products);
+        }
+
 
     }
 }
