@@ -181,8 +181,8 @@ public class UserServiceImpl implements UserService {
                         ObjectInputStream objectInputStream = new ObjectInputStream
                                 (new FileInputStream("C:\\Users\\tema1\\IdeaProjects\\AN15\\src\\com\\teachMeSkills\\an15\\MatveevArtyom\\hw8\\receipt\\receipt.txt"));
                         User newUser = (User) objectInputStream.readObject();
-                        System.out.println("Ваша корзина - " + newUser.getBasket());
-                        System.out.println("Ваша цена со скидкой " +
+                        System.out.println("Ваша корзина: \n" + newUser.getBasket());
+                        System.out.println("Ваша цена со скидкой = " +
                                 user.getBasket().getTotalPrice().subtract(user.getBasket().getTotalPrice().multiply(bd)));
                     } catch (IOException | ClassNotFoundException e) {
                         e.printStackTrace();
