@@ -14,25 +14,17 @@ public class PriceServiceImpl implements PriceService {
         for (Product product : user.getBasket().getProducts()) {
             totalPrice = totalPrice.add(product.getPrice());
         }
-        return totalPrice;
+        BigDecimal discount = new BigDecimal(calculateDiscount() / 100);
+        BigDecimal discountPrice;
+        discountPrice = totalPrice.multiply(discount);
+        BigDecimal totalPriceWithDiscount;
+        totalPriceWithDiscount = totalPrice.subtract(discountPrice);
+        return totalPriceWithDiscount;
     }
 
     @Override
     public int calculateDiscount() {
         Random random = new Random();
         return random.nextInt(31);
-    }
-
-    @Override
-    public BigDecimal calculateTotalBasketPriceWithDiscount(User user) {
-        BigDecimal totalPriceWithDiscount = calculateTotalBasketPrice(user).subtract(calculateDiscountPrice(user));
-        return totalPriceWithDiscount;
-    }
-
-    @Override
-    public BigDecimal calculateDiscountPrice(User user) {
-        BigDecimal discount = BigDecimal.valueOf(calculateDiscount() / 100);
-        BigDecimal discountPrice = calculateTotalBasketPrice(user).multiply(discount);
-        return discountPrice;
     }
 }

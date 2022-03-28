@@ -40,7 +40,7 @@ public class MenuServiceImpl implements MenuService {
                    authMenu(user, products, users);
                    break;
                case 5:
-                   System.exit(0);
+                   break;
                default:
                    adminMenu(user, products, users);
            }
@@ -114,7 +114,7 @@ public class MenuServiceImpl implements MenuService {
                     authMenu(user, products, users);
                     break;
                 case 5:
-                    System.exit(0);
+                    break;
                 default:
                     userMenu(user, users, products);
             }

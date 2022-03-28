@@ -141,9 +141,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void payForBasket(User user, ArrayList<Product> products) {
         PriceServiceImpl priceService = new PriceServiceImpl();
-        System.out.println("Цена : " + priceService.calculateTotalBasketPrice(user)
-        + "\nСкидка : " + priceService.calculateDiscount()
-                + "\nЦена со скидкой : " + priceService.calculateTotalBasketPriceWithDiscount(user));
+        System.out.println("Цена на скидкой : " + priceService.calculateTotalBasketPrice(user));
         System.out.println("Введите \"Оплачиваю\" чтобы оплатить");
         String payment = scanner.nextLine();
         if (payment.equals("Оплачиваю")) {
@@ -153,18 +151,11 @@ public class UserServiceImpl implements UserService {
                 BufferedWriter bufferedWriter = new BufferedWriter(
                         new FileWriter("src/com/teachMeSkills/an15/ShlyakhtichEvgeniy/hw8/receipt.txt"));
                         bufferedWriter.write(simpleDateFormat.format(new Date()));
-                        bufferedWriter.newLine();
+                        bufferedWriter.write(String.valueOf(priceService.calculateTotalBasketPrice(user)));
                         for(Product product : user.getBasket().getProducts()){
                             bufferedWriter.write(product.getName());
-                            bufferedWriter.write(" - ");
                             bufferedWriter.write(String.valueOf(product.getPrice()));
-                            bufferedWriter.newLine();
                         }
-                        bufferedWriter.write("Цена : " + priceService.calculateTotalBasketPrice(user));
-                        bufferedWriter.newLine();
-                        bufferedWriter.write("Скидка : " + priceService.calculateDiscountPrice(user));
-                        bufferedWriter.newLine();
-                        bufferedWriter.write("Цена со скидкой : " + priceService.calculateTotalBasketPriceWithDiscount(user));
                         bufferedWriter.close();
 
             } catch (IOException e) {

@@ -76,6 +76,7 @@ public class Main {
         CategoriesListImpl categoriesList = new CategoriesListImpl();
         System.out.println("Выберите категорию");
         categoriesList.categoriesList(categories);
+        CategoryProductsImpl categoryProducts = new CategoryProductsImpl();
         System.out.println("4.Назад");
         Scanner scanner = new Scanner(System.in);
         int choose = scanner.nextInt();
@@ -124,7 +125,7 @@ public class Main {
     }
     public static void auto(User user){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите логин");
+        System.out.println("Введите логин");//хз почему тут не работает
         String login = scanner.nextLine();
         System.out.println("Введите пароль");
         String password = scanner.nextLine();

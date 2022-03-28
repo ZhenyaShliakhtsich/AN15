@@ -40,7 +40,6 @@ public class Passenger extends Land{
     }
     public String despription(){
         return "Легковой автомобиль марки" + model +
-
                 " c " + carBody +
                 " типом кузова имеет мощность" + power +
                 "л.с., массу " + mass +

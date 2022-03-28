@@ -32,11 +32,11 @@ public class Main {
         GuitarInstrumentServiceImpl guitarInstrumentService = new GuitarInstrumentServiceImpl();
         for (int i = 0; i < instruments.length; i++) {
             if (instruments[i].getClass() == Drum.class) {
-                drumInstrumentService.play((Drum) instruments[i]);
+                drumInstrumentService.play((Drum)instruments[i] );
             } else if (instruments[i].getClass() == Trumpet.class) {
-                trumpetInstrumentService.play((Trumpet) instruments[i]);
+                trumpetInstrumentService.play((Trumpet)instruments[i]);
             } else {
-                guitarInstrumentService.play((Guitar) instruments[i]);
+                guitarInstrumentService.play((Guitar)instruments[i]);
 
             }
         }
