@@ -31,7 +31,6 @@ public class Main {
         boolean flag = true;
         HashMap<User, User> users = new HashMap<>();
         AuthService authService = new AuthServiceImpl();
-        authService.registration(users);
         ArrayList<Product> products = new ArrayList<>();
         UserService userService = new UserServiceImpl();
         //HashMap<User, User> authUser = authService.login(users);

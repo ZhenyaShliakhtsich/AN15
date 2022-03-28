@@ -1,3 +1,4 @@
+/*
 package com.teachMeSkills.an15.MatveevArtyom.hw7;
 
 import com.teachMeSkills.an15.MatveevArtyom.hw7.task1.Blog;
@@ -27,3 +28,4 @@ public class Main {
         user.setBlog(blogService.changePost(blog));
     }
 }
+*/

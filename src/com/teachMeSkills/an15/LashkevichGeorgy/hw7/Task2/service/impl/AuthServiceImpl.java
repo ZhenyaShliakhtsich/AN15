@@ -16,6 +16,9 @@ public class AuthServiceImpl implements AuthService {
         String password = scanner.nextLine();
 
         User enteredUser = new User(login, password);
+        if (login.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
+            users.get(enteredUser).setHasAdminRole(true);
+        }
         if (users.containsKey(enteredUser)) {
             System.out.println("Ты авторизирован");
             return users.get(enteredUser);
@@ -33,14 +36,11 @@ public class AuthServiceImpl implements AuthService {
         String login = scanner.nextLine();
         System.out.println("Введите пароль:");
         String password = scanner.nextLine();
-        if (login.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
-            User user = new User(login, password);
-            users.put(user, user);
-            users.get(user).setHasAdminRole(true);
-        } else {
-            User user = new User(login, password);
-            users.put(user, user);
-        }
+
+
+        User user = new User(login, password);
+        users.put(user, user);
+
         System.out.println("Ты зарегистрирован! Авторизируйся!");
 
 
