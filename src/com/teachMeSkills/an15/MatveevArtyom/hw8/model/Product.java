@@ -1,11 +1,12 @@
 package com.teachMeSkills.an15.MatveevArtyom.hw8.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Product {
+public class Product implements Serializable {
     private String name;
     private BigDecimal price;
     private double avgRate;
