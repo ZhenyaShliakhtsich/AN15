@@ -16,10 +16,13 @@ public class AuthServiceImpl implements AuthService {
         String password = scanner.nextLine();
 
         User enteredUser = new User(login, password);
-        if (login.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
-            users.get(enteredUser).setHasAdminRole(true);
+        if (enteredUser.getLogin().equalsIgnoreCase("admin")
+                && enteredUser.getPassword().equalsIgnoreCase("admin")) {
+            enteredUser.setHasAdminRole(true);
+            System.out.println("Ты авторизирован как админ");
+            return users.get(enteredUser);
         }
-        if (users.containsKey(enteredUser)) {
+        else if (users.containsKey(enteredUser)) {
             System.out.println("Ты авторизирован");
             return users.get(enteredUser);
         } else {
@@ -39,8 +42,10 @@ public class AuthServiceImpl implements AuthService {
 
 
         User user = new User(login, password);
+       /* if (login.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
+            user.setHasAdminRole(true);
+        }*/
         users.put(user, user);
-
         System.out.println("Ты зарегистрирован! Авторизируйся!");
 
 

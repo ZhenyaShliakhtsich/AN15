@@ -46,13 +46,15 @@ public class Main {
         priceService.calculateTotalBasketPrice((User) authUser);*/
 
 
-
         authService.registration(users);
         HashMap<User, User> authUser = authService.login(users);
-        if (users.get(authUser).isHasAdminRole()) {
+        System.out.println(users.get(authUser).isHasAdminRole());
+    /*    if (users.get(authUser).{
             userService.changeProduct(products);
-        }
 
+
+        }*/
 
     }
 }
+
