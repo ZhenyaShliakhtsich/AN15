@@ -2,6 +2,7 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.OnlyOneNumberReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.ConstVal;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Basket;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.PurchaseReceipt;
@@ -250,13 +251,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void showReceipts(User user) {
-        String myDir = "src/com/teachMeSkills/an15/VorobyovSergey/hwSeven/Task2/purchaseDB";
+        String myDir = ConstVal.PATH_TO_RECEIPT_SERIALIZED;
         purchaseService.showUserReceipts(user, myDir);
     }
 
     @Override
     public void showReceiptsInTxt(User user) {
-        String myDir = "src/com/teachMeSkills/an15/VorobyovSergey/hwSeven/Task2/purchaseDB/ReceiptsInTxt";
+        String myDir = ConstVal.PATH_TO_RECEIPT_TXT;
         purchaseService.showUserReceiptsInTxt(user, myDir);
     }
 

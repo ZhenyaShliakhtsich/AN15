@@ -123,7 +123,6 @@ public class PurchaseServiceImpl implements PurchaseService {
                     } catch (IOException e) {
                         System.out.println("Something is wrong with IO");
                     }
-
                 } else {
                     System.out.println("Это нам не надо");
                 }
