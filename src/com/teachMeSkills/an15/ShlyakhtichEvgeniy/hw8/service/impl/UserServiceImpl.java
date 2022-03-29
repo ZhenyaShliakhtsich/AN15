@@ -209,25 +209,29 @@ public class UserServiceImpl implements UserService {
                     }
                 }
             }
+           user.getBasket().setProducts(new ArrayList<Product>());
+
         }
     }
 
     @Override
     public void deleteProductFromBasket(User user) {
         System.out.println("Выберите продукт,который хотите удалить из корзины");
-        for (int i = 0; i < user.getBasket().getProducts().size(); i++) {
-            System.out.println(user.getBasket().getProducts().get(i).getName());
+        for (Product product : user.getBasket().getProducts()) {
+            System.out.println(product.getName());
         }
         String choice = scanner.nextLine();
-        int size = user.getBasket().getProducts().size();
-        for (Product product : user.getBasket().getProducts()) {
-            if (product.getName().equalsIgnoreCase(choice)) {
-                user.getBasket().getProducts().remove(product);
-                System.out.println("Продукт был удалён");
+        int index = -1;
+        for (int i = 0; i < user.getBasket().getProducts().size(); i++) {
+            if (user.getBasket().getProducts().get(i).getName().equalsIgnoreCase(choice)){
+                index = i;
+                break;
             }
         }
-        if (user.getBasket().getProducts().size() == size) {
-            System.out.println("Такого продукта нет");
+        if (index == -1) {
+            deleteProductFromBasket(user);
+        } else {
+            user.getBasket().getProducts().remove(user.getBasket().getProducts().get(index));
         }
     }
 
