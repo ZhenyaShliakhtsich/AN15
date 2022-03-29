@@ -29,4 +29,6 @@ public interface UserService {
     boolean showBasket (User user);
 
     void showReceipts (User user);
+
+    void showReceiptsInTxt (User user);
 }

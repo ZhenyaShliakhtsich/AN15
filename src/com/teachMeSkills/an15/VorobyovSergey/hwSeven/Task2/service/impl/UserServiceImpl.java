@@ -6,18 +6,16 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Basket;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.PurchaseReceipt;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.PurchaseService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.UserService;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.math.BigDecimal;
 import java.util.*;
 
 public class UserServiceImpl implements UserService {
     private Scanner scanner = new Scanner(System.in);
     private OnlyOneNumberReaderService numberReader = new OnlyOneNumberReaderServiceImpl();
+    PurchaseService purchaseService = new PurchaseServiceImpl();
 
     //-------------------This is for admins-----------------------
     @Override
@@ -148,10 +146,10 @@ public class UserServiceImpl implements UserService {
 
         //Check for null
         if (user.getBasket() != null && user.getBasket().getProducts() != null) {
-            System.out.println("Go to if - check for null");
+            System.out.println("Good!!! Basket and product is not null");
             user.getBasket().getProducts().add(tempProduct);
         } else {
-            System.out.println("Go to else - check for null");
+            System.out.println("Awful!!! Something is null");
             user.setBasket(new Basket());
             user.getBasket().setProducts(new HashSet<>());
             user.getBasket().getProducts().add(tempProduct);
@@ -169,7 +167,10 @@ public class UserServiceImpl implements UserService {
             System.out.println("Введи ОПЛАЧИВАЮ если хочешь оплатить корзину");
             if (scanner.nextLine().equalsIgnoreCase("ОПЛАЧИВАЮ")) {
                 System.out.println("Оплачено!!!");
-                new PurchaseServiceImpl().savePurchaseReceipt(receipt);
+                //Serialize and save
+                purchaseService.savePurchaseReceipt(receipt);
+                //Save as text
+                purchaseService.savePurchaseReceiptInTxt(receipt);
                 System.out.println("Чек сохранен!!!");
                 user.getBasket().getProducts().removeAll(user.getBasket().getProducts());
             }
@@ -250,6 +251,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void showReceipts(User user) {
         String myDir = "src/com/teachMeSkills/an15/VorobyovSergey/hwSeven/Task2/purchaseDB";
-        new PurchaseServiceImpl().showUserReceipts(user, myDir);
+        purchaseService.showUserReceipts(user, myDir);
     }
+
+    @Override
+    public void showReceiptsInTxt(User user) {
+        String myDir = "src/com/teachMeSkills/an15/VorobyovSergey/hwSeven/Task2/purchaseDB/ReceiptsInTxt";
+        purchaseService.showUserReceiptsInTxt(user, myDir);
+    }
+
 }
