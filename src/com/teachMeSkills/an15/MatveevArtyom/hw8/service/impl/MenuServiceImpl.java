@@ -22,7 +22,6 @@ public class MenuServiceImpl implements Menu {
             boolean flag = true;
             while (flag) {
                 System.out.println("Введите что вы хотите: \n 1. Регистрация \n 2. Авторизация \n 3. Выйти");
-                System.out.println("Если вы админ, то введите логин и пароль - admin");
                 int choose = new Scanner(System.in).nextInt();
                 switch (choose) {
                     case 1:
@@ -30,12 +29,7 @@ public class MenuServiceImpl implements Menu {
                         break;
                     case 2:
                         authService.login(users);
-                        if (users.containsKey("admin") && users.size() > 1) {
                             break;
-                        } else {
-                            menuAuth(user, users, product, products);
-                        }
-
                     default:
                         System.out.println("Вы вышли из меню!");
                         flag = false;

@@ -9,7 +9,9 @@ import com.teachMeSkills.an15.MatveevArtyom.hw8.service.UserService;
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -166,25 +168,27 @@ public class UserServiceImpl implements UserService {
                 priceService.calculateTotalBasketPrice(user);
                 int discount = priceService.calculateDiscount();
                 double discountWithoutPercents = (double) discount / 100;
+
                 BigDecimal bd = new BigDecimal(discountWithoutPercents).setScale(3, RoundingMode.CEILING);
-                System.out.println("Ваша скидка составляет " + discount + " % и сумма к оплате будет составлять " +
-                        user.getBasket().getTotalPrice().subtract(user.getBasket().getTotalPrice().multiply(bd)));
+                BigDecimal priceWithDiscount = user.getBasket().getTotalPrice().subtract(user.getBasket().getTotalPrice().multiply(bd));
+                System.out.println("Ваша скидка составляет " + discount + " % и сумма к оплате будет составлять " + priceWithDiscount);
                 System.out.println("Если хотите оплатить, то введите - Оплачиваю");
                 String choice = scanner.nextLine();
                 if (choice.equalsIgnoreCase("Оплачиваю")) {
                     System.out.println("Покупка совершена! Чек печатается!");
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss");
                     try {
-                        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream
-                                ("C:\\Users\\tema1\\IdeaProjects\\AN15\\src\\com\\teachMeSkills\\an15\\MatveevArtyom\\hw8\\receipt\\receipt.txt"));
-                        objectOutputStream.writeObject(user);
-                        objectOutputStream.close();
-                        ObjectInputStream objectInputStream = new ObjectInputStream
-                                (new FileInputStream("C:\\Users\\tema1\\IdeaProjects\\AN15\\src\\com\\teachMeSkills\\an15\\MatveevArtyom\\hw8\\receipt\\receipt.txt"));
-                        User newUser = (User) objectInputStream.readObject();
-                        System.out.println("Ваша корзина: \n" + newUser.getBasket());
-                        System.out.println("Ваша цена со скидкой = " +
-                                user.getBasket().getTotalPrice().subtract(user.getBasket().getTotalPrice().multiply(bd)));
-                    } catch (IOException | ClassNotFoundException e) {
+                        BufferedWriter bufferedWriter =
+                                new BufferedWriter(new FileWriter(String.format
+                                        ("src/com/teachMeSkills/an15/MatveevArtyom/hw8/receipt/receipt_%s.txt",
+                                                simpleDateFormat.format(new Date()))));
+                        bufferedWriter.write("Ваша корзина:");
+                        bufferedWriter.write(System.lineSeparator());
+                        bufferedWriter.write(String.valueOf(user.getBasket()));
+                        bufferedWriter.write(System.lineSeparator());
+                        bufferedWriter.write("Цена со скидкой равна " + priceWithDiscount);
+                        bufferedWriter.close();
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                     for (Product productFromBasket : user.getBasket().getProducts()) {
