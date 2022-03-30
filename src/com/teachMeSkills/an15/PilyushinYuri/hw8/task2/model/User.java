@@ -8,6 +8,9 @@ public class User {
     private boolean isHasAdminRole;
     private Basket basket;
 
+    public User() {
+    }
+
     public User(String login, String password, Basket basket) {
         this.login = login;
         this.password = password;
@@ -58,7 +61,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return isHasAdminRole == user.isHasAdminRole && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(basket, user.basket);
+        return Objects.equals(login, user.login) && Objects.equals(password, user.password);
     }
 
     @Override

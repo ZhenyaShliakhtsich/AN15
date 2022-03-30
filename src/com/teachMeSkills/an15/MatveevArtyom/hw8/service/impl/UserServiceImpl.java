@@ -6,9 +6,12 @@ import com.teachMeSkills.an15.MatveevArtyom.hw8.model.User;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.service.PriceService;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.service.UserService;
 
+import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -93,6 +96,7 @@ public class UserServiceImpl implements UserService {
                     if (carChoice.equals(car)) {
                         System.out.println("Введите новую машину");
                         car = scanner.nextLine();
+                        products.get(index).getCarNames().remove(car);
                         break;
                     }
                 }
@@ -164,13 +168,29 @@ public class UserServiceImpl implements UserService {
                 priceService.calculateTotalBasketPrice(user);
                 int discount = priceService.calculateDiscount();
                 double discountWithoutPercents = (double) discount / 100;
+
                 BigDecimal bd = new BigDecimal(discountWithoutPercents).setScale(3, RoundingMode.CEILING);
-                System.out.println("Ваша скидка составляет " + discount + " % и сумма к оплате будет составлять " +
-                        user.getBasket().getTotalPrice().subtract(user.getBasket().getTotalPrice().multiply(bd)));
+                BigDecimal priceWithDiscount = user.getBasket().getTotalPrice().subtract(user.getBasket().getTotalPrice().multiply(bd));
+                System.out.println("Ваша скидка составляет " + discount + " % и сумма к оплате будет составлять " + priceWithDiscount);
                 System.out.println("Если хотите оплатить, то введите - Оплачиваю");
                 String choice = scanner.nextLine();
                 if (choice.equalsIgnoreCase("Оплачиваю")) {
-                    System.out.println("Покупка совершена!");
+                    System.out.println("Покупка совершена! Чек печатается!");
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss");
+                    try {
+                        BufferedWriter bufferedWriter =
+                                new BufferedWriter(new FileWriter(String.format
+                                        ("src/com/teachMeSkills/an15/MatveevArtyom/hw8/receipt/receipt_%s.txt",
+                                                simpleDateFormat.format(new Date()))));
+                        bufferedWriter.write("Ваша корзина:");
+                        bufferedWriter.write(System.lineSeparator());
+                        bufferedWriter.write(String.valueOf(user.getBasket()));
+                        bufferedWriter.write(System.lineSeparator());
+                        bufferedWriter.write("Цена со скидкой равна " + priceWithDiscount);
+                        bufferedWriter.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     for (Product productFromBasket : user.getBasket().getProducts()) {
                         for (Product product : products) {
                             if (productFromBasket.getName().equals(product.getName())) {

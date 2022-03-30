@@ -7,9 +7,9 @@ public enum UserMenuEnum {
     PAY_FOR_BASKET(3),
     RATE_PRODUCT(4),
     COMMENT_PRODUCT(5),
-    SHOW_BASKET (6);
-
-
+    SHOW_BASKET(6),
+    SHOW_RECEIPTS(7),
+    SHOW_RECEIPTS_IN_TXT(8);
 
     int menuItemNumber;
 

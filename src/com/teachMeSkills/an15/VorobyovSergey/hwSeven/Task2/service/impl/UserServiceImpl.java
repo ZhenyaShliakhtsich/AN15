@@ -1,18 +1,24 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl;
 
+import com.teachMeSkills.an15.VorobyovSergey.MyClassLib.OnlyOneDoubleNumberReader;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.OnlyOneNumberReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.ConstVal;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Basket;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.PurchaseReceipt;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.PurchaseService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.UserService;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Scanner;
 
 public class UserServiceImpl implements UserService {
     private Scanner scanner = new Scanner(System.in);
     private OnlyOneNumberReaderService numberReader = new OnlyOneNumberReaderServiceImpl();
+    PurchaseService purchaseService = new PurchaseServiceImpl();
 
     //-------------------This is for admins-----------------------
     @Override
@@ -79,7 +85,9 @@ public class UserServiceImpl implements UserService {
                     break;
                 case "price":
                     System.out.println("Enter price:");
-                    tempProduct.setPrice(new BigDecimal(numberReader.readNumberFromConsole()));
+//                    tempProduct.setPrice(new BigDecimal(numberReader.readNumberFromConsole()));
+                    tempProduct.setPrice(BigDecimal.valueOf(
+                            new BigDecimal(new OnlyOneDoubleNumberReader().readNumberFromConsole()).doubleValue()));
                     break;
                 case "amount":
                     System.out.println("Enter amount:");
@@ -120,6 +128,14 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public void showProducts(HashSet<Product> storage) {
+        System.out.println("Your storage now:");
+        for (Product p : storage) {
+            System.out.println(p);
+        }
+    }
+
 
     //-------------------This is for users-----------------------
     @Override
@@ -143,10 +159,10 @@ public class UserServiceImpl implements UserService {
 
         //Check for null
         if (user.getBasket() != null && user.getBasket().getProducts() != null) {
-            System.out.println("Go to if - check for null");
+            System.out.println("Good!!! Basket and product is not null");
             user.getBasket().getProducts().add(tempProduct);
         } else {
-            System.out.println("Go to else - check for null");
+            System.out.println("Awful!!! Something is null");
             user.setBasket(new Basket());
             user.getBasket().setProducts(new HashSet<>());
             user.getBasket().getProducts().add(tempProduct);
@@ -157,12 +173,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public void payForBasket(User user) {
         //Calculate price
-        new PriceAndDiscountServiceImpl().calculateTotalBasketPrice(user);
-        //Try to pay for basket
-        System.out.println("Введи ОПЛАЧИВАЮ если хочешь оплатить корзину");
-        if (scanner.nextLine().equalsIgnoreCase("ОПЛАЧИВАЮ")) {
-            System.out.println("Оплачено!!!");
-            user.getBasket().getProducts().removeAll(user.getBasket().getProducts());
+        if (user.getBasket().getProducts() != null) {
+            PriceAndDiscountServiceImpl service = new PriceAndDiscountServiceImpl();
+            PurchaseReceipt receipt = service.calculateTotalBasketPrice(user);
+            //Try to pay for basket
+            System.out.println("Введи ОПЛАЧИВАЮ если хочешь оплатить корзину");
+            if (scanner.nextLine().equalsIgnoreCase("ОПЛАЧИВАЮ")) {
+                System.out.println("Оплачено!!!");
+                //Serialize and save
+                purchaseService.savePurchaseReceipt(receipt);
+                //Save as text
+                purchaseService.savePurchaseReceiptInTxt(receipt);
+                System.out.println("Чек сохранен!!!");
+                user.getBasket().getProducts().removeAll(user.getBasket().getProducts());
+            }
+        } else {
+            System.out.println("Basket is empty");
         }
     }
 
@@ -175,6 +201,7 @@ public class UserServiceImpl implements UserService {
             for (Product p : user.getBasket().getProducts()) {
                 if (p.getName().equals(productToDell)) {
                     user.getBasket().getProducts().remove(p);
+                    System.out.println("Removed product - " + p);
                     break;
                 }
             }
@@ -234,4 +261,17 @@ public class UserServiceImpl implements UserService {
             return false;
         }
     }
+
+    @Override
+    public void showReceipts(User user) {
+        String myDir = ConstVal.PATH_TO_RECEIPT_SERIALIZED;
+        purchaseService.showUserReceipts(user, myDir);
+    }
+
+    @Override
+    public void showReceiptsInTxt(User user) {
+        String myDir = ConstVal.PATH_TO_RECEIPT_TXT;
+        purchaseService.showUserReceiptsInTxt(user, myDir);
+    }
+
 }

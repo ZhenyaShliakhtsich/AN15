@@ -59,8 +59,20 @@ public class MenuServiceUserImpl implements MenuService {
                 service.showBasket(user);
                 createMenu(user, storage);
                 break;
+            case 7:
+                System.out.println("YOUR_RECEIPTS");
+                service.showReceipts(user);
+                createMenu(user, storage);
+                break;
+            case 8:
+                System.out.println("YOUR_RECEIPTS_IN_TXT");
+                service.showReceiptsInTxt(user);
+                createMenu(user, storage);
+                break;
             default:
-                System.out.println("The End. Logout");
+//                System.out.println("The End. Logout");
+                System.out.println("Ты не попал по нужной цифре. Попробуй еще раз");
+                createMenu(user, storage);
                 break;
         }
 
