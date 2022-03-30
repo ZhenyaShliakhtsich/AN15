@@ -11,7 +11,8 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.PurchaseServi
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.UserService;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Scanner;
 
 public class UserServiceImpl implements UserService {
     private Scanner scanner = new Scanner(System.in);
@@ -121,6 +122,14 @@ public class UserServiceImpl implements UserService {
                 storage.remove(p);
                 break;
             }
+        }
+    }
+
+    @Override
+    public void showProducts(HashSet<Product> storage) {
+        System.out.println("Your storage now:");
+        for (Product p : storage) {
+            System.out.println(p);
         }
     }
 

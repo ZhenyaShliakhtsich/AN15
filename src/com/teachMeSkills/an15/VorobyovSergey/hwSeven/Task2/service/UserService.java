@@ -15,6 +15,8 @@ public interface UserService {
 
     void deleteProduct(HashSet<Product> storage);
 
+    void showProducts (HashSet<Product> storage);
+
     //Methods for other Users
     User addProductToBasket(User user, HashSet<Product> storage);
 
