@@ -45,8 +45,15 @@ public class MenuServiceAdminImpl implements MenuService {
                 service.changeProduct(storage);
                 createMenu(user, storage);
                 break;
+            case 4:
+                System.out.println("NOW SHOW_PRODUCTS ");
+                service.showProducts(storage);
+                createMenu(user, storage);
+                break;
             default:
-                System.out.println("The End. Logout");
+//                System.out.println("The End. Logout");
+                System.out.println("Ты не попал по нужной цифре. Попробуй еще раз");
+                createMenu(user, storage);
                 break;
         }
 
