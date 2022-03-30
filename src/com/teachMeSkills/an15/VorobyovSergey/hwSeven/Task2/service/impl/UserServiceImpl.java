@@ -1,5 +1,6 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl;
 
+import com.teachMeSkills.an15.VorobyovSergey.MyClassLib.OnlyOneBigDecimalReader;
 import com.teachMeSkills.an15.VorobyovSergey.MyClassLib.OnlyOneDoubleNumberReader;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.OnlyOneNumberReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
@@ -86,8 +87,9 @@ public class UserServiceImpl implements UserService {
                 case "price":
                     System.out.println("Enter price:");
 //                    tempProduct.setPrice(new BigDecimal(numberReader.readNumberFromConsole()));
-                    tempProduct.setPrice(BigDecimal.valueOf(
-                            new BigDecimal(new OnlyOneDoubleNumberReader().readNumberFromConsole()).doubleValue()));
+//                    tempProduct.setPrice(BigDecimal.valueOf(
+//                            new BigDecimal(new OnlyOneDoubleNumberReader().readNumberFromConsole()).doubleValue()));
+                    tempProduct.setPrice(new OnlyOneBigDecimalReader().readNumberFromConsole());
                     break;
                 case "amount":
                     System.out.println("Enter amount:");
