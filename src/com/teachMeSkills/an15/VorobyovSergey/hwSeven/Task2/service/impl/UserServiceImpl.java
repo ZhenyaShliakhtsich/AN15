@@ -86,7 +86,8 @@ public class UserServiceImpl implements UserService {
                 case "price":
                     System.out.println("Enter price:");
 //                    tempProduct.setPrice(new BigDecimal(numberReader.readNumberFromConsole()));
-                    tempProduct.setPrice(new BigDecimal(new OnlyOneDoubleNumberReader().readNumberFromConsole()));
+                    tempProduct.setPrice(BigDecimal.valueOf(
+                            new BigDecimal(new OnlyOneDoubleNumberReader().readNumberFromConsole()).doubleValue()));
                     break;
                 case "amount":
                     System.out.println("Enter amount:");
