@@ -25,7 +25,10 @@ public class Main {
                 }
             }
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(String.format("src/com/teachMeSkills/an15/LashkevichGeorgy/hw8/HandFile_%s.txt", simpleDateFormat.format(new Date()))));
-            bufferedWriter.write(finalText.toString());
+            for (int i = 0; i < finalText.size(); i++) {
+                bufferedWriter.write(finalText.get(i));
+                bufferedWriter.write(" ");
+            }
             bufferedWriter.close();
 
         } catch (FileNotFoundException e) {
