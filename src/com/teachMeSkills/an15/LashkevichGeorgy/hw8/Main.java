@@ -20,11 +20,12 @@ public class Main {
                     "src/com/teachMeSkills/an15/LashkevichGeorgy/hw8/HandFile.txt"));
             text = bufferedReader.readLine().split(" ");
             for (int i = 0; i < text.length; i++) {
-                if (text[i].length() > 3) {
+                if (text[i].length() <= 3) {
                     finalText.add(text[i]);
                 }
             }
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(String.format("src/com/teachMeSkills/an15/LashkevichGeorgy/hw8/HandFile_%s.txt", simpleDateFormat.format(new Date()))));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(String.format("src/com/teachMeSkills/an15/LashkevichGeorgy/hw8/HandFile_%s.txt",
+                    simpleDateFormat.format(new Date()))));
             for (int i = 0; i < finalText.size(); i++) {
                 bufferedWriter.write(finalText.get(i));
                 bufferedWriter.write(" ");
