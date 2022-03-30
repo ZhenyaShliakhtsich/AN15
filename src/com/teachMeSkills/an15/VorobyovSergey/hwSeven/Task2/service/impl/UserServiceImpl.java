@@ -1,5 +1,6 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl;
 
+import com.teachMeSkills.an15.VorobyovSergey.MyClassLib.OnlyOneDoubleNumberReader;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.OnlyOneNumberReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.ConstVal;
@@ -84,7 +85,8 @@ public class UserServiceImpl implements UserService {
                     break;
                 case "price":
                     System.out.println("Enter price:");
-                    tempProduct.setPrice(new BigDecimal(numberReader.readNumberFromConsole()));
+//                    tempProduct.setPrice(new BigDecimal(numberReader.readNumberFromConsole()));
+                    tempProduct.setPrice(new BigDecimal(new OnlyOneDoubleNumberReader().readNumberFromConsole()));
                     break;
                 case "amount":
                     System.out.println("Enter amount:");
@@ -198,6 +200,7 @@ public class UserServiceImpl implements UserService {
             for (Product p : user.getBasket().getProducts()) {
                 if (p.getName().equals(productToDell)) {
                     user.getBasket().getProducts().remove(p);
+                    System.out.println("Removed product - " + p);
                     break;
                 }
             }
