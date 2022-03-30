@@ -11,26 +11,32 @@ import java.util.Random;
 public class PriceAndDiscountServiceImpl implements PriceServiceAndDiscount {
     @Override
     public PurchaseReceipt calculateTotalBasketPrice(User user) {
+        BigDecimal price = new BigDecimal(0);
         BigDecimal totalPrice = new BigDecimal(0);
 
         //Accumulate all basket prices;
         for (Product p : user.getBasket().getProducts()) {
-            totalPrice = totalPrice.add(p.getPrice());
+            //Бывало что сюда прилетал null продукт
+            if (p != null) {
+                price = price.add(p.getPrice());
+            }
         }
-        System.out.println("Your total price is: " + totalPrice);
+        System.out.println("Your price is: " + price);
 
         int discount = calculateDiscount();
         System.out.println("Your discout is: "
                 + discount + "%");
 
-        totalPrice = totalPrice.multiply(BigDecimal.valueOf(100 - discount)).multiply(BigDecimal.valueOf(0.01));
-        System.out.println("Your final price is:" + totalPrice);
+        totalPrice = price.multiply(BigDecimal.valueOf(100 - discount)).multiply(BigDecimal.valueOf(0.01));
+        System.out.println("Your total price is:" + totalPrice);
 
         //Create purchase receipt
         PurchaseReceipt receipt = new PurchaseReceipt();
         receipt.setDiscount(discount);
         receipt.setCustomerBasket(user.getBasket());
         receipt.setCustomerName(user.getLogin());
+        receipt.setPrice(price);
+        receipt.setTotalPrice(totalPrice);
         return receipt;
     }
 

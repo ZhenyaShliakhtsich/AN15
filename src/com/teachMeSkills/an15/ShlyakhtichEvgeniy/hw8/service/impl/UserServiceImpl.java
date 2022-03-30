@@ -72,35 +72,59 @@ public class UserServiceImpl implements UserService {
         while (!stop) {
             System.out.println("Че хочешь изменить?(Название/Цена/Количество/Машины");
             String choice = scanner.nextLine();
-            if (choice.equalsIgnoreCase("Название")) {
-                System.out.println("Введите новое название");
-                products.get(index).setName(scanner.nextLine());
-                stop = true;
-            } else if (choice.equalsIgnoreCase("Цена")) {
-                System.out.println("Введите новую цену");
-                products.get(index).setPrice(scanner.nextBigDecimal());
-                stop = true;
-            } else if (choice.equalsIgnoreCase("Количество")) {
-                System.out.println("Введите новое количество");
-                products.get(index).setAmount(scanner.nextInt());
-                stop = true;
-            } else if (choice.equalsIgnoreCase("Машины")) {
-                System.out.println(products.get(index).getCarNames() + "\nВыберите машину,которую вы хотите изменить");
-                String carChoice = scanner.nextLine();
-                for (String car : products.get(index).getCarNames()) {
-                    if (carChoice.equals(car)) {
-                        System.out.println("Хотите заменить или удалить");
-                        choice = scanner.nextLine();
-                        if (choice.equalsIgnoreCase("Заменить")) {
-                            System.out.println("Введите изменения");
-                            car = scanner.nextLine();
-                        } else if (choice.equalsIgnoreCase("Удалить")) {
-                            products.get(index).getCarNames().remove(car);
+            try {
+                if (choice.equalsIgnoreCase("Название")) {
+                    System.out.println("Введите новое название");
+                    products.get(index).setName(scanner.nextLine());
+                    stop = true;
+                } else if (choice.equalsIgnoreCase("Цена")) {
+                    System.out.println("Введите новую цену");
+                    BigDecimal price = scanner.nextBigDecimal();
+                    if(price.compareTo(new BigDecimal(0))  == 1) {
+                        products.get(index).setPrice(price);
+                    }else {
+                        System.out.println("Цена не может быть отрицательной");
+                        changeProduct(products);
+                    }
+                    stop = true;
+                } else if (choice.equalsIgnoreCase("Количество")) {
+                    System.out.println("Введите новое количество");
+                    int amount = scanner.nextInt();
+                    if(amount > 0) {
+                        products.get(index).setAmount(amount);
+                    }else {
+                        System.out.println("Количество не может быть отрицательным");
+                        changeProduct(products);
+                    }
+                    stop = true;
+                } else if (choice.equalsIgnoreCase("Машины")) {
+                    System.out.println("Хотите добавить или изменить текущую?");
+                    String carChoice = scanner.nextLine();
+                    if (carChoice.equalsIgnoreCase("Добавить")) {
+                        System.out.println("Введите новую машину");
+                        String car = scanner.nextLine();
+                        products.get(index).getCarNames().add(car);
+                    } else if (carChoice.equalsIgnoreCase("Изменить")) {
+                        System.out.println(products.get(index).getCarNames() + "\nВыберите машину,которую вы хотите изменить");
+                        String choiceOfCar = scanner.nextLine();
+                        for (String car : products.get(index).getCarNames()) {
+                            if (choiceOfCar.equals(car)) {
+                                System.out.println("Хотите заменить или удалить");
+                                choice = scanner.nextLine();
+                                if (choice.equalsIgnoreCase("Заменить")) {
+                                    System.out.println("Введите изменения");
+                                    car = scanner.nextLine();
+                                } else if (choice.equalsIgnoreCase("Удалить")) {
+                                    products.get(index).getCarNames().remove(car);
+                                }
+                            }
                         }
                     }
-                }
-            }
 
+                }
+            } catch (InputMismatchException e) {
+                changeProduct(products);
+            }
         }
     }
 
@@ -130,7 +154,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addProductToBasket(User user, Product product) {
-        if (product.getAmount() > 0) {
+        int countOfProduct = 0;
+        for (Product productInBasket : user.getBasket().getProducts()){
+            if (product.getName().equals(productInBasket.getName())){
+                countOfProduct++;
+            }
+        }
+        if (product.getAmount() > 0 && countOfProduct < product.getAmount()) {
             user.getBasket().getProducts().add(product);
             System.out.println("Продукт был добавлен в корзину");
         } else {
@@ -141,21 +171,32 @@ public class UserServiceImpl implements UserService {
     @Override
     public void payForBasket(User user, ArrayList<Product> products) {
         PriceServiceImpl priceService = new PriceServiceImpl();
-        System.out.println("Цена на скидкой : " + priceService.calculateTotalBasketPrice(user));
+        System.out.println("Цена : " + priceService.calculateTotalBasketPrice(user)
+        + "\nСкидка : " + priceService.calculateDiscount()
+                + "\nЦена со скидкой : " + priceService.calculateTotalBasketPriceWithDiscount(user));
         System.out.println("Введите \"Оплачиваю\" чтобы оплатить");
         String payment = scanner.nextLine();
         if (payment.equals("Оплачиваю")) {
             System.out.println("Товары оплачены");
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd-HH.mm");
+            Date date = new Date();
             try {
                 BufferedWriter bufferedWriter = new BufferedWriter(
-                        new FileWriter("src/com/teachMeSkills/an15/ShlyakhtichEvgeniy/hw8/receipt.txt"));
-                        bufferedWriter.write(simpleDateFormat.format(new Date()));
-                        bufferedWriter.write(String.valueOf(priceService.calculateTotalBasketPrice(user)));
+                        new FileWriter(String.format("src/com/teachMeSkills/an15/ShlyakhtichEvgeniy/hw8/receipt_%s.txt",
+                                simpleDateFormat.format(date))));
+                        bufferedWriter.write(simpleDateFormat.format(date));
+                        bufferedWriter.newLine();
                         for(Product product : user.getBasket().getProducts()){
                             bufferedWriter.write(product.getName());
+                            bufferedWriter.write(" - ");
                             bufferedWriter.write(String.valueOf(product.getPrice()));
+                            bufferedWriter.newLine();
                         }
+                        bufferedWriter.write("Цена : " + priceService.calculateTotalBasketPrice(user));
+                        bufferedWriter.newLine();
+                        bufferedWriter.write("Скидка : " + priceService.calculateDiscountPrice(user));
+                        bufferedWriter.newLine();
+                        bufferedWriter.write("Цена со скидкой : " + priceService.calculateTotalBasketPriceWithDiscount(user));
                         bufferedWriter.close();
 
             } catch (IOException e) {
@@ -168,25 +209,29 @@ public class UserServiceImpl implements UserService {
                     }
                 }
             }
+           user.getBasket().setProducts(new ArrayList<Product>());
+
         }
     }
 
     @Override
     public void deleteProductFromBasket(User user) {
         System.out.println("Выберите продукт,который хотите удалить из корзины");
-        for (int i = 0; i < user.getBasket().getProducts().size(); i++) {
-            System.out.println(user.getBasket().getProducts().get(i).getName());
+        for (Product product : user.getBasket().getProducts()) {
+            System.out.println(product.getName());
         }
         String choice = scanner.nextLine();
-        int size = user.getBasket().getProducts().size();
-        for (Product product : user.getBasket().getProducts()) {
-            if (product.getName().equalsIgnoreCase(choice)) {
-                user.getBasket().getProducts().remove(product);
-                System.out.println("Продукт был удалён");
+        int index = -1;
+        for (int i = 0; i < user.getBasket().getProducts().size(); i++) {
+            if (user.getBasket().getProducts().get(i).getName().equalsIgnoreCase(choice)){
+                index = i;
+                break;
             }
         }
-        if (user.getBasket().getProducts().size() == size) {
-            System.out.println("Такого продукта нет");
+        if (index == -1) {
+            deleteProductFromBasket(user);
+        } else {
+            user.getBasket().getProducts().remove(user.getBasket().getProducts().get(index));
         }
     }
 

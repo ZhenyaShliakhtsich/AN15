@@ -40,7 +40,7 @@ public class MenuServiceImpl implements MenuService {
                    authMenu(user, products, users);
                    break;
                case 5:
-                   break;
+                   System.exit(0);
                default:
                    adminMenu(user, products, users);
            }
@@ -85,17 +85,22 @@ public class MenuServiceImpl implements MenuService {
     }
 
     public void userMenu(User user, HashMap<String, User> users, ArrayList<Product> products) {
-        System.out.println("1.Поиск продуктов\n2.Выбор продукта\n3.Корзина\n4.Выйти из пользователя" +
-                "\n5.Выйти из программы");
+        System.out.println("1.Список продуктов\n2.Поиск продуктов\n3.Выбор продукта\n4.Корзина\n5.Выйти из пользователя" +
+                "\n6.Выйти из программы");
         try {
             Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
+                    for(Product product: products){
+                        System.out.println(product.toString());
+                    }
+                   userMenu(user, users, products);
+                case 2:
                     userService.searchForProducts(products);
                     userMenu(user, users, products);
                     break;
-                case 2:
+                case 3:
                     Product currentProduct;
                     currentProduct = userService.chooseProduct(products);
                     if (currentProduct == null) {
@@ -106,15 +111,15 @@ public class MenuServiceImpl implements MenuService {
                         userMenu(user, users, products);
                     }
                     break;
-                case 3:
+                case 4:
                     basketMenu(user, users, products);
                     userMenu(user, users, products);
                     break;
-                case 4:
+                case 5:
                     authMenu(user, products, users);
                     break;
-                case 5:
-                    break;
+                case 6:
+                    System.exit(0);
                 default:
                     userMenu(user, users, products);
             }
