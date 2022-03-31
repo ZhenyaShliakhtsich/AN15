@@ -23,11 +23,12 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         MenuService menuService = new MenuServiceImpl();
-        // User user = new User("admin","admin",true,new Basket());
-        User user = new User();
+        User admin = new User("admin","admin",new Basket());
+        admin.setHasAdminRole(true);
+        User user = new User("Login","password",new Basket());
         HashMap<String,User> users = new HashMap<>();
-        users.put("admin",user);
-        users.put("1",user);
+        users.put(admin.getLogin(), admin);
+        users.put(user.getLogin(), user);
         ArrayList<Product>products = new ArrayList<>();
         HashSet<String>carNames = new HashSet<>();
         carNames.add("BMW");

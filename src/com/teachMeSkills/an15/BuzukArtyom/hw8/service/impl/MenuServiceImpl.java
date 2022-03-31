@@ -27,28 +27,18 @@ public class MenuServiceImpl implements MenuService {
                         authService.registration(users);
                         break;
                     case 2:
-                        authService.login(users);
-                        if (users.containsKey("admin")) {
-                            break;
-                        } else {
+                        User adminOrNot = authService.login(users);
+                        if (adminOrNot == null) {
                             menuAuth(user, users, product, products);
+                        } else if (adminOrNot.isHasAdminRole()) {
+                            menuAdmin(user, users, product, products);
+                        } else {
+                            menuUser(user, users, product, products);
                         }
                     default:
                         System.out.println("До встречи!");
                         flag = false;
                         break;
-                }
-                if (flag) {
-                    if (users.containsKey("admin") && users.size() == 1) {
-                        user.setHasAdminRole(true);
-                    } else {
-                        user.setHasAdminRole(false);
-                    }
-                    if (user.isHasAdminRole()) {
-                        menuAdmin(user, users, product, products);
-                    } else {
-                        menuUser(user, users, product, products);
-                    }
                 }
             }
         } catch (Exception e) {
