@@ -21,17 +21,14 @@ public class AuthServiceImpl implements AuthService {
         if (users.containsKey(enteredUser.getLogin())) {
             if (users.get(enteredUser.getLogin()).getPassword().equals(enteredUser.getPassword())) {
                 System.out.println("Ты авторизирован");
-                users.put(login, enteredUser);
+                users.put(enteredUser.getLogin(), enteredUser);
                 return users.get(enteredUser.getLogin());
             } else {
                 System.out.println("Логин или пароль неверные, попробуйте ещё раз!");
                 login(users);
             }
-        } else {
-            System.out.println("Логин или пароль неверные, попробуйте ещё раз!");
-            login(users);
         }
-        return null;
+        return login(users);
     }
 
 
@@ -48,6 +45,5 @@ public class AuthServiceImpl implements AuthService {
         user.getBasket().setProducts(products);
         users.put(user.getLogin(), user);
         System.out.println("Ты зарегистрирован! Авторизируйся!");
-
     }
 }

@@ -1,5 +1,6 @@
 package com.teachMeSkills.an15.BuzukArtyom.hw8;
 
+import com.teachMeSkills.an15.BuzukArtyom.hw8.model.Basket;
 import com.teachMeSkills.an15.BuzukArtyom.hw8.model.Product;
 import com.teachMeSkills.an15.BuzukArtyom.hw8.model.User;
 import com.teachMeSkills.an15.BuzukArtyom.hw8.service.MenuService;
@@ -9,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
+import java.util.Map;
 
 //Разработать консольное приложение при запуске которого просят авторизировать пользователя.
 //Если залогиниться как админ, то можно добавлять, удалять, изменять информацию об автозапчасти.
@@ -22,9 +23,11 @@ import java.util.HashSet;
 public class Main {
     public static void main(String[] args) {
         MenuService menuService = new MenuServiceImpl();
-        User user = new User("admin","admin");
+        // User user = new User("admin","admin",true,new Basket());
+        User user = new User();
         HashMap<String,User> users = new HashMap<>();
         users.put("admin",user);
+        users.put("1",user);
         ArrayList<Product>products = new ArrayList<>();
         HashSet<String>carNames = new HashSet<>();
         carNames.add("BMW");
@@ -33,7 +36,7 @@ public class Main {
         Product product = new Product("Maslo",bigDecimal,3,"Дорогое масло",carNames);
         HashSet<String>carNames1 = new HashSet<>();
         carNames1.add("Lada");
-        BigDecimal bigDecimal1 = new BigDecimal(21.32);
+        BigDecimal bigDecimal1 = new BigDecimal(210);
         Product product1 = new Product("Magnitola",bigDecimal1,5,"Магнитола топовая",carNames1);
         products.add(product);
         products.add(product1);

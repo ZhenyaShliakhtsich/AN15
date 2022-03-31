@@ -8,6 +8,13 @@ public class User {
     private boolean isHasAdminRole;
     private Basket basket;
 
+    public User(String login, String password, boolean isHasAdminRole, Basket basket) {
+        this.login = login;
+        this.password = password;
+        this.isHasAdminRole = isHasAdminRole;
+        this.basket = basket;
+    }
+
     public User(String login, String password, Basket basket) {
         this.login = login;
         this.password = password;
