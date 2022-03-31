@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import static com.teachMeSkills.an15.BuzukArtyom.hw8.DataBase.USERS;
+
 //Разработать консольное приложение при запуске которого просят авторизировать пользователя.
 //Если залогиниться как админ, то можно добавлять, удалять, изменять информацию об автозапчасти.
 //Если логиниться как пользователь, то появляется доступ поиска по названию его машины
@@ -23,24 +25,29 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         MenuService menuService = new MenuServiceImpl();
-        User admin = new User("admin","admin",new Basket());
+        HashMap<String, User> users = new HashMap<>();
+        ArrayList<Product> products = new ArrayList<>();
+        defaultInitialization(users, products);
+        menuService.menuAuth();
+    }
+
+    public static void defaultInitialization(HashMap<String, User> users, ArrayList<Product> products) {
+        User admin = new User("admin", "admin", new Basket());
         admin.setHasAdminRole(true);
-        User user = new User("Login","password",new Basket());
-        HashMap<String,User> users = new HashMap<>();
+        User user = new User("Login", "password", new Basket());
         users.put(admin.getLogin(), admin);
         users.put(user.getLogin(), user);
-        ArrayList<Product>products = new ArrayList<>();
-        HashSet<String>carNames = new HashSet<>();
-        carNames.add("BMW");
-        carNames.add("Audi");
-        BigDecimal bigDecimal = new BigDecimal(100);
-        Product product = new Product("Maslo",bigDecimal,3,"Дорогое масло",carNames);
-        HashSet<String>carNames1 = new HashSet<>();
-        carNames1.add("Lada");
+        HashSet<String> oilCarNames = new HashSet<>();
+        oilCarNames.add("BMW");
+        oilCarNames.add("Audi");
+
+
+        Product oil = new Product("Maslo", new BigDecimal(100), 3, "Дорогое масло", oilCarNames);
+        HashSet<String> cdChangerCarNames = new HashSet<>();
+        cdChangerCarNames.add("Lada");
         BigDecimal bigDecimal1 = new BigDecimal(210);
-        Product product1 = new Product("Magnitola",bigDecimal1,5,"Магнитола топовая",carNames1);
-        products.add(product);
-        products.add(product1);
-        menuService.menuAuth(user,users,product,products);
+        Product cdChanger = new Product("Magnitola", bigDecimal1, 5, "Магнитола топовая", cdChangerCarNames);
+        products.add(oil);
+        products.add(cdChanger);
     }
 }

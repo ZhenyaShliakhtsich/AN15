@@ -9,26 +9,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static com.teachMeSkills.an15.BuzukArtyom.hw8.DataBase.USERS;
+
 public class AuthServiceImpl implements AuthService {
+    Scanner scanner = new Scanner(System.in);
+    User user = null;
+
     @Override
-    public User login(HashMap<String, User> users) {
+    public User login() {
         System.out.println("Введите логин:");
-        Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
         System.out.println("Введите пароль:");
         String password = scanner.nextLine();
         User enteredUser = new User(login, password);
-        if (users.containsKey(enteredUser.getLogin())) {
-            if (users.get(enteredUser.getLogin()).getPassword().equals(enteredUser.getPassword())) {
+        if (USERS.containsKey(enteredUser.getLogin())) {
+            if (USERS.get(enteredUser.getLogin()).getPassword().equals(enteredUser.getPassword())) {
                 System.out.println("Ты авторизирован");
-                users.put(enteredUser.getLogin(), enteredUser);
-                return users.get(enteredUser.getLogin());
+                user = USERS.get(enteredUser.getLogin());
             } else {
                 System.out.println("Логин или пароль неверные, попробуйте ещё раз!");
-                login(users);
+                login();
             }
         }
-        return login(users);
+        return user;
     }
 
 

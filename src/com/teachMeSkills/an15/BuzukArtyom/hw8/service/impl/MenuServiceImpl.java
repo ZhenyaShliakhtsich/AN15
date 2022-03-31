@@ -11,12 +11,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static com.teachMeSkills.an15.BuzukArtyom.hw8.DataBase.PRODUCTS;
+import static com.teachMeSkills.an15.BuzukArtyom.hw8.DataBase.USERS;
+
 public class MenuServiceImpl implements MenuService {
     AuthService authService = new AuthServiceImpl();
     UserService userService = new UserServiceImpl();
 
     @Override
-    public void menuAuth(User user, HashMap<String, User> users, Product product, ArrayList<Product> products) {
+    public void menuAuth() {
         try {
             boolean flag = true;
             while (flag) {
@@ -24,16 +27,16 @@ public class MenuServiceImpl implements MenuService {
                 int choose = new Scanner(System.in).nextInt();
                 switch (choose) {
                     case 1:
-                        authService.registration(users);
+                        authService.registration(USERS);
                         break;
                     case 2:
-                        User adminOrNot = authService.login(users);
-                        if (adminOrNot == null) {
-                            menuAuth(user, users, product, products);
-                        } else if (adminOrNot.isHasAdminRole()) {
-                            menuAdmin(user, users, product, products);
+                        User authUser = authService.login();
+                        if (authUser == null) {
+                            menuAuth();
+                        } else if (authUser.isHasAdminRole()) {
+                            menuAdmin();
                         } else {
-                            menuUser(user, users, product, products);
+                            menuUser(authUser);
                         }
                     default:
                         System.out.println("До встречи!");
@@ -43,12 +46,12 @@ public class MenuServiceImpl implements MenuService {
             }
         } catch (Exception e) {
             System.out.println("Введите цифру!!!");
-            menuAuth(user, users, product, products);
+            menuAuth();
         }
     }
 
     @Override
-    public void menuAdmin(User user, HashMap<String, User> users, Product product, ArrayList<Product> products) {
+    public void menuAdmin() {
         try {
             System.out.println("""
                     Меню Админа:\s
@@ -59,20 +62,20 @@ public class MenuServiceImpl implements MenuService {
             while (true) {
                 int choose = new Scanner(System.in).nextInt();
                 switch (choose) {
-                    case 1 -> userService.addProduct(products);
-                    case 2 -> userService.deleteProduct(products);
-                    case 3 -> userService.changeProduct(products);
-                    default -> menuAuth(user, users, product, products);
+                    case 1 -> userService.addProduct(PRODUCTS);
+                    case 2 -> userService.deleteProduct(PRODUCTS);
+                    case 3 -> userService.changeProduct(PRODUCTS);
+                    default -> menuAuth();
                 }
             }
         } catch (Exception e) {
             System.out.println("Введите цифру!!!");
-            menuAdmin(user, users, product, products);
+            menuAdmin();
         }
     }
 
     @Override
-    public void menuUser(User user, HashMap<String, User> users, Product product, ArrayList<Product> products) {
+    public void menuUser(User user) {
         try {
             while (true) {
                 System.out.println("""
@@ -86,20 +89,20 @@ public class MenuServiceImpl implements MenuService {
                 int choose = new Scanner(System.in).nextInt();
                 switch (choose) {
                     case 1 -> {
-                        userService.addProductToBasket(user, products);
+                        userService.addProductToBasket(user, PRODUCTS);
                         break;
                     }
                     case 2 -> userService.deleteProductFromBasket(user);
-                    case 3 -> userService.commentProduct(products);
-                    case 4 -> userService.rateProduct(products);
+                    case 3 -> userService.commentProduct(PRODUCTS);
+                    case 4 -> userService.rateProduct(PRODUCTS);
                     case 5 -> userService.payForBasket(user);
-                    case 6 -> menuAuth(user, users, product, products);
-                    default -> menuUser(user, users, product, products);
+                    case 6 -> menuAuth();
+                    default -> menuUser(user);
                 }
             }
         } catch (Exception e) {
             System.out.println("Введите цифру!!!");
-            menuUser(user, users, product, products);
+            menuUser(user);
         }
     }
 }
