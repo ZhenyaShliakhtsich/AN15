@@ -1,7 +1,7 @@
 package com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.impl;
 
-import Task2.model.User;
-import Task2.service.AuthService;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.model.User;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.AuthService;
 
 import java.util.HashMap;
 import java.util.Scanner;

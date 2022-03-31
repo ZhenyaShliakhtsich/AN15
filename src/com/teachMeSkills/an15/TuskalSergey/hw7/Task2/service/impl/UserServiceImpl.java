@@ -1,11 +1,11 @@
 package com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.impl;
 
-import Task2.model.Basket;
-import Task2.model.Product;
-import Task2.model.User;
-import Task2.service.PriceService;
-import Task2.service.RateService;
-import Task2.service.UserService;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.model.Basket;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.model.Product;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.model.User;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.PriceService;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.RateService;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.UserService;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

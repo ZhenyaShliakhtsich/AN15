@@ -1,9 +1,9 @@
 package com.teachMeSkills.an15.TuskalSergey.hw7.Task2;
 
-import Task2.model.Product;
-import Task2.model.User;
-import Task2.service.MenuService;
-import Task2.service.impl.MenuServiceImpl;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.model.Product;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.model.User;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.MenuService;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.impl.MenuServiceImpl;
 
 import java.io.IOException;
 import java.math.BigDecimal;

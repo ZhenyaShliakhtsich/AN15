@@ -1,10 +1,10 @@
 package com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.impl;
 
-import Task2.model.Product;
-import Task2.model.User;
-import Task2.service.AuthService;
-import Task2.service.MenuService;
-import Task2.service.UserService;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.model.Product;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.model.User;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.AuthService;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.MenuService;
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.UserService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
