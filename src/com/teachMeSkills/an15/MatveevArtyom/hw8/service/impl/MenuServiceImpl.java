@@ -6,10 +6,11 @@ import com.teachMeSkills.an15.MatveevArtyom.hw8.service.AuthService;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.service.Menu;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.service.UserService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import static com.teachMeSkills.an15.MatveevArtyom.hw8.DataBase.PRODUCTS;
+import static com.teachMeSkills.an15.MatveevArtyom.hw8.DataBase.USERS;
 
 public class MenuServiceImpl implements Menu {
 
@@ -17,7 +18,7 @@ public class MenuServiceImpl implements Menu {
     AuthService authService = new AuthServiceImpl();
 
     @Override
-    public void menuAuth(User user, HashMap<String, User> users, Product product, ArrayList<Product> products) {
+    public void menuAuth(User user, Product product) {
         try {
             boolean flag = true;
             while (flag) {
@@ -25,36 +26,38 @@ public class MenuServiceImpl implements Menu {
                 int choose = new Scanner(System.in).nextInt();
                 switch (choose) {
                     case 1:
-                        authService.registration(users);
+                        authService.registration(USERS);
                         break;
                     case 2:
-                        authService.login(users);
-                            break;
+                        User authUser = authService.login();
+                        if (authUser == null)
+                            authService.login();
+                        break;
                     default:
                         System.out.println("Вы вышли из меню!");
                         flag = false;
                 }
                 if (flag) {
-                    if (users.containsKey("admin") && users.size() == 1) {
+                    if (USERS.containsKey("admin") && USERS.size() == 1) {
                         user.setHasAdminRole(true);
                     } else {
                         user.setHasAdminRole(false);
                     }
                     if (user.isHasAdminRole()) {
-                        menuAdmin(user, users, product, products);
+                        menuAdmin();
                     } else {
-                        menuUser(user, users, product, products);
+                        menuUser(user, product);
                     }
                 }
             }
         } catch (InputMismatchException e) {
             System.out.println("Введите цифру!");
-            menuAuth(user, users, product, products);
+            menuAuth(user, product);
         }
     }
 
     @Override
-    public void menuAdmin(User user, HashMap<String, User> users, Product product, ArrayList<Product> products) {
+    public void menuAdmin() {
         try {
             boolean flag = true;
             while (flag) {
@@ -63,13 +66,13 @@ public class MenuServiceImpl implements Menu {
                 int choose = new Scanner(System.in).nextInt();
                 switch (choose) {
                     case 1:
-                        userService.addProduct(products);
+                        userService.addProduct(PRODUCTS);
                         break;
                     case 2:
-                        userService.deleteProduct(products);
+                        userService.deleteProduct(PRODUCTS);
                         break;
                     case 3:
-                        userService.changeProduct(products);
+                        userService.changeProduct(PRODUCTS);
                         break;
                     default:
                         flag = false;
@@ -77,12 +80,12 @@ public class MenuServiceImpl implements Menu {
             }
         } catch (InputMismatchException e) {
             System.out.println("Введите цифру!");
-            menuAdmin(user, users, product, products);
+            menuAdmin();
         }
     }
 
     @Override
-    public void menuUser(User user, HashMap<String, User> users, Product product, ArrayList<Product> products) {
+    public void menuUser(User user, Product product) {
         try {
             boolean flag = true;
             while (flag) {
@@ -95,19 +98,19 @@ public class MenuServiceImpl implements Menu {
                         userService.search(product);
                         break;
                     case 2:
-                        userService.commentProduct(products);
+                        userService.commentProduct(PRODUCTS);
                         break;
                     case 3:
-                        userService.rateProduct(products);
+                        userService.rateProduct(PRODUCTS);
                         break;
                     case 4:
-                        userService.addProductToBasket(user, products);
+                        userService.addProductToBasket(user, PRODUCTS);
                         break;
                     case 5:
                         userService.deleteProductFromBasket(user);
                         break;
                     case 6:
-                        userService.payForBasket(user, products);
+                        userService.payForBasket(user, PRODUCTS);
                         break;
                     default:
                         flag = false;
@@ -115,7 +118,7 @@ public class MenuServiceImpl implements Menu {
             }
         } catch (InputMismatchException e) {
             System.out.println("Введите цифру!");
-            menuUser(user, users, product, products);
+            menuUser(user, product);
         }
     }
 }

@@ -25,6 +25,12 @@ public class User implements Serializable {
         this.isHasAdminRole = false;
     }
 
+    public User(String login, String password, boolean isHasAdminRole) {
+        this.login = login;
+        this.password = password;
+        this.isHasAdminRole = isHasAdminRole;
+    }
+
     public String getLogin() {
         return login;
     }
