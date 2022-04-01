@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 //Создать руками файл в который положить какой-то текст
 // прочитать файл и удалить из него все слова, у которых длина больше 3 символов. Результат записать в новый файл
 class MainTask1 {
-    private static final String pathToRead = "src/com/teachMeSkills/an15/VorobyovSergey/hwEight/SomeFile1.txt";
+    private static final String pathToRead = "src/com/teachMeSkills/an15/VorobyovSergey/hwEight/SomeFile.txt";
     private static final String pathToWrite = "src/com/teachMeSkills/an15/VorobyovSergey/hwEight/SomeFilteredFile.txt";
 
     public static void main(String[] args) {
