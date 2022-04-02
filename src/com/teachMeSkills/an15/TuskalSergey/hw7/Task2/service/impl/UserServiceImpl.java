@@ -136,23 +136,23 @@ public class UserServiceImpl implements UserService {
         Scanner scanner1 = new Scanner(System.in);
         String productToAddToBasket = scanner1.nextLine();
         for (Product p : products) {
-            if (productToAddToBasket.equalsIgnoreCase(p.getName())) {
-                if (user.getBasket() == null) {
-                    Basket basket = new Basket();
-                    ArrayList<Product> productsInBasket = new ArrayList<>();
-                    basket.setProducts(productsInBasket);
-                    user.setBasket(basket);
-                }
-                if (p.getAmount() > 0) {
-                    user.getBasket().getProducts().add(p);
-                    System.out.println("Товар " + p.getName() + " добавлен в корзину");
+            try {
+                if (productToAddToBasket.equalsIgnoreCase(p.getName())) {
+                    if (user.getBasket() == null) {
+                        Basket basket = new Basket();
+                        ArrayList<Product> productsInBasket = new ArrayList<>();
+                        basket.setProducts(productsInBasket);
+                        user.setBasket(basket);
+                    }
+                    if (p.getAmount() > 0) {
+                        user.getBasket().getProducts().add(p);
+                        System.out.println("Товар " + p.getName() + " добавлен в корзину");
+                    } else {
+                        System.out.println("Товар " + p.getName() + " не может быть добавлен в корзину, т.к. его нет на складе.");
+                    }
+                    index = 1;
+                    break;
                 } else {
-                    System.out.println("Товар " + p.getName() + " не может быть добавлен в корзину, т.к. его нет на складе.");
-                }
-                index = 1;
-                break;
-            } else {
-                try {
                     for (Product b : user.getBasket().getProducts()) {
                         if (p.getName().equalsIgnoreCase(b.getName())) {
                             System.out.println("Данный товар уже добавлен в корзину.");
@@ -169,9 +169,8 @@ public class UserServiceImpl implements UserService {
                         index = 1;
                         break;
                     }
-                } catch (NullPointerException e) {
                 }
-            }
+            } catch (NullPointerException e) {}
         }
         if (index == -1) {
             System.out.println("Неправильно введено название товара!");
@@ -250,7 +249,8 @@ public class UserServiceImpl implements UserService {
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss");
                     Date date = new Date();
                     BufferedWriter bufferedWriter =
-                            new BufferedWriter(new FileWriter(String.format("receipt_%s.txt",
+                            new BufferedWriter(new FileWriter(String.format("src/com/teachMeSkills/an15" +
+                                            "/TuskalSergey/hw7/Task2/receipts/receipt_%s.txt",
                                     simpleDateFormat.format(date))));
                     bufferedWriter.write("Чек оплаты");
                     bufferedWriter.newLine();
@@ -296,6 +296,8 @@ public class UserServiceImpl implements UserService {
                     }
                     user.getBasket().getProducts().removeAll(products);
                 }
+            } else {
+                System.out.println("В Вашей корзине нет товаров.");
             }
         } catch (NullPointerException e) {
             System.out.println("В Вашей корзине нет товаров.");

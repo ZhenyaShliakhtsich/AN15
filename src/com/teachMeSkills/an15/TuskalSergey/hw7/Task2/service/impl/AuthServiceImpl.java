@@ -6,37 +6,38 @@ import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.AuthService;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static com.teachMeSkills.an15.TuskalSergey.hw7.Task2.Database.USERS;
+
 public class AuthServiceImpl implements AuthService {
 
+    private Scanner scanner = new Scanner(System.in);
+    User user = null;
+
     @Override
-    public User login(HashMap<String, User> users, HashMap<String, User> currentUser) {
+    public User login() {
         System.out.println("Введите логин:");
-        Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
         System.out.println("Введите пароль:");
         String password = scanner.nextLine();
-        User user = new User();
-        if (users.containsKey(login) &&
-                users.get(login).getPassword().equals(password)) {
-            user.setLogin(login);
-            user.setPassword(password);
-            if (users.get(user.getLogin()).isHasAdminRole()) {
+        User enteredUser = new User(login, password);
+        if (USERS.containsKey(enteredUser.getLogin()) &&
+                USERS.get(enteredUser.getLogin()).getPassword().equals(enteredUser.getPassword())) {
+            if (USERS.get(enteredUser.getLogin()).isHasAdminRole()) {
                 System.out.println("Вы авторизированы как администратор");
             } else {
                 System.out.println("Вы авторизированы как пользователь");
             }
-            currentUser.put("currentUser", users.get(login));
+            user = USERS.get(enteredUser.getLogin());
         } else {
             System.out.println("Логин или пароль неверные");
-            login(users, currentUser);
+            login();
         }
-        return null;
+        return user;
     }
 
     @Override
     public void registration(HashMap<String, User> users) {
         System.out.println("Введите логин:");
-        Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
         if (users.containsKey(login)) {
             System.out.println("Пользователь с таким логином уже существует. Придумайте другой логин.");

@@ -1,18 +1,23 @@
 package com.teachMeSkills.an15.NovikovVadim.hw8.model;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Basket {
-    private ArrayList<Product> products;
+    private HashMap<Product, Integer> products;
     private BigDecimal totalPrice;
 
-    public ArrayList<Product> getProducts() {
+    public Basket() {
+        this.products = new HashMap<>();
+        this.totalPrice = new BigDecimal("0");
+    }
+
+    public HashMap<Product, Integer> getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<Product> products) {
+    public void setProducts(HashMap<Product, Integer> products) {
         this.products = products;
     }
 

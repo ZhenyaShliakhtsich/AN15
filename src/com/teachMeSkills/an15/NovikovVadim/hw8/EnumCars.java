@@ -2,7 +2,7 @@ package com.teachMeSkills.an15.NovikovVadim.hw8;
 
 public enum EnumCars {
     BMW("BMVW"),
-    AUID("Audi"),
+    AUID("AUDI"),
     LADA("Жигули"),
     Mers("Mersedes"),
     VW("Volkswagen"),

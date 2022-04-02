@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 public interface AuthService {
 
-    User authlogin(HashMap<String, User> users, String slogin, boolean isAdmin);
+    User authorization(HashMap<String, User> users, String slogin, boolean isAdmin);
+
     User registration(HashMap<String, User> users, String slogin, boolean isAdmin);
 }

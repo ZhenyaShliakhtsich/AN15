@@ -9,32 +9,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static com.teachMeSkills.an15.MatveevArtyom.hw8.DataBase.USERS;
+
 public class AuthServiceImpl implements AuthService {
+
+    //User user = null;
+
     @Override
-    public User login(HashMap<String, User> users) {
+    public User login() {
         System.out.println("Введите логин:");
         Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
         System.out.println("Введите пароль:");
         String password = scanner.nextLine();
-        if (users.size() == 1 && "admin".equalsIgnoreCase(login) && "admin".equalsIgnoreCase(password) || users.size() > 1) {
+        if (USERS.size() == 1 && "admin".equalsIgnoreCase(login) && "admin".equalsIgnoreCase(password) || USERS.size() > 1) {
             User enteredUser = new User(login, password);
-            if (users.containsKey(enteredUser.getLogin())) {
-                if (users.get(enteredUser.getLogin()).getPassword().equals(enteredUser.getPassword())) {
+            if (USERS.containsKey(enteredUser.getLogin())) {
+                if (USERS.get(enteredUser.getLogin()).getPassword().equals(enteredUser.getPassword())) {
                     System.out.println("Ты авторизирован");
-                    users.put(login, enteredUser);
-                    return users.get(enteredUser.getLogin());
+                    USERS.put(login, enteredUser);
+                    return USERS.get(enteredUser.getLogin());
                 } else {
                     System.out.println("Логин или пароль неверные, попробуйте ещё раз!");
-                    login(users);
+                    login();
                 }
             } else {
                 System.out.println("Логин или пароль неверные, попробуйте ещё раз!");
-                login(users);
+                login();
             }
         } else {
             System.out.println("Если вы не админ, вам сначала надо зарегистрироваться! \nРегистрация: ");
-            registration(users);
+            registration(USERS);
         }
         return null;
     }
@@ -52,6 +57,6 @@ public class AuthServiceImpl implements AuthService {
         user.getBasket().setProducts(products);
         users.put(user.getLogin(), user);
         System.out.println("Ты зарегистрирован! Авторизируйся!");
-        login(users);
+        login();
     }
 }
