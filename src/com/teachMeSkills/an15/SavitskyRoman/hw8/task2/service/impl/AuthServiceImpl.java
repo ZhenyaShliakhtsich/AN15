@@ -4,6 +4,7 @@ import com.teachMeSkills.an15.SavitskyRoman.hw8.task2.model.Basket;
 import com.teachMeSkills.an15.SavitskyRoman.hw8.task2.model.User;
 import com.teachMeSkills.an15.SavitskyRoman.hw8.task2.service.AuthService;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -19,7 +20,8 @@ public class AuthServiceImpl implements AuthService {
             answer = scanner.nextLine();
             if (answer.isEmpty()) {
                 System.out.println("Ошибка ввода. Попробуйте еще раз");
-                continue;}
+                continue;
+            }
             isAnswer = true;
         }
         return answer;
@@ -28,28 +30,31 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public User login(HashMap<User, User> users) {
         boolean isAnswer = false;
-        while (!isAnswer){
-        System.out.println("Введите логин:");
-        String login = answerUser();
-        System.out.println("Введите пароль:");
-        String password = answerUser();
-        if (login.equals(loginAdmin) && password.equals(passwordAdmin)) {
-            User admin = new User(login, password);
-            admin.setHasAdminRole(true);
-            System.out.println("Вы вошли как администратор");
-            users.put(admin, admin);
-            return users.get(admin);
-        } else {
-            User enteredUser = new User(login, password);
-            if (users.containsKey(enteredUser)) {
-                System.out.println("Ты авторизирован");
-                enteredUser.setBasket(new Basket());
-                users.put(enteredUser, enteredUser);
-                return users.get(enteredUser);
+        while (!isAnswer) {
+            System.out.println("Введите логин:");
+            String login = answerUser();
+            System.out.println("Введите пароль:");
+            String password = answerUser();
+            if (login.equals(loginAdmin) && password.equals(passwordAdmin)) {
+                User admin = new User(login, password);
+                admin.setHasAdminRole(true);
+                System.out.println("Вы вошли как администратор");
+                users.put(admin, admin);
+                return users.get(admin);
             } else {
-                System.out.println("Логин или пароль неверные");
+                User enteredUser = new User(login, password);
+                if (users.containsKey(enteredUser)) {
+                    System.out.println("Ты авторизирован");
+                    enteredUser.setBasket(new Basket());
+                    enteredUser.getBasket().setTotalPrice(new BigDecimal(0));
+
+                    users.put(enteredUser, enteredUser);
+                    return users.get(enteredUser);
+                } else {
+                    System.out.println("Логин или пароль неверные");
+                }
             }
-        }}
+        }
         return null;
     }
 

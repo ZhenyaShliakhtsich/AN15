@@ -14,14 +14,13 @@ public class Product {
     private HashSet<String> carNames = new HashSet<>();
     private ArrayList<Integer> rates;
 
-    public Product(String name, BigDecimal price, int amount, String comment, String...carNames) {
+    public Product(String name, BigDecimal price, int amount, String comment, HashSet<String> carNamess) {
         this.name = name;
         this.price = price;
         this.amount = amount;
         this.comment = comment;
-        for(int x = 0; x < carNames.length; x++){
-            this.carNames.add(carNames[x]);
-        }
+        this.carNames = carNamess;
+
     }
 
    /* public Product(String name, BigDecimal price, int amount, String comment, HashSet<String> carNames) {

@@ -7,10 +7,6 @@ import java.util.Objects;
 public class Basket {
     private ArrayList<Product> products = new ArrayList<>();
     private BigDecimal totalPrice;
-    public void setAddToProductArray(Product product){
-        products.add(product);
-    }
-
 
     public ArrayList<Product> getProducts() {
         return products;

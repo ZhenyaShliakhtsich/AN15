@@ -6,11 +6,6 @@ public class Chapter {
     private String name;
     private ArrayList<Product> productArrayList = new ArrayList<>();
 
-    public void setProduct(Product product){
-        productArrayList.add(product);
-    }
-
-
 
     public String getName() {
         return name;
