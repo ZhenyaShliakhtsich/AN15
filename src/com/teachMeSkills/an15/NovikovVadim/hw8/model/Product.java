@@ -1,11 +1,13 @@
 package com.teachMeSkills.an15.NovikovVadim.hw8.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 
-public class Product {
+public class Product implements Serializable {
     private String name;
     private BigDecimal price;
     private double avgRate;
@@ -19,10 +21,18 @@ public class Product {
         this.price = price;
         this.amount = amount;
         this.comment = comment;
-        this.carNames = carNames;
+
+        this.carNames.clear();
+        Iterator<String> iter = carNames.iterator();
+        while (iter.hasNext()) {
+            String str = iter.next().toUpperCase();
+            this.carNames.add(str);
+        }
+
     }
 
     public Product() {
+        this.carNames = new HashSet<>();
     }
 
     public String getName() {
@@ -70,7 +80,13 @@ public class Product {
     }
 
     public void setCarNames(HashSet<String> carNames) {
-        this.carNames = carNames;
+
+        this.carNames.clear();
+        Iterator<String> iter = carNames.iterator();
+        while (iter.hasNext()) {
+            String str = iter.next().toUpperCase();
+            this.carNames.add(str);
+        }
     }
 
     public ArrayList<Integer> getRates() {
@@ -86,7 +102,7 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Double.compare(product.avgRate, avgRate) == 0 && amount == product.amount && Objects.equals(name, product.name) && Objects.equals(price, product.price) && Objects.equals(comment, product.comment) && Objects.equals(carNames, product.carNames) && Objects.equals(rates, product.rates);
+        return Objects.equals(name, product.name) && Objects.equals(price, product.price);
     }
 
     @Override

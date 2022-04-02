@@ -19,9 +19,15 @@ public interface UserService {
 
     void deleteProductFromBasket(User user);
 
-    void rateProduct(ArrayList<Product> products);
+    boolean showProducts(ArrayList<Product> products, boolean isQuantity);
 
-    void commentProduct(ArrayList<Product> products);
+    void searchCarName(User user, ArrayList<Product> products);
 
-    void showProducts(ArrayList<Product> products);
+    void searchName(User user, ArrayList<Product> products);
+
+    void setCommentProduct(User user, ArrayList<Product> products);
+
+    void setRateProduct(User user, ArrayList<Product> products);
+
+    void showBasket(User user);
 }

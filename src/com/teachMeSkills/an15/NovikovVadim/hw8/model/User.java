@@ -1,12 +1,13 @@
 package com.teachMeSkills.an15.NovikovVadim.hw8.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class User {
+public class User implements Serializable {
     private String login;
     private String password;
-    private boolean isHasAdminRole;
-    private Basket basket;
+    private transient boolean isHasAdminRole;
+    private transient Basket basket;
 
     public User(String login, String password, Basket basket) {
         this.login = login;
