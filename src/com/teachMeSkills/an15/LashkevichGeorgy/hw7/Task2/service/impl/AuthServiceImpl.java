@@ -16,13 +16,13 @@ public class AuthServiceImpl implements AuthService {
         String password = scanner.nextLine();
 
         User enteredUser = new User(login, password);
-        if (enteredUser.getLogin().equalsIgnoreCase("admin")
-                && enteredUser.getPassword().equalsIgnoreCase("admin")) {
-            enteredUser.setHasAdminRole(true);
+        if (login.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
+            users.remove(enteredUser);
+            User enteredAdmin = new User(login, password, true);
+            users.put(enteredAdmin, enteredAdmin);
             System.out.println("Ты авторизирован как админ");
-            return users.get(enteredUser);
-        }
-        else if (users.containsKey(enteredUser)) {
+            return users.get(enteredAdmin);
+        } else if (users.containsKey(enteredUser)) {
             System.out.println("Ты авторизирован");
             return users.get(enteredUser);
         } else {
@@ -34,20 +34,16 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void registration(HashMap<User, User> users) {
-        System.out.println("Введите логин:");
+        System.out.println("admina тоже регаем\nВведите логин:");
         Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
         System.out.println("Введите пароль:");
         String password = scanner.nextLine();
-
-
         User user = new User(login, password);
-       /* if (login.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
-            user.setHasAdminRole(true);
-        }*/
         users.put(user, user);
         System.out.println("Ты зарегистрирован! Авторизируйся!");
 
 
     }
 }
+

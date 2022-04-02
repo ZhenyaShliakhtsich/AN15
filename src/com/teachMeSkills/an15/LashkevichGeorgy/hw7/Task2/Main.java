@@ -34,7 +34,6 @@ public class Main {
         ArrayList<Product> products = new ArrayList<>();
         UserService userService = new UserServiceImpl();
         //HashMap<User, User> authUser = authService.login(users);
-
         /*UserServiceImpl userService = new UserServiceImpl();
          userService.addProduct(products);
         userService.addProduct(products);
@@ -44,17 +43,13 @@ public class Main {
         userService.addProductToBasket((User) authUser, products);
         PriceService priceService = new PriceServiceImpl();
         priceService.calculateTotalBasketPrice((User) authUser);*/
-
-
         authService.registration(users);
-        HashMap<User, User> authUser = authService.login(users);
-        System.out.println(users.get(authUser).isHasAdminRole());
-    /*    if (users.get(authUser).{
-            userService.changeProduct(products);
+        User authUser = authService.login(users);
+        System.out.println(authUser.toString());
 
-
-        }*/
-
-    }
 }
+
+}
+
+
 

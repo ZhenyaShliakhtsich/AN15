@@ -13,6 +13,12 @@ public class User extends HashMap<User, User> {
 
     }
 
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+        this.isHasAdminRole = false;
+    }
+
     public User(String login, String password, Basket basket) {
         this.login = login;
         this.password = password;
@@ -20,10 +26,11 @@ public class User extends HashMap<User, User> {
         this.basket = basket;
     }
 
-    public User(String login, String password) {
+
+    public User(String login, String password, boolean isHasAdminRole) {
         this.login = login;
         this.password = password;
-        this.isHasAdminRole = false;
+        this.isHasAdminRole = isHasAdminRole;
     }
 
     public String getLogin() {
