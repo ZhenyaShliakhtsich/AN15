@@ -1,5 +1,6 @@
 package com.teachMeSkills.an15.TuskalSergey.hw7.Task2;
 
+import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.model.Basket;
 import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.model.Product;
 import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.model.User;
 import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.MenuService;
@@ -24,31 +25,31 @@ import java.util.HashSet;
 // Чек выводить в отдельный файл с название receipt_{{current_date}}
 public class Main {
     public static void main(String[] args) throws IOException {
+        HashMap<String, User> users = new HashMap<>();
+        ArrayList<Product> products = new ArrayList<>();
+        defaultInitialization(users, products);
+        MenuService menuService = new MenuServiceImpl();
+        menuService.authMenu();
+    }
+
+    public static void defaultInitialization(HashMap<String, User> users, ArrayList<Product> products) {
+        User admin = new User("admin", "admin");
+        admin.setHasAdminRole(true);
+        User user = new User("user1", "user1", new Basket());
+        users.put(admin.getLogin(), admin);
+        users.put(user.getLogin(), user);
         HashSet<String> carNames = new HashSet<>();
         carNames.add("фольксваген");
         carNames.add("тойота");
-        User user = new User();
-        User current = new User();
-        User admin = new User("admin", "admin");
-        User user1 = new User("user1", "user1");
-        admin.setHasAdminRole(true);
-        HashMap<String, User> users = new HashMap<>();
-        HashMap<String, User> currentUser = new HashMap<>();
-        currentUser.put("currentUser", current);
-        users.put(admin.getLogin(), admin);
-        users.put(user1.getLogin(), user1);
+
         Product product1 = new Product("глушитель",
                 new BigDecimal(99.99).setScale(2, RoundingMode.HALF_UP),
                 1, "оригинальный", carNames);
         Product product2 = new Product("сцепление",
                 new BigDecimal(199.99).setScale(2, RoundingMode.HALF_UP),
                 5, "оригинальное", carNames);
-        ArrayList<Product> products = new ArrayList<>();
         products.add(product1);
         products.add(product2);
-
-        MenuService menuService = new MenuServiceImpl();
-        menuService.authMenu(user, users, currentUser, products);
     }
 }
 

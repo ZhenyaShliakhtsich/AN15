@@ -250,7 +250,8 @@ public class UserServiceImpl implements UserService {
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss");
                     Date date = new Date();
                     BufferedWriter bufferedWriter =
-                            new BufferedWriter(new FileWriter(String.format("receipt_%s.txt",
+                            new BufferedWriter(new FileWriter(String.format("src/com/teachMeSkills/an15" +
+                                            "/TuskalSergey/hw7/Task2/receipts/receipt_%s.txt",
                                     simpleDateFormat.format(date))));
                     bufferedWriter.write("Чек оплаты");
                     bufferedWriter.newLine();

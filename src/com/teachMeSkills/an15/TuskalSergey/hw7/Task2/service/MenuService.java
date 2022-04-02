@@ -7,12 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public interface MenuService {
-    void authMenu(User user, HashMap<String, User> users, HashMap<String, User> currentUser,
-                  ArrayList<Product> products);
+    void authMenu();
 
-    void adminMenu(User user, HashMap<String, User> users, HashMap<String, User> currentUser,
-                   ArrayList<Product> products);
+    void adminMenu();
 
-    void userMenu(User user, HashMap<String, User> users, HashMap<String, User> currentUser ,
-                  ArrayList<Product> products);
+    void userMenu(User user);
 }

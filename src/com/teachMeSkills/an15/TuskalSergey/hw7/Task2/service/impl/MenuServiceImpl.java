@@ -6,9 +6,10 @@ import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.AuthService;
 import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.MenuService;
 import com.teachMeSkills.an15.TuskalSergey.hw7.Task2.service.UserService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
+
+import static com.teachMeSkills.an15.TuskalSergey.hw7.Task2.Database.PRODUCTS;
+import static com.teachMeSkills.an15.TuskalSergey.hw7.Task2.Database.USERS;
 
 public class MenuServiceImpl implements MenuService {
 
@@ -18,40 +19,42 @@ public class MenuServiceImpl implements MenuService {
     AuthService authService = new AuthServiceImpl();
 
     @Override
-    public void authMenu(User user, HashMap<String, User> users, HashMap<String, User> currentUser,
-                         ArrayList<Product> products) {
+    public void authMenu() {
         System.out.println("Желаете зарегистрироваться(1), войти(2) или завершить работу(3)?");
 
             String signInOrSignUp = scanner.nextLine();
         switch (signInOrSignUp) {
             case "1":
-                authService.registration(users);
-                authService.login(users, currentUser);
-                if (currentUser.get("currentUser").isHasAdminRole()) {
-                    adminMenu(user, users, currentUser, products);
+                authService.registration(USERS);
+                User currentUser = authService.login();
+                if (currentUser == null) {
+                    authMenu();
+                } else if (currentUser.isHasAdminRole()) {
+                    adminMenu();
                 } else {
-                    userMenu(user, users,  currentUser, products);
+                    userMenu(currentUser);
                 }
                 break;
             case "2":
-                authService.login(users, currentUser);
-                if (currentUser.get("currentUser").isHasAdminRole()) {
-                    adminMenu(user, users,  currentUser, products);
+                User currentUser1 = authService.login();
+                if (currentUser1 == null) {
+                    authMenu();
+                } else if (currentUser1.isHasAdminRole()) {
+                    adminMenu();
                 } else {
-                    userMenu(user, users,  currentUser, products);
+                    userMenu(currentUser1);
                 }
                 break;
             case "3":
                 break;
             default:
                 System.out.println("Неверно указан номер действия.");
-                authMenu(user, users,  currentUser, products);
+                authMenu();
         }
     }
 
     @Override
-    public void adminMenu(User user, HashMap<String, User> users, HashMap<String, User> currentUser,
-                          ArrayList<Product> products) {
+    public void adminMenu() {
         System.out.println("Выберите действие:" + "\n"
                 + "1 - просмотреть список товаров" + "\n"
                 + "2 - добавить товар" + "\n"
@@ -63,38 +66,37 @@ public class MenuServiceImpl implements MenuService {
             String choice = scanner.nextLine();
         switch (choice) {
             case "1":
-                for (Product p : products) {
+                for (Product p : PRODUCTS) {
                     System.out.println(p);
                 }
-                adminMenu(user, users,  currentUser, products);
+                adminMenu();
                 break;
             case "2":
-                userService.addProduct(products);
-                adminMenu(user, users,  currentUser, products);
+                userService.addProduct(PRODUCTS);
+                adminMenu();
                 break;
             case "3":
-                userService.deleteProduct(products);
-                adminMenu(user, users,  currentUser, products);
+                userService.deleteProduct(PRODUCTS);
+                adminMenu();
                 break;
             case "4":
-                userService.changeProduct(products);
-                adminMenu(user, users,  currentUser, products);
+                userService.changeProduct(PRODUCTS);
+                adminMenu();
                 break;
             case "5":
-                authMenu(user, users,  currentUser, products);
+                authMenu();
                 break;
             case "6":
                 System.out.println("Работа завершена.");
                 break;
             default:
                 System.out.println("Неверно указан номер действия.");
-                adminMenu(user, users,  currentUser, products);
+                adminMenu();
         }
     }
 
     @Override
-    public void userMenu(User user, HashMap<String, User> users, HashMap<String, User> currentUser,
-                         ArrayList<Product> products) {
+    public void userMenu(User user) {
         System.out.println("Выберите действие:" + "\n"
                 + "1 - найти товар по марке машины" + "\n"
                 + "2 - добавить товар в корзину" + "\n"
@@ -106,30 +108,30 @@ public class MenuServiceImpl implements MenuService {
             String choice = scanner.nextLine();
         switch (choice) {
             case "1":
-                userService.searchProductByCarName(products);
-                userMenu(user, users, currentUser, products);
+                userService.searchProductByCarName(PRODUCTS);
+                userMenu(user);
                 break;
             case "2":
-                userService.addProductToBasket(user, products);
-                userMenu(user, users, currentUser, products);
+                userService.addProductToBasket(user, PRODUCTS);
+                userMenu(user);
                 break;
             case "3":
                 userService.deleteProductFromBasket(user);
-                userMenu(user, users, currentUser, products);
+                userMenu(user);
                 break;
             case "4":
-                userService.payForBasket(user, products);
-                userMenu(user, users, currentUser, products);
+                userService.payForBasket(user, PRODUCTS);
+                userMenu(user);
                 break;
             case "5":
-                authMenu(user, users, currentUser, products);
+                authMenu();
                 break;
             case "6":
                 System.out.println("Работа завершена.");
                 break;
             default:
                 System.out.println("Неверно указан номер действия.");
-                userMenu(user, users, currentUser, products);
+                userMenu(user);
         }
     }
 }
