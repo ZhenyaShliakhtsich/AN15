@@ -11,15 +11,18 @@ package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.User;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.AuthService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.PriceService;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.RateService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.UserService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.AuthServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.PriceServiceImpl;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.RateServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.UserServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.Product;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 
 //Пользователь может написать отзыв к детали и поставить оценку. Оценка должна калькулироваться средняя.
@@ -33,22 +36,62 @@ public class Main {
         AuthService authService = new AuthServiceImpl();
         ArrayList<Product> products = new ArrayList<>();
         UserService userService = new UserServiceImpl();
-        //HashMap<User, User> authUser = authService.login(users);
-        /*UserServiceImpl userService = new UserServiceImpl();
-         userService.addProduct(products);
-        userService.addProduct(products);
-        userService.changeProduct(products);
-        userService.deleteProduct(products);
-        userService.addProductToBasket((User) authUser, products);
-        userService.addProductToBasket((User) authUser, products);
+        RateService rateService = new RateServiceImpl();
         PriceService priceService = new PriceServiceImpl();
-        priceService.calculateTotalBasketPrice((User) authUser);*/
-        authService.registration(users);
-        User authUser = authService.login(users);
-        System.out.println(authUser.toString());
+        User user = new User();
+        flag = true;
 
-}
+        while (flag) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Для регистрации тыкаем \"1\" (админа тоже регаем)\n" +
+                    "Для авторизации тыкаем \"2\"\n" +
+                    "Для входа в меню админа набрать \"3\"\n" +
+                    "Для завершения работы приложения набрать \"100\"\n");
+            boolean userFlag = true;
+            int choose = scanner.nextInt();
+            switch (choose) {
+                case 1:
+                    authService.registration(users);
+                    break;
+                case 2:
+                    if (users.isEmpty()) {
+                        System.out.println("Сначала зарегестрируйся пользователя\n");
+                        break;
+                    }
+                    user = authService.login(users);
+                    break;
+                case 3:
+                    if (user.isHasAdminRole()) {
+                        while (userFlag) {
+                            System.out.println("Для добавления продукта тыкаем \"1\"\n" +
+                                    "Для изменения данных продукта тыкаем \"2\"\n" +
+                                    "Для выхода из меню тыкаем \"10\"");
+                            Scanner scanner1 = new Scanner(System.in);
+                            int userChoose = scanner1.nextInt();
 
+                            switch (userChoose) {
+                                case 1:
+                                    userService.addProduct(products);
+                                    break;
+                                case 2:
+                                    userService.changeProduct(products);
+                                    break;
+                                case 10:
+                                    userFlag = false;
+                            }
+
+                        }
+                    } else System.out.println("Нужна авторизироваться как admin\n");
+                    break;
+                case 100:
+                    flag = false;
+                    System.out.println("Приходите к нам иссттччооо");
+                    break;
+            }
+        }
+
+
+    }
 }
 
 
