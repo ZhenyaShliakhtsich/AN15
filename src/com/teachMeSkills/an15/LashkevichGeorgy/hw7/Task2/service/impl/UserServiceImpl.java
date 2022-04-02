@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class UserServiceImpl implements UserService {
 
-    private Scanner scanner = new Scanner(System.in);
 
     /* @Override
      public void addProduct(ArrayList<Product> products) {
@@ -122,7 +121,7 @@ public class UserServiceImpl implements UserService {
                 case 1:
                     System.out.println("Введи новое имя");
                     System.out.println(scanner3.nextLine());
-                    products.get(index).setName(scanner.nextLine());
+                    products.get(index).setName(scanner3.nextLine());
                     break;
                 case 2:
                     System.out.println("Введи новую цену");
@@ -162,6 +161,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteProduct(ArrayList<Product> products) {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("\nВведите продукт, который хотите удалить");
         //TODO: show list of products
         showAllProducts(products);
@@ -185,6 +185,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addProductToBasket(User user, ArrayList<Product> products) {
         ArrayList<Product> array = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
         if (user.getBasket() == null) {
         } else {
             for (int i = 0; i < user.getBasket().getProducts().size(); i++) {
@@ -220,6 +221,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteProductFromBasket(User user) {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Что удалить из корзины?");
         String deleteFromBasket = scanner.nextLine();
         int index = -1;
@@ -239,6 +241,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void rateProduct(ArrayList<Product> products) {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Какому продукту ставим оценку?");
         showAllProducts(products);
         String name = scanner.nextLine();
@@ -259,8 +262,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void commentProduct(ArrayList<Product> products) {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Какому продукту добавляем коммент?");
         showAllProducts(products);
+
         String name = scanner.nextLine();
         int index = -1;
         for (int i = 0; i < products.size(); i++) {
@@ -271,6 +276,16 @@ public class UserServiceImpl implements UserService {
         }
         if (index == -1) {
             commentProduct(products);
-        } else products.get(index).setComment(scanner.nextLine());
+        } else {
+            System.out.println("Введите текст комментария");
+            products.get(index).setComment(scanner.nextLine());
+        }
+    }
+
+    @Override
+    public void showProducts(ArrayList<Product> products) {
+        for (int i = 0; i < products.size(); i++) {
+            System.out.print(products.get(i) + ", \n");
+        }
     }
 }

@@ -11,7 +11,7 @@ public class Product extends Basket {
     private int amount;
     private String comment;
     private String carNames;
-    private ArrayList<Integer> rates;
+    private ArrayList<Integer> rates = new ArrayList<>();
 
     public Product(String name, BigDecimal price, int amount, String comment, String carNames) {
         this.name = name;

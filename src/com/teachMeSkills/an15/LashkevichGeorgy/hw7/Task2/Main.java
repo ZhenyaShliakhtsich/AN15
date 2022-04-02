@@ -46,6 +46,7 @@ public class Main {
             System.out.println("Для регистрации тыкаем \"1\" (админа тоже регаем)\n" +
                     "Для авторизации тыкаем \"2\"\n" +
                     "Для входа в меню админа набрать \"3\"\n" +
+                    "Для входа в меню юзера набрать \"4\"\n" +
                     "Для завершения работы приложения набрать \"100\"\n");
             boolean userFlag = true;
             int choose = scanner.nextInt();
@@ -65,6 +66,7 @@ public class Main {
                         while (userFlag) {
                             System.out.println("Для добавления продукта тыкаем \"1\"\n" +
                                     "Для изменения данных продукта тыкаем \"2\"\n" +
+                                    "Чтобы удалить какой-нибудь продукт тыкаем \"3\"\n" +
                                     "Для выхода из меню тыкаем \"10\"");
                             Scanner scanner1 = new Scanner(System.in);
                             int userChoose = scanner1.nextInt();
@@ -76,12 +78,54 @@ public class Main {
                                 case 2:
                                     userService.changeProduct(products);
                                     break;
+                                case 3:
+                                    userService.deleteProduct(products);
+                                    break;
                                 case 10:
                                     userFlag = false;
                             }
 
                         }
                     } else System.out.println("Нужна авторизироваться как admin\n");
+                    break;
+                case 4:
+                    if (!user.isHasAdminRole() && !users.isEmpty()) {
+                        while (userFlag) {
+                            System.out.println("Добавить продукт в корзину тыкаем \"1\"\n" +
+                                    "Удалить продукт из корзины тыкаем \"2\"\n" +
+                                    "Чтобы оценить продукт тыкаем \"3\"\n" +
+                                    "Чтобы оставить комментарий продукту тыкаем \"4\"\n" +
+                                    "Узнать стоимость продуктов в корзине с учетом скидыки" +
+                                    " тыкаем \"5\"\n" +
+                                    "Чтобы показать все товары тыкаем \"6\"\n" +
+                                    "Для выхода из меню тыкаем \"10\"\n");
+                            Scanner scanner5 = new Scanner(System.in);
+                            int userChoose = scanner5.nextInt();
+                            switch (userChoose) {
+                                case 1:
+                                    userService.addProductToBasket(user, products);
+                                    break;
+                                case 2:
+                                    userService.deleteProductFromBasket(user);
+                                    break;
+                                case 3:
+                                    userService.rateProduct(products);
+                                    break;
+                                case 4:
+                                    userService.commentProduct(products);
+                                    break;
+                                case 5:
+                                    System.out.println(priceService.calculateTotalBasketPrice(user));
+                                    break;
+                                case 6:
+                                    userService.showProducts(products);
+                                    break;
+
+                                case 10:
+                                    userFlag = false;
+                            }
+                        }
+                    } else System.out.println("Нужно зарегестрировать пользователя. Админу сюда нельзя.\n");
                     break;
                 case 100:
                     flag = false;

@@ -11,7 +11,7 @@ public class PriceServiceImpl implements PriceService {
     @Override
     public BigDecimal calculateTotalBasketPrice(User user) {
         if (user.getBasket().getTotalPrice() == null) user.getBasket().setTotalPrice(new BigDecimal(0));
-        BigDecimal bigDecimal = user.getBasket().getTotalPrice();
+        BigDecimal bigDecimal = new BigDecimal(0); // user.getBasket().getTotalPrice();
         for (int i = 0; i < user.getBasket().getProducts().size(); i++) {
             bigDecimal = bigDecimal.add(user.getBasket().getProducts().get(i).getPrice());
         }
