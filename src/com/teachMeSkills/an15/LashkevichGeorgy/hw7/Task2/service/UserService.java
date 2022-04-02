@@ -5,6 +5,7 @@ import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.User;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface UserService {
 
@@ -16,7 +17,8 @@ public interface UserService {
 
     void addProductToBasket(User user, ArrayList<Product> products);
 
-    void payForBasket(User user);
+
+    void payForBasket(User user, ArrayList<Product> products);
 
     void deleteProductFromBasket(User user);
 

@@ -11,7 +11,7 @@ import java.util.Date;
 public class Main {
     public static void main(String[] args) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss");
-        Date date = new Date();
+
         String[] text;
         ArrayList<String> finalText = new ArrayList<>();
         try {

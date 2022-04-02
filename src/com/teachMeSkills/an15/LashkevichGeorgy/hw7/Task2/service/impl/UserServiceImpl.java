@@ -6,10 +6,10 @@ import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.Product;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.User;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.UserService;
 
+import java.io.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class UserServiceImpl implements UserService {
 
@@ -215,7 +215,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void payForBasket(User user) {
+    public void payForBasket(User user, ArrayList<Product> products) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss");
+        ArrayList<String> finalText = new ArrayList<>();
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(String.format(
+                    "src/com/teachMeSkills/an15/LashkevichGeorgy/hw7/Task2/receipt%s.txt", simpleDateFormat.format(new Date()))));
+            finalText.add("Покупка проведена успешно. Оплачено: " + user.getBasket().getTotalPrice() + " у.е.");
+            for (int i = 0; i < user.getBasket().getProducts().size(); i++) {
+                finalText.add(" Был куплен товар " + user.getBasket().getProducts().get(i).getName());
+                for (int j = 0; j < products.size(); j++) {
+                    if (products.get(j) == user.getBasket().getProducts().get(i)) {
+                        products.get(j).setAmount(products.get(j).getAmount() - 1);
+                    }
+                }
+            }
+            bufferedWriter.write(Arrays.toString(new ArrayList[]{finalText}));
+            bufferedWriter.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        user.getBasket().setProducts(new ArrayList<>());
 
     }
 
