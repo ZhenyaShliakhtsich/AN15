@@ -14,7 +14,9 @@ public class Database {
     public static HashMap<String, User> USERS = new HashMap<>() {
         {
             put("admin", new User("admin", "admin", true));
-            put("user1", new User("user1", "user1", new Basket()));
+        }
+        {
+            put("user1", new User("user1","user1"));
         }
     };
 
