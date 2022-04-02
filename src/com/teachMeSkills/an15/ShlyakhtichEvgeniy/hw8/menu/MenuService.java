@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public interface MenuService {
-    void adminMenu(User user,ArrayList<Product> products, HashMap<String, User> users);
-    void authMenu(User user,ArrayList<Product> products, HashMap<String, User> users);
-    void userMenu(User user, HashMap<String, User> users, ArrayList<Product> products);
-    void basketMenu(User user, HashMap<String, User> users, ArrayList<Product> products);
-    void productMenu(User user, HashMap<String, User> users, ArrayList<Product> products, Product product);
+    void adminMenu();
+    void authMenu();
+    void userMenu(User user);
+    void basketMenu(User user);
+    void productMenu(User user, Product product);
 
 
 }
