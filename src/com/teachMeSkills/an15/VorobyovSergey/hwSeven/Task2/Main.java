@@ -14,6 +14,7 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Basket;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.UsersDB;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.AuthService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl.AuthServiceImpl;
 
@@ -24,18 +25,18 @@ import java.util.HashSet;
 //Заиспользуем пару сервисов из предыдущего задания для экономии времени!!!
 public class Main {
     public static void main(String[] args) {
-        //Create some users for example
-        Basket basket = new Basket();
-        User u1 = new User("l1", "p1", basket);
-        User u2 = new User("l2", "p2", basket);
-        User a1 = new User("a", "a", basket);
-        a1.setHasAdminRole(true);
-        //HashSet is something like database of users
-        HashSet<User> database = new HashSet<>();
-        database.add(u1);
-        database.add(u2);
-        database.add(a1);
+        //Сделал так, чтобы не переписывать кучу ссылок,
+        // а потом наново их не переписывать когда будем читать/сохранять в файл
+        HashSet<User> database = initUser().getDatabase();
+        HashSet<Product> storage = initProduct();
 
+        //Next try to log in
+        AuthService authService = new AuthServiceImpl();
+        authService.login(database, storage);
+        //That is it. After this we go throw services or stop the program
+    }
+
+    static HashSet<Product> initProduct (){
         //Create set of cars
         HashSet<String> set1 = new HashSet<>();
         set1.add("Car 1");
@@ -54,10 +55,24 @@ public class Main {
         storage.add(p2);
         storage.add(p3);
         storage.add(p4);
+       return  storage;
+    }
 
-        //Next try to log in
-        AuthService authService = new AuthServiceImpl();
-        authService.login(database, storage);
-        //That is it. After this we go throw services or stop the program
+    static UsersDB initUser (){
+        //Create some users for example
+        Basket basket = new Basket();
+        User u1 = new User("l1", "p1", basket);
+        User u2 = new User("l2", "p2", basket);
+        User a1 = new User("a", "a", basket);
+        a1.setHasAdminRole(true);
+        //HashSet is something like database of users
+        HashSet<User> database = new HashSet<>();
+        database.add(u1);
+        database.add(u2);
+        database.add(a1);
+        //For someone who want to save it in database class
+        UsersDB db = new UsersDB();
+        db.setDatabase(database);
+        return db;
     }
 }
