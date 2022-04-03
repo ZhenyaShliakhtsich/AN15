@@ -13,10 +13,10 @@ public class Product implements Serializable {
     private HashSet<String> carNames;
 
     private double avgRate;
-    private String comment;
+    private ArrayList<String> comment;
     private ArrayList<Integer> rates;
 
-    public Product(String name, BigDecimal price, int amount, String comment, HashSet<String> carNames) {
+    public Product(String name, BigDecimal price, int amount, ArrayList<String> comment, HashSet<String> carNames) {
         this.name = name;
         this.price = price;
         this.amount = amount;
@@ -59,11 +59,11 @@ public class Product implements Serializable {
         this.amount = amount;
     }
 
-    public String getComment() {
+    public ArrayList<String> getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
+    public void setComment(ArrayList<String> comment) {
         this.comment = comment;
     }
 
