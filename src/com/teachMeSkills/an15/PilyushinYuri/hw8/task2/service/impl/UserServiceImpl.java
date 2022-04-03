@@ -7,13 +7,15 @@ import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.service.UserService;
 import java.math.BigDecimal;
 import java.util.*;
 
+import static com.teachMeSkills.an15.PilyushinYuri.hw8.task2.DataBase.PRODUCTS;
+
 
 public class UserServiceImpl implements UserService {
 
     private Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void addProduct(ArrayList<Product> products) {
+    public void addProduct() {
         System.out.println("Введите название продукта:");
         String name = scanner.nextLine();
         System.out.println("Введите цену продукта:");
@@ -42,87 +44,87 @@ public class UserServiceImpl implements UserService {
 
         //TODO: should be changed from setters to constructor initialization
 
-        products.add(product);
+        PRODUCTS.add(product);
 
     }
 
     @Override
-    public void changeProduct(ArrayList<Product> products) {
+    public void changeProduct() {
 
         System.out.println("Введите продукт, который хотите изменить");
         Scanner scanner = new Scanner(System.in);
-        System.out.println(products);
+        System.out.println(PRODUCTS);
 
         //TODO: show list of products
         String name = scanner.nextLine();
 
         int index = -1;
-        for (int i = 0; i < products.size(); i++) {
-            if (name.equalsIgnoreCase(products.get(i).getName())) {
+        for (int i = 0; i < PRODUCTS.size(); i++) {
+            if (name.equalsIgnoreCase(PRODUCTS.get(i).getName())) {
                 index = i;
                 break;
             }
         }
         if (index == -1) {
-            changeProduct(products);
+            changeProduct();
         }
         System.out.println("Че хочешь изменить?");
         String choice = scanner.nextLine();
         switch (choice) {
             case "название продукта":
-                products.get(index).setName(scanner.nextLine());
+                PRODUCTS.get(index).setName(scanner.nextLine());
                 break;
 
             case "цена продукта":
-                products.get(index).setPrice(scanner.nextBigDecimal());
+                PRODUCTS.get(index).setPrice(scanner.nextBigDecimal());
                 break;
             case "количество продукта в наличии:":
-                products.get(index).setAmount(scanner.nextInt());
+                PRODUCTS.get(index).setAmount(scanner.nextInt());
                 break;
             case "добавить еще машину":
-                products.get(index).getCarNames().add(scanner.nextLine());
+                PRODUCTS.get(index).getCarNames().add(scanner.nextLine());
                 break;
         }
         //TODO: CHOICE SWITCH WITH POSSIBLE CHANGES
     }
 
     @Override
-    public void deleteProduct(ArrayList<Product> products) {
+    public void deleteProduct() {
         System.out.println("Введите продукт, который хотите удалить");
-        System.out.println(products);
+        System.out.println(PRODUCTS);
         //TODO: show list of products
         String name = scanner.nextLine();
 
         int index = -1;
-        for (int i = 0; i < products.size(); i++) {
-            if (name.equalsIgnoreCase(products.get(i).getName())) {
+        for (int i = 0; i < PRODUCTS.size(); i++) {
+            if (name.equalsIgnoreCase(PRODUCTS.get(i).getName())) {
                 index = i;
                 break;
             }
         }
         if (index == -1) {
-            deleteProduct(products);
+            deleteProduct();
         } else {
-            products.remove(products.get(index));
+            PRODUCTS.remove(PRODUCTS.get(index));
         }
     }
 
     @Override
-    public void addProductToBasket(User user, ArrayList<Product> products) {
-        System.out.println(products);
+    public void addProductToBasket(User user) {
+        System.out.println(PRODUCTS);
         System.out.println("Введите название продукта");
         String productSelect = scanner.nextLine();
         int index = -1;
         Product productAdd = null;
-        for (int i = 0; i < products.size(); i++) {
-            if (productSelect.equalsIgnoreCase(products.get(i).getName())) {
+        for (int i = 0; i < PRODUCTS.size(); i++) {
+            if (productSelect.equalsIgnoreCase(PRODUCTS.get(i).getName())) {
                 index = i;
-                productAdd = products.get(i);
+                productAdd = PRODUCTS.get(i);
                 break;
             }
         }
         if (index == -1) {
-            addProductToBasket(user, products);
+            addProductToBasket(user);
         } else {
             Basket basket = user.getBasket();
             basket.getProducts().add(productAdd);
@@ -132,7 +134,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void payForBasket(User user, ArrayList<Product> products) {
+    public void payForBasket(User user) {
         PriceServiceImpl priceService = new PriceServiceImpl();
         System.out.println("Цена на скидкой : " + priceService.calculateTotalBasketPrice(user));
         System.out.println("Введите /Оплачиваю/ чтобы оплатить");
@@ -140,12 +142,12 @@ public class UserServiceImpl implements UserService {
         if (payment.equals("Оплачиваю")) {
             System.out.println("Товары оплачены");
             for (Product productsBasket: user.getBasket().getProducts()) {
-                for (Product product : products) {
+                for (Product product : PRODUCTS) {
                     if (productsBasket.getName().equals(product.getName())) {
                         product.setAmount(product.getAmount() - 1);
                     }
                 }
-                System.out.println(products);
+                System.out.println(PRODUCTS);
             }
         }
 
@@ -175,7 +177,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void rateProduct(ArrayList<Product> products,User user) {
+    public void rateProduct(User user) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите название чтобы оценить");
         String nameOfProduct = scanner.nextLine();
@@ -185,26 +187,26 @@ public class UserServiceImpl implements UserService {
             user.getBasket().getProducts().get(i).getRates().add(scanner.nextInt());
                     }
                 }
-                System.out.println(products);
+                System.out.println(PRODUCTS);
             }
 
 
     @Override
-    public void commentProduct(ArrayList<Product> products,User user) {
-        System.out.println(products);
+    public void commentProduct(User user) {
+        System.out.println(PRODUCTS);
         System.out.println("Введите название продукта");
         String productSelect = scanner.nextLine();
         int index = -1;
-        for (int i = 0; i < products.size(); i++) {
-            if (productSelect.equalsIgnoreCase(products.get(i).getName())) {
+        for (int i = 0; i < PRODUCTS.size(); i++) {
+            if (productSelect.equalsIgnoreCase(PRODUCTS.get(i).getName())) {
                 index = i;
                 break;
             }
         }
         if (index == -1) {
-            commentProduct(products,user);
+            commentProduct(user);
         } else {
-            products.get(index).setComment(scanner.nextLine());
+            PRODUCTS.get(index).setComment(scanner.nextLine());
         }
 
     }
