@@ -7,118 +7,130 @@ import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl.PriceServiceIm
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl.RateServiceImpl;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl.UserServiceImpl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import static com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.DataBase.PRODUCTS;
+import static com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.DataBase.USERS;
 
 public class MenuServiceImpl implements MenuService {
     AuthServiceImpl authService = new AuthServiceImpl();
     UserServiceImpl userService = new UserServiceImpl();
-    Scanner scanner = new Scanner(System.in);
 
-    public void adminMenu(User user, ArrayList<Product> products, HashMap<String, User> users) {
+
+    public void adminMenu() {
         System.out.println("1.Добавить запчасть\n2.Изменить запчасть\n3.Удалить запчать.\n4.Выйти из пользователя" +
                 "\n5.Выйти из программы");
        try {
+           Scanner scanner = new Scanner(System.in);
            int choice = scanner.nextInt();
            switch (choice) {
                case 1:
-                   userService.addProduct(products);
-                   adminMenu(user, products, users);
+                   userService.addProduct();
+                   adminMenu();
                    break;
                case 2:
-                   userService.changeProduct(products);
-                   adminMenu(user, products, users);
+                   userService.changeProduct();
+                   adminMenu();
                    break;
                case 3:
-                   userService.deleteProduct(products);
-                   adminMenu(user, products, users);
+                   userService.deleteProduct();
+                   adminMenu();
                    break;
                case 4:
-                   authMenu(user, products, users);
+                   authMenu();
                    break;
                case 5:
-                   break;
+                   System.exit(0);
                default:
-                   adminMenu(user, products, users);
+                   adminMenu();
            }
 
        } catch (InputMismatchException e){
            System.out.println("Введите номер пункта меню");
-           adminMenu(user, products, users);
+           adminMenu();
        }
 
     }
 
-    public void authMenu(User user, ArrayList<Product> products, HashMap<String, User> users) {
+    public void authMenu() {
         System.out.println("1.Авторизироваться\n2.Зарегистрироваться\n3.Выйти из программы");
         try {
+            Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    if (authService.login(users).isHasAdminRole()) {
-                        adminMenu(user, products, users);
+                    User userTest;
+                    userTest = authService.login(USERS);
+                    if (userTest == null){
+                       authMenu();
+                    }else if (userTest.isHasAdminRole()) {
+                        adminMenu();
                     } else {
-                        userMenu(user, users, products);
+                        userMenu(userTest);
                     }
                     break;
                 case 2:
-                    authService.registration(users);
+                    authService.registration(USERS);
+                    authMenu();
                     break;
                 case 3:
                     break;
                 default:
-                    authMenu(user, products, users);
-
-
+                    authMenu();
             }
         } catch (InputMismatchException e) {
             System.out.println("Введите номер пункта меню");
-            authMenu(user, products, users);
+            authMenu();
         }
     }
 
-    public void userMenu(User user, HashMap<String, User> users, ArrayList<Product> products) {
-        System.out.println("1.Поиск продуктов\n2.Выбор продукта\n3.Корзина\n4.Выйти из пользователя" +
-                "\n5.Выйти из программы");
+    public void userMenu(User user) {
+        System.out.println("1.Список продуктов\n2.Поиск продуктов\n3.Выбор продукта\n4.Корзина\n5.Выйти из пользователя" +
+                "\n6.Выйти из программы");
         try {
+            Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    userService.searchForProducts(products);
-                    userMenu(user, users, products);
-                    break;
+                    for(Product product: PRODUCTS){
+                        System.out.println(product.toString());
+                    }
+                   userMenu(user);
                 case 2:
-                    Product currentProduct = new Product();
-                    currentProduct = userService.chooseProduct(products);
+                    userService.searchForProducts();
+                    userMenu(user);
+                    break;
+                case 3:
+                    Product currentProduct;
+                    currentProduct = userService.chooseProduct(PRODUCTS);
                     if (currentProduct == null) {
                         System.out.println("Такого продукта нет");
-                        userMenu(user, users, products);
+                        userMenu(user);
                     } else {
-                        productMenu(user, users, products, currentProduct);
-                        userMenu(user, users, products);
+                        productMenu(user, currentProduct);
+                        userMenu(user);
                     }
                     break;
-                case 3:
-                    basketMenu(user, users, products);
-                    userMenu(user, users, products);
-                    break;
                 case 4:
-                    authMenu(user, products, users);
+                    basketMenu(user);
+                    userMenu(user);
                     break;
                 case 5:
+                    authMenu();
                     break;
+                case 6:
+                    System.exit(0);
                 default:
-                    userMenu(user, users, products);
+                    userMenu(user);
             }
         } catch (InputMismatchException e) {
             System.out.println("Введите номер пункта меню");
-            userMenu(user, users, products);
+            userMenu(user);
         }
     }
 
-    public void basketMenu(User user, HashMap<String, User> users, ArrayList<Product> products) {
+    public void basketMenu(User user) {
         PriceServiceImpl priceService = new PriceServiceImpl();
         for (Product product : user.getBasket().getProducts()) {
             System.out.println(product.getName() + " " + product.getPrice() + " руб.");
@@ -126,53 +138,56 @@ public class MenuServiceImpl implements MenuService {
         System.out.println(priceService.calculateTotalBasketPrice(user) + " руб.");
         System.out.println("1.Оплатить корзину\n2.Удалить продукт из корзины\n3.Назад");
         try {
+            Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    userService.payForBasket(user, products);
+                    userService.payForBasket(user);
                     break;
                 case 2:
                     userService.deleteProductFromBasket(user);
-                    basketMenu(user, users, products);
+                    basketMenu(user);
                     break;
                 case 3:
-                    userMenu(user, users, products);
+                    userMenu(user);
+                    break;
                 default:
-                    basketMenu(user, users, products);
+                    basketMenu(user);
             }
         } catch (InputMismatchException e) {
             System.out.println("Введите номер пункта меню");
-            basketMenu(user, users, products);
+            basketMenu(user);
         }
     }
 
-    public void productMenu(User user, HashMap<String, User> users, ArrayList<Product> products, Product product) {
+    public void productMenu(User user, Product product) {
         RateServiceImpl rateService = new RateServiceImpl();
         System.out.println(product.toString() + "\nРейтинг : " + rateService.calculateAvgRate(product));
         System.out.println("1.Добавить товар в корзину\n2.Оценить товар\n3.Оставить отзыв о товаре\n4.Назад");
         try {
+            Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
                     userService.addProductToBasket(user, product);
-                    productMenu(user, users, products, product);
+                    productMenu(user, product);
                     break;
                 case 2:
                     userService.rateProduct(product);
-                    productMenu(user, users, products, product);
+                    productMenu(user, product);
                     break;
                 case 3:
                     userService.commentProduct(product);
-                    productMenu(user, users, products, product);
+                    productMenu(user, product);
                     break;
                 case 4:
-                    userMenu(user, users, products);
+                    userMenu(user);
                 default:
-                    productMenu(user, users, products, product);
+                    productMenu(user, product);
             }
         } catch (InputMismatchException e) {
             System.out.println("Введите номер пункта меню");
-            productMenu(user, users, products, product);
+            productMenu(user, product);
         }
     }
 }
