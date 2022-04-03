@@ -9,7 +9,6 @@ import com.teachMeSkills.an15.MatveevArtyom.hw8.service.UserService;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static com.teachMeSkills.an15.MatveevArtyom.hw8.DataBase.PRODUCTS;
 import static com.teachMeSkills.an15.MatveevArtyom.hw8.DataBase.USERS;
 
 public class MenuServiceImpl implements Menu {
@@ -26,7 +25,7 @@ public class MenuServiceImpl implements Menu {
                 int choose = new Scanner(System.in).nextInt();
                 switch (choose) {
                     case 1:
-                        authService.registration(USERS);
+                        authService.registration();
                         break;
                     case 2:
                         User authUser = authService.login();
@@ -66,13 +65,13 @@ public class MenuServiceImpl implements Menu {
                 int choose = new Scanner(System.in).nextInt();
                 switch (choose) {
                     case 1:
-                        userService.addProduct(PRODUCTS);
+                        userService.addProduct();
                         break;
                     case 2:
-                        userService.deleteProduct(PRODUCTS);
+                        userService.deleteProduct();
                         break;
                     case 3:
-                        userService.changeProduct(PRODUCTS);
+                        userService.changeProduct();
                         break;
                     default:
                         flag = false;
@@ -98,19 +97,19 @@ public class MenuServiceImpl implements Menu {
                         userService.search(product);
                         break;
                     case 2:
-                        userService.commentProduct(PRODUCTS);
+                        userService.commentProduct();
                         break;
                     case 3:
-                        userService.rateProduct(PRODUCTS);
+                        userService.rateProduct();
                         break;
                     case 4:
-                        userService.addProductToBasket(user, PRODUCTS);
+                        userService.addProductToBasket(user);
                         break;
                     case 5:
                         userService.deleteProductFromBasket(user);
                         break;
                     case 6:
-                        userService.payForBasket(user, PRODUCTS);
+                        userService.payForBasket(user);
                         break;
                     default:
                         flag = false;
