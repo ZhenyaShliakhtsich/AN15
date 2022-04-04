@@ -1,25 +1,24 @@
 package com.teachMeSkills.an15.PilyushinYuri.hw8.task2.service;
 
-import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.model.Product;
+
 import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.model.User;
 
-import java.util.ArrayList;
 
 public interface UserService {
 
-    void addProduct(ArrayList<Product> products);
+    void addProduct();
 
-    void changeProduct(ArrayList<Product> products);
+    void changeProduct();
 
-    void deleteProduct(ArrayList<Product> products);
+    void deleteProduct();
 
-    void addProductToBasket(User user, ArrayList<Product> products);
+    void addProductToBasket(User user);
 
-    void payForBasket(User user, ArrayList<Product> products);
+    void payForBasket(User user);
 
     void deleteProductFromBasket(User user);
 
-    void rateProduct(ArrayList<Product> products, User user);
+    void rateProduct(User user);
 
-    void commentProduct(ArrayList<Product> products,User user);
+    void commentProduct(User user);
 }
