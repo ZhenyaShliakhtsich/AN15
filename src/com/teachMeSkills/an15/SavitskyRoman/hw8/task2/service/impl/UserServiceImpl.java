@@ -220,15 +220,23 @@ public class UserServiceImpl implements UserService {
             ArrayList<Product> serviceProductListInBasket;
             if (user.getBasket().getProducts() != null) serviceProductListInBasket = user.getBasket().getProducts();
             else serviceProductListInBasket = new ArrayList<>();
-            serviceProductListInBasket.add(products);
-            user.getBasket().setProducts(serviceProductListInBasket);
-            //Пересчет коризны
-            BigDecimal bigDecimal = new BigDecimal(0);
+            int amount = products.getAmount();
             for (Product pr : user.getBasket().getProducts()) {
-                bigDecimal = bigDecimal.add(pr.getPrice()).setScale(2, RoundingMode.HALF_UP);
+                if (pr.equals(products)) {
+                    amount -= 1;
+                }
             }
-            user.getBasket().setTotalPrice(bigDecimal);
-            ///
+            if (amount >= 1) {
+                serviceProductListInBasket.add(products);
+                user.getBasket().setProducts(serviceProductListInBasket);
+                //Пересчет коризны
+                BigDecimal bigDecimal = new BigDecimal(0);
+                for (Product pr : user.getBasket().getProducts()) {
+                    bigDecimal = bigDecimal.add(pr.getPrice()).setScale(2, RoundingMode.HALF_UP);
+                }
+                user.getBasket().setTotalPrice(bigDecimal);
+            }else System.out.println("Продукта нету в наличии");
+
         }
     }
 
@@ -349,14 +357,16 @@ public class UserServiceImpl implements UserService {
         for (Product pr : serviceProductsList) {
             if (product.equals(pr)) {
                 System.out.println("Напешите комментарий к продукту");
-                pr.setComment(answerUser());
+                String userComment = answerUser();
+                System.out.println("К продукту \"" + pr.getName() + "\" вы оставили комментарий:\n\""
+                        + userComment + "\"");
+                pr.setComment(userComment);
             }
         }
     }
 
     @Override
     public ArrayList<Product> searchCarToName(ArrayList<Chapter> chapterArrayList) {
-
         ArrayList<Product> serviceProductList = new ArrayList<>();
         System.out.println("Введите название авто(\"VW\",\"Shcoda\",\"Audi\",\"Renault\")");
         String carName = answerUser();

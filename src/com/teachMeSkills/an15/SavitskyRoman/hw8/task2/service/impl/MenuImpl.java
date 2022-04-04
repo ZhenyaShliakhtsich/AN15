@@ -41,14 +41,13 @@ public class MenuImpl implements Menu {
                         adminFirstStage(adminFirstStageStringBuilder, chapterArrayList, userService);
                     } else {
                         menuSplitTop("Good day, " + user.getLogin());
-
                         userFirstStage(user, chapterArrayList, userService);
-
                     }
+                    break;
                 }
                 case "3":
                     isStepDownOne = true;
-                    continue;
+                    break;
                 default:
                     System.out.println("Нету такого номера. Повторите ввод");
             }
@@ -173,18 +172,18 @@ public class MenuImpl implements Menu {
                 case "2":
                     userSecondStage(userService, user.getBasket(),
                             userChoiceProductToBasket(chapterArrayList.get(1).getProductArrayList(),
-                                    chapterArrayList.get(1).getName()), user, chapterArrayList.get(0).getProductArrayList());
+                                    chapterArrayList.get(1).getName()), user, chapterArrayList.get(1).getProductArrayList());
                     break;
                 case "3":
                     userSecondStage(userService, user.getBasket(),
                             userChoiceProductToBasket(chapterArrayList.get(2).getProductArrayList(),
-                                    chapterArrayList.get(2).getName()), user, chapterArrayList.get(0).getProductArrayList());
+                                    chapterArrayList.get(2).getName()), user, chapterArrayList.get(2).getProductArrayList());
                     break;
                 case "4":
+                    ArrayList<Product> serviceProductList = userService.searchCarToName(chapterArrayList);
                     userSecondStage(userService, user.getBasket(),
-                            userChoiceProductToBasket(userService.searchCarToName(chapterArrayList),
-                                    "Поиск по названию авто"), user,
-                            chapterArrayList.get(0).getProductArrayList());
+                            userChoiceProductToBasket(serviceProductList,
+                                    "Поиск по названию авто"), user, serviceProductList);
                     break;
                 case "5":
                     userService.deleteProductFromBasket(user);
@@ -303,7 +302,8 @@ public class MenuImpl implements Menu {
         }
     }
 
-    public Product userChoiceProductToBasket(ArrayList<Product> productArrayList, String nameChapter) {
+
+   public Product userChoiceProductToBasket(ArrayList<Product> productArrayList, String nameChapter) {
         if (productArrayList == null || productArrayList.isEmpty()) {
             return null;
         } else {
@@ -368,7 +368,7 @@ public class MenuImpl implements Menu {
         carNamesOne.add("VW");
         carNamesOne.add("Shcoda");
         carNamesOne.add("Audi");
-        Product productOne = new Product("Oil", new BigDecimal(240), 20,
+        Product productOne = new Product("Oil", new BigDecimal(240), 1,
                 null, carNamesOne);
 
         HashSet<String> carNamesTwo = new HashSet<>();
