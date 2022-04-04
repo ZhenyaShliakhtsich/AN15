@@ -3,8 +3,6 @@ package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.menu;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.Product;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.User;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl.AuthServiceImpl;
-import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl.PriceServiceImpl;
-import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl.RateServiceImpl;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl.UserServiceImpl;
 
 import java.util.InputMismatchException;
@@ -19,37 +17,41 @@ public class MenuServiceImpl implements MenuService {
 
 
     public void adminMenu() {
-        System.out.println("1.Добавить запчасть\n2.Изменить запчасть\n3.Удалить запчать.\n4.Выйти из пользователя" +
-                "\n5.Выйти из программы");
-       try {
-           Scanner scanner = new Scanner(System.in);
-           int choice = scanner.nextInt();
-           switch (choice) {
-               case 1:
-                   userService.addProduct();
-                   adminMenu();
-                   break;
-               case 2:
-                   userService.changeProduct();
-                   adminMenu();
-                   break;
-               case 3:
-                   userService.deleteProduct();
-                   adminMenu();
-                   break;
-               case 4:
-                   authMenu();
-                   break;
-               case 5:
-                   System.exit(0);
-               default:
-                   adminMenu();
-           }
+        System.out.println("""
+                1.Добавить запчасть
+                2.Изменить запчасть
+                3.Удалить запчать.
+                4.Выйти из пользователя
+                5.Выйти из программы""");
+        try {
+            Scanner scanner = new Scanner(System.in);
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    userService.addProduct();
+                    adminMenu();
+                    break;
+                case 2:
+                    userService.changeProduct();
+                    adminMenu();
+                    break;
+                case 3:
+                    userService.deleteProduct();
+                    adminMenu();
+                    break;
+                case 4:
+                    authMenu();
+                    break;
+                case 5:
+                    System.exit(0);
+                default:
+                    adminMenu();
+            }
 
-       } catch (InputMismatchException e){
-           System.out.println("Введите номер пункта меню");
-           adminMenu();
-       }
+        } catch (InputMismatchException e) {
+            System.out.println("Введите номер пункта меню");
+            adminMenu();
+        }
 
     }
 
@@ -62,9 +64,9 @@ public class MenuServiceImpl implements MenuService {
                 case 1:
                     User userTest;
                     userTest = authService.login(USERS);
-                    if (userTest == null){
-                       authMenu();
-                    }else if (userTest.isHasAdminRole()) {
+                    if (userTest == null) {
+                        authMenu();
+                    } else if (userTest.isHasAdminRole()) {
                         adminMenu();
                     } else {
                         userMenu(userTest);
@@ -86,19 +88,24 @@ public class MenuServiceImpl implements MenuService {
     }
 
     public void userMenu(User user) {
-        System.out.println("1.Список продуктов\n2.Поиск продуктов\n3.Выбор продукта\n4.Корзина\n5.Выйти из пользователя" +
-                "\n6.Выйти из программы");
+        System.out.println("""
+                1.Список продуктов
+                2.Поиск продуктов
+                3.Выбор продукта
+                4.Корзина
+                5.Выйти из пользователя
+                6.Выйти из программы""");
         try {
             Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    for(Product product: PRODUCTS){
+                    for (Product product : PRODUCTS) {
                         System.out.println(product.toString());
                     }
-                   userMenu(user);
+                    userMenu(user);
                 case 2:
-                    userService.searchForProducts();
+                    userService.searchProductByCarName();
                     userMenu(user);
                     break;
                 case 3:
@@ -131,11 +138,10 @@ public class MenuServiceImpl implements MenuService {
     }
 
     public void basketMenu(User user) {
-        PriceServiceImpl priceService = new PriceServiceImpl();
         for (Product product : user.getBasket().getProducts()) {
             System.out.println(product.getName() + " " + product.getPrice() + " руб.");
         }
-        System.out.println(priceService.calculateTotalBasketPrice(user) + " руб.");
+        System.out.println(user.getBasket().getTotalPrice()+ " руб.");
         System.out.println("1.Оплатить корзину\n2.Удалить продукт из корзины\n3.Назад");
         try {
             Scanner scanner = new Scanner(System.in);
@@ -161,8 +167,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     public void productMenu(User user, Product product) {
-        RateServiceImpl rateService = new RateServiceImpl();
-        System.out.println(product.toString() + "\nРейтинг : " + rateService.calculateAvgRate(product));
+        System.out.println(product.toString());
         System.out.println("1.Добавить товар в корзину\n2.Оценить товар\n3.Оставить отзыв о товаре\n4.Назад");
         try {
             Scanner scanner = new Scanner(System.in);
