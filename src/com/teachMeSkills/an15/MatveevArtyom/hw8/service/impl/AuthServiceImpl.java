@@ -19,30 +19,40 @@ public class AuthServiceImpl implements AuthService {
         String login = scanner.nextLine();
         System.out.println("Введите пароль:");
         String password = scanner.nextLine();
-        if (USERS.size() == 1 && "admin".equalsIgnoreCase(login) && "admin".equalsIgnoreCase(password) || USERS.size() > 1) {
-            User enteredUser = new User(login, password);
-            if (USERS.containsKey(enteredUser.getLogin())) {
-                if (USERS.get(enteredUser.getLogin()).getPassword().equals(enteredUser.getPassword())) {
-                    System.out.println("Ты авторизирован");
-                    USERS.put(login, enteredUser);
-                    return USERS.get(enteredUser.getLogin());
+        User enteredUser = new User(login, password);
+        if (USERS.containsKey(enteredUser.getLogin())) {
+            if (USERS.get(enteredUser.getLogin()).getPassword().equals(enteredUser.getPassword())) {
+                System.out.println("Ты авторизирован");
+                if ("admin".equalsIgnoreCase(USERS.get(enteredUser.getLogin()).getLogin())) {
+                    enteredUser.setHasAdminRole(true);
+                }
+                USERS.put(login, enteredUser);
+                return USERS.get(enteredUser.getLogin());
+            } else {
+                System.out.println("Логин или пароль неверные, попробуйте ещё раз! \n " +
+                        "или нажмите 1 чтобы выйти назад");
+                int choose = new Scanner(System.in).nextInt();
+                if (choose == 1) {
+                    return null;
                 } else {
-                    System.out.println("Логин или пароль неверные, попробуйте ещё раз!");
                     login();
                 }
-            } else {
-                System.out.println("Логин или пароль неверные, попробуйте ещё раз!");
-                login();
             }
         } else {
-            System.out.println("Если вы не админ, вам сначала надо зарегистрироваться! \nРегистрация: ");
-            registration();
+            System.out.println("Логин или пароль неверные, попробуйте ещё раз! \n " +
+                    "или нажмите 1 чтобы выйти назад");
+            int choose = new Scanner(System.in).nextInt();
+            if (choose == 1) {
+                return null;
+            } else {
+                login();
+            }
         }
         return null;
     }
 
     @Override
-    public void registration() {
+    public User registration() {
         System.out.println("Введите логин:");
         Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
@@ -54,6 +64,6 @@ public class AuthServiceImpl implements AuthService {
         user.getBasket().setProducts(products);
         USERS.put(user.getLogin(), user);
         System.out.println("Ты зарегистрирован! Авторизируйся!");
-        login();
+        return login();
     }
 }

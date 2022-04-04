@@ -10,7 +10,7 @@ import java.util.Random;
 public class PriceServiceImpl implements PriceService {
     @Override
     public void calculateTotalBasketPrice(User user) {
-        BigDecimal total = new BigDecimal(0);
+        BigDecimal total = new BigDecimal(0);//totalPrice
         for (Product product : user.getBasket().getProducts()) {
             total = total.add(product.getPrice());
         }
