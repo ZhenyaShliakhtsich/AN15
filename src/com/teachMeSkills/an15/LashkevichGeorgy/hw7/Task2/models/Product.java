@@ -1,18 +1,17 @@
-package com.teachMeSkills.an15.classes.class8.task2.model;
+package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Objects;
 
-public class Product {
+public class Product extends Basket {
     private String name;
     private BigDecimal price;
     private double avgRate;
     private int amount;
     private String comment;
     private String carNames;
-    private ArrayList<Integer> rates;
+    private ArrayList<Integer> rates = new ArrayList<>();
 
     public Product(String name, BigDecimal price, int amount, String comment, String carNames) {
         this.name = name;
@@ -106,4 +105,6 @@ public class Product {
                 ", rates=" + rates +
                 '}';
     }
+
+
 }

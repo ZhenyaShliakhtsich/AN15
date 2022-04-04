@@ -1,19 +1,17 @@
 package com.teachMeSkills.an15.PilyushinYuri.hw8.task2.service.impl;
 
-import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.model.Basket;
-import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.model.Product;
+
 import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.model.User;
 import com.teachMeSkills.an15.PilyushinYuri.hw8.task2.service.MenuService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.Scanner;
 
 public class MenuServiceImpl implements MenuService {
 
 
     @Override
-    public void userMenu(User user, ArrayList<Product> products,HashMap<String, User> users) {
+    public void userMenu(User user) {
         UserServiceImpl userService = new UserServiceImpl();
         AuthServiceImpl authService = new AuthServiceImpl();
         Scanner scanner = new Scanner(System.in);
@@ -27,35 +25,31 @@ public class MenuServiceImpl implements MenuService {
         System.out.println(stringBuilder);
         String choise = scanner.nextLine();
         if (choise.contains("1") || choise.contains("добавить")) {
-            userService.addProductToBasket(user,products);
-            userMenu(user, products, users);
-        }
-        else if (choise.contains("2") || choise.contains("оплатить")) {
-            userService.payForBasket(user,products);
-            userMenu(user, products, users);
-        }
-        else if ( choise.contains("3") || choise.contains("удалить")){
+            userService.addProductToBasket(user);
+            userMenu(user);
+        } else if (choise.contains("2") || choise.contains("оплатить")) {
+            userService.payForBasket(user);
+            userMenu(user);
+        } else if (choise.contains("3") || choise.contains("удалить")) {
             userService.deleteProductFromBasket(user);
-            userMenu(user, products,users);
-        }else if ( choise.contains("4") || choise.contains("оценить")){
-            userService.rateProduct(products,user);
-            userMenu(user, products,users);
-        }
-        else if ( choise.contains("5") || choise.contains("коментировать")){
+            userMenu(user);
+        } else if (choise.contains("4") || choise.contains("оценить")) {
+            userService.rateProduct(user);
+            userMenu(user);
+        } else if (choise.contains("5") || choise.contains("коментировать")) {
             userService.deleteProductFromBasket(user);
-            userMenu(user, products,users);
-        }
-        else if ( choise.contains("6") || choise.contains("вернуться")){
-            authService.login(users,products);
+            userMenu(user);
+        } else if (choise.contains("6") || choise.contains("вернуться")) {
+            authService.login();
         } else {
             System.out.println("Неправильный выбор. Повторите ввод.");
-            userMenu(user, products,users);
+            userMenu(user);
         }
 
     }
 
     @Override
-    public void adminMenu(User user, ArrayList<Product> products,HashMap<String, User> users) {
+    public void adminMenu() {
         UserServiceImpl userService = new UserServiceImpl();
         AuthServiceImpl authService = new AuthServiceImpl();
         Scanner scanner = new Scanner(System.in);
@@ -67,37 +61,34 @@ public class MenuServiceImpl implements MenuService {
         System.out.println(stringBuilder);
         String choise = scanner.nextLine();
         if (choise.contains("1") || choise.contains("добавить")) {
-            userService.addProduct(products);
-            adminMenu(user, products,users);
-        }
-         else if (choise.contains("2") || choise.contains("изменить")) {
-            userService.changeProduct(products);
-            adminMenu(user, products,users);
-        }
-        else if ( choise.contains("3") || choise.contains("удалить")){
-            userService.deleteProduct(products);
-            adminMenu(user, products,users);
-        }
-        else if ( choise.contains("4") || choise.contains("вернуться")){
-            authService.login(users,products);
-    } else {
+            userService.addProduct();
+            adminMenu();
+        } else if (choise.contains("2") || choise.contains("изменить")) {
+            userService.changeProduct();
+            adminMenu();
+        } else if (choise.contains("3") || choise.contains("удалить")) {
+            userService.deleteProduct();
+            adminMenu();
+        } else if (choise.contains("4") || choise.contains("вернуться")) {
+            authService.login();
+        } else {
             System.out.println("Неправильный выбор. Повторите ввод.");
-            adminMenu(user, products,users);
-        }
-}
-
-        @Override
-        public void authMenu (HashMap < String, User > users,ArrayList<Product> products){
-            AuthServiceImpl authService = new AuthServiceImpl();
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("выберите  действие:\n 1.регистрация\n2.авторизация");
-            String choice = scanner.nextLine();
-            if (choice.equalsIgnoreCase("1") || choice.equals("регистрация")) {
-                authService.registration(users,products);
-            }
-            if (choice.equalsIgnoreCase("2") || choice.equals("авторизация")) {
-                authService.login(users,products);
-
-            }
+            adminMenu();
         }
     }
+
+    @Override
+    public void authMenu() {
+        AuthServiceImpl authService = new AuthServiceImpl();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("выберите  действие:\n 1.регистрация\n2.авторизация");
+        String choice = scanner.nextLine();
+        if (choice.equalsIgnoreCase("1") || choice.equals("регистрация")) {
+            authService.registration();
+        }
+        if (choice.equalsIgnoreCase("2") || choice.equals("авторизация")) {
+            authService.login();
+
+        }
+    }
+}
