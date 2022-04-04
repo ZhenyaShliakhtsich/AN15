@@ -13,6 +13,7 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.PurchaseServi
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.UserService;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -245,7 +246,12 @@ public class UserServiceImpl implements UserService {
         for (Product p : storage) {
             if (p.getName().equals(productToComment)) {
                 System.out.println("Enter your comment");
-                p.setComment(scanner.nextLine());
+                String newComment = scanner.nextLine();
+                //null checker
+                if (p.getComment() == null) {
+                   p.setComment(new ArrayList<>());
+                }
+                    p.getComment().add(newComment);
                 break;
             }
         }
