@@ -1,19 +1,13 @@
 package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2;
-//Разработать консольное приложение при запуске которого просят авторизировать пользователя.
-//Если залогиниться как админ, то можно добавлять, удалять, изменять информацию об автозапчасти.
-
-//Если логиниться как пользователь, то появляется доступ поиска по названию его машины и по разделам
-// (подвеска - шаровая, ступица и тд, двс - масло, прокладки и тд) разделов должно быть 3.
-
-//Раздел в себе содержит запчасти.
-//Запчасть содержит в себе название, цену, отзыв, среднюю оценку, количество и машины, к которым она подходит.
 
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.User;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.AuthService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.PriceService;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.RateService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.UserService;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.AuthServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.PriceServiceImpl;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.RateServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl.UserServiceImpl;
 import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.Product;
 
@@ -23,10 +17,16 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 
+//Разработать консольное приложение при запуске которого просят авторизировать пользователя.
+//Если залогиниться как админ, то можно добавлять, удалять, изменять информацию об автозапчасти.
+//Если логиниться как пользователь, то появляется доступ поиска по названию его машины
+//Запчасть содержит в себе название, цену, отзыв, среднюю оценку, количество и машины, к которым она подходит.
 //Пользователь может написать отзыв к детали и поставить оценку. Оценка должна калькулироваться средняя.
 // Пользователь может получить скидку до 30 процентов. Размер скидки рассчитать рандомом.
 // Пользователь может добавлять товар в корзину и удалять, оплатить всю корзину целиков посредством ввода в консоль «Оплачиваю».
 // После оплаты количество деталей должно уменьшиться.
+// Чек выводить в отдельный файл с название receipt_{{current_date}}
+
 public class Main {
     public static void main(String[] args) {
         boolean flag = true;
@@ -113,6 +113,7 @@ public class Main {
                         "Чтобы оставить комментарий продукту тыкаем \"4\"\n" +
                         "Чтобы заплатить с учетом скидки за то, что в корзине и получить чек тыкаем \"5\"\n" +
                         "Чтобы показать все товары тыкаем \"6\"\n" +
+                        "Чтобы отсортировать товары по марке машины тыкаем \"7\"\n" +
                         "Для выхода из меню тыкаем \"10\"\n");
                 Scanner scanner5 = new Scanner(System.in);
                 int userChoose = scanner5.nextInt();
@@ -125,6 +126,8 @@ public class Main {
                         break;
                     case 3:
                         userService.rateProduct(products);
+                        RateService rateService = new RateServiceImpl();
+                        rateService.calculateAvgRate(products);
                         break;
                     case 4:
                         userService.commentProduct(products);
@@ -143,6 +146,22 @@ public class Main {
                         userService.showProducts(products);
                         break;
                     case 7:
+                        System.out.print("В наличии товары для следующих машин: ");
+                        for (int i = 0; i <products.size(); i++) {
+                            for (int j = 0; j <products.get(i).getProducts().size(); j++) {
+                                System.out.println(products.get(i).getProducts().get(j).getCarNames());
+                            }
+
+                        }
+                        System.out.println("Товары для каких машин выбираем?");
+                        Scanner scanner1 = new Scanner(System.in);
+                        String carName = scanner1.nextLine();
+                        System.out.print("\nДля машины "+ carName + " можете купить следующие товары: ");
+                        for (int i = 0; i < products.size(); i++) {
+                            if (products.get(i).getCarNames().equalsIgnoreCase(carName)){
+                                System.out.print(products.get(i).getName());
+                            }
+                        }
 
 
                     case 10:

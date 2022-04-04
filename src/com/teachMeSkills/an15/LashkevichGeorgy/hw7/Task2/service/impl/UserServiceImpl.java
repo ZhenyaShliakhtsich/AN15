@@ -54,12 +54,11 @@ public class UserServiceImpl implements UserService {
         int amount = scanner4.nextInt();
         System.out.println("Введите цену продукта:");
         BigDecimal price = scanner4.nextBigDecimal();
-       /* System.out.println("Введи коммент:");
-        String comment = scanner.nextLine();
-
         System.out.println("Введите название машины:");
-        System.out.println(scanner.nextLine());
-        String carName = scanner.nextLine();*/
+        String carName = scanner4.nextLine();
+        System.out.println(scanner4.next());
+         /*System.out.println("Введи коммент:");
+        String comment = scanner.nextLine();*/
 
 
         //TODO: all other parameters should be scanned from console and set to object
@@ -68,8 +67,8 @@ public class UserServiceImpl implements UserService {
         product.setName(name);
         product.setAmount(amount);
         product.setPrice(price);
-       /* product.setComment(comment);
-        product.setCarNames(carName);*/
+       //product.setComment(comment);
+        product.setCarNames(carName);
 
 
         //TODO: should be changed from setters to constructor initialization
