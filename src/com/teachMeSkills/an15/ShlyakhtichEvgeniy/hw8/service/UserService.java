@@ -7,15 +7,15 @@ import java.util.ArrayList;
 
 public interface UserService {
 
-    void addProduct(ArrayList<Product> products);
+    void addProduct();
 
-    void changeProduct(ArrayList<Product> products);
+    void changeProduct();
 
-    void deleteProduct(ArrayList<Product> products);
+    void deleteProduct();
 
     void addProductToBasket(User user, Product product);
 
-    void payForBasket(User user,ArrayList<Product> products);
+    void payForBasket(User user);
 
     void deleteProductFromBasket(User user);
 
@@ -23,5 +23,5 @@ public interface UserService {
 
     void commentProduct(Product product);
 
-    void searchForProducts(ArrayList<Product> products);
+    void searchForProducts();
 }

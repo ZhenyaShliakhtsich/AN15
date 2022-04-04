@@ -43,6 +43,6 @@ public class PriceAndDiscountServiceImpl implements PriceServiceAndDiscount {
     @Override
     public int calculateDiscount() {
         Random random = new Random();
-        return random.nextInt(30);
+        return random.nextInt(31);
     }
 }

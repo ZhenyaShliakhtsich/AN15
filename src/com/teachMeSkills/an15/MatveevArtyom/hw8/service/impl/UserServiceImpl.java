@@ -15,12 +15,14 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Scanner;
 
+import static com.teachMeSkills.an15.MatveevArtyom.hw8.DataBase.PRODUCTS;
+
 public class UserServiceImpl implements UserService {
 
     private Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void addProduct(ArrayList<Product> products) {
+    public void addProduct() {
         System.out.println("Введите название продукта:");
         String name = scanner.nextLine();
         System.out.println("Введите кол-во продуктов");
@@ -41,25 +43,25 @@ public class UserServiceImpl implements UserService {
             }
         }
         Product product = new Product(name, price, amount, review, cars);
-        products.add(product);
+        PRODUCTS.add(product);
     }
 
     @Override
-    public void changeProduct(ArrayList<Product> products) {
+    public void changeProduct() {
         System.out.println("Введите название запчасти, информацию о которой вы хотите изменить");
-        for (Product product : products) {
+        for (Product product : PRODUCTS) {
             System.out.println(product.getName());
         }
         String name = new Scanner(System.in).nextLine();
         int index = -1;
-        for (int i = 0; i < products.size(); i++) {
-            if (name.equalsIgnoreCase(products.get(i).getName())) {
+        for (int i = 0; i < PRODUCTS.size(); i++) {
+            if (name.equalsIgnoreCase(PRODUCTS.get(i).getName())) {
                 index = i;
                 break;
             }
         }
         if (index == -1) {
-            changeProduct(products);
+            changeProduct();
         }
         while (true) {
             System.out.println("Че хочешь изменить?(Название, количество, цену, оценку, отзыв, машину)");
@@ -67,36 +69,36 @@ public class UserServiceImpl implements UserService {
             if (choice.equalsIgnoreCase("Название")) {
                 System.out.println("Введи новое название");
                 String name1 = scanner.nextLine();
-                products.get(index).setName(name1);
+                PRODUCTS.get(index).setName(name1);
                 break;
             } else if (choice.equalsIgnoreCase("Количество") || choice.equalsIgnoreCase("кол-во")) {
                 System.out.println("Введите новое количество");
                 int amount = scanner.nextInt();
-                products.get(index).setAmount(amount);
+                PRODUCTS.get(index).setAmount(amount);
                 break;
             } else if (choice.equalsIgnoreCase("цену") || choice.equalsIgnoreCase("цена")) {
                 System.out.println("Введите новую цену");
                 BigDecimal price = scanner.nextBigDecimal();
-                products.get(index).setPrice(price);
+                PRODUCTS.get(index).setPrice(price);
                 break;
             } else if (choice.equalsIgnoreCase("оценку") || choice.equalsIgnoreCase("оценка")) {
                 System.out.println("Введите новую среднюю оценку");
                 double rate = scanner.nextDouble();
-                products.get(index).setAvgRate(rate);
+                PRODUCTS.get(index).setAvgRate(rate);
                 break;
             } else if (choice.equalsIgnoreCase("отзыв")) {
                 System.out.println("Введите новый отзыв");
                 String comment = scanner.nextLine();
-                products.get(index).setComment(comment);
+                PRODUCTS.get(index).setComment(comment);
                 break;
             } else if (choice.equalsIgnoreCase("машину") || choice.equalsIgnoreCase("машина")) {
-                System.out.println(products.get(index).getCarNames() + "\nВыберите машину,которую вы хотите изменить");
+                System.out.println(PRODUCTS.get(index).getCarNames() + "\nВыберите машину,которую вы хотите изменить");
                 String carChoice = scanner.nextLine();
-                for (String car : products.get(index).getCarNames()) {
+                for (String car : PRODUCTS.get(index).getCarNames()) {
                     if (carChoice.equals(car)) {
                         System.out.println("Введите новую машину");
                         car = scanner.nextLine();
-                        products.get(index).getCarNames().remove(car);
+                        PRODUCTS.get(index).getCarNames().remove(car);
                         break;
                     }
                 }
@@ -105,35 +107,35 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteProduct(ArrayList<Product> products) {
+    public void deleteProduct() {
         System.out.println("Введите название запчасти, информацию о которой вы хотите удалить");
-        for (Product product : products) {
+        for (Product product : PRODUCTS) {
             System.out.println(product.getName());
         }
         String name = scanner.nextLine();
         int index = -1;
-        for (int i = 0; i < products.size(); i++) {
-            if (name.equalsIgnoreCase(products.get(i).getName())) {
+        for (int i = 0; i < PRODUCTS.size(); i++) {
+            if (name.equalsIgnoreCase(PRODUCTS.get(i).getName())) {
                 index = i;
                 break;
             }
         }
         if (index == -1) {
-            deleteProduct(products);
+            deleteProduct();
         } else {
-            products.remove(products.get(index));
+            PRODUCTS.remove(PRODUCTS.get(index));
         }
     }
 
     @Override
-    public void addProductToBasket(User user, ArrayList<Product> products) {
+    public void addProductToBasket(User user) {
         System.out.println("Введите какой продукт вы хотите добавить в корзину:");
-        for (Product product : products) {
+        for (Product product : PRODUCTS) {
             System.out.println(product.getName());
         }
         String choose = new Scanner(System.in).nextLine();
         boolean flag = true;
-        for (Product product : products) {
+        for (Product product : PRODUCTS) {
             if (product.getName().equalsIgnoreCase(choose)) {
                 if (user.getBasket() == null) {
                     Basket basket = new Basket();
@@ -151,12 +153,12 @@ public class UserServiceImpl implements UserService {
         }
         if (flag) {
             System.out.println("Такого продукта нет, попробуйте ещё раз!");
-            addProductToBasket(user, products);
+            addProductToBasket(user);
         }
     }
 
     @Override
-    public void payForBasket(User user, ArrayList<Product> products) {
+    public void payForBasket(User user) {
         try {
             if (user.getBasket().getProducts().size() != 0) {
                 System.out.println("Вот, что у вас в корзине");
@@ -192,13 +194,13 @@ public class UserServiceImpl implements UserService {
                         e.printStackTrace();
                     }
                     for (Product productFromBasket : user.getBasket().getProducts()) {
-                        for (Product product : products) {
+                        for (Product product : PRODUCTS) {
                             if (productFromBasket.getName().equals(product.getName())) {
                                 product.setAmount(product.getAmount() - 1);
                             }
                         }
                     }
-                    user.getBasket().getProducts().removeAll(products);
+                    user.getBasket().getProducts().removeAll(PRODUCTS);
                 }
             } else {
                 System.out.println("Корзина пуста! вы не можете ничего удалить из неё!");
@@ -239,14 +241,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void rateProduct(ArrayList<Product> products) {
+    public void rateProduct() {
         System.out.println("Введите какой продукт вы хотите оценить:");
-        for (Product product : products) {
+        for (Product product : PRODUCTS) {
             System.out.println(product.getName());
         }
         String choose = new Scanner(System.in).nextLine();
         boolean flag = true;
-        for (Product product : products) {
+        for (Product product : PRODUCTS) {
             if (product.getName().equalsIgnoreCase(choose)) {
                 System.out.println("Введите вашу оценку(от 1 до 10)");
                 int rate = new Scanner(System.in).nextInt();
@@ -269,19 +271,19 @@ public class UserServiceImpl implements UserService {
         }
         if (flag) {
             System.out.println("Такого продукта нет, попробуйте ещё раз!");
-            rateProduct(products);
+            rateProduct();
         }
     }
 
     @Override
-    public void commentProduct(ArrayList<Product> products) {
+    public void commentProduct() {
         System.out.println("Введите продукт, к которому вы хотите написать отзыв:");
-        for (Product product : products) {
+        for (Product product : PRODUCTS) {
             System.out.println(product.getName());
         }
         String choose = new Scanner(System.in).nextLine();
         boolean flag = true;
-        for (Product product : products) {
+        for (Product product : PRODUCTS) {
             if (product.getName().equalsIgnoreCase(choose)) {
                 System.out.println("Напишите ваш отзыв к детали - " + product.getName());
                 String comment = new Scanner(System.in).nextLine();
@@ -293,7 +295,7 @@ public class UserServiceImpl implements UserService {
         }
         if (flag) {
             System.out.println("Такого продукта нет, попробуйте ещё раз!");
-            commentProduct(products);
+            commentProduct();
         }
     }
 

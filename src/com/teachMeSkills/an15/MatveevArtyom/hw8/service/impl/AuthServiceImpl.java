@@ -6,14 +6,11 @@ import com.teachMeSkills.an15.MatveevArtyom.hw8.model.User;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.service.AuthService;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 import static com.teachMeSkills.an15.MatveevArtyom.hw8.DataBase.USERS;
 
 public class AuthServiceImpl implements AuthService {
-
-    //User user = null;
 
     @Override
     public User login() {
@@ -39,13 +36,13 @@ public class AuthServiceImpl implements AuthService {
             }
         } else {
             System.out.println("Если вы не админ, вам сначала надо зарегистрироваться! \nРегистрация: ");
-            registration(USERS);
+            registration();
         }
         return null;
     }
 
     @Override
-    public void registration(HashMap<String, User> users) {
+    public void registration() {
         System.out.println("Введите логин:");
         Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
@@ -55,7 +52,7 @@ public class AuthServiceImpl implements AuthService {
         user.setBasket(new Basket());
         ArrayList<Product> products = new ArrayList<>();
         user.getBasket().setProducts(products);
-        users.put(user.getLogin(), user);
+        USERS.put(user.getLogin(), user);
         System.out.println("Ты зарегистрирован! Авторизируйся!");
         login();
     }
