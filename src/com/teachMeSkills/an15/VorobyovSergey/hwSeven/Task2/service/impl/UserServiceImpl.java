@@ -185,8 +185,8 @@ public class UserServiceImpl implements UserService {
             PriceAndDiscountServiceImpl service = new PriceAndDiscountServiceImpl();
             PurchaseReceipt receipt = service.calculateTotalBasketPrice(user);
             //Try to pay for basket
-            System.out.println("Введи ОПЛАЧИВАЮ если хочешь оплатить корзину");
-            if (scanner.nextLine().equalsIgnoreCase("ОПЛАЧИВАЮ")) {
+            System.out.println("Введи " + ConstVal.PAY_BASKET+ " если хочешь оплатить корзину");
+            if (ConstVal.PAY_BASKET.equalsIgnoreCase(scanner.nextLine())) {
                 System.out.println("Оплачено!!!");
                 //Serialize and save
                 purchaseService.savePurchaseReceipt(receipt);

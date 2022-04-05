@@ -29,6 +29,7 @@ public class PurchaseServiceImpl implements PurchaseService {
                 new FileOutputStream(fileSource + fileName + index + extension))) {
             oos.writeObject(purchaseReceipt);
         } catch (IOException e) {
+            e.printStackTrace();
             System.out.println("Something is wrong with IO");
         }
     }
@@ -69,6 +70,7 @@ public class PurchaseServiceImpl implements PurchaseService {
             //Текст Чека
             bw.write(builder.toString());
         } catch (IOException e) {
+            e.printStackTrace();
             System.out.println("Something is wrong with IO");
         }
     }

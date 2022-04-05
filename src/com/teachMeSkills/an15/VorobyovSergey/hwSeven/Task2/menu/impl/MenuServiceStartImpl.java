@@ -3,26 +3,33 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.menu.impl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.OnlyOneNumberReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.enums.AdminMenuEnum;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.enums.StartMenuEnum;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.menu.MenuService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.UserService;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl.UserServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl.AuthServiceImpl;
 
-import java.util.HashMap;
 import java.util.HashSet;
 
-public class MenuServiceAdminImpl implements MenuService {
+public class MenuServiceStartImpl implements MenuService {
     private OnlyOneNumberReaderService numberReader = new OnlyOneNumberReaderServiceImpl();
-    private UserService service = new UserServiceImpl();
+    AuthServiceImpl service = new AuthServiceImpl();
 
     @Override
     public void createMenu(User user, HashSet<Product> storage) {
+    }
+
+    @Override
+    public void createMenu() {
         //Read enum
-        System.out.printf("----------\nAdmin menu (%s):\n", user.getLogin());
-        for (AdminMenuEnum s : AdminMenuEnum.values()) {
+        System.out.println("----------\nStart menu:");
+        for (StartMenuEnum s : StartMenuEnum.values()) {
             System.out.println(" " + s.getMenuItemNumber() + " - " + s);
         }
+
+        //Load 2 databases (Users and Storage)
+        HashSet<User> users = null;
+        HashSet<Product> products = null;
 
         //Make choice
         System.out.println("----------\nChoose menu item (by number):");
@@ -31,36 +38,17 @@ public class MenuServiceAdminImpl implements MenuService {
                 System.out.println("The End. Logout");
                 break;
             case 1:
-                System.out.println("NOW ADD_PRODUCT");
-                service.addProduct(storage);
-                createMenu(user, storage);
+                System.out.println("NOW LOG_IN");
+                service.login(users, products);
                 break;
             case 2:
-                System.out.println("NOW DELETE_PRODUCT");
-                service.deleteProduct(storage);
-                createMenu(user, storage);
-                break;
-            case 3:
-                System.out.println("NOW EDIT_PRODUCT");
-                service.changeProduct(storage);
-                createMenu(user, storage);
-                break;
-            case 4:
-                System.out.println("NOW SHOW_PRODUCTS ");
-                service.showProducts(storage);
-                createMenu(user, storage);
+                System.out.println("NOW REGISTRATION");
+                service.registration(users, products);
                 break;
             default:
-//                System.out.println("The End. Logout");
                 System.out.println("Ты не попал по нужной цифре. Попробуй еще раз");
-                createMenu(user, storage);
+                createMenu();
                 break;
         }
-
-    }
-
-    @Override
-    public void createMenu() {
-
     }
 }
