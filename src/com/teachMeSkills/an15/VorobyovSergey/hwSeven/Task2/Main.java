@@ -36,6 +36,7 @@ public class Main {
         //That is it. After this we go throw services or stop the program
     }
 
+    //вынести в отдельный класс см. Женя
     static HashSet<Product> initProduct (){
         //Create set of cars
         HashSet<String> set1 = new HashSet<>();

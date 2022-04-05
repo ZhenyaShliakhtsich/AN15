@@ -22,6 +22,8 @@ public class AuthServiceImpl implements AuthService {
         System.out.println("Enter password:");
         String password = scanner.nextLine();
 
+        //isUserFound
+        //Добавить меню логин и регистрация
         boolean userIsNotFound = true;
         for (User u: database){
             if (u.getLogin().equals(login) && u.getPassword().equals(password)){

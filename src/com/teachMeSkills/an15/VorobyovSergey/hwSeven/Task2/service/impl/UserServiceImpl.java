@@ -1,7 +1,6 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl;
 
 import com.teachMeSkills.an15.VorobyovSergey.MyClassLib.OnlyOneBigDecimalReader;
-import com.teachMeSkills.an15.VorobyovSergey.MyClassLib.OnlyOneDoubleNumberReader;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.OnlyOneNumberReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.ConstVal;
@@ -12,7 +11,6 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.PurchaseService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.UserService;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -20,7 +18,8 @@ import java.util.Scanner;
 public class UserServiceImpl implements UserService {
     private Scanner scanner = new Scanner(System.in);
     private OnlyOneNumberReaderService numberReader = new OnlyOneNumberReaderServiceImpl();
-    PurchaseService purchaseService = new PurchaseServiceImpl();
+    private OnlyOneBigDecimalReader decimalReader = new OnlyOneBigDecimalReader();
+    private PurchaseService purchaseService = new PurchaseServiceImpl();
 
     //-------------------This is for admins-----------------------
     @Override
@@ -34,13 +33,17 @@ public class UserServiceImpl implements UserService {
         product.setName(scanner.nextLine());
 
         System.out.println("Enter product price:");
-        product.setPrice(BigDecimal.valueOf(numberReader.readNumberFromConsole()));
+        product.setPrice(decimalReader.readNumberFromConsole());
 
         System.out.println("Enter product amount:");
         product.setAmount(numberReader.readNumberFromConsole());
 
+        //попробовать эту строку - избавиться от нее
         System.out.println("Enter car model name or enter stop:");
-        while (!(carModel = scanner.nextLine()).equalsIgnoreCase("Stop")) {
+
+//!!!+++ поменять местами stop и CarModel
+//!!!+++ while (!(carModel = scanner.nextLine()).equalsIgnoreCase("Stop")) {
+        while (!("Stop").equalsIgnoreCase(carModel = scanner.nextLine())) {
             System.out.println("Enter car model name or enter stop:");
             listOfCars.add(carModel);
         }
@@ -87,9 +90,6 @@ public class UserServiceImpl implements UserService {
                     break;
                 case "price":
                     System.out.println("Enter price:");
-//                    tempProduct.setPrice(new BigDecimal(numberReader.readNumberFromConsole()));
-//                    tempProduct.setPrice(BigDecimal.valueOf(
-//                            new BigDecimal(new OnlyOneDoubleNumberReader().readNumberFromConsole()).doubleValue()));
                     tempProduct.setPrice(new OnlyOneBigDecimalReader().readNumberFromConsole());
                     break;
                 case "amount":
@@ -98,7 +98,8 @@ public class UserServiceImpl implements UserService {
                     break;
                 case "carnames":
                     System.out.println("Enter car model name or enter stop:");
-                    while (!(carModel = scanner.nextLine()).equalsIgnoreCase("Stop")) {
+//!!!+++ while (!(carModel = scanner.nextLine()).equalsIgnoreCase("Stop")) {
+                    while (!("Stop").equalsIgnoreCase(carModel = scanner.nextLine())) {
                         System.out.println("Enter car model name or enter stop:");
                         listOfCars.add(carModel);
                     }
@@ -115,10 +116,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteProduct(HashSet<Product> storage) {
         //Storage on display
-        System.out.println("Your storage now:");
-        for (Product p : storage) {
-            System.out.println(p);
-        }
+        showProducts(storage);
 
         //Try to remove
         System.out.println("Enter name of product to remove");
@@ -144,10 +142,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addProductToBasket(User user, HashSet<Product> storage) {
         //Storage on display
-        System.out.println("Your storage now:");
-        for (Product p : storage) {
-            System.out.println(p);
-        }
+        showProducts(storage);
 
         Product tempProduct = null;
         //Try to add
@@ -157,15 +152,21 @@ public class UserServiceImpl implements UserService {
             if (p.getName().equals(productToAdd)) {
                 tempProduct = p;
                 break;
+            } else {
+//!!!+++ сказать чуваку, что такого нет и рекурсией вызвать себя
+                System.out.println("Чувак такого продукта нет");
+                addProductToBasket(user, storage);
             }
         }
 
-        //Check for null
+        //Check for null убрать
         if (user.getBasket() != null && user.getBasket().getProducts() != null) {
-            System.out.println("Good!!! Basket and product is not null");
+//!!!+++ это не нужно знать пользователю
+//            System.out.println("Good!!! Basket and product is not null");
             user.getBasket().getProducts().add(tempProduct);
         } else {
-            System.out.println("Awful!!! Something is null");
+//!!!+++ это не нужно знать пользователю
+//            System.out.println("Awful!!! Something is null");
             user.setBasket(new Basket());
             user.getBasket().setProducts(new HashSet<>());
             user.getBasket().getProducts().add(tempProduct);
@@ -214,13 +215,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void rateProduct(HashSet<Product> storage) {
         //Storage on display
-        System.out.println("Your storage now:");
-        for (Product p : storage) {
-            System.out.println(p);
-        }
+        showProducts(storage);
 
         //Try to rate
         System.out.println("Enter name of product to rate");
+        //Можно проверить что rate в пределе 1 - 5
         String productToRate = scanner.nextLine();
         for (Product p : storage) {
             if (p.getName().equals(productToRate)) {
@@ -228,6 +227,10 @@ public class UserServiceImpl implements UserService {
                 p.setAvgRate(new RateServiceImpl().calculateAvgRate(p));
                 System.out.println("Now Average rate is: " + p.getAvgRate());
                 break;
+            } else {
+//!!!+++ чувак ты не попал в название на экран, и хотим рекурсию
+                System.out.println("Чувак такого продукта нет");
+                rateProduct(storage);
             }
         }
     }
@@ -249,9 +252,9 @@ public class UserServiceImpl implements UserService {
                 String newComment = scanner.nextLine();
                 //null checker
                 if (p.getComment() == null) {
-                   p.setComment(new ArrayList<>());
+                    p.setComment(new ArrayList<>());
                 }
-                    p.getComment().add(newComment);
+                p.getComment().add(newComment);
                 break;
             }
         }

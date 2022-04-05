@@ -35,6 +35,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Override
     public void savePurchaseReceiptInTxt(PurchaseReceipt purchaseReceipt) {
+        //!!!! обьявить в методе билдер
         //Делаем индекс
         LocalDateTime time = LocalDateTime.now();
 
@@ -103,7 +104,7 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Override
     public void showUserReceiptsInTxt(User user, String dir) {
         File file = new File(dir);
-        PurchaseReceipt receipt = new PurchaseReceipt();
+//        PurchaseReceipt receipt = new PurchaseReceipt();
         String regex = "^" + user.getLogin() + ".+$";
 
         if (file.isDirectory()) {
