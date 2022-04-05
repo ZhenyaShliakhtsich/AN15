@@ -91,7 +91,9 @@ public class PurchaseServiceImpl implements PurchaseService {
                     try {
                         receipt = (PurchaseReceipt) new ObjectInputStream(new FileInputStream(f)).readObject();
                     } catch (IOException e) {
-                        System.out.println("Something is wrong with IO");
+                        // Тут важная прикалюха, что если чутка изменить рецепт то десерилизовать не получится
+                        System.out.println("Something is wrong with IO," +
+                                " maybe InvalidClassException and you change receipt structure");
                     } catch (ClassNotFoundException e) {
                         System.out.println("Something is wrong with classes");
                     }
@@ -107,7 +109,6 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Override
     public void showUserReceiptsInTxt(User user, String dir) {
         File file = new File(dir);
-//        PurchaseReceipt receipt = new PurchaseReceipt();
         String regex = "^" + user.getLogin() + ".+$";
 
         if (file.isDirectory()) {
