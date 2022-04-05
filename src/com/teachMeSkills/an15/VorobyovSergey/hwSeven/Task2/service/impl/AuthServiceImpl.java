@@ -22,19 +22,21 @@ public class AuthServiceImpl implements AuthService {
         System.out.println("Enter password:");
         String password = scanner.nextLine();
 
-        //isUserFound
-        //Добавить меню логин и регистрация
-        boolean userIsNotFound = true;
+//!!!+++ Переименовать от обратной логики например isUserFound
+//        boolean userIsNotFound = true;
+        boolean isUserFound = false;
         for (User u: database){
             if (u.getLogin().equals(login) && u.getPassword().equals(password)){
-                userIsNotFound = false;
+//!!!+++                userIsNotFound = false;
+                isUserFound = true;
                 MenuService menuService = u.isHasAdminRole() ?
                         (new MenuServiceAdminImpl()) : (new MenuServiceUserImpl());
                 menuService.createMenu(u, storage);
             }
         }
 
-        if (userIsNotFound){
+//!!!+++        if (userIsNotFound){
+        if (!isUserFound){
             registration(database, storage);
         }
     }
