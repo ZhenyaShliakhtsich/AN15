@@ -85,11 +85,12 @@ public class Product {
     @Override
     public String toString() {
         return
-                 name +
-                "\nЦена :" + price +
-                "\nКоличество : " + amount +
-                "\nОтзывы : " + comments +
-                "\nМашины,к которым подходит : " + carNames;
+                name +
+                        "\nЦена :" + price +
+                        "\nКоличество : " + amount +
+                        "\nОтзывы : " + comments +
+                        "\nМашины,к которым подходит : " + carNames +
+                        "\nРейтинг : " + avgRate;
     }
 }
 

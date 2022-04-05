@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 public interface PriceService {
     BigDecimal calculateTotalBasketPriceWithDiscount(User user);
 
-    BigDecimal calculateTotalBasketPrice(User user);
+    void calculateTotalBasketPrice(User user);
 
     BigDecimal calculateDiscountPrice(User user);
 
