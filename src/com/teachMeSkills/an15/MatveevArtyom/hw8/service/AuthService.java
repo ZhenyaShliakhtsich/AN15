@@ -6,5 +6,5 @@ import com.teachMeSkills.an15.MatveevArtyom.hw8.model.User;
 public interface AuthService {
     User login();
 
-    void registration();
+    User registration();
 }

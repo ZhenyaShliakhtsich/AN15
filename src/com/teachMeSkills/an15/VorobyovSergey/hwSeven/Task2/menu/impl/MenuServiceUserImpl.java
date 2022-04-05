@@ -77,4 +77,9 @@ public class MenuServiceUserImpl implements MenuService {
         }
 
     }
+
+    @Override
+    public void createMenu() {
+
+    }
 }

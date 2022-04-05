@@ -3,8 +3,6 @@ package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.Product;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.User;
 
-import java.util.ArrayList;
-
 public interface UserService {
 
     void addProduct();
@@ -23,5 +21,5 @@ public interface UserService {
 
     void commentProduct(Product product);
 
-    void searchForProducts();
+    void searchProductByCarName();
 }

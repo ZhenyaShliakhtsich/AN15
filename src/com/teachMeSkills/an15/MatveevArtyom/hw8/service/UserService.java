@@ -1,8 +1,6 @@
 package com.teachMeSkills.an15.MatveevArtyom.hw8.service;
 
-import com.teachMeSkills.an15.MatveevArtyom.hw8.model.Product;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.model.User;
-
 
 public interface UserService {
     void addProduct();
@@ -21,5 +19,5 @@ public interface UserService {
 
     void commentProduct();
 
-    void search(Product product);
+    void searchByProduct();
 }

@@ -58,4 +58,9 @@ public class MenuServiceAdminImpl implements MenuService {
         }
 
     }
+
+    @Override
+    public void createMenu() {
+
+    }
 }

@@ -7,4 +7,6 @@ import java.util.HashSet;
 
 public interface MenuService {
     void createMenu (User user, HashSet<Product> storage);
+    void createMenu ();
+//!!!+++ еще одно меню на входе типа авторизазия или регистрация
 }

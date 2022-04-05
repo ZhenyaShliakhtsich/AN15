@@ -11,10 +11,10 @@ public class Product {
     private double avgRate;
     private int amount;
     private String comment;
-    private HashSet<String> carNames;
+    private String carNames;
     private ArrayList<Integer> rates;
 
-    public Product(String name, BigDecimal price, int amount, String comment, HashSet<String> carNames) {
+    public Product(String name, BigDecimal price, int amount, String comment, String carNames) {
         this.name = name;
         this.price = price;
         this.amount = amount;
@@ -65,11 +65,11 @@ public class Product {
         this.comment = comment;
     }
 
-    public HashSet<String> getCarNames() {
+    public String getCarNames() {
         return carNames;
     }
 
-    public void setCarNames(HashSet<String> carNames) {
+    public void setCarNames(String carNames) {
         this.carNames = carNames;
     }
 

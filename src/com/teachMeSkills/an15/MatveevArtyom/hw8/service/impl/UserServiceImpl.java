@@ -3,12 +3,13 @@ package com.teachMeSkills.an15.MatveevArtyom.hw8.service.impl;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.model.Basket;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.model.Product;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.model.User;
+import com.teachMeSkills.an15.MatveevArtyom.hw8.service.Menu;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.service.PriceService;
 import com.teachMeSkills.an15.MatveevArtyom.hw8.service.UserService;
 
 import java.io.*;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,8 +43,7 @@ public class UserServiceImpl implements UserService {
                 break;
             }
         }
-        Product product = new Product(name, price, amount, review, cars);
-        PRODUCTS.add(product);
+        PRODUCTS.add(new Product(name, price, amount, review, cars));
     }
 
     @Override
@@ -63,33 +63,34 @@ public class UserServiceImpl implements UserService {
         if (index == -1) {
             changeProduct();
         }
-        while (true) {
+        boolean flag = true;
+        while (flag) {
             System.out.println("Че хочешь изменить?(Название, количество, цену, оценку, отзыв, машину)");
             String choice = new Scanner(System.in).nextLine();
             if (choice.equalsIgnoreCase("Название")) {
                 System.out.println("Введи новое название");
-                String name1 = scanner.nextLine();
-                PRODUCTS.get(index).setName(name1);
+                String newProductName = scanner.nextLine();
+                PRODUCTS.get(index).setName(newProductName);
                 break;
             } else if (choice.equalsIgnoreCase("Количество") || choice.equalsIgnoreCase("кол-во")) {
                 System.out.println("Введите новое количество");
-                int amount = scanner.nextInt();
-                PRODUCTS.get(index).setAmount(amount);
+                int newProductAmount = scanner.nextInt();
+                PRODUCTS.get(index).setAmount(newProductAmount);//поменять
                 break;
             } else if (choice.equalsIgnoreCase("цену") || choice.equalsIgnoreCase("цена")) {
                 System.out.println("Введите новую цену");
-                BigDecimal price = scanner.nextBigDecimal();
-                PRODUCTS.get(index).setPrice(price);
+                BigDecimal newProductPrice = scanner.nextBigDecimal();
+                PRODUCTS.get(index).setPrice(newProductPrice);
                 break;
             } else if (choice.equalsIgnoreCase("оценку") || choice.equalsIgnoreCase("оценка")) {
                 System.out.println("Введите новую среднюю оценку");
-                double rate = scanner.nextDouble();
-                PRODUCTS.get(index).setAvgRate(rate);
+                double newProductRate = scanner.nextDouble();
+                PRODUCTS.get(index).setAvgRate(newProductRate);
                 break;
             } else if (choice.equalsIgnoreCase("отзыв")) {
                 System.out.println("Введите новый отзыв");
-                String comment = scanner.nextLine();
-                PRODUCTS.get(index).setComment(comment);
+                String newProductComment = scanner.nextLine();
+                PRODUCTS.get(index).setComment(newProductComment);
                 break;
             } else if (choice.equalsIgnoreCase("машину") || choice.equalsIgnoreCase("машина")) {
                 System.out.println(PRODUCTS.get(index).getCarNames() + "\nВыберите машину,которую вы хотите изменить");
@@ -97,8 +98,10 @@ public class UserServiceImpl implements UserService {
                 for (String car : PRODUCTS.get(index).getCarNames()) {
                     if (carChoice.equals(car)) {
                         System.out.println("Введите новую машину");
-                        car = scanner.nextLine();
+                        String newCar = scanner.nextLine();
                         PRODUCTS.get(index).getCarNames().remove(car);
+                        PRODUCTS.get(index).getCarNames().add(newCar);
+                        flag = false;
                         break;
                     }
                 }
@@ -121,9 +124,17 @@ public class UserServiceImpl implements UserService {
             }
         }
         if (index == -1) {
-            deleteProduct();
+            System.out.println("Такого продукта нет! \n Если хотите выйти назад, нажмите 1");
+            int choose = new Scanner(System.in).nextInt();
+            if (choose == 1) {
+                Menu menu = new MenuServiceImpl();
+                menu.menuAdmin();
+            } else {
+                deleteProduct();
+            }
         } else {
-            PRODUCTS.remove(PRODUCTS.get(index));
+            PRODUCTS.remove(index);
+            System.out.println("Удаление прошло успешно!");
         }
     }
 
@@ -159,7 +170,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void payForBasket(User user) {
-        try {
+        if (user.getBasket() != null) {
             if (user.getBasket().getProducts().size() != 0) {
                 System.out.println("Вот, что у вас в корзине");
                 for (Product product : user.getBasket().getProducts()) {
@@ -171,9 +182,10 @@ public class UserServiceImpl implements UserService {
                 int discount = priceService.calculateDiscount();
                 double discountWithoutPercents = (double) discount / 100;
 
-                BigDecimal bd = new BigDecimal(discountWithoutPercents).setScale(3, RoundingMode.CEILING);
+                BigDecimal bd = new BigDecimal(discountWithoutPercents);
                 BigDecimal priceWithDiscount = user.getBasket().getTotalPrice().subtract(user.getBasket().getTotalPrice().multiply(bd));
-                System.out.println("Ваша скидка составляет " + discount + " % и сумма к оплате будет составлять " + priceWithDiscount);
+                String formattedBigDecimal = new DecimalFormat("#0.00").format(priceWithDiscount);
+                System.out.println("Ваша скидка составляет " + discount + " % и сумма к оплате будет составлять " + formattedBigDecimal);
                 System.out.println("Если хотите оплатить, то введите - Оплачиваю");
                 String choice = scanner.nextLine();
                 if (choice.equalsIgnoreCase("Оплачиваю")) {
@@ -205,14 +217,15 @@ public class UserServiceImpl implements UserService {
             } else {
                 System.out.println("Корзина пуста! вы не можете ничего удалить из неё!");
             }
-        } catch (NullPointerException e) {
+        } else {
             System.out.println("Корзина пуста! вы не можете ничего удалить из неё!");
         }
     }
 
     @Override
     public void deleteProductFromBasket(User user) {
-        try {
+
+        if (user.getBasket() != null) {
             if (user.getBasket().getProducts().size() != 0) {
                 System.out.println("Введите какой продукт вы хотите удалить из корзины:");
                 for (Product product : user.getBasket().getProducts()) {
@@ -235,7 +248,7 @@ public class UserServiceImpl implements UserService {
             } else {
                 System.out.println("Корзина пуста! вы не можете ничего удалить из неё!");
             }
-        } catch (NullPointerException e) {
+        } else {
             System.out.println("Корзина пуста! вы не можете ничего удалить из неё!");
         }
     }
@@ -259,11 +272,11 @@ public class UserServiceImpl implements UserService {
                 } else {
                     product.getRates().add(rate);
                 }
-                double sr = 0;
+                double avgRate = 0;
                 for (int i = 0; i < product.getRates().size(); i++) {
-                    sr += product.getRates().get(i);
+                    avgRate += product.getRates().get(i);
                 }
-                product.setAvgRate(sr / product.getRates().size());
+                product.setAvgRate(avgRate / product.getRates().size());
                 System.out.println("Теперь средняя оценка равна " + product.getAvgRate());
                 flag = false;
                 break;
@@ -300,20 +313,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void search(Product product) {
-        System.out.println("введите какую машину вы хотите найти?");
+    public void searchByProduct() {
+        System.out.println("введите какой продукт вы хотите найти?");
         String choose = new Scanner(System.in).nextLine();
         boolean flag = true;
-        for (String car : product.getCarNames()) {
-            if (car.equalsIgnoreCase(choose)) {
-                System.out.println("Такая машина есть!");
+        for (Product product : PRODUCTS) {
+            if (choose.equalsIgnoreCase(product.getName())) {
+                System.out.println("Такой продукт есть!");
                 flag = false;
                 break;
             }
         }
         if (flag) {
-            System.out.println("Такой машины нет, попробуй ещё раз");
-            search(product);
+            System.out.println("Такого продукта нет, попробуй ещё раз");
+            searchByProduct();
         }
     }
 }
