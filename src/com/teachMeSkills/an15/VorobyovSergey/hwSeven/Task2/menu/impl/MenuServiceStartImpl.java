@@ -7,6 +7,7 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.menu.MenuService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl.AuthServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl.DatabaseServiceImpl;
 
 import java.util.HashSet;
 
@@ -27,8 +28,9 @@ public class MenuServiceStartImpl implements MenuService {
         }
 
         //Load 2 databases (Users and Storage)
-        HashSet<User> users = null;
-        HashSet<Product> products = null;
+        DatabaseServiceImpl dbs = new DatabaseServiceImpl();
+        HashSet<User> users = dbs.loadUsersFromDB();
+        HashSet<Product> products = dbs.loadProductsFromDB();
 
         //Make choice
         System.out.println("----------\nChoose menu item (by number):");
