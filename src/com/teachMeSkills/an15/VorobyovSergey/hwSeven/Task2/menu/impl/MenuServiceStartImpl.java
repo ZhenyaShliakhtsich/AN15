@@ -2,7 +2,6 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.menu.impl;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.OnlyOneNumberReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.enums.AdminMenuEnum;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.enums.StartMenuEnum;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.menu.MenuService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
