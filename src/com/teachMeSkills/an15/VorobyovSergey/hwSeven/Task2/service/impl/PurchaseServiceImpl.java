@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class PurchaseServiceImpl implements PurchaseService {
-    private StringBuilder builder = new StringBuilder();
+//    private StringBuilder builder = new StringBuilder();
 
     @Override
     public void savePurchaseReceipt(PurchaseReceipt purchaseReceipt) {
@@ -35,7 +35,10 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Override
     public void savePurchaseReceiptInTxt(PurchaseReceipt purchaseReceipt) {
-        //!!!! обьявить в методе билдер
+//!!!+++ объявить в методе стринг_билдер, как переменную метода а не класса.
+//Типа чтобы можно было метод параллельно потом выполнять, это не та переменная, чтобы объявлять ее в классе
+        StringBuilder builder = new StringBuilder();
+
         //Делаем индекс
         LocalDateTime time = LocalDateTime.now();
 
