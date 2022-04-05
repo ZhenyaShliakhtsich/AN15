@@ -35,11 +35,14 @@ public class Main {
     */
 
         DatabaseServiceImpl dbs = new DatabaseServiceImpl();
-        dbs.saveUsersInDB(initU());
-        dbs.saveProductsInDB(initP());
+//        dbs.saveUsersInDB(initU()); //Больше не понадобится
+//        dbs.saveProductsInDB(initP()); //Больше не понадобится
+        System.out.println(dbs.loadUsersFromDB());
+        System.out.println(dbs.loadProductsFromDB());
     }
 
-    static HashSet<User> initU (){
+
+    static HashSet<User> initU() {
         //Create some users for example
         Basket basket = new Basket();
         User u1 = new User("l1", "p1", basket);
@@ -55,7 +58,7 @@ public class Main {
         return database;
     }
 
-    static HashSet<Product> initP (){
+    static HashSet<Product> initP() {
         //Create set of cars
         HashSet<String> set1 = new HashSet<>();
         set1.add("Car 1");
@@ -74,6 +77,6 @@ public class Main {
         storage.add(p2);
         storage.add(p3);
         storage.add(p4);
-        return  storage;
+        return storage;
     }
 }
