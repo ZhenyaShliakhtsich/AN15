@@ -146,7 +146,6 @@ public class UserServiceImpl implements UserService {
         //Storage on display
         showProducts(storage);
         Product tempProduct = null;
-        boolean isProductInDB = false;
 
         //Try to add
         System.out.println("Enter name of product to add in basket");
@@ -223,6 +222,7 @@ public class UserServiceImpl implements UserService {
         Scanner scanner = new Scanner(System.in);
         //Storage on display
         showProducts(storage);
+        boolean isProductInDB = false;
 
         //Try to rate
         System.out.println("Enter name of product to rate");
@@ -233,12 +233,15 @@ public class UserServiceImpl implements UserService {
                 System.out.println("Enter your rate");
                 p.setAvgRate(new RateServiceImpl().calculateAvgRate(p));
                 System.out.println("Now Average rate is: " + p.getAvgRate());
+                isProductInDB = true;
                 break;
-            } else {
-//!!!+++ чувак ты не попал в название на экран, и хотим рекурсию
-                System.out.println("Чувак такого продукта нет");
-                rateProduct(storage);
             }
+        }
+
+//!!!+++ чувак ты не попал в название на экран, и хотим рекурсию
+        if (!isProductInDB) {
+            System.out.println("Чувак такого продукта нет");
+            rateProduct(storage);
         }
     }
 
@@ -246,10 +249,8 @@ public class UserServiceImpl implements UserService {
     public void commentProduct(HashSet<Product> storage) {
         Scanner scanner = new Scanner(System.in);
         //Storage on display
-        System.out.println("Your storage now:");
-        for (Product p : storage) {
-            System.out.println(p);
-        }
+        showProducts(storage);
+        boolean isProductInDB = false;
 
         //Try to comment
         System.out.println("Enter name of product to comment");
@@ -263,8 +264,15 @@ public class UserServiceImpl implements UserService {
                     p.setComment(new ArrayList<>());
                 }
                 p.getComment().add(newComment);
+                isProductInDB = true;
                 break;
             }
+        }
+
+//!!!+++ чувак ты не попал в название на экран, и хотим рекурсию
+        if (!isProductInDB) {
+            System.out.println("Чувак такого продукта нет");
+            commentProduct(storage);
         }
     }
 
