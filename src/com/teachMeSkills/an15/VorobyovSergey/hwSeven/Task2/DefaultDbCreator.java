@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 
 public class DefaultDbCreator {
-    static HashSet<User> initU() {
+   public HashSet<User> initU() {
         //Create some users for example
         Basket basket = new Basket();
         User u1 = new User("l1", "p1", basket);
@@ -24,7 +24,7 @@ public class DefaultDbCreator {
         return database;
     }
 
-    static HashSet<Product> initP() {
+    public HashSet<Product> initP() {
         //Create set of cars
         HashSet<String> set1 = new HashSet<>();
         set1.add("Car 1");

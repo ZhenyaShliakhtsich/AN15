@@ -70,7 +70,6 @@ public class MenuServiceUserImpl implements MenuService {
                 createMenu(user, storage);
                 break;
             default:
-//                System.out.println("The End. Logout");
                 System.out.println("Ты не попал по нужной цифре. Попробуй еще раз");
                 createMenu(user, storage);
                 break;

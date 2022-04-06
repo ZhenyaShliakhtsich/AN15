@@ -2,10 +2,12 @@ package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.menu.impl;
 
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.OnlyOneNumberReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.DefaultDbCreator;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.enums.StartMenuEnum;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.menu.MenuService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.DatabaseService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl.AuthServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl.DatabaseServiceImpl;
 
@@ -45,6 +47,15 @@ public class MenuServiceStartImpl implements MenuService {
             case 2:
                 System.out.println("NOW REGISTRATION");
                 service.registration(users, products);
+                createMenu();
+                break;
+            case 3:
+                System.out.println("NOW DB WAS ERASED");
+                //Если хочешь сбросить базу данных
+                DefaultDbCreator dbc = new DefaultDbCreator();
+                dbs.saveUsersInDB(dbc.initU());
+                dbs.saveProductsInDB(dbc.initP());
+                createMenu();
                 break;
             default:
                 System.out.println("Ты не попал по нужной цифре. Попробуй еще раз");
