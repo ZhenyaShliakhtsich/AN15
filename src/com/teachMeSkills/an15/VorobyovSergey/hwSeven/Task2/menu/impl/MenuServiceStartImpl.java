@@ -7,7 +7,6 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.enums.StartMenuEnum;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.menu.MenuService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
-import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.DatabaseService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl.AuthServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl.DatabaseServiceImpl;
 
@@ -18,7 +17,8 @@ public class MenuServiceStartImpl implements MenuService {
     AuthServiceImpl service = new AuthServiceImpl();
 
     @Override
-    public void createMenu(User user, HashSet<Product> storage) {
+    public void createMenu(User user) {
+
     }
 
     @Override

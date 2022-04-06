@@ -8,6 +8,7 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Basket;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.PurchaseReceipt;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.DatabaseService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.PurchaseService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.UserService;
 
@@ -21,10 +22,12 @@ public class UserServiceImpl implements UserService {
     private OnlyOneNumberReaderService numberReader = new OnlyOneNumberReaderServiceImpl();
     private OnlyOneBigDecimalReader decimalReader = new OnlyOneBigDecimalReader();
     private PurchaseService purchaseService = new PurchaseServiceImpl();
+    private DatabaseService databaseService = new DatabaseServiceImpl();
 
     //-------------------This is for admins-----------------------
     @Override
-    public void addProduct(HashSet<Product> storage) {
+    public void addProduct() {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
         Scanner scanner = new Scanner(System.in);
         Product product = new Product();
         String carModel;
@@ -55,14 +58,15 @@ public class UserServiceImpl implements UserService {
 
         //Now try to add product to storage
         storage.add(product);
-
+        databaseService.saveProductsInDB(storage);
     }
 
     @Override
-    public void changeProduct(HashSet<Product> storage) {
+    public void changeProduct() {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
         Scanner scanner = new Scanner(System.in);
         //Storage on display
-        showProducts(storage);
+        showProducts();
 
         Product tempProduct = null;
         //Try to change
@@ -109,15 +113,17 @@ public class UserServiceImpl implements UserService {
                     System.out.println("Значит ничего не хочешь изменить");
             }
             storage.add(tempProduct);
+            databaseService.saveProductsInDB(storage);
         }
 
     }
 
     @Override
-    public void deleteProduct(HashSet<Product> storage) {
+    public void deleteProduct() {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
         Scanner scanner = new Scanner(System.in);
         //Storage on display
-        showProducts(storage);
+        showProducts();
 
         //Try to remove
         System.out.println("Enter name of product to remove");
@@ -128,10 +134,12 @@ public class UserServiceImpl implements UserService {
                 break;
             }
         }
+        databaseService.saveProductsInDB(storage);
     }
 
     @Override
-    public void showProducts(HashSet<Product> storage) {
+    public void showProducts() {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
         System.out.println("Your storage now:");
         for (Product p : storage) {
             System.out.println(p);
@@ -141,10 +149,11 @@ public class UserServiceImpl implements UserService {
 
     //-------------------This is for users-----------------------
     @Override
-    public User addProductToBasket(User user, HashSet<Product> storage) {
+    public User addProductToBasket(User user) {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
         Scanner scanner = new Scanner(System.in);
         //Storage on display
-        showProducts(storage);
+        showProducts();
         Product tempProduct = null;
 
         //Try to add
@@ -160,7 +169,7 @@ public class UserServiceImpl implements UserService {
 ////!!!+++ сказать чуваку, что такого нет и рекурсией вызвать себя
         if (tempProduct == null) {
             System.out.println("Чувак такого продукта нет");
-            addProductToBasket(user, storage);
+            addProductToBasket(user);
         }
 
         if (user.getBasket() != null && user.getBasket().getProducts() != null) {
@@ -218,15 +227,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void rateProduct(HashSet<Product> storage) {
+    public void rateProduct() {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
         Scanner scanner = new Scanner(System.in);
         //Storage on display
-        showProducts(storage);
+        showProducts();
         boolean isProductInDB = false;
 
         //Try to rate
         System.out.println("Enter name of product to rate");
-        //Можно проверить что rate в пределе 1 - 5
         String productToRate = scanner.nextLine();
         for (Product p : storage) {
             if (p.getName().equals(productToRate)) {
@@ -234,6 +243,7 @@ public class UserServiceImpl implements UserService {
                 p.setAvgRate(new RateServiceImpl().calculateAvgRate(p));
                 System.out.println("Now Average rate is: " + p.getAvgRate());
                 isProductInDB = true;
+                databaseService.saveProductsInDB(storage);
                 break;
             }
         }
@@ -241,15 +251,16 @@ public class UserServiceImpl implements UserService {
 //!!!+++ чувак ты не попал в название на экран, и хотим рекурсию
         if (!isProductInDB) {
             System.out.println("Чувак такого продукта нет");
-            rateProduct(storage);
+            rateProduct();
         }
     }
 
     @Override
-    public void commentProduct(HashSet<Product> storage) {
+    public void commentProduct() {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
         Scanner scanner = new Scanner(System.in);
         //Storage on display
-        showProducts(storage);
+        showProducts();
         boolean isProductInDB = false;
 
         //Try to comment
@@ -265,6 +276,7 @@ public class UserServiceImpl implements UserService {
                 }
                 p.getComment().add(newComment);
                 isProductInDB = true;
+                databaseService.saveProductsInDB(storage);
                 break;
             }
         }
@@ -272,7 +284,7 @@ public class UserServiceImpl implements UserService {
 //!!!+++ чувак ты не попал в название на экран, и хотим рекурсию
         if (!isProductInDB) {
             System.out.println("Чувак такого продукта нет");
-            commentProduct(storage);
+            commentProduct();
         }
     }
 

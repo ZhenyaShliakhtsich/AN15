@@ -32,7 +32,7 @@ public class AuthServiceImpl implements AuthService {
                 isUserFound = true;
                 MenuService menuService = u.isHasAdminRole() ?
                         (new MenuServiceAdminImpl()) : (new MenuServiceUserImpl());
-                menuService.createMenu(u, storage);
+                menuService.createMenu(u);
             }
         }
 

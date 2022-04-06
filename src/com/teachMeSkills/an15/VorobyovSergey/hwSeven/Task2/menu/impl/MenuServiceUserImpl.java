@@ -16,7 +16,7 @@ public class MenuServiceUserImpl implements MenuService {
     private UserService service = new UserServiceImpl();
 
     @Override
-    public void createMenu(User user, HashSet<Product> storage) {
+    public void createMenu(User user) {
         //Read enum
         System.out.printf("----------\nUser menu (%s):\n", user.getLogin());
         for (UserMenuEnum s : UserMenuEnum.values()) {
@@ -31,47 +31,47 @@ public class MenuServiceUserImpl implements MenuService {
                 break;
             case 1:
                 System.out.println("NOW ADD_PRODUCT_TO_BASKET");
-                user = service.addProductToBasket(user, storage);
-                createMenu(user, storage);
+                user = service.addProductToBasket(user);
+                createMenu(user);
                 break;
             case 2:
                 System.out.println("NOW DELETE_PRODUCT_FROM_BASKET");
                 service.deleteProductFromBasket(user);
-                createMenu(user, storage);
+                createMenu(user);
                 break;
             case 3:
                 System.out.println("NOW PAY_FOR_BASKET");
                 service.payForBasket(user);
-                createMenu(user, storage);
+                createMenu(user);
                 break;
             case 4:
                 System.out.println("NOW RATE_PRODUCT");
-                service.rateProduct(storage);
-                createMenu(user, storage);
+                service.rateProduct();
+                createMenu(user);
                 break;
             case 5:
                 System.out.println("NOW COMMENT_PRODUCT");
-                service.commentProduct(storage);
-                createMenu(user, storage);
+                service.commentProduct();
+                createMenu(user);
                 break;
             case 6:
                 System.out.println("YOUR_BASKET");
                 service.showBasket(user);
-                createMenu(user, storage);
+                createMenu(user);
                 break;
             case 7:
                 System.out.println("YOUR_RECEIPTS");
                 service.showReceipts(user);
-                createMenu(user, storage);
+                createMenu(user);
                 break;
             case 8:
                 System.out.println("YOUR_RECEIPTS_IN_TXT");
                 service.showReceiptsInTxt(user);
-                createMenu(user, storage);
+                createMenu(user);
                 break;
             default:
                 System.out.println("Ты не попал по нужной цифре. Попробуй еще раз");
-                createMenu(user, storage);
+                createMenu(user);
                 break;
         }
 
