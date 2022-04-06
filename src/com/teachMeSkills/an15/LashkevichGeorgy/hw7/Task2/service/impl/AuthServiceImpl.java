@@ -1,0 +1,49 @@
+package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.impl;
+
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models.User;
+import com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.service.AuthService;
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class AuthServiceImpl implements AuthService {
+    @Override
+    public User login(HashMap<User, User> users) {
+        System.out.println("Введите логин:");
+        Scanner scanner = new Scanner(System.in);
+        String login = scanner.nextLine();
+        System.out.println("Введите пароль:");
+        String password = scanner.nextLine();
+
+        User enteredUser = new User(login, password);
+        if (login.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
+            users.remove(enteredUser);
+            User enteredAdmin = new User(login, password, true);
+            users.put(enteredAdmin, enteredAdmin);
+            System.out.println("Ты авторизирован как админ\n");
+            return users.get(enteredAdmin);
+        } else if (users.containsKey(enteredUser)) {
+            System.out.println("Ты авторизирован\n");
+            return users.get(enteredUser);
+        } else {
+            System.out.println("Логин или пароль неверные");
+            login(users);
+        }
+        return null;
+    }
+
+    @Override
+    public void registration(HashMap<User, User> users) {
+        System.out.println("Введите логин:");
+        Scanner scanner = new Scanner(System.in);
+        String login = scanner.nextLine();
+        System.out.println("Введите пароль:");
+        String password = scanner.nextLine();
+        User user = new User(login, password);
+        users.put(user, user);
+        System.out.println("Ты зарегистрирован!\n");
+
+
+    }
+}
+

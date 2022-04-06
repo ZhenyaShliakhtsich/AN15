@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class PurchaseServiceImpl implements PurchaseService {
-    private StringBuilder builder = new StringBuilder();
+//    private StringBuilder builder = new StringBuilder();
 
     @Override
     public void savePurchaseReceipt(PurchaseReceipt purchaseReceipt) {
@@ -29,12 +29,17 @@ public class PurchaseServiceImpl implements PurchaseService {
                 new FileOutputStream(fileSource + fileName + index + extension))) {
             oos.writeObject(purchaseReceipt);
         } catch (IOException e) {
+            e.printStackTrace();
             System.out.println("Something is wrong with IO");
         }
     }
 
     @Override
     public void savePurchaseReceiptInTxt(PurchaseReceipt purchaseReceipt) {
+//!!!+++ объявить в методе стринг_билдер, как переменную метода а не класса.
+//Типа чтобы можно было метод параллельно потом выполнять, это не та переменная, чтобы объявлять ее в классе
+        StringBuilder builder = new StringBuilder();
+
         //Делаем индекс
         LocalDateTime time = LocalDateTime.now();
 
@@ -65,6 +70,7 @@ public class PurchaseServiceImpl implements PurchaseService {
             //Текст Чека
             bw.write(builder.toString());
         } catch (IOException e) {
+            e.printStackTrace();
             System.out.println("Something is wrong with IO");
         }
     }
@@ -87,7 +93,9 @@ public class PurchaseServiceImpl implements PurchaseService {
                     try {
                         receipt = (PurchaseReceipt) new ObjectInputStream(new FileInputStream(f)).readObject();
                     } catch (IOException e) {
-                        System.out.println("Something is wrong with IO");
+                        // Тут важная прикалюха, что если чутка изменить рецепт то десерилизовать не получится
+                        System.out.println("Something is wrong with IO," +
+                                " maybe InvalidClassException and you change receipt structure");
                     } catch (ClassNotFoundException e) {
                         System.out.println("Something is wrong with classes");
                     }
@@ -103,7 +111,6 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Override
     public void showUserReceiptsInTxt(User user, String dir) {
         File file = new File(dir);
-        PurchaseReceipt receipt = new PurchaseReceipt();
         String regex = "^" + user.getLogin() + ".+$";
 
         if (file.isDirectory()) {

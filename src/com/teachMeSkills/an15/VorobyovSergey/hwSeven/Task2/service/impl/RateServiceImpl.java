@@ -24,8 +24,9 @@ public class RateServiceImpl implements RateService {
         for (Integer i : list) {
             summ += i;
         }
-        System.out.println("list seze is - " + list.size());
-        System.out.println("summ of rates is - " + summ);
+//!!!+++ убрать, это пользователю знать не нужно
+//!!!+++        System.out.println("list size is - " + list.size());
+//!!!+++        System.out.println("summ of rates is - " + summ);
         return summ / list.size();
     }
 }

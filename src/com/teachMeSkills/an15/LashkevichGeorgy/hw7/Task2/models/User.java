@@ -1,15 +1,21 @@
-package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model;
+package com.teachMeSkills.an15.LashkevichGeorgy.hw7.Task2.models;
 
-import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Objects;
 
-public class User implements Serializable {
+public class User extends HashMap<User, User> {
     private String login;
     private String password;
     private boolean isHasAdminRole;
     private Basket basket;
 
     public User() {
+
+    }
+
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
         this.isHasAdminRole = false;
     }
 
@@ -18,6 +24,13 @@ public class User implements Serializable {
         this.password = password;
         this.isHasAdminRole = false;
         this.basket = basket;
+    }
+
+
+    public User(String login, String password, boolean isHasAdminRole) {
+        this.login = login;
+        this.password = password;
+        this.isHasAdminRole = isHasAdminRole;
     }
 
     public String getLogin() {

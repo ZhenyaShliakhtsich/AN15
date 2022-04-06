@@ -1,14 +1,7 @@
 package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8;
 
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.menu.MenuServiceImpl;
-import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.Basket;
-import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.Product;
-import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.User;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 
 //Разработать консольное приложение при запуске которого просят авторизировать пользователя.
 //Если залогиниться как админ, то можно добавлять, удалять, изменять информацию об автозапчасти.
@@ -20,8 +13,6 @@ import java.util.HashSet;
 // После оплаты количество деталей должно уменьшиться.
 public class Main {
     public static void main(String[] args) {
-        MenuServiceImpl menuServiceImpl = new MenuServiceImpl();
-        menuServiceImpl.authMenu();
-
+        new MenuServiceImpl().authMenu();
     }
 }

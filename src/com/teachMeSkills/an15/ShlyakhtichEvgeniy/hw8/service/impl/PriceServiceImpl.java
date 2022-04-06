@@ -9,12 +9,12 @@ import java.util.Random;
 
 public class PriceServiceImpl implements PriceService {
     @Override
-    public BigDecimal calculateTotalBasketPrice(User user) {
+    public void calculateTotalBasketPrice(User user) {
         BigDecimal totalPrice = new BigDecimal(0);
         for (Product product : user.getBasket().getProducts()) {
             totalPrice = totalPrice.add(product.getPrice());
         }
-        return totalPrice;
+        user.getBasket().setTotalPrice(totalPrice);
     }
 
     @Override
@@ -25,14 +25,12 @@ public class PriceServiceImpl implements PriceService {
 
     @Override
     public BigDecimal calculateTotalBasketPriceWithDiscount(User user) {
-        BigDecimal totalPriceWithDiscount = calculateTotalBasketPrice(user).subtract(calculateDiscountPrice(user));
-        return totalPriceWithDiscount;
+        return user.getBasket().getTotalPrice().subtract(calculateDiscountPrice(user));
     }
 
     @Override
     public BigDecimal calculateDiscountPrice(User user) {
         BigDecimal discount = BigDecimal.valueOf( (double)calculateDiscount() / 100);
-        BigDecimal discountPrice = calculateTotalBasketPrice(user).multiply(discount);
-        return discountPrice;
+        return user.getBasket().getTotalPrice().multiply(discount);
     }
 }
