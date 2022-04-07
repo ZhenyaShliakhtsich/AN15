@@ -20,14 +20,14 @@ class One {
 
         System.out.println("Start - " + list);
 
-        System.out.println("Призывники:");
+        System.out.println("Task 1:");
         list.stream().filter(x -> x.getAge() >= 18).filter(x -> x.getAge() <= 27).forEach(s -> System.out.println(s));
 
-        System.out.println("Средний возраст мужчин:");
+        System.out.println("Task 2:");
         System.out.println(list.stream().filter(x -> x.getSex().getItem().equalsIgnoreCase("man"))
                 .mapToInt(x -> x.getAge()).average().getAsDouble());
 
-        System.out.println("Кто не пенс");
+        System.out.println("Task 3:");
         list.stream().filter(x -> x.getAge() >= 18)
                 .filter(x -> {
                     if (x.getSex().getItem().equalsIgnoreCase("man") && x.getAge() <= 60) {

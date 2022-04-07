@@ -15,18 +15,19 @@ public class Three {
         ArrayList<String> collection1 = new ArrayList<>(Arrays.asList("a1", "a2", "a3", "a1"));
         ArrayList<String> collection2 = new ArrayList<>(Arrays.asList("1,2,0", "4,5"));
 
-        System.out.println("Task 1");
-        collection1.stream().map(s -> s +"_1").forEach(System.out::println);
+        System.out.println("Task 1:");
+        collection1.stream().map(s -> s + "_1").forEach(System.out::println);
 
-        System.out.println("Task 2");
+        System.out.println("Task 2:");
         int[] arr = collection1.stream().map(x -> x.substring(1)).mapToInt(x -> Integer.valueOf(x)).sorted().toArray();
-        for (int i: arr){
+        for (int i : arr) {
             System.out.print(i + " ");
         }
         System.out.println();
 
-        System.out.println("Task 3");
-        System.out.println(collection2.stream().map(s -> s.split(",")).flatMap(a -> Arrays.stream(a).map(x -> Integer.parseInt(x)))
+        System.out.println("Task 3:");
+        System.out.println(collection2.stream().map(s -> s.split(","))
+                .flatMap(a -> Arrays.stream(a).map(x -> Integer.parseInt(x)))
                 .collect(Collectors.toList()));
 //        String s = "1,2,0";
 //        String[] ss = s.split(",");

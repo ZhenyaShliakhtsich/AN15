@@ -1,7 +1,7 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwLast.one;
 
 public enum SexEnum {
-    MAN ("man"),
+    MAN("man"),
     WOMAN("woman");
 
     String item;
