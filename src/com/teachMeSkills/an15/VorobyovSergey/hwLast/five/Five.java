@@ -16,7 +16,7 @@ public class Five {
 
         System.out.println("Task 1:");
         //Важно добавлять всегда orElse иначе придется создавать Optional o на случай если ничего не вернется из стрима
-        Integer i = list.stream().reduce((x, y) -> x+y).orElse(0);
+        Integer i = list.stream().reduce((x, y) -> x + y).orElse(0);
         System.out.println(i);
 
         System.out.println("Task 2:");
@@ -24,5 +24,7 @@ public class Five {
         System.out.println(ii);
 
         System.out.println("Task 3:");
+        Integer summa = list.stream().mapToInt(x -> x).filter(x -> x % 2 != 0).sum();
+        System.out.println(summa);
     }
 }
