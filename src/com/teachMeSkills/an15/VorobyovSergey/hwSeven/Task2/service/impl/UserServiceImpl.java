@@ -1,7 +1,6 @@
 package com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.impl;
 
 import com.teachMeSkills.an15.VorobyovSergey.MyClassLib.OnlyOneBigDecimalReader;
-import com.teachMeSkills.an15.VorobyovSergey.MyClassLib.OnlyOneDoubleNumberReader;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.OnlyOneNumberReaderService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task1.services.readers.implementations.OnlyOneNumberReaderServiceImpl;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.ConstVal;
@@ -9,22 +8,27 @@ import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Basket;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.Product;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.PurchaseReceipt;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.model.User;
+import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.DatabaseService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.PurchaseService;
 import com.teachMeSkills.an15.VorobyovSergey.hwSeven.Task2.service.UserService;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
 public class UserServiceImpl implements UserService {
-    private Scanner scanner = new Scanner(System.in);
+    //!!!+++ Теперь сканнер обьявляется в методе а не как переменная класса
+//    private Scanner scanner = new Scanner(System.in);
     private OnlyOneNumberReaderService numberReader = new OnlyOneNumberReaderServiceImpl();
-    PurchaseService purchaseService = new PurchaseServiceImpl();
+    private OnlyOneBigDecimalReader decimalReader = new OnlyOneBigDecimalReader();
+    private PurchaseService purchaseService = new PurchaseServiceImpl();
+    private DatabaseService databaseService = new DatabaseServiceImpl();
 
     //-------------------This is for admins-----------------------
     @Override
-    public void addProduct(HashSet<Product> storage) {
+    public void addProduct() {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
+        Scanner scanner = new Scanner(System.in);
         Product product = new Product();
         String carModel;
         HashSet<String> listOfCars = new HashSet<>();
@@ -34,13 +38,17 @@ public class UserServiceImpl implements UserService {
         product.setName(scanner.nextLine());
 
         System.out.println("Enter product price:");
-        product.setPrice(BigDecimal.valueOf(numberReader.readNumberFromConsole()));
+        product.setPrice(decimalReader.readNumberFromConsole());
 
         System.out.println("Enter product amount:");
         product.setAmount(numberReader.readNumberFromConsole());
 
+        //попробовать эту строку - избавиться от нее
         System.out.println("Enter car model name or enter stop:");
-        while (!(carModel = scanner.nextLine()).equalsIgnoreCase("Stop")) {
+
+//!!!+++ поменять местами stop и CarModel
+//!!!+++ while (!(carModel = scanner.nextLine()).equalsIgnoreCase("Stop")) {
+        while (!("Stop").equalsIgnoreCase(carModel = scanner.nextLine())) {
             System.out.println("Enter car model name or enter stop:");
             listOfCars.add(carModel);
         }
@@ -50,16 +58,15 @@ public class UserServiceImpl implements UserService {
 
         //Now try to add product to storage
         storage.add(product);
-
+        databaseService.saveProductsInDB(storage);
     }
 
     @Override
-    public void changeProduct(HashSet<Product> storage) {
+    public void changeProduct() {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
+        Scanner scanner = new Scanner(System.in);
         //Storage on display
-        System.out.println("Your storage now:");
-        for (Product p : storage) {
-            System.out.println(p);
-        }
+        showProducts();
 
         Product tempProduct = null;
         //Try to change
@@ -87,9 +94,6 @@ public class UserServiceImpl implements UserService {
                     break;
                 case "price":
                     System.out.println("Enter price:");
-//                    tempProduct.setPrice(new BigDecimal(numberReader.readNumberFromConsole()));
-//                    tempProduct.setPrice(BigDecimal.valueOf(
-//                            new BigDecimal(new OnlyOneDoubleNumberReader().readNumberFromConsole()).doubleValue()));
                     tempProduct.setPrice(new OnlyOneBigDecimalReader().readNumberFromConsole());
                     break;
                 case "amount":
@@ -98,7 +102,8 @@ public class UserServiceImpl implements UserService {
                     break;
                 case "carnames":
                     System.out.println("Enter car model name or enter stop:");
-                    while (!(carModel = scanner.nextLine()).equalsIgnoreCase("Stop")) {
+//!!!+++ while (!(carModel = scanner.nextLine()).equalsIgnoreCase("Stop")) {
+                    while (!("Stop").equalsIgnoreCase(carModel = scanner.nextLine())) {
                         System.out.println("Enter car model name or enter stop:");
                         listOfCars.add(carModel);
                     }
@@ -108,17 +113,17 @@ public class UserServiceImpl implements UserService {
                     System.out.println("Значит ничего не хочешь изменить");
             }
             storage.add(tempProduct);
+            databaseService.saveProductsInDB(storage);
         }
 
     }
 
     @Override
-    public void deleteProduct(HashSet<Product> storage) {
+    public void deleteProduct() {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
+        Scanner scanner = new Scanner(System.in);
         //Storage on display
-        System.out.println("Your storage now:");
-        for (Product p : storage) {
-            System.out.println(p);
-        }
+        showProducts();
 
         //Try to remove
         System.out.println("Enter name of product to remove");
@@ -129,10 +134,12 @@ public class UserServiceImpl implements UserService {
                 break;
             }
         }
+        databaseService.saveProductsInDB(storage);
     }
 
     @Override
-    public void showProducts(HashSet<Product> storage) {
+    public void showProducts() {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
         System.out.println("Your storage now:");
         for (Product p : storage) {
             System.out.println(p);
@@ -142,14 +149,13 @@ public class UserServiceImpl implements UserService {
 
     //-------------------This is for users-----------------------
     @Override
-    public User addProductToBasket(User user, HashSet<Product> storage) {
+    public User addProductToBasket(User user) {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
+        Scanner scanner = new Scanner(System.in);
         //Storage on display
-        System.out.println("Your storage now:");
-        for (Product p : storage) {
-            System.out.println(p);
-        }
-
+        showProducts();
         Product tempProduct = null;
+
         //Try to add
         System.out.println("Enter name of product to add in basket");
         String productToAdd = scanner.nextLine();
@@ -160,12 +166,19 @@ public class UserServiceImpl implements UserService {
             }
         }
 
-        //Check for null
+////!!!+++ сказать чуваку, что такого нет и рекурсией вызвать себя
+        if (tempProduct == null) {
+            System.out.println("Чувак такого продукта нет");
+            addProductToBasket(user);
+        }
+
         if (user.getBasket() != null && user.getBasket().getProducts() != null) {
-            System.out.println("Good!!! Basket and product is not null");
+//!!!+++ это не нужно знать пользователю
+//            System.out.println("Good!!! Basket and product is not null");
             user.getBasket().getProducts().add(tempProduct);
         } else {
-            System.out.println("Awful!!! Something is null");
+//!!!+++ это не нужно знать пользователю
+//            System.out.println("Awful!!! Something is null");
             user.setBasket(new Basket());
             user.getBasket().setProducts(new HashSet<>());
             user.getBasket().getProducts().add(tempProduct);
@@ -175,13 +188,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void payForBasket(User user) {
+        Scanner scanner = new Scanner(System.in);
         //Calculate price
         if (user.getBasket().getProducts() != null) {
             PriceAndDiscountServiceImpl service = new PriceAndDiscountServiceImpl();
             PurchaseReceipt receipt = service.calculateTotalBasketPrice(user);
             //Try to pay for basket
-            System.out.println("Введи ОПЛАЧИВАЮ если хочешь оплатить корзину");
-            if (scanner.nextLine().equalsIgnoreCase("ОПЛАЧИВАЮ")) {
+            System.out.println("Введи " + ConstVal.PAY_BASKET+ " если хочешь оплатить корзину");
+            if (ConstVal.PAY_BASKET.equalsIgnoreCase(scanner.nextLine())) {
                 System.out.println("Оплачено!!!");
                 //Serialize and save
                 purchaseService.savePurchaseReceipt(receipt);
@@ -197,6 +211,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteProductFromBasket(User user) {
+        Scanner scanner = new Scanner(System.in);
         //Check for empty basket and then dell
         if (showBasket(user)) {
             System.out.println("Enter name of product to dell from basket");
@@ -212,12 +227,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void rateProduct(HashSet<Product> storage) {
+    public void rateProduct() {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
+        Scanner scanner = new Scanner(System.in);
         //Storage on display
-        System.out.println("Your storage now:");
-        for (Product p : storage) {
-            System.out.println(p);
-        }
+        showProducts();
+        boolean isProductInDB = false;
 
         //Try to rate
         System.out.println("Enter name of product to rate");
@@ -227,18 +242,26 @@ public class UserServiceImpl implements UserService {
                 System.out.println("Enter your rate");
                 p.setAvgRate(new RateServiceImpl().calculateAvgRate(p));
                 System.out.println("Now Average rate is: " + p.getAvgRate());
+                isProductInDB = true;
+                databaseService.saveProductsInDB(storage);
                 break;
             }
+        }
+
+//!!!+++ чувак ты не попал в название на экран, и хотим рекурсию
+        if (!isProductInDB) {
+            System.out.println("Чувак такого продукта нет");
+            rateProduct();
         }
     }
 
     @Override
-    public void commentProduct(HashSet<Product> storage) {
+    public void commentProduct() {
+        HashSet<Product> storage = databaseService.loadProductsFromDB();
+        Scanner scanner = new Scanner(System.in);
         //Storage on display
-        System.out.println("Your storage now:");
-        for (Product p : storage) {
-            System.out.println(p);
-        }
+        showProducts();
+        boolean isProductInDB = false;
 
         //Try to comment
         System.out.println("Enter name of product to comment");
@@ -249,11 +272,19 @@ public class UserServiceImpl implements UserService {
                 String newComment = scanner.nextLine();
                 //null checker
                 if (p.getComment() == null) {
-                   p.setComment(new ArrayList<>());
+                    p.setComment(new ArrayList<>());
                 }
-                    p.getComment().add(newComment);
+                p.getComment().add(newComment);
+                isProductInDB = true;
+                databaseService.saveProductsInDB(storage);
                 break;
             }
+        }
+
+//!!!+++ чувак ты не попал в название на экран, и хотим рекурсию
+        if (!isProductInDB) {
+            System.out.println("Чувак такого продукта нет");
+            commentProduct();
         }
     }
 
@@ -281,5 +312,4 @@ public class UserServiceImpl implements UserService {
         String myDir = ConstVal.PATH_TO_RECEIPT_TXT;
         purchaseService.showUserReceiptsInTxt(user, myDir);
     }
-
 }

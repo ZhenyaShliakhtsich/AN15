@@ -9,24 +9,24 @@ import java.util.HashSet;
 public interface UserService {
 
     //Methods for Admin
-    void addProduct(HashSet<Product> storage);
+    void addProduct();
 
-    void changeProduct(HashSet<Product> storage);
+    void changeProduct();
 
-    void deleteProduct(HashSet<Product> storage);
+    void deleteProduct();
 
-    void showProducts (HashSet<Product> storage);
+    void showProducts ();
 
     //Methods for other Users
-    User addProductToBasket(User user, HashSet<Product> storage);
+    User addProductToBasket(User user);
 
     void payForBasket(User user);
 
     void deleteProductFromBasket(User user);
 
-    void rateProduct(HashSet<Product> storage);
+    void rateProduct();
 
-    void commentProduct(HashSet<Product> storage);
+    void commentProduct();
 
     boolean showBasket (User user);
 
