@@ -2,11 +2,13 @@ package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl;
 
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.Product;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.User;
+import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.DataBaseService;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.MenuService;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.PriceService;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl.AuthServiceImpl;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl.UserServiceImpl;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -89,6 +91,8 @@ public class MenuServiceImpl implements MenuService {
     }
 
     public void userMenu(User user) {
+        DataBaseService dataBaseService = new DataBaseServiceImpl();
+        ArrayList<Product> products = (ArrayList<Product>) dataBaseService.loadProductsDataBase();
         System.out.println("""
                 1.Список продуктов
                 2.Поиск продуктов
@@ -101,7 +105,7 @@ public class MenuServiceImpl implements MenuService {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    for (Product product : PRODUCTS) {
+                    for (Product product : products) {
                         System.out.println(product.toString());
                     }
                     userMenu(user);
@@ -111,7 +115,7 @@ public class MenuServiceImpl implements MenuService {
                     break;
                 case 3:
                     Product currentProduct;
-                    currentProduct = userService.chooseProduct(PRODUCTS);
+                    currentProduct = userService.chooseProduct(products);
                     if (currentProduct == null) {
                         System.out.println("Такого продукта нет");
                         userMenu(user);

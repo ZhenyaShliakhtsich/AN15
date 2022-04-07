@@ -15,7 +15,8 @@ public class Product implements Serializable {
     private HashSet<String> carNames;
     private ArrayList<Integer> rates;
 
-    public Product(String name, BigDecimal price, int amount, ArrayList<String> comments, HashSet<String> carNames, ArrayList<Integer> rates) {
+    public Product(String name, BigDecimal price, int amount, ArrayList<String> comments, HashSet<String> carNames,
+                   ArrayList<Integer> rates) {
         this.name = name;
         this.price = price;
         this.amount = amount;

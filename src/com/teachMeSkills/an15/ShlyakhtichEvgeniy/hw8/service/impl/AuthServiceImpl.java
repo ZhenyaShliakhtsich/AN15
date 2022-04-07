@@ -24,10 +24,11 @@ public class AuthServiceImpl implements AuthService {
         String password = scanner.nextLine();
 
         User enteredUser = new User(login, password);
-        if (users.containsKey(enteredUser.getLogin())) {
-            if (users.get(enteredUser.getLogin()).getPassword().equals(enteredUser.getPassword())) {
+        String enteredUserLogin =enteredUser.getLogin();
+        if (users.containsKey(enteredUserLogin)) {
+            if (users.get(enteredUserLogin).getPassword().equals(enteredUser.getPassword())) {
                 System.out.println("Ты авторизирован");
-                return users.get(enteredUser.getLogin());
+                return users.get(enteredUserLogin);
             } else {
                 System.out.println("Логин или пароль неверные");
             }

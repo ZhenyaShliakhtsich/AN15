@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DataBaseServiceImpl implements DataBaseService {
-    File usersDB = new File("src/com/teachMeSkills/an15/ShlyakhtichEvgeniy/hw8/dataBase/usersDB.txt");
-    File productsDB = new File("src/com/teachMeSkills/an15/ShlyakhtichEvgeniy/hw8/dataBase/productsDB.txt");
+    static final File usersDB = new File("src/com/teachMeSkills/an15/ShlyakhtichEvgeniy/hw8/dataBase/usersDB.txt");
+    static final File productsDB = new File("src/com/teachMeSkills/an15/ShlyakhtichEvgeniy/hw8/dataBase/productsDB.txt");
 
     @Override
     public Object loadUsersDataBase() {
