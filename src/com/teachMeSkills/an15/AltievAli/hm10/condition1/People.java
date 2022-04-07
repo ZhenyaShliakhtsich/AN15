@@ -1,15 +1,11 @@
 package com.teachMeSkills.an15.AltievAli.hm10.condition1;
 
-public class People {
+import java.util.Comparator;
+
+public class People implements Comparator<People> {
     private String name;
     private int age;
-    private Enum sexEnum;
-
-    public People(String name, int age, Enum sexEnum) {
-        this.name = name;
-        this.age = age;
-        this.sexEnum = sexEnum;
-    }
+    private Sex sexEnum;
 
     public String getName() {
         return name;
@@ -27,11 +23,17 @@ public class People {
         this.age = age;
     }
 
-    public Enum getSexEnum() {
+    public Sex getSexEnum() {
         return sexEnum;
     }
 
-    public void setSexEnum(Enum sexEnum) {
+    public void setSexEnum(Sex sexEnum) {
+        this.sexEnum = sexEnum;
+    }
+
+    public People(String name, int age, Sex sexEnum) {
+        this.name = name;
+        this.age = age;
         this.sexEnum = sexEnum;
     }
 
@@ -43,4 +45,15 @@ public class People {
                 ", sexEnum=" + sexEnum +
                 '}';
     }
+
+    @Override
+    public int compare(People o1, People o2) {
+//        if (o1.getSexEnum()..equals(o2.getSex().getItem()))
+//            return 0;
+//        else if (o1.getSex().getItem().equals("man"))
+//            return 1;
+//        else
+        return -1;
+    }
 }
+
