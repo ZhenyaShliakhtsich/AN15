@@ -1,8 +1,9 @@
 package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class User {
+public class User implements Serializable {
     private String login;
     private String password;
     private boolean isHasAdminRole;

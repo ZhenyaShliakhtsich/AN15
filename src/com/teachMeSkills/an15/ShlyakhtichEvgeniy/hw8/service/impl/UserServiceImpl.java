@@ -1,8 +1,8 @@
 package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl;
 
-import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.menu.MenuServiceImpl;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.Product;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.User;
+import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.DataBaseService;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.UserService;
 
 import java.io.BufferedWriter;
@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.DataBase.PRODUCTS;
 
 public class UserServiceImpl implements UserService {
+    DataBaseService dataBaseService = new DataBaseServiceImpl();
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -48,20 +48,23 @@ public class UserServiceImpl implements UserService {
         ArrayList<String> reviews = new ArrayList<>();
         ArrayList<Integer> rates = new ArrayList<>();
         Product product = new Product(name, price, amount, reviews, carSet, rates);
-        PRODUCTS.add(product);
+        ArrayList<Product> products = (ArrayList<Product>) dataBaseService.loadProductsDataBase();
+        products.add(product);
+        dataBaseService.saveProductsDataBase(products);
     }
 
     @Override
     public void changeProduct() {
+        ArrayList<Product> products = (ArrayList<Product>) dataBaseService.loadProductsDataBase();
         System.out.println("Введите продукт, который хотите изменить");
-        for (Product product : PRODUCTS) {
+        for (Product product : products) {
             System.out.println(product.getName());
         }
         String name = scanner.nextLine();
 
         int index = -1;
-        for (int i = 0; i < PRODUCTS.size(); i++) {
-            if (name.equalsIgnoreCase(PRODUCTS.get(i).getName())) {
+        for (int i = 0; i < products.size(); i++) {
+            if (name.equalsIgnoreCase(products.get(i).getName())) {
                 index = i;
                 break;
             }
@@ -75,13 +78,13 @@ public class UserServiceImpl implements UserService {
             try {
                 if ("Название".equalsIgnoreCase(choice)) {
                     System.out.println("Введите новое название");
-                    PRODUCTS.get(index).setName(scanner.nextLine());
+                    products.get(index).setName(scanner.nextLine());
                     break;
                 } else if ("Цена".equalsIgnoreCase(choice)) {
                     System.out.println("Введите новую цену");
                     BigDecimal price = scanner.nextBigDecimal();
                     if (price.compareTo(new BigDecimal(0)) > 0) {
-                        PRODUCTS.get(index).setPrice(price);
+                        products.get(index).setPrice(price);
                     } else {
                         System.out.println("Цена не может быть отрицательной");
                         changeProduct();
@@ -91,7 +94,7 @@ public class UserServiceImpl implements UserService {
                     System.out.println("Введите новое количество");
                     int amount = scanner.nextInt();
                     if (amount > 0) {
-                        PRODUCTS.get(index).setAmount(amount);
+                        products.get(index).setAmount(amount);
                     } else {
                         System.out.println("Количество не может быть отрицательным");
                         changeProduct();
@@ -103,11 +106,11 @@ public class UserServiceImpl implements UserService {
                     if ("Добавить".equalsIgnoreCase(carChoice)) {
                         System.out.println("Введите новую машину");
                         String car = scanner.nextLine();
-                        PRODUCTS.get(index).getCarNames().add(car);
+                        products.get(index).getCarNames().add(car);
                     } else if ("Изменить".equalsIgnoreCase(carChoice)) {
-                        System.out.println(PRODUCTS.get(index).getCarNames() + "\nВыберите машину,которую вы хотите изменить");
+                        System.out.println(products.get(index).getCarNames() + "\nВыберите машину,которую вы хотите изменить");
                         String choiceOfCar = scanner.nextLine();
-                        for (String car : PRODUCTS.get(index).getCarNames()) {
+                        for (String car : products.get(index).getCarNames()) {
                             if (car.equals(choiceOfCar)) {
                                 System.out.println("Хотите заменить или удалить");
                                 choice = scanner.nextLine();
@@ -115,7 +118,7 @@ public class UserServiceImpl implements UserService {
                                     System.out.println("Введите изменения");
                                     car.replace(car, scanner.nextLine());
                                 } else if ("Удалить".equalsIgnoreCase(choice)) {
-                                    PRODUCTS.get(index).getCarNames().remove(car);
+                                    products.get(index).getCarNames().remove(car);
                                 }
                             }
                         }
@@ -126,6 +129,7 @@ public class UserServiceImpl implements UserService {
 
                     break;
                 }
+                dataBaseService.saveProductsDataBase(products);
             } catch (InputMismatchException e) {
                 changeProduct();
             }
@@ -134,16 +138,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteProduct() {
+        ArrayList<Product> products = (ArrayList<Product>) dataBaseService.loadProductsDataBase();
         System.out.println("Введите продукт, который хотите удалить");
-        for (Product product : PRODUCTS) {
+        for (Product product : products) {
             System.out.println(product.getName());
         }
 
         String name = scanner.nextLine();
 
         int index = -1;
-        for (int i = 0; i < PRODUCTS.size(); i++) {
-            if (PRODUCTS.get(i).getName().equalsIgnoreCase(name)) {
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getName().equalsIgnoreCase(name)) {
                 index = i;
                 break;
             }
@@ -151,7 +156,7 @@ public class UserServiceImpl implements UserService {
         if (index == -1) {
             deleteProduct();
         } else {
-            PRODUCTS.remove(PRODUCTS.get(index));
+            products.remove(index);
         }
     }
 
@@ -206,13 +211,15 @@ public class UserServiceImpl implements UserService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            ArrayList<Product> products = (ArrayList<Product>) dataBaseService.loadProductsDataBase();
             for (Product productFromBasket : user.getBasket().getProducts()) {
-                for (Product product : PRODUCTS) {
+                for (Product product : products) {
                     if (productFromBasket.equals(product)) {
                         product.setAmount(product.getAmount() - 1);
                     }
                 }
             }
+            dataBaseService.saveProductsDataBase(products);
             user.getBasket().setProducts(new ArrayList<>());
 
         } else {
@@ -264,9 +271,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void searchProductByCarName() {
+        ArrayList<Product> products = (ArrayList<Product>) dataBaseService.loadProductsDataBase();
         System.out.println("Введите название машины");
         String search = scanner.nextLine();
-        for (Product product : PRODUCTS) {
+        for (Product product : products) {
             if (product.getCarNames().contains(search)) {
                 System.out.println(product);
             }

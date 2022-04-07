@@ -1,7 +1,9 @@
-package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.menu;
+package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl;
 
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.Product;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.User;
+import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.MenuService;
+import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.PriceService;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl.AuthServiceImpl;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl.UserServiceImpl;
 
@@ -9,7 +11,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.DataBase.PRODUCTS;
-import static com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.DataBase.USERS;
 
 public class MenuServiceImpl implements MenuService {
     AuthServiceImpl authService = new AuthServiceImpl();
@@ -63,7 +64,7 @@ public class MenuServiceImpl implements MenuService {
             switch (choice) {
                 case 1:
                     User userTest;
-                    userTest = authService.login(USERS);
+                    userTest = authService.login();
                     if (userTest == null) {
                         authMenu();
                     } else if (userTest.isHasAdminRole()) {
@@ -73,7 +74,7 @@ public class MenuServiceImpl implements MenuService {
                     }
                     break;
                 case 2:
-                    authService.registration(USERS);
+                    authService.registration();
                     authMenu();
                     break;
                 case 3:
@@ -138,6 +139,8 @@ public class MenuServiceImpl implements MenuService {
     }
 
     public void basketMenu(User user) {
+        PriceService priceService = new PriceServiceImpl();
+        priceService.calculateTotalBasketPrice(user);
         for (Product product : user.getBasket().getProducts()) {
             System.out.println(product.getName() + " " + product.getPrice() + " руб.");
         }
