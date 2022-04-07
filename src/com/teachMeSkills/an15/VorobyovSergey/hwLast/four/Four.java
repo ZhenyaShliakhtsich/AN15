@@ -57,6 +57,9 @@ public class Four {
                 .compareToIgnoreCase(o1.getName())).forEach(s -> System.out.println(s));
 
         System.out.println("Task 6:");
-        list.stream().sorted(Comparator.comparing(people -> people.getAge())).forEach(s -> System.out.println(s));
+        list.stream().sorted(Comparator.comparing(people -> people.getAge()))
+                //Comparator должен быть для People а не его параметра
+                //Можно еще в компараторе реализовать thenSorted
+                .sorted(new ComparatorForEnumSex()).forEach(s -> System.out.println(s));
     }
 }
