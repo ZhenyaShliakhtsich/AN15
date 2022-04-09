@@ -26,13 +26,13 @@ public class Main {
 
 //        System.out.println(stream.filter("a1"::contains).count());
 
-//        System.out.println(stream.distinct().collect(Collectors.toList()));
+       System.out.println(stream.distinct().collect(Collectors.toList()));
 
 //        System.out.println(stream.map((s -> s + "_postfix")).collect(Collectors.toList()));
 
-//        System.out.println(stream.limit(4).collect(Collectors.toList()));
+    /*    System.out.println(stream.limit(4).collect(Collectors.toList()));
 
-//        System.out.println(stream.sorted().collect(Collectors.toList()));
+        System.out.println(stream.sorted().collect(Collectors.toList()));*/
 
 //        System.out.println(stream.max(Comparator.comparingInt(String::length)).stream().collect(Collectors.toList()));
 
@@ -40,14 +40,14 @@ public class Main {
 
 //        System.out.println(stream.findAny().stream().collect(Collectors.toList()));
 
-        System.out.println(stream.filter((s -> s.contains("a"))).collect(Collectors.toList()));
+      //  System.out.println(stream.filter((s -> s.contains("a"))).collect(Collectors.toList()));
 
 
 //        System.out.println(stream.filter((s -> s.contains("1"))).count());
 
 
 
-        ArrayList<String> arrayList = new ArrayList<>();
+      /*  ArrayList<String> arrayList = new ArrayList<>();
 
         arrayList.add("1"); //0
         arrayList.add("2"); //1
@@ -66,6 +66,6 @@ public class Main {
 
         ArrayList<String> strings2 = new ArrayList<>();
 
-        System.out.println(strings2.stream().skip(arrayList.size() - 1).findFirst().orElse("100"));
+        System.out.println(strings2.stream().skip(arrayList.size() - 1).findFirst().orElse("100"));*/
     }
 }
