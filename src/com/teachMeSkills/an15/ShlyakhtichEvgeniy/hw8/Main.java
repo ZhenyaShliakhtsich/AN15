@@ -1,6 +1,6 @@
 package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8;
 
-import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.menu.MenuServiceImpl;
+import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.impl.MenuServiceImpl;
 
 
 //Разработать консольное приложение при запуске которого просят авторизировать пользователя.
@@ -12,7 +12,6 @@ import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.menu.MenuServiceImpl;
 // Пользователь может добавлять товар в корзину и удалять, оплатить всю корзину целиков посредством ввода в консоль «Оплачиваю».
 // После оплаты количество деталей должно уменьшиться.
 public class Main {
-    public static void main(String[] args) {
-        new MenuServiceImpl().authMenu();
+    public static void main(String[] args) {new MenuServiceImpl().authMenu();
     }
 }

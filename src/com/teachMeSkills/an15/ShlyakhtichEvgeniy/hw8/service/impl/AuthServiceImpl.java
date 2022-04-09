@@ -4,15 +4,19 @@ import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.Basket;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.Product;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model.User;
 import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.AuthService;
+import com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.service.DataBaseService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
-import static com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.DataBase.USERS;
 
 public class AuthServiceImpl implements AuthService {
+    DataBaseService dataBaseService = new DataBaseServiceImpl();
+
     @Override
     public User login() {
+        HashMap<String, User> users = (HashMap<String, User>) dataBaseService.loadUsersDataBase();
         System.out.println("Введите логин:");
         Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
@@ -20,10 +24,11 @@ public class AuthServiceImpl implements AuthService {
         String password = scanner.nextLine();
 
         User enteredUser = new User(login, password);
-        if (USERS.containsKey(enteredUser.getLogin())) {
-            if (USERS.get(enteredUser.getLogin()).getPassword().equals(enteredUser.getPassword())) {
+        String enteredUserLogin =enteredUser.getLogin();
+        if (users.containsKey(enteredUserLogin)) {
+            if (users.get(enteredUserLogin).getPassword().equals(enteredUser.getPassword())) {
                 System.out.println("Ты авторизирован");
-                return USERS.get(enteredUser.getLogin());
+                return users.get(enteredUserLogin);
             } else {
                 System.out.println("Логин или пароль неверные");
             }
@@ -35,21 +40,23 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void registration() {
+        HashMap<String, User> users = (HashMap<String, User>) dataBaseService.loadUsersDataBase();
         System.out.println("Введите логин:");
         Scanner scanner = new Scanner(System.in);
         String login = scanner.nextLine();
-        if (USERS.containsKey(login)){
+        if (users.containsKey(login)) {
             System.out.println("Такой логин уже есть.Выберите новый");
             registration();
-        }else {
+        } else {
             System.out.println("Введите пароль:");
             String password = scanner.nextLine();
             User user = new User(login, password);
             user.setBasket(new Basket());
             ArrayList<Product> products = new ArrayList<>();
             user.getBasket().setProducts(products);
-            USERS.put(user.getLogin(), user);
+            users.put(user.getLogin(), user);
             System.out.println("Ты зарегистрирован! Авторизируйся!");
+            dataBaseService.saveUsersDataBase(users);
         }
     }
 }

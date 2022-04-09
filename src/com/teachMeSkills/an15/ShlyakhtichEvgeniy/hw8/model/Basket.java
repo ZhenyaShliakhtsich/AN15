@@ -1,10 +1,11 @@
 package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Basket {
+public class Basket implements Serializable {
     private ArrayList<Product> products;
     private BigDecimal totalPrice;
 

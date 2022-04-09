@@ -30,7 +30,7 @@ public class PriceServiceImpl implements PriceService {
 
     @Override
     public BigDecimal calculateDiscountPrice(User user) {
-        BigDecimal discount = BigDecimal.valueOf( (double)calculateDiscount() / 100);
+        BigDecimal discount = BigDecimal.valueOf((double) calculateDiscount() / 100);
         return user.getBasket().getTotalPrice().multiply(discount);
     }
 }

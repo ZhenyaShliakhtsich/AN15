@@ -45,6 +45,7 @@ public class DataBase {
         add(oil);
         add(engine);
         add(carRadio);
+
     }};
     public static HashMap<String, User> USERS = new HashMap<>(){{
         User admin = new User("admin", "admin", new Basket());

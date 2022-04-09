@@ -1,11 +1,12 @@
 package com.teachMeSkills.an15.ShlyakhtichEvgeniy.hw8.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Product {
+public class Product implements Serializable {
     private String name;
     private BigDecimal price;
     private double avgRate;
@@ -14,7 +15,8 @@ public class Product {
     private HashSet<String> carNames;
     private ArrayList<Integer> rates;
 
-    public Product(String name, BigDecimal price, int amount, ArrayList<String> comments, HashSet<String> carNames, ArrayList<Integer> rates) {
+    public Product(String name, BigDecimal price, int amount, ArrayList<String> comments, HashSet<String> carNames,
+                   ArrayList<Integer> rates) {
         this.name = name;
         this.price = price;
         this.amount = amount;
